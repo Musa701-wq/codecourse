@@ -29,13 +29,14 @@ class AuthService {
     }
   }
 
-  /// 🔹 Sign in with Apple
+  /// 🔹 Sign in with Apple - Enhanced version
   Future<User?> signInWithApple() async {
     if (!Platform.isIOS && !Platform.isMacOS) {
       throw UnsupportedError('Apple Sign-In works only on iOS/macOS.');
     }
 
     try {
+
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -43,19 +44,42 @@ class AuthService {
         ],
       );
 
+
+
+      // Check if we have the necessary tokens
+      if (appleCredential.identityToken == null) {
+        throw FirebaseAuthException(
+          code: 'missing-identity-token',
+          message: 'Apple Sign-In failed: No identity token received',
+        );
+      }
+
       final oauthCredential = OAuthProvider('apple.com').credential(
         idToken: appleCredential.identityToken,
         accessToken: appleCredential.authorizationCode,
       );
 
       final userCredential = await _auth.signInWithCredential(oauthCredential);
+
       return userCredential.user;
-    } catch (e) {
-      debugPrint("❌ Apple Sign-In failed: $e");
+    } on FirebaseAuthException catch (e) {
+      debugPrint("❌ Firebase Auth Error during Apple Sign-In:");
+      debugPrint("   Code: ${e.code}");
+      debugPrint("   Message: ${e.message}");
+      debugPrint("   Details: ${e.stackTrace}");
+      rethrow;
+    } on SignInWithAppleAuthorizationException catch (e) {
+      debugPrint("❌ Apple Authorization Error:");
+      debugPrint("   Code: ${e.code}");
+      debugPrint("   Message: ${e.message}");
+      rethrow;
+    } catch (e, stackTrace) {
+      debugPrint("❌ Unexpected error during Apple Sign-In:");
+      debugPrint("   Error: $e");
+      debugPrint("   Stack: $stackTrace");
       rethrow;
     }
   }
-
   /// 🔹 Sign out from Firebase and Google
   Future<void> signOut() async {
     try {

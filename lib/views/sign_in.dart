@@ -82,31 +82,12 @@ class SignInScreen extends StatelessWidget {
                   textColor: theme.colorScheme.onSurface,
                   onTap: () async {
                     final messenger = ScaffoldMessenger.of(context);
-                    try {
-                      await context.read<AuthProvider>().signInWithApple();
-                    } on UnsupportedError {
-                      messenger.showSnackBar(
-                        SnackBar(
-                          content: Text('Apple Sign-In not supported on this platform'),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      );
-                    } catch (e) {
-                      messenger.showSnackBar(
-                        SnackBar(
-                          content: Text('Apple sign-in failed: ${e.toString()}'),
-                          behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
+
+                    await context.read<AuthProvider>().signInWithApple();
+
                     }
-                  },
+
+
                 ),
               ],
             ),

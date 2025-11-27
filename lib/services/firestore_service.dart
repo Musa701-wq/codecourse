@@ -162,4 +162,30 @@ class FirestoreService {
     }, SetOptions(merge: true));
     debugPrint('[FirestoreService] markDayComplete(uid=$uid) → success');
   }
+
+  /// 🔹 Save support message to Firestore
+  Future<void> saveSupportMessage({
+    required String userEmail,
+    required String message,
+    required String userId, // Add user ID for better tracking
+  }) async {
+    debugPrint('[FirestoreService] saveSupportMessage(userEmail=$userEmail) → begin');
+
+    try {
+      // Create a new document in 'support_messages' collection
+      await _firestore.collection('support_messages').add({
+        'userEmail': userEmail,
+        'message': message,
+        'userId': userId, // Link to user document
+        'status': 'pending', // pending, in_progress, resolved
+        'createdAt': FieldValue.serverTimestamp(), // Automatic timestamp
+        'updatedAt': FieldValue.serverTimestamp(),
+      });
+
+      debugPrint('[FirestoreService] saveSupportMessage → success');
+    } catch (e) {
+      debugPrint('[FirestoreService] saveSupportMessage → ERROR: $e');
+      rethrow; // Re-throw the error so UI can handle it
+    }
+  }
 }

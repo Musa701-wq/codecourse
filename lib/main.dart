@@ -12,9 +12,30 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await initTracking();
-  await MobileAds.instance.initialize();
+
+  // Add comprehensive error handling
+  try {
+    print('🚀 Starting app initialization...');
+
+    // 1. Initialize Firebase first
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    print('✅ Firebase initialized');
+
+    // 2. Initialize App Tracking Transparency
+    await initTracking();
+    print('✅ App Tracking Transparency initialized');
+
+    // 3. Initialize Mobile Ads with error handling
+    await initMobileAds();
+    print('✅ Mobile Ads initialized');
+
+    print('🎉 All services initialized successfully');
+
+  } catch (e, stackTrace) {
+    print('❌ Initialization failed: $e');
+    print('📋 Stack trace: $stackTrace');
+  }
+
   runApp(
     MultiProvider(
       providers: [
@@ -28,9 +49,39 @@ Future<void> main() async {
 }
 
 Future<void> initTracking() async {
-  final status = await AppTrackingTransparency.trackingAuthorizationStatus;
-  if (status == TrackingStatus.notDetermined) {
-    await AppTrackingTransparency.requestTrackingAuthorization();
+  try {
+    // Wait a bit for the native side to be ready
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    print('📱 Current tracking status: $status');
+
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      final newStatus = await AppTrackingTransparency.requestTrackingAuthorization();
+      print('📱 New tracking status: $newStatus');
+    }
+  } catch (e) {
+    print('❌ App Tracking Transparency failed: $e');
+    // Don't rethrow - continue without tracking
+  }
+}
+
+Future<void> initMobileAds() async {
+  try {
+    // Initialize Mobile Ads with configuration
+    await MobileAds.instance.initialize();
+
+    // Set app configuration (optional but recommended)
+    final configuration = RequestConfiguration(
+      testDeviceIds: ['YOUR_TEST_DEVICE_ID'], // Add your test device ID
+    );
+    MobileAds.instance.updateRequestConfiguration(configuration);
+
+    print('✅ Mobile Ads configured');
+  } catch (e) {
+    print('❌ Mobile Ads initialization failed: $e');
+    // Don't rethrow - continue without ads
   }
 }
 
@@ -45,7 +96,6 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
-      // Always start with SplashWrapper to ensure 5s splash, then hand off to AuthWrapper.
       home: const SplashWrapper(),
     );
   }

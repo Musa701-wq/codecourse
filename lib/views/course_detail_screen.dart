@@ -521,18 +521,20 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   }
 
   Widget _buildDefinitionView(CourseDay day) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          children: [
-            _sectionHeader(day.title, icon: Icons.lightbulb_outline),
-            const SizedBox(height: 25),
-            _sectionBody(day.definition),
-          ],
-        ),
-        _buildNextButton('Next: Explanation', Icons.arrow_forward),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              _sectionHeader(day.title, icon: Icons.lightbulb_outline),
+              const SizedBox(height: 25),
+              _sectionBody(day.definition),
+            ],
+          ),
+          _buildNextButton('Next: Explanation', Icons.arrow_forward),
+        ],
+      ),
     );
   }
 

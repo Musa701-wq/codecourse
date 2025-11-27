@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Coding Tutor</string>
+	<string>CodeCourse: Learn to Code</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,63 +15,64 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>coding_tutor</string>
+	<string>CodeCourse: Learn to Code</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-
-	<!-- ✅ Required for Google Sign-In -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.1081718305607-rlrmfjjuqf4ic14q4a70vbdddhl5mc9d</string>
+			<string>GoogleSignIn</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1081718305607-rlrmfjjuqf4ic14q4a70vbdddhl5mc9d</string>
+				<string>com.googleusercontent.apps.236188595426-kcmmbqugv27jke21qojtvsitseks3q5n</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>SignInWithApple</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.example.codingTutor</string>
 			</array>
 		</dict>
 	</array>
-
-	<!-- ✅ Allow network access for Firebase/Google -->
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1234567890123456~1234567890</string>
+	<key>GIDClientID</key>
+	<string>236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>com.googleusercontent.apps.236188595426-kcmmbqugv27jke21qojtvsitseks3q5n</string>
+		<string>googlechrome</string>
+		<string>com.google</string>
+		<string>com.google.sso</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-
-	<!-- ✅ Required for Google Sign-In redirect handling -->
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>com.googleusercontent.apps.1081718305607-rlrmfjjuqf4ic14q4a70vbdddhl5mc9d</string>
-		<string>googlechrome</string>
-		<string>com.google</string>
-		<string>com.google.sso</string>
-	</array>
-
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to provide more relevant advertising content based on your location.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized ads to you.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSUserTrackingUsageDescription</key>
-    <string>This identifier will be used to deliver personalized ads to you.</string>
-
-    <!-- 👇 Needed if your ads or SDKs use location-based targeting -->
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Used to provide more relevant advertising content based on your location.</string>
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-3774337907915828~3340918165</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -1,4 +1,5 @@
 import 'package:coding_tutor/responsive/responsive.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
@@ -928,18 +929,10 @@ class _BreakdownSheet extends StatelessWidget {
 class _HelpSupportSheet extends StatelessWidget {
   const _HelpSupportSheet();
 
-  static final Uri _faqUrl = Uri.parse(
-    'https://vectorlabzlimited.com/terms-of-use/',
-  );
   static final Uri _privacyUrl = Uri.parse(
     'https://vectorlabzlimited.com/privacy-policy/',
   );
-  static final Uri _bugUrl = Uri.parse(
-    'https://vectorlabzlimited.com/terms-of-use/',
-  );
-  static final Uri _supportEmail = Uri.parse(
-    'https://vectorlabzlimited.com/privacy-policy/',
-  );
+
 
   @override
   Widget build(BuildContext context) {
@@ -1002,36 +995,16 @@ class _HelpSupportSheet extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      _buildTile(
+                      _buildFaqTile(
                         context,
-                        icon: Icons.question_mark_rounded,
-                        title: 'FAQs',
-                        subtitle: 'Common questions and answers',
-                        uri: _faqUrl,
                         scale: scale,
                         titleSize: subtitleSize,
                         subtitleSize: subtitleSize * 0.9,
                         iconSize: iconSize,
                       ),
                       Divider(height: 1),
-                      _buildTile(
+                      _buildContactSupportTile(
                         context,
-                        icon: Icons.email_rounded,
-                        title: 'Contact Support',
-                        subtitle: 'Email our support team',
-                        uri: _supportEmail,
-                        scale: scale,
-                        titleSize: subtitleSize,
-                        subtitleSize: subtitleSize * 0.9,
-                        iconSize: iconSize,
-                      ),
-                      Divider(height: 1),
-                      _buildTile(
-                        context,
-                        icon: Icons.bug_report_rounded,
-                        title: 'Report a Bug',
-                        subtitle: 'Tell us about an issue',
-                        uri: _bugUrl,
                         scale: scale,
                         titleSize: subtitleSize,
                         subtitleSize: subtitleSize * 0.9,
@@ -1060,17 +1033,95 @@ class _HelpSupportSheet extends StatelessWidget {
     );
   }
 
+  Widget _buildContactSupportTile(
+      BuildContext context, {
+        required double scale,
+        required double titleSize,
+        required double subtitleSize,
+        required double iconSize,
+      }) {
+    final theme = Theme.of(context);
+    return ListTile(
+      leading: Icon(Icons.email_rounded, size: iconSize),
+      title: Text(
+        'Contact Support',
+        style: theme.textTheme.bodyMedium?.copyWith(
+          fontSize: titleSize,
+          fontFamily: 'custom',
+        ),
+      ),
+      subtitle: Text(
+        'Email our support team',
+        style: theme.textTheme.bodyMedium?.copyWith(
+          fontSize: subtitleSize,
+          fontFamily: 'custom',
+        ),
+      ),
+      onTap: () {
+        Navigator.pop(context); // Close the bottom sheet
+        _showContactSupportDialog(context);
+      },
+    );
+  }
+
+  void _showContactSupportDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => _ContactSupportDialog(),
+    );
+  }
+
+  Widget _buildFaqTile(
+      BuildContext context, {
+        required double scale,
+        required double titleSize,
+        required double subtitleSize,
+        required double iconSize,
+      }) {
+    final theme = Theme.of(context);
+    return ListTile(
+      leading: Icon(Icons.question_mark_rounded, size: iconSize),
+      title: Text(
+        'FAQs',
+        style: theme.textTheme.bodyMedium?.copyWith(
+          fontSize: titleSize,
+          fontFamily: 'custom',
+        ),
+      ),
+      subtitle: Text(
+        'Common questions and answers',
+        style: theme.textTheme.bodyMedium?.copyWith(
+          fontSize: subtitleSize,
+          fontFamily: 'custom',
+        ),
+      ),
+      onTap: () {
+        Navigator.pop(context); // Close the bottom sheet
+        _showFaqScreen(context);
+      },
+    );
+  }
+
+  void _showFaqScreen(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _FaqScreen(),
+    );
+  }
+
   Widget _buildTile(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required Uri uri,
-    required double scale,
-    required double titleSize,
-    required double subtitleSize,
-    required double iconSize,
-  }) {
+      BuildContext context, {
+        required IconData icon,
+        required String title,
+        required String subtitle,
+        required Uri uri,
+        required double scale,
+        required double titleSize,
+        required double subtitleSize,
+        required double iconSize,
+      }) {
     final theme = Theme.of(context);
     return ListTile(
       leading: Icon(icon, size: iconSize),
@@ -1101,6 +1152,434 @@ class _HelpSupportSheet extends StatelessWidget {
           messenger.showSnackBar(SnackBar(content: Text('Failed to open: $e')));
         }
       },
+    );
+  }
+}
+
+class _ContactSupportDialog extends StatefulWidget {
+  @override
+  State<_ContactSupportDialog> createState() => _ContactSupportDialogState();
+}
+
+class _ContactSupportDialogState extends State<_ContactSupportDialog> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _isSending = false;
+
+  // Add FirestoreService instance
+  final FirestoreService _firestoreService = FirestoreService();
+
+  @override
+  void initState() {
+    super.initState();
+    // Pre-fill email with current user's email if available
+    _prefillUserEmail();
+  }
+
+  void _prefillUserEmail() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user?.email != null) {
+      _emailController.text = user!.email!;
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _sendSupportEmail() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() {
+      _isSending = true;
+    });
+
+    try {
+      // 🔹 Get current user ID from Firebase Auth
+      final String? currentUserId = await _getCurrentUserId();
+
+      if (currentUserId == null) {
+        throw Exception('User not logged in. Please sign in to send support messages.');
+      }
+
+      // 🔹 Save to Firestore
+      await _firestoreService.saveSupportMessage(
+        userEmail: _emailController.text.trim(),
+        message: _messageController.text.trim(),
+        userId: currentUserId,
+      );
+
+      setState(() {
+        _isSending = false;
+      });
+
+      if (mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Support request sent successfully!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _isSending = false;
+      });
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to send message: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  // 🔹 Get current user ID from Firebase Authentication
+  Future<String?> _getCurrentUserId() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        return user.uid;
+      } else {
+        throw Exception('No user is currently signed in');
+      }
+    } catch (e) {
+      debugPrint('Error getting current user: $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: 500,
+          maxHeight: MediaQuery.of(context).size.height * 0.8, // CHANGED: Limit maximum height
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Form(
+            key: _formKey,
+            child: SingleChildScrollView( // CHANGED: Added SingleChildScrollView
+              child: Column(
+                mainAxisSize: MainAxisSize.min, // CHANGED: Keep as min to avoid expanding
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.email_rounded,
+                        color: colorScheme.primary,
+                        size: 24,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          'Contact Support',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.close_rounded),
+                        onPressed: _isSending ? null : () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Email Field
+                  Text(
+                    'Your Email',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'custom',
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    enabled: !_isSending,
+                    decoration: InputDecoration(
+                      hintText: 'Enter your email address',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      prefixIcon: Icon(Icons.email_outlined),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // Message Field
+                  Text(
+                    'Message',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'custom',
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextFormField(
+                    controller: _messageController,
+                    maxLines: 5,
+                    enabled: !_isSending,
+                    decoration: InputDecoration(
+                      hintText: 'Describe your issue or question...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      alignLabelWithHint: true,
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your message';
+                      }
+                      if (value.length < 10) {
+                        return 'Please provide more details (at least 10 characters)';
+                      }
+                      return null;
+                    },
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Buttons
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: _isSending ? null : () => Navigator.pop(context),
+                          child: Text('Cancel'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: _isSending ? null : _sendSupportEmail,
+                          child: _isSending
+                              ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                colorScheme.onPrimary,
+                              ),
+                            ),
+                          )
+                              : Text('Send'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FaqScreen extends StatelessWidget {
+  final List<FaqItem> faqs = [
+    FaqItem(
+      question: 'How do I get started?',
+      answer: 'To get started, simply create an account and follow the onboarding process. You can set up your profile in just a few minutes.',
+    ),
+    FaqItem(
+      question: 'Is my data secure?',
+      answer: 'Yes, we take data security seriously. All your information is encrypted and stored securely following industry best practices.',
+    ),
+    FaqItem(
+      question: 'Can I cancel my subscription?',
+      answer: 'You can cancel your subscription at any time from the settings page. Your access will continue until the end of your current billing period.',
+    ),
+    FaqItem(
+      question: 'How do I reset my password?',
+      answer: 'Go to the login screen and tap "Forgot Password". You will receive an email with instructions to reset your password.',
+    ),
+    FaqItem(
+      question: 'What payment methods do you accept?',
+      answer: 'We accept all major credit cards, PayPal, and various other payment methods depending on your region.',
+    ),
+    FaqItem(
+      question: 'How can I contact customer support?',
+      answer: 'You can contact our support team through the Contact Support option in this menu, or email us directly at support@example.com.',
+    ),
+    FaqItem(
+      question: 'Is there a mobile app available?',
+      answer: 'Yes, you can download our mobile app from the App Store for iOS devices or Google Play Store for Android devices.',
+    ),
+    FaqItem(
+      question: 'Do you offer refunds?',
+      answer: 'We offer refunds within 30 days of purchase if you are not satisfied with our service. Please contact support for assistance.',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Container(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
+      ),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Column(
+        children: [
+          // Header
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: colorScheme.outline.withOpacity(0.1),
+                ),
+              ),
+            ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back_rounded),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Frequently Asked Questions',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'custom',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // FAQ List
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: faqs.length,
+              itemBuilder: (context, index) {
+                return _FaqItemWidget(faq: faqs[index]);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FaqItem {
+  final String question;
+  final String answer;
+
+  FaqItem({required this.question, required this.answer});
+}
+
+class _FaqItemWidget extends StatefulWidget {
+  final FaqItem faq;
+
+  const _FaqItemWidget({required this.faq});
+
+  @override
+  State<_FaqItemWidget> createState() => _FaqItemWidgetState();
+}
+
+class _FaqItemWidgetState extends State<_FaqItemWidget> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceVariant.withOpacity(0.3),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: colorScheme.outline.withOpacity(0.1),
+        ),
+      ),
+      child: ExpansionTile(
+        title: Text(
+          widget.faq.question,
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+            fontFamily: 'custom',
+          ),
+        ),
+        onExpansionChanged: (expanded) {
+          setState(() {
+            _isExpanded = expanded;
+          });
+        },
+        trailing: Icon(
+          _isExpanded ? Icons.expand_less : Icons.expand_more,
+          color: colorScheme.primary,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: Text(
+              widget.faq.answer,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface.withOpacity(0.7),
+                fontFamily: 'custom',
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1398,6 +1877,107 @@ class _ActionsSection extends StatelessWidget {
 
   const _ActionsSection({required this.onSignOut});
 
+  // Add this method for showing confirmation dialog
+  void _showSignOutConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final width = MediaQuery.of(context).size.width;
+        final scale = (width / 400).clamp(0.75, 1.4);
+
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16 * scale),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(24 * scale),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Icon
+                Icon(
+                  Icons.logout_rounded,
+                  size: 48 * scale,
+                  color: colorScheme.error,
+                ),
+                SizedBox(height: 16 * scale),
+
+                // Title
+                Text(
+                  'Sign Out',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 8 * scale),
+
+                // Message
+                Text(
+                  'Are you sure you want to sign out?',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+                    color: colorScheme.onSurface.withOpacity(0.7),
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 24 * scale),
+
+                // Buttons
+                Row(
+                  children: [
+                    // Cancel Button
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12 * scale),
+
+                    // Sign Out Button
+                    Expanded(
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(context); // Close dialog
+                          onSignOut(); // Call the original sign out function
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: colorScheme.error,
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -1413,7 +1993,7 @@ class _ActionsSection extends StatelessWidget {
           'Account',
           style: theme.textTheme.titleLarge?.copyWith(
             fontSize:
-                (theme.textTheme.titleLarge?.fontSize ?? 22) * scale, // scaled
+            (theme.textTheme.titleLarge?.fontSize ?? 22) * scale, // scaled
             fontWeight: FontWeight.bold,
             fontFamily: 'custom',
           ),
@@ -1490,7 +2070,7 @@ class _ActionsSection extends StatelessWidget {
                 label: 'Sign Out',
                 color: colorScheme.error,
                 scale: scale,
-                onTap: onSignOut,
+                onTap: () => _showSignOutConfirmation(context), // CHANGED: Call confirmation dialog
               ),
             ],
           ),

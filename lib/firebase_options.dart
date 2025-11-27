@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '236188595426',
     projectId: 'coding-tutor-42184',
     storageBucket: 'coding-tutor-42184.firebasestorage.app',
+    androidClientId: '236188595426-kq3f5rlltr14r6e43ejp9u9vnuk83emb.apps.googleusercontent.com',
+    iosClientId: '236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com',
     iosBundleId: 'com.example.codingTutor',
   );
 
@@ -73,6 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '236188595426',
     projectId: 'coding-tutor-42184',
     storageBucket: 'coding-tutor-42184.firebasestorage.app',
+    androidClientId: '236188595426-kq3f5rlltr14r6e43ejp9u9vnuk83emb.apps.googleusercontent.com',
+    iosClientId: '236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com',
     iosBundleId: 'com.example.codingTutor',
   );
 
