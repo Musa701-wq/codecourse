@@ -1,5 +1,6 @@
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:coding_tutor/ads/ads_provider.dart';
+import 'package:coding_tutor/in_app_purchase/credit_manager.dart';
 import 'package:coding_tutor/providers/auth_provider.dart';
 import 'package:coding_tutor/views/splash_wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -42,6 +43,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => AdProvider()),
+        ChangeNotifierProvider(create: (_) => CreditManager()),
       ],
       child: const MyApp(),
     ),

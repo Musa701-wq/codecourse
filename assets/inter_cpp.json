@@ -1,0 +1,809 @@
+{
+  "course_title": "C++ Intermediate Level",
+  "days": [
+    {
+      "title": "Day 14 – C++ Function Overloading",
+      "definition": "Function overloading in C++ allows multiple functions to have the same name but different parameters, enabling the same function name to perform different tasks based on input types or counts.",
+      "explanation": "Think of function overloading like having a Swiss Army knife - the same tool (function name) but with different attachments (parameter types) for different jobs. Instead of creating separate function names like 'addIntegers', 'addDoubles', 'addThreeNumbers', you can just create one function called 'add' that works with different inputs. The compiler figures out which version to use based on what you pass. This makes your code cleaner, more intuitive, and easier to use. It's like having one universal remote that works with all your devices.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    cout << \"--- Function Overloading Basics ---\" << endl;\n    \n    // Overloaded functions (same name, different parameters)\n    auto display = [](int x) {\n        cout << \"Integer: \" << x << endl;\n    };\n    \n    auto display = [](double x) {\n        cout << \"Double: \" << x << endl;\n    };\n    \n    auto display = [](string x) {\n        cout << \"String: \" << x << endl;\n    };\n    \n    // Different parameter types\n    cout << \"Different types:\" << endl;\n    display(10);          // Calls int version\n    display(3.14);        // Calls double version\n    display(\"Hello\");     // Calls string version\n    \n    cout << \"\\n--- Without Overloading (Problem) ---\" << endl;\n    \n    // Without overloading - messy!\n    auto addInt = [](int a, int b) { return a + b; };\n    auto addDouble = [](double a, double b) { return a + b; };\n    \n    cout << \"Int sum: \" << addInt(5, 3) << endl;\n    cout << \"Double sum: \" << addDouble(5.5, 3.2) << endl;\n    \n    cout << \"\\n--- With Overloading (Solution) ---\" << endl;\n    \n    // With overloading - clean!\n    auto add = [](int a, int b) { return a + b; };\n    auto add = [](double a, double b) { return a + b; };\n    \n    cout << \"Int sum: \" << add(5, 3) << endl;\n    cout << \"Double sum: \" << add(5.5, 3.2) << endl;\n    \n    cout << \"\\n--- Different Number of Parameters ---\" << endl;\n    \n    // Different parameter counts\n    auto calculate = [](int a, int b) {\n        return a + b;\n    };\n    \n    auto calculate = [](int a, int b, int c) {\n        return a + b + c;\n    };\n    \n    auto calculate = [](int a, int b, int c, int d) {\n        return a + b + c + d;\n    };\n    \n    cout << \"2 numbers: \" << calculate(10, 20) << endl;\n    cout << \"3 numbers: \" << calculate(10, 20, 30) << endl;\n    cout << \"4 numbers: \" << calculate(10, 20, 30, 40) << endl;\n    \n    cout << \"\\n--- Practical Examples ---\" << endl;\n    \n    // Area calculations\n    auto area = [](int side) {  // Square\n        return side * side;\n    };\n    \n    auto area = [](int length, int width) {  // Rectangle\n        return length * width;\n    };\n    \n    auto area = [](double radius) {  // Circle\n        return 3.14159 * radius * radius;\n    };\n    \n    cout << \"Area calculations:\" << endl;\n    cout << \"Square (side=5): \" << area(5) << endl;\n    cout << \"Rectangle (4x6): \" << area(4, 6) << endl;\n    cout << \"Circle (radius=3): \" << area(3.0) << endl;\n    \n    cout << \"\\n--- Print Function Overloading ---\" << endl;\n    \n    // Print different data types\n    auto printData = [](int value) {\n        cout << \"Integer: \" << value << endl;\n    };\n    \n    auto printData = [](double value) {\n        cout << \"Double: \" << value << endl;\n    };\n    \n    auto printData = [](bool value) {\n        cout << \"Boolean: \" << (value ? \"true\" : \"false\") << endl;\n    };\n    \n    auto printData = [](string value) {\n        cout << \"String: \" << value << endl;\n    };\n    \n    printData(42);\n    printData(3.14159);\n    printData(true);\n    printData(\"C++ Programming\");\n    \n    cout << \"\\n--- Rules of Overloading ---\" << endl;\n    cout << \"1. Functions must have same name\" << endl;\n    cout << \"2. Must differ in: \" << endl;\n    cout << \"   - Number of parameters\" << endl;\n    cout << \"   - Type of parameters\" << endl;\n    cout << \"   - Order of parameters\" << endl;\n    cout << \"3. Return type alone is NOT enough\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Function overloading is used everywhere in C++: The cout object uses overloaded << operators for different data types, mathematical libraries overload functions like abs() for int, float, double, constructors are often overloaded for different initialization methods, and GUI libraries overload event handlers for different event types. When you write cout << 5 << \" hello\" << 3.14, each << is calling a different overloaded version.",
+      "interactive_tasks": [
+        "Create overloaded functions to calculate volume of cube, cylinder, and sphere",
+        "Write overloaded print functions for different data types",
+        "Create a calculator with overloaded operations"
+      ],
+      "quiz": [
+        {
+          "question": "What is function overloading?",
+          "options": [
+            "Functions with same name and same parameters",
+            "Functions with same name but different parameters",
+            "Functions with different names",
+            "Functions that call themselves"
+          ],
+          "answer": "Functions with same name but different parameters",
+          "reasoning": "Overloading allows same function name with different parameter lists."
+        },
+        {
+          "question": "Can functions be overloaded based on return type only?",
+          "options": ["Yes", "No", "Sometimes", "Only in C++11"],
+          "answer": "No",
+          "reasoning": "Functions must differ in parameters, return type alone is not enough."
+        },
+        {
+          "question": "How many ways can functions differ for overloading?",
+          "options": ["1", "2", "3", "4"],
+          "answer": "3",
+          "reasoning": "Functions can differ in: 1) Number of parameters, 2) Type of parameters, 3) Order of parameters."
+        },
+        {
+          "question": "What is the main benefit of overloading?",
+          "options": [
+            "Faster execution",
+            "Cleaner, more readable code",
+            "Less memory usage",
+            "Smaller compiled size"
+          ],
+          "answer": "Cleaner, more readable code",
+          "reasoning": "Overloading reduces need for multiple function names for similar operations."
+        },
+        {
+          "question": "Which is valid function overloading?",
+          "options": [
+            "int func(int a); double func(int a);",
+            "int func(int a); int func(double a);",
+            "int func(); double func();",
+            "int func(int a, int b); int func(int a, int b);"
+          ],
+          "answer": "int func(int a); int func(double a);",
+          "reasoning": "Different parameter types is valid overloading."
+        },
+        {
+          "question": "What decides which overloaded function to call?",
+          "options": [
+            "Return type",
+            "Function name",
+            "Arguments passed",
+            "Compiler choice"
+          ],
+          "answer": "Arguments passed",
+          "reasoning": "Compiler chooses based on number/type of arguments."
+        },
+        {
+          "question": "Can constructors be overloaded?",
+          "options": ["Yes", "No", "Only in some classes", "Only with templates"],
+          "answer": "Yes",
+          "reasoning": "Constructors can be overloaded like regular functions."
+        }
+      ]
+    },
+    {
+      "title": "Day 15 – C++ Variable Scope",
+      "definition": "Scope in C++ determines where a variable can be accessed in a program. Variables have different lifetimes and visibility based on whether they're declared inside functions (local) or outside (global).",
+      "explanation": "Think of scope like rooms in a house. Variables declared in the kitchen (local scope) can only be used in the kitchen. Variables declared in the hallway (global scope) can be accessed from any room. Scope controls where variables live and how long they last. Local variables are born when their function starts and die when it ends. Global variables live for the entire program. Understanding scope prevents bugs - you can't use kitchen utensils in the bedroom! Proper scope management makes your code organized, predictable, and memory-efficient.",
+      "code_example": "#include <iostream>\nusing namespace std;\n\n// Global variable - accessible everywhere\nint globalVar = 100;\n\nvoid demonstrateScope() {\n    cout << \"--- Inside demonstrateScope() ---\" << endl;\n    \n    // Local variable - only in this function\n    int localVar = 50;\n    \n    cout << \"Local variable: \" << localVar << endl;\n    cout << \"Can access global: \" << globalVar << endl;\n    \n    // Block scope (inside {})\n    {\n        int blockVar = 25;\n        cout << \"\\nInside block:\" << endl;\n        cout << \"Block variable: \" << blockVar << endl;\n        cout << \"Can access local: \" << localVar << endl;\n        cout << \"Can access global: \" << globalVar << endl;\n    }\n    \n    // blockVar is not accessible here\n    // cout << blockVar; // ERROR\n    \n    cout << \"\\nBlock ended - blockVar destroyed\" << endl;\n}\n\nvoid anotherFunction() {\n    cout << \"\\n--- Inside anotherFunction() ---\" << endl;\n    \n    // This localVar is different from demonstrateScope's localVar\n    int localVar = 999;\n    cout << \"My own localVar: \" << localVar << endl;\n    cout << \"Global variable: \" << globalVar << endl;\n    \n    // Cannot access demonstrateScope's localVar\n    // cout << localVarFromOtherFunction; // ERROR\n}\n\nvoid nameConflict() {\n    cout << \"\\n--- Name Conflict Example ---\" << endl;\n    \n    // Local variable with same name as global\n    int globalVar = 777; // Different variable!\n    \n    cout << \"Local globalVar: \" << globalVar << endl;\n    cout << \"Real globalVar (using ::): \" << ::globalVar << endl;\n}\n\nvoid modifyGlobal() {\n    cout << \"\\n--- Modifying Global Variable ---\" << endl;\n    \n    cout << \"Before modification: \" << globalVar << endl;\n    globalVar = 200; // Changes the real global variable\n    cout << \"After modification: \" << globalVar << endl;\n}\n\nint main() {\n    cout << \"=== C++ Variable Scope Demo ===\" << endl;\n    \n    cout << \"\\nIn main function:\" << endl;\n    cout << \"Global variable: \" << globalVar << endl;\n    \n    // Cannot access local variables from other functions\n    // cout << localVar; // ERROR\n    \n    demonstrateScope();\n    anotherFunction();\n    nameConflict();\n    modifyGlobal();\n    \n    cout << \"\\n--- Back in main() ---\" << endl;\n    cout << \"Global is now: \" << globalVar << endl;\n    \n    // Function parameter scope\n    cout << \"\\n--- Parameter Scope ---\" << endl;\n    auto processNumber = [](int number) { // number is local to lambda\n        cout << \"Processing: \" << number << endl;\n        number = number * 2; // Changes local copy\n        cout << \"After processing: \" << number << endl;\n    };\n    \n    int myNumber = 10;\n    cout << \"Before calling function: \" << myNumber << endl;\n    processNumber(myNumber);\n    cout << \"After function (original unchanged): \" << myNumber << endl;\n    \n    // Loop variable scope\n    cout << \"\\n--- Loop Variable Scope ---\" << endl;\n    for (int i = 0; i < 3; i++) {\n        int loopVar = i * 10; // Created each iteration\n        cout << \"Iteration \" << i << \": loopVar = \" << loopVar << endl;\n    }\n    // i and loopVar not accessible here\n    // cout << i; // ERROR\n    \n    // Static local variable\n    cout << \"\\n--- Static Variable ---\" << endl;\n    auto counter = []() {\n        static int count = 0; // Persists between calls\n        count++;\n        cout << \"Call count: \" << count << endl;\n    };\n    \n    counter();\n    counter();\n    counter();\n    \n    cout << \"\\n--- Scope Best Practices ---\" << endl;\n    cout << \"1. Use local variables when possible\" << endl;\n    cout << \"2. Avoid global variables unless necessary\" << endl;\n    cout << \"3. Don't reuse names unnecessarily\" << endl;\n    cout << \"4. Keep scope as small as possible\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Scope management is crucial in all programs: Game engines use local scope for temporary calculations in functions, web servers use global scope for configuration settings, databases use block scope for transaction processing, and multi-threaded programs carefully manage variable scope to prevent race conditions. When you fill out a web form, the data is in local scope while processing, then stored in database (global-like scope).",
+      "interactive_tasks": [
+        "Create a program demonstrating local vs global variable access",
+        "Write a function that has a name conflict between local and global variables",
+        "Create a counter using static local variable"
+      ],
+      "quiz": [
+        {
+          "question": "Where are global variables declared?",
+          "options": [
+            "Inside main()",
+            "Inside any function",
+            "Outside all functions",
+            "Only in headers"
+          ],
+          "answer": "Outside all functions",
+          "reasoning": "Global variables are declared outside any function, at file scope."
+        },
+        {
+          "question": "Can local variables be accessed outside their function?",
+          "options": ["Yes", "No", "Only with pointers", "Only static ones"],
+          "answer": "No",
+          "reasoning": "Local variables are only accessible within their function."
+        },
+        {
+          "question": "What happens when local and global variables have same name?",
+          "options": [
+            "Error occurs",
+            "Local hides global",
+            "Global hides local",
+            "Both become one"
+          ],
+          "answer": "Local hides global",
+          "reasoning": "Inside function, local variable takes precedence over global."
+        },
+        {
+          "question": "How to access global variable when local has same name?",
+          "options": [
+            "global::variable",
+            "::variable",
+            "Global.variable",
+            "Cannot access"
+          ],
+          "answer": "::variable",
+          "reasoning": ":: (scope resolution operator) accesses global variable."
+        },
+        {
+          "question": "What is block scope?",
+          "options": [
+            "Scope within {}",
+            "Scope of entire program",
+            "Scope of function",
+            "Global scope"
+          ],
+          "answer": "Scope within {}",
+          "reasoning": "Variables declared inside {} have block scope."
+        },
+        {
+          "question": "What is static local variable?",
+          "options": [
+            "Variable that cannot change",
+            "Variable that persists between calls",
+            "Global variable",
+            "Constant variable"
+          ],
+          "answer": "Variable that persists between calls",
+          "reasoning": "Static local variables retain value between function calls."
+        },
+        {
+          "question": "Why avoid excessive global variables?",
+          "options": [
+            "They use more memory",
+            "Hard to track changes",
+            "Cause naming conflicts",
+            "All of the above"
+          ],
+          "answer": "All of the above",
+          "reasoning": "Global variables can lead to many maintenance issues."
+        }
+      ]
+    },
+   
+    {
+      "title": "Day 16 – C++ Lambda Functions",
+      "definition": "Lambda functions in C++ are anonymous, inline functions that can be defined and used directly in code without needing a separate function declaration, making them ideal for short, one-time operations.",
+      "explanation": "Think of lambda functions like sticky notes - quick, temporary notes you write and use right away, then discard. Instead of creating a formal named function in a separate place, you can create a mini-function exactly where you need it. Lambdas are perfect for short operations: sorting criteria, event handlers, callbacks, or any situation where you need a quick function without the ceremony of a full function declaration. They're like having a Swiss Army knife for functions - compact, convenient, and ready when you need them.",
+      "code_example": "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <functional>\nusing namespace std;\n\nint main() {\n    cout << \"=== C++ Lambda Functions ===\" << endl;\n    \n    cout << \"\\n--- Basic Lambda Syntax ---\" << endl;\n    \n    // Basic lambda (no parameters, no capture)\n    auto greet = []() {\n        cout << \"Hello from lambda!\" << endl;\n    };\n    \n    greet();\n    \n    // Lambda with parameters\n    auto add = [](int a, int b) {\n        return a + b;\n    };\n    \n    cout << \"5 + 3 = \" << add(5, 3) << endl;\n    \n    // Lambda with explicit return type\n    auto divide = [](double a, double b) -> double {\n        if (b == 0) return 0;\n        return a / b;\n    };\n    \n    cout << \"10 / 3 = \" << divide(10, 3) << endl;\n    \n    cout << \"\\n--- Capture Clause [] ---\" << endl;\n    \n    int x = 10;\n    int y = 20;\n    \n    // Capture by value [x] (copy)\n    auto showX = [x]() {\n        cout << \"Captured x (by value): \" << x << endl;\n        // x = 5; // ERROR: Cannot modify captured by value\n    };\n    \n    // Capture by reference [&y]\n    auto modifyY = [&y]() {\n        y = 99;\n        cout << \"Modified y to: \" << y << endl;\n    };\n    \n    showX();\n    cout << \"Original x: \" << x << endl;\n    \n    modifyY();\n    cout << \"Original y is now: \" << y << endl;\n    \n    // Capture all by value [=]\n    auto captureAllByValue = [=]() {\n        cout << \"All by value - x: \" << x << \", y: \" << y << endl;\n    };\n    \n    // Capture all by reference [&]\n    auto captureAllByRef = [&]() {\n        x = 100;\n        y = 200;\n        cout << \"Modified via reference\" << endl;\n    };\n    \n    captureAllByValue();\n    captureAllByRef();\n    cout << \"After reference capture - x: \" << x << \", y: \" << y << endl;\n    \n    cout << \"\\n--- Lambdas with STL Algorithms ---\" << endl;\n    \n    vector<int> numbers = {5, 2, 8, 1, 9, 3};\n    \n    // Sort with lambda\n    sort(numbers.begin(), numbers.end(), [](int a, int b) {\n        return a > b;  // Descending order\n    });\n    \n    cout << \"Sorted descending: \";\n    for (int n : numbers) cout << n << \" \";\n    cout << endl;\n    \n    // Find with lambda\n    auto it = find_if(numbers.begin(), numbers.end(), [](int n) {\n        return n > 5;\n    });\n    \n    if (it != numbers.end()) {\n        cout << \"First number > 5: \" << *it << endl;\n    }\n    \n    // Count with lambda\n    int count = count_if(numbers.begin(), numbers.end(), [](int n) {\n        return n % 2 == 0;  // Count even numbers\n    });\n    \n    cout << \"Even numbers count: \" << count << endl;\n    \n    cout << \"\\n--- Passing Lambdas to Functions ---\" << endl;\n    \n    // Function that accepts lambda\n    auto processNumbers = [](const vector<int>& nums, function<void(int)> processor) {\n        for (int n : nums) {\n            processor(n);\n        }\n    };\n    \n    cout << \"Processing numbers:\" << endl;\n    processNumbers(numbers, [](int n) {\n        cout << \"Number: \" << n << endl;\n    });\n    \n    cout << \"\\n--- Lambda in Loops ---\" << endl;\n    \n    for (int i = 1; i <= 3; i++) {\n        // Lambda capturing loop variable\n        auto multiplier = [i](int value) {\n            return value * i;\n        };\n        \n        cout << i << \" times table: \";\n        for (int j = 1; j <= 3; j++) {\n            cout << multiplier(j) << \" \";\n        }\n        cout << endl;\n    }\n    \n    cout << \"\\n--- Mutable Lambdas ---\" << endl;\n    \n    // mutable allows modifying captured by value variables\n    auto counter = [count = 0]() mutable {\n        return ++count;\n    };\n    \n    cout << \"Counter: \" << counter() << endl;\n    cout << \"Counter: \" << counter() << endl;\n    cout << \"Counter: \" << counter() << endl;\n    \n    cout << \"\\n--- Immediate Invocation ---\" << endl;\n    \n    // Define and call immediately\n    int result = [](int a, int b) { return a * b; }(6, 7);\n    cout << \"6 * 7 = \" << result << endl;\n    \n    cout << \"\\n--- Lambda vs Regular Function ---\" << endl;\n    cout << \"Use lambda when:\" << endl;\n    cout << \"1. Short, one-time use\" << endl;\n    cout << \"2. Need to capture local variables\" << endl;\n    cout << \"3. Passing to algorithms (sort, find, etc.)\" << endl;\n    cout << \"\\nUse regular function when:\" << endl;\n    cout << \"1. Reusable in multiple places\" << endl;\n    cout << \"2. Complex logic\" << endl;\n    cout << \"3. Need clear name for documentation\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Lambdas are used extensively in modern C++: GUI programming uses them for event handlers, STL algorithms use them for custom comparisons, asynchronous programming uses them for callbacks, and game development uses them for quick calculations. When you write sort(v.begin(), v.end(), [](auto a, auto b) { return a < b; }), that's a lambda. When you attach a click handler to a button in a GUI, that's often a lambda.",
+      "interactive_tasks": [
+        "Create a lambda to check if a number is prime",
+        "Write a lambda to sort strings by length",
+        "Create a lambda that captures and modifies external variables"
+      ],
+      "quiz": [
+        {
+          "question": "What is a lambda function?",
+          "options": [
+            "Named function",
+            "Anonymous inline function",
+            "Function template",
+            "Virtual function"
+          ],
+          "answer": "Anonymous inline function",
+          "reasoning": "Lambda functions are anonymous (no name) and defined inline."
+        },
+        {
+          "question": "What does [] in lambda syntax do?",
+          "options": [
+            "Defines parameters",
+            "Capture clause",
+            "Return type",
+            "Function body"
+          ],
+          "answer": "Capture clause",
+          "reasoning": "[] is the capture clause for accessing external variables."
+        },
+        {
+          "question": "How to capture variable by reference?",
+          "options": ["[x]", "[&x]", "[*x]", "[ref x]"],
+          "answer": "[&x]",
+          "reasoning": "[&x] captures x by reference, allowing modification."
+        },
+        {
+          "question": "What does [=] mean?",
+          "options": [
+            "Capture all by reference",
+            "Capture all by value",
+            "Capture nothing",
+            "Mutable capture"
+          ],
+          "answer": "Capture all by value",
+          "reasoning": "[=] captures all external variables by value (copy)."
+        },
+        {
+          "question": "Can lambda access global variables?",
+          "options": [
+            "Yes, always",
+            "No, never",
+            "Only with capture",
+            "Only static globals"
+          ],
+          "answer": "Yes, always",
+          "reasoning": "Lambdas can access global variables without capture."
+        },
+        {
+          "question": "What is mutable keyword for in lambdas?",
+          "options": [
+            "Make lambda faster",
+            "Allow modifying captured by value",
+            "Make lambda thread-safe",
+            "Enable recursion"
+          ],
+          "answer": "Allow modifying captured by value",
+          "reasoning": "mutable allows modifying variables captured by value."
+        },
+        {
+          "question": "When to use lambda over regular function?",
+          "options": [
+            "Always use lambda",
+            "For complex reusable logic",
+            "For short, one-time operations",
+            "Never use lambda"
+          ],
+          "answer": "For short, one-time operations",
+          "reasoning": "Lambdas are ideal for quick, localized operations."
+        }
+      ]
+    },
+
+    {
+      "title": "Day 17 – C++ OOP Fundamentals",
+      "definition": "Object-Oriented Programming (OOP) organizes code around objects containing both data and functions.",
+      "explanation": "OOP is a programming paradigm that uses objects and classes to structure software. The key principles are encapsulation, inheritance, and polymorphism. Classes act as blueprints for objects, defining their attributes (data) and methods (functions). Objects are instances of classes that contain actual data. OOP helps create modular, reusable, and maintainable code by grouping related data and behavior together. The DRY (Don't Repeat Yourself) principle is a key benefit of OOP, reducing code duplication through inheritance and reuse.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Class definition\nclass Car {\n  public:             // Access specifier\n    // Attributes\n    string brand;\n    string model;\n    int year;\n    \n    // Method defined inside class\n    void displayInfo() {\n        cout << brand << \" \" << model << \" (\" << year << \")\" << endl;\n    }\n    \n    // Method declaration\n    void honk();\n};\n\n// Method definition outside class\nvoid Car::honk() {\n    cout << \"Beep beep!\" << endl;\n}\n\nint main() {\n    // Creating objects\n    Car car1;\n    car1.brand = \"Toyota\";\n    car1.model = \"Camry\";\n    car1.year = 2022;\n    \n    Car car2;\n    car2.brand = \"Honda\";\n    car2.model = \"Civic\";\n    car2.year = 2023;\n    \n    // Using methods\n    car1.displayInfo();\n    car1.honk();\n    \n    car2.displayInfo();\n    car2.honk();\n    \n    return 0;\n}",
+      "real_world_example": "OOP is used in GUI frameworks (buttons, windows as objects), game development (characters, items as objects), database systems (records as objects), and web development (user sessions, form handlers as objects). Real-world examples include banking systems (accounts as objects), e-commerce (products, carts as objects), and social media (posts, users as objects).",
+      "interactive_tasks": [
+        "Create a Book class with title, author, and year attributes, and a method to display book information.",
+        "Create a BankAccount class with accountNumber, balance, and methods for deposit and withdrawal.",
+        "Create a Rectangle class with width and height attributes, and methods to calculate area and perimeter."
+      ],
+      "quiz": [
+        {
+          "question": "What does OOP stand for?",
+          "options": [
+            "Object-Oriented Programming",
+            "Object-Option Programming",
+            "Oriented-Object Programming",
+            "Operation Object Programming"
+          ],
+          "answer": "Object-Oriented Programming",
+          "reasoning": "OOP stands for Object-Oriented Programming, a programming paradigm based on objects containing data and methods."
+        },
+        {
+          "question": "What is a class in C++?",
+          "options": [
+            "A blueprint for creating objects",
+            "A single object instance",
+            "A function that returns objects",
+            "A data type for integers"
+          ],
+          "answer": "A blueprint for creating objects",
+          "reasoning": "A class is a user-defined type that serves as a blueprint for creating objects with similar properties and behaviors."
+        },
+        {
+          "question": "What is an object?",
+          "options": [
+            "A blueprint for classes",
+            "An instance of a class",
+            "A type of function",
+            "A variable declaration"
+          ],
+          "answer": "An instance of a class",
+          "reasoning": "An object is a concrete instance created from a class, containing actual data and capable of performing actions."
+        },
+        {
+          "question": "What does the DRY principle mean?",
+          "options": [
+            "Don't Repeat Yourself",
+            "Do Repeat Yourself",
+            "Data Recovery Yield",
+            "Dynamic Runtime Yield"
+          ],
+          "answer": "Don't Repeat Yourself",
+          "reasoning": "DRY stands for 'Don't Repeat Yourself' - a principle aimed at reducing code duplication through reuse."
+        },
+        {
+          "question": "Which operator is used to define a method outside its class?",
+          "options": [
+            ".",
+            "->",
+            "::",
+            ":"
+          ],
+          "answer": "::",
+          "reasoning": "The scope resolution operator (::) is used to define class methods outside the class definition."
+        },
+        {
+          "question": "What is the default access specifier for class members?",
+          "options": [
+            "public",
+            "private",
+            "protected",
+            "internal"
+          ],
+          "answer": "private",
+          "reasoning": "If no access specifier is specified, class members are private by default in C++."
+        },
+        {
+          "question": "How do you access an object's attributes and methods?",
+          "options": [
+            "Using the :: operator",
+            "Using the . operator",
+            "Using the -> operator",
+            "Using the : operator"
+          ],
+          "answer": "Using the . operator",
+          "reasoning": "The dot operator (.) is used to access an object's members (attributes and methods)."
+        }
+      ]
+    },
+    {
+      "title": "Day 18 – C++ Constructors and Encapsulation",
+      "definition": "Constructors initialize objects; encapsulation protects data through access control.",
+      "explanation": "Constructors are special methods that automatically run when objects are created, used to initialize object attributes. Constructor overloading allows multiple constructors with different parameters. Encapsulation is the practice of making class data private and providing public methods (getters/setters) to access and modify it. This protects data from invalid changes and ensures controlled access. Access specifiers (public, private, protected) control member visibility. Friend functions can access private members but are not class members.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\nclass BankAccount {\nprivate:\n    string accountNumber;\n    double balance;\n    \npublic:\n    // Constructor overloading\n    BankAccount() {  // Default constructor\n        accountNumber = \"Unknown\";\n        balance = 0.0;\n    }\n    \n    BankAccount(string accNum, double initialBalance) {  // Parameterized constructor\n        accountNumber = accNum;\n        balance = initialBalance;\n    }\n    \n    // Getter methods\n    string getAccountNumber() {\n        return accountNumber;\n    }\n    \n    double getBalance() {\n        return balance;\n    }\n    \n    // Setter methods with validation\n    void setBalance(double newBalance) {\n        if (newBalance >= 0) {\n            balance = newBalance;\n        } else {\n            cout << \"Error: Balance cannot be negative!\" << endl;\n        }\n    }\n    \n    // Business methods\n    void deposit(double amount) {\n        if (amount > 0) {\n            balance += amount;\n            cout << \"Deposited: $\" << amount << endl;\n        } else {\n            cout << \"Error: Deposit amount must be positive!\" << endl;\n        }\n    }\n    \n    void withdraw(double amount) {\n        if (amount > 0 && amount <= balance) {\n            balance -= amount;\n            cout << \"Withdrawn: $\" << amount << endl;\n        } else {\n            cout << \"Error: Invalid withdrawal amount!\" << endl;\n        }\n    }\n    \n    // Friend function declaration\n    friend void displayAccountDetails(BankAccount account);\n};\n\n// Friend function definition\nvoid displayAccountDetails(BankAccount account) {\n    cout << \"Friend Function - Account: \" << account.accountNumber \n         << \", Balance: $\" << account.balance << endl;\n}\n\nint main() {\n    // Using different constructors\n    BankAccount account1;  // Default constructor\n    BankAccount account2(\"ACC123\", 1000.0);  // Parameterized constructor\n    \n    // Using encapsulation\n    account1.deposit(500.0);\n    account2.withdraw(200.0);\n    \n    cout << \"Account 1 Balance: $\" << account1.getBalance() << endl;\n    cout << \"Account 2 Balance: $\" << account2.getBalance() << endl;\n    \n    // Using friend function\n    displayAccountDetails(account2);\n    \n    return 0;\n}",
+      "real_world_example": "Constructors are used everywhere: creating database connections with connection strings, initializing game characters with starting stats, setting up GUI components with default properties. Encapsulation protects sensitive data like passwords, financial information, and user credentials in applications. Friend functions are used in operator overloading and when external functions need special access to private data.",
+      "interactive_tasks": [
+        "Create a Student class with private attributes and public getters/setters, plus a constructor.",
+        "Create a Circle class with radius as private attribute and methods to calculate area and circumference.",
+        "Create a Date class with day, month, year as private attributes and validation in setters."
+      ],
+      "quiz": [
+        {
+          "question": "What is a constructor?",
+          "options": [
+            "A function that destroys objects",
+            "A special method that initializes objects",
+            "A method that returns values",
+            "A function that prints object data"
+          ],
+          "answer": "A special method that initializes objects",
+          "reasoning": "Constructors are special methods that automatically run when objects are created to initialize their state."
+        },
+        {
+          "question": "What is constructor overloading?",
+          "options": [
+            "Having multiple constructors with different parameters",
+            "Making constructors run faster",
+            "Creating too many objects",
+            "Inheriting constructors from parent classes"
+          ],
+          "answer": "Having multiple constructors with different parameters",
+          "reasoning": "Constructor overloading means having multiple constructors in the same class with different parameter lists."
+        },
+        {
+          "question": "What is the main purpose of encapsulation?",
+          "options": [
+            "To make code run faster",
+            "To protect data and control access",
+            "To create more objects",
+            "To inherit from multiple classes"
+          ],
+          "answer": "To protect data and control access",
+          "reasoning": "Encapsulation protects data by making it private and providing controlled access through public methods."
+        },
+        {
+          "question": "What are getters and setters?",
+          "options": [
+            "Methods to get and set private attributes",
+            "Functions to create and destroy objects",
+            "Operators for mathematical operations",
+            "Variables for storing temporary data"
+          ],
+          "answer": "Methods to get and set private attributes",
+          "reasoning": "Getters (accessors) return private attribute values, setters (mutators) modify them with validation."
+        },
+        {
+          "question": "What is a friend function?",
+          "options": [
+            "A function that is friendly to all classes",
+            "A function that can access private members but isn't a class member",
+            "A function that only works with public members",
+            "A function that creates friendships between objects"
+          ],
+          "answer": "A function that can access private members but isn't a class member",
+          "reasoning": "Friend functions are external functions granted special access to a class's private members."
+        },
+        {
+          "question": "Which access specifier makes members accessible only within the class?",
+          "options": [
+            "public",
+            "private",
+            "protected",
+            "internal"
+          ],
+          "answer": "private",
+          "reasoning": "Private members are only accessible within the class where they are declared."
+        },
+        {
+          "question": "What happens if you don't define any constructor?",
+          "options": [
+            "Compilation error",
+            "Runtime error",
+            "A default constructor is provided",
+            "Objects cannot be created"
+          ],
+          "answer": "A default constructor is provided",
+          "reasoning": "If no constructors are defined, C++ provides a default constructor that takes no parameters."
+        }
+      ]
+    },
+
+    {
+      "title": "Day 19 – C++ Templates",
+      "definition": "Templates allow writing generic functions/classes that work with multiple data types without code duplication.",
+      "explanation": "Templates are like molds that can create different shapes. One template function can handle int, double, string etc.",
+      "code_example": "#include <iostream>\nusing namespace std;\n\n// Function template\ntemplate <typename T>\nT add(T a, T b) {\n    return a + b;\n}\n\n// Class template\ntemplate <typename T>\nclass Box {\npublic:\n    T content;\n    Box(T c) { content = c; }\n    void show() { cout << content << endl; }\n};\n\nint main() {\n    cout << add(5, 3) << endl;\n    cout << add(2.5, 1.5) << endl;\n    \n    Box<int> intBox(100);\n    Box<string> strBox(\"Hello\");\n    intBox.show();\n    strBox.show();\n    return 0;\n}",
+      "real_world_example": "STL containers like vector, list use templates to store any data type.",
+      "interactive_tasks": [
+        "Create template function to find maximum",
+        "Make template class for Pair of two values"
+      ],
+      "quiz": [
+        {"question": "What keyword starts template?", "options": ["template", "typename", "class", "T"], "answer": "template", "reasoning": "template keyword begins template definition."},
+        {"question": "What does typename T represent?", "options": ["Any data type", "Integer only", "String only", "Class only"], "answer": "Any data type", "reasoning": "T is placeholder for any type."},
+        {"question": "Can templates work with classes?", "options": ["Yes", "No", "Only functions", "Only STL"], "answer": "Yes", "reasoning": "Both functions and classes can be templated."}
+      ]
+    },
+    {
+      "title": "Day 20 – C++ Inheritance and Polymorphism",
+      "definition": "Inheritance allows classes to reuse code; polymorphism enables different behaviors through common interfaces.",
+      "explanation": "Inheritance creates a parent-child relationship between classes, allowing child classes to inherit attributes and methods from parent classes. This promotes code reuse and establishes hierarchical relationships. Polymorphism means 'many forms' - it allows objects of different classes to be treated as objects of a common parent class. Virtual functions enable runtime polymorphism, where the appropriate method is called based on the actual object type rather than the reference type. Access specifiers in inheritance control what gets inherited and how.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Base class\nclass Animal {\nprotected:\n    string name;\n    int age;\n    \npublic:\n    Animal(string n, int a) : name(n), age(a) {}\n    \n    // Virtual function for polymorphism\n    virtual void makeSound() {\n        cout << \"Some generic animal sound\" << endl;\n    }\n    \n    void sleep() {\n        cout << name << \" is sleeping\" << endl;\n    }\n    \n    // Virtual destructor for proper cleanup\n    virtual ~Animal() {}\n};\n\n// Derived class - Single inheritance\nclass Dog : public Animal {\nprivate:\n    string breed;\n    \npublic:\n    Dog(string n, int a, string b) : Animal(n, a), breed(b) {}\n    \n    // Override base class method\n    void makeSound() override {\n        cout << name << \" says: Woof! Woof!\" << endl;\n    }\n    \n    void fetch() {\n        cout << name << \" is fetching the ball\" << endl;\n    }\n};\n\n// Another derived class\nclass Cat : public Animal {\nprivate:\n    string color;\n    \npublic:\n    Cat(string n, int a, string c) : Animal(n, a), color(c) {}\n    \n    // Override base class method\n    void makeSound() override {\n        cout << name << \" says: Meow! Meow!\" << endl;\n    }\n    \n    void climb() {\n        cout << name << \" is climbing a tree\" << endl;\n    }\n};\n\n// Multilevel inheritance\nclass Puppy : public Dog {\npublic:\n    Puppy(string n, int a, string b) : Dog(n, a, b) {}\n    \n    void makeSound() override {\n        cout << name << \" says: Yip! Yip!\" << endl;\n    }\n};\n\nint main() {\n    // Creating objects of different types\n    Dog myDog(\"Buddy\", 3, \"Golden Retriever\");\n    Cat myCat(\"Whiskers\", 2, \"Gray\");\n    Puppy myPuppy(\"Max\", 1, \"Labrador\");\n    \n    // Using inherited methods\n    myDog.sleep();\n    myCat.sleep();\n    \n    // Polymorphism in action\n    Animal* animals[3];\n    animals[0] = &myDog;\n    animals[1] = &myCat;\n    animals[2] = &myPuppy;\n    \n    cout << \"\\nPolymorphism demonstration:\" << endl;\n    for (int i = 0; i < 3; i++) {\n        animals[i]->makeSound();  // Calls the appropriate version\n    }\n    \n    // Specific class methods\n    myDog.fetch();\n    myCat.climb();\n    \n    return 0;\n}",
+      "real_world_example": "Inheritance is used in GUI frameworks (Button, Checkbox inherit from Widget), game development (Player, Enemy inherit from Character), and business applications (Manager, Employee inherit from Person). Polymorphism enables plugin architectures, where different implementations can be swapped seamlessly. Virtual functions are crucial in frameworks and libraries where base classes define interfaces that derived classes implement.",
+      "interactive_tasks": [
+        "Create a Vehicle base class and Car, Motorcycle derived classes with different implementations.",
+        "Create a Shape base class with virtual area() method, and Circle, Rectangle derived classes.",
+        "Create a Person base class and Student, Teacher derived classes with additional properties."
+      ],
+      "quiz": [
+        {
+          "question": "What is inheritance in C++?",
+          "options": [
+            "Creating multiple objects from one class",
+            "A class reusing attributes and methods from another class",
+            "Making all class members public",
+            "Creating friend functions"
+          ],
+          "answer": "A class reusing attributes and methods from another class",
+          "reasoning": "Inheritance allows a derived class to inherit and extend the functionality of a base class."
+        },
+        {
+          "question": "What symbol is used for inheritance?",
+          "options": [
+            ".",
+            "->",
+            ":",
+            "::"
+          ],
+          "answer": ":",
+          "reasoning": "The colon (:) is used in class declaration to specify inheritance: class Derived : public Base"
+        },
+        {
+          "question": "What is polymorphism?",
+          "options": [
+            "Creating multiple classes",
+            "The ability to take many forms",
+            "Inheriting from multiple classes",
+            "Making all methods virtual"
+          ],
+          "answer": "The ability to take many forms",
+          "reasoning": "Polymorphism allows objects of different types to be treated as objects of a common base type."
+        },
+        {
+          "question": "What keyword makes a function polymorphic?",
+          "options": [
+            "override",
+            "virtual",
+            "polymorphic",
+            "dynamic"
+          ],
+          "answer": "virtual",
+          "reasoning": "The virtual keyword in the base class enables runtime polymorphism through function overriding."
+        },
+        {
+          "question": "What is the purpose of the override keyword?",
+          "options": [
+            "To make functions run faster",
+            "To explicitly indicate a function overrides a base class virtual function",
+            "To inherit from multiple classes",
+            "To create abstract classes"
+          ],
+          "answer": "To explicitly indicate a function overrides a base class virtual function",
+          "reasoning": "The override keyword explicitly indicates that a function is intended to override a virtual function from the base class."
+        },
+        {
+          "question": "What is multilevel inheritance?",
+          "options": [
+            "A class inheriting from multiple base classes",
+            "A class derived from another derived class",
+            "Inheriting only methods but not attributes",
+            "Creating multiple inheritance levels in one class"
+          ],
+          "answer": "A class derived from another derived class",
+          "reasoning": "Multilevel inheritance occurs when a class is derived from another derived class (grandparent → parent → child)."
+        },
+        {
+          "question": "Why should destructors in base classes be virtual?",
+          "options": [
+            "To make them faster",
+            "To ensure proper cleanup of derived class objects",
+            "To enable inheritance",
+            "To allow method overriding"
+          ],
+          "answer": "To ensure proper cleanup of derived class objects",
+          "reasoning": "Virtual destructors ensure that when deleting through a base class pointer, the derived class destructor is called properly."
+        }
+      ]
+    },
+    {
+      "title": "Day 21 – C++ Encapsulation",
+      "definition": "Encapsulation is an object-oriented programming concept that bundles data (attributes) and methods (functions) together in a class, while hiding internal details and protecting data from unauthorized access.",
+      "explanation": "Think of encapsulation like a capsule medicine - the actual medicine (data) is protected inside, and you only interact with it through the capsule (public methods). It's like having a bank account: you can't directly access the money (private data), but you can use an ATM card (public methods) to deposit, withdraw, or check balance. Encapsulation combines data protection with controlled access through getter and setter methods. This ensures data integrity, security, and makes code maintenance easier by keeping implementation details hidden.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\nclass BankAccount {\nprivate:\n    // Private data - hidden from outside\n    string accountNumber;\n    double balance;\n    string ownerName;\n    \npublic:\n    // Constructor\n    BankAccount(string accNum, string name, double initialBalance) {\n        accountNumber = accNum;\n        ownerName = name;\n        if (initialBalance >= 0) {\n            balance = initialBalance;\n        } else {\n            balance = 0;\n            cout << \"Initial balance cannot be negative! Set to 0.\" << endl;\n        }\n    }\n    \n    // Public getter methods - controlled access\n    string getAccountNumber() {\n        return accountNumber;\n    }\n    \n    string getOwnerName() {\n        return ownerName;\n    }\n    \n    double getBalance() {\n        return balance;\n    }\n    \n    // Public setter methods with validation\n    void setOwnerName(string newName) {\n        if (!newName.empty()) {\n            ownerName = newName;\n            cout << \"Owner name updated successfully.\" << endl;\n        } else {\n            cout << \"Name cannot be empty!\" << endl;\n        }\n    }\n    \n    // Business methods with controlled access\n    void deposit(double amount) {\n        if (amount > 0) {\n            balance += amount;\n            cout << \"Deposited: $\" << amount << endl;\n            cout << \"New balance: $\" << balance << endl;\n        } else {\n            cout << \"Deposit amount must be positive!\" << endl;\n        }\n    }\n    \n    void withdraw(double amount) {\n        if (amount > 0) {\n            if (amount <= balance) {\n                balance -= amount;\n                cout << \"Withdrawn: $\" << amount << endl;\n                cout << \"New balance: $\" << balance << endl;\n            } else {\n                cout << \"Insufficient funds!\" << endl;\n            }\n        } else {\n            cout << \"Withdrawal amount must be positive!\" << endl;\n        }\n    }\n    \n    void displayAccountInfo() {\n        cout << \"\\n=== Account Information ===\" << endl;\n        cout << \"Account Number: \" << getAccountNumber() << endl;\n        cout << \"Owner Name: \" << getOwnerName() << endl;\n        cout << \"Balance: $\" << getBalance() << endl;\n        cout << \"===========================\" << endl;\n    }\n};\n\nint main() {\n    cout << \"=== Bank Account Encapsulation Example ===\" << endl;\n    \n    // Create account\n    BankAccount myAccount(\"ACC123456\", \"Ali Khan\", 1000.0);\n    \n    // Access data through getters\n    cout << \"\\nInitial account info:\" << endl;\n    myAccount.displayAccountInfo();\n    \n    // Try to access private data directly (WON'T WORK)\n    // cout << myAccount.balance; // ERROR: 'balance' is private\n    \n    // Use public methods to interact\n    cout << \"\\n--- Performing Transactions ---\" << endl;\n    myAccount.deposit(500.0);\n    myAccount.withdraw(200.0);\n    \n    // Try invalid withdrawal\n    myAccount.withdraw(2000.0);\n    \n    // Update owner name\n    cout << \"\\n--- Updating Information ---\" << endl;\n    myAccount.setOwnerName(\"Ali Ahmed Khan\");\n    \n    // Try invalid name\n    myAccount.setOwnerName(\"\");\n    \n    // Display final info\n    myAccount.displayAccountInfo();\n    \n    // Another example: Student class\n    cout << \"\\n\\n=== Student Class Example ===\" << endl;\n    \n    class Student {\n    private:\n        string name;\n        int age;\n        double gpa;\n        \n    public:\n        Student(string n, int a, double g) {\n            name = n;\n            setAge(a);  // Use setter for validation\n            setGPA(g);  // Use setter for validation\n        }\n        \n        // Getters\n        string getName() { return name; }\n        int getAge() { return age; }\n        double getGPA() { return gpa; }\n        \n        // Setters with validation\n        void setAge(int a) {\n            if (a >= 0 && a <= 120) {\n                age = a;\n            } else {\n                age = 0;\n                cout << \"Invalid age! Set to 0.\" << endl;\n            }\n        }\n        \n        void setGPA(double g) {\n            if (g >= 0.0 && g <= 4.0) {\n                gpa = g;\n            } else {\n                gpa = 0.0;\n                cout << \"Invalid GPA! Set to 0.0.\" << endl;\n            }\n        }\n        \n        void displayInfo() {\n            cout << \"Student: \" << name << \", Age: \" << age << \", GPA: \" << gpa << endl;\n        }\n    };\n    \n    Student student1(\"Sara\", 20, 3.8);\n    student1.displayInfo();\n    \n    // Try invalid updates\n    student1.setAge(150);  // Invalid\n    student1.setGPA(5.0);  // Invalid\n    student1.displayInfo();\n    \n    cout << \"\\n=== Benefits of Encapsulation ===\" << endl;\n    cout << \"1. Data Protection: Private data can't be modified directly\" << endl;\n    cout << \"2. Validation: Setters can validate input\" << endl;\n    cout << \"3. Flexibility: Can change implementation without affecting users\" << endl;\n    cout << \"4. Maintainability: Easier to debug and modify\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Encapsulation is used everywhere: Banking apps protect account balances, social media platforms protect user data, e-commerce sites protect product prices and inventory, and operating systems protect system settings. When you use a mobile banking app, you can't directly change your balance - you use deposit/withdraw methods. When you update your profile on social media, setters validate and sanitize your input.",
+      "interactive_tasks": [
+        "Create a Car class with encapsulated attributes (model, year, price) and validation",
+        "Write a Product class with getters/setters for price with discount validation",
+        "Create a User class with encapsulated password (read-only getter)"
+      ],
+      "quiz": [
+        {
+          "question": "What is encapsulation?",
+          "options": [
+            "Hiding implementation details",
+            "Combining data and methods",
+            "Protecting data with private access",
+            "All of the above"
+          ],
+          "answer": "All of the above",
+          "reasoning": "Encapsulation bundles data/methods, hides details, and protects data."
+        },
+        {
+          "question": "Which access specifier makes members private?",
+          "options": ["public", "private", "protected", "hidden"],
+          "answer": "private",
+          "reasoning": "private restricts access to class members only."
+        },
+        {
+          "question": "What are getter and setter methods?",
+          "options": [
+            "Functions to get and set private data",
+            "Functions for mathematical operations",
+            "Functions to create objects",
+            "Functions to delete objects"
+          ],
+          "answer": "Functions to get and set private data",
+          "reasoning": "Getters return private data, setters modify it with validation."
+        },
+        {
+          "question": "Why use encapsulation?",
+          "options": [
+            "To make code run faster",
+            "To protect data integrity",
+            "To reduce code size",
+            "To allow direct data access"
+          ],
+          "answer": "To protect data integrity",
+          "reasoning": "Encapsulation prevents invalid data modification."
+        },
+        {
+          "question": "Can private members be accessed from outside class?",
+          "options": ["Yes", "No", "Only by friends", "Only in main()"],
+          "answer": "No",
+          "reasoning": "Private members are only accessible within the class."
+        },
+        {
+          "question": "What is the main advantage of setters?",
+          "options": [
+            "They make code shorter",
+            "They allow data validation",
+            "They improve performance",
+            "They create objects"
+          ],
+          "answer": "They allow data validation",
+          "reasoning": "Setters can validate data before assigning."
+        },
+        {
+          "question": "Which is NOT a benefit of encapsulation?",
+          "options": [
+            "Data security",
+            "Code flexibility",
+            "Direct data manipulation",
+            "Easier maintenance"
+          ],
+          "answer": "Direct data manipulation",
+          "reasoning": "Encapsulation prevents direct manipulation, which is actually a benefit."
+        }
+      ]
+    },
+    {
+      "title": "Day 22 – C++ Templates and Advanced Features",
+      "definition": "Templates enable generic programming; files and date/time provide I/O and time manipulation capabilities.",
+      "explanation": "Templates allow writing code that works with any data type, promoting code reuse and type safety. Function templates create generic functions, while class templates create generic classes. File handling enables reading from and writing to files using fstream classes. Date and time functionality provides tools for working with timestamps, formatting dates, and measuring time intervals. These advanced features make C++ suitable for systems programming, applications requiring file I/O, and time-sensitive operations.",
+      "code_example": "#include <iostream>\n#include <fstream>\n#include <string>\n#include <ctime>\nusing namespace std;\n\n// Function template\ntemplate <typename T>\nT findMax(T a, T b) {\n    return (a > b) ? a : b;\n}\n\n// Class template\ntemplate <typename T>\nclass Container {\nprivate:\n    T value;\n    \npublic:\n    Container(T v) : value(v) {}\n    \n    T getValue() {\n        return value;\n    }\n    \n    void setValue(T v) {\n        value = v;\n    }\n    \n    void display() {\n        cout << \"Value: \" << value << endl;\n    }\n};\n\n// Template with multiple parameters\ntemplate <typename T1, typename T2>\nclass Pair {\npublic:\n    T1 first;\n    T2 second;\n    \n    Pair(T1 f, T2 s) : first(f), second(s) {}\n    \n    void display() {\n        cout << \"(\" << first << \", \" << second << \")\" << endl;\n    }\n};\n\nvoid demonstrateFiles() {\n    // Writing to a file\n    ofstream outFile(\"example.txt\");\n    if (outFile.is_open()) {\n        outFile << \"Hello, File Handling!\" << endl;\n        outFile << \"This is a second line.\" << endl;\n        outFile.close();\n        cout << \"File written successfully!\" << endl;\n    }\n    \n    // Reading from a file\n    ifstream inFile(\"example.txt\");\n    string line;\n    cout << \"\\nFile contents:\" << endl;\n    if (inFile.is_open()) {\n        while (getline(inFile, line)) {\n            cout << line << endl;\n        }\n        inFile.close();\n    }\n}\n\nvoid demonstrateDateTime() {\n    // Current date and time\n    time_t now = time(0);\n    cout << \"\\nCurrent timestamp: \" << now << endl;\n    cout << \"Local time: \" << ctime(&now);\n    \n    // Formatting date\n    tm* localTime = localtime(&now);\n    char buffer[80];\n    strftime(buffer, 80, \"%Y-%m-%d %H:%M:%S\", localTime);\n    cout << \"Formatted: \" << buffer << endl;\n    \n    // Measuring time\n    clock_t start = clock();\n    // Simulate some work\n    for (int i = 0; i < 1000000; i++) {}\n    clock_t end = clock();\n    double duration = double(end - start) / CLOCKS_PER_SEC;\n    cout << \"Operation took: \" << duration << \" seconds\" << endl;\n}\n\nint main() {\n    // Using function templates\n    cout << \"Max of 5 and 10: \" << findMax(5, 10) << endl;\n    cout << \"Max of 3.14 and 2.71: \" << findMax(3.14, 2.71) << endl;\n    cout << \"Max of 'a' and 'z': \" << findMax('a', 'z') << endl;\n    \n    // Using class templates\n    Container<int> intContainer(42);\n    Container<string> strContainer(\"Hello Templates\");\n    Container<double> doubleContainer(3.14159);\n    \n    cout << \"\\nContainers:\" << endl;\n    intContainer.display();\n    strContainer.display();\n    doubleContainer.display();\n    \n    // Using multiple parameter template\n    Pair<string, int> person(\"John\", 25);\n    Pair<int, double> data(123, 45.67);\n    \n    cout << \"\\nPairs:\" << endl;\n    person.display();\n    data.display();\n    \n    // File and date/time demonstrations\n    demonstrateFiles();\n    demonstrateDateTime();\n    \n    return 0;\n}",
+      "real_world_example": "Templates are used in the Standard Template Library (STL) for containers like vector, list, and map. File handling is essential for configuration files, data persistence, log files, and data import/export. Date/time functions are crucial for logging, scheduling, financial applications (interest calculations), and any time-sensitive operations.",
+      "interactive_tasks": [
+        "Create a template function that swaps two values of any type.",
+        "Create a template class Stack with push, pop, and peek operations.",
+        "Write a program that logs messages with timestamps to a file."
+      ],
+      "quiz": [
+        {
+          "question": "What is the purpose of templates in C++?",
+          "options": [
+            "To create web templates",
+            "To write generic code that works with any data type",
+            "To make code run faster",
+            "To create user interfaces"
+          ],
+          "answer": "To write generic code that works with any data type",
+          "reasoning": "Templates enable generic programming by allowing functions and classes to work with any data type."
+        },
+        {
+          "question": "Which keyword is used to declare a template?",
+          "options": [
+            "generic",
+            "template",
+            "typename",
+            "any"
+          ],
+          "answer": "template",
+          "reasoning": "The template keyword is used to declare a template, followed by template parameters in angle brackets."
+        },
+        {
+          "question": "What library is used for file handling in C++?",
+          "options": [
+            "iostream",
+            "fstream",
+            "fileio",
+            "stream"
+          ],
+          "answer": "fstream",
+          "reasoning": "The fstream library provides classes for file input/output operations (ifstream, ofstream, fstream)."
+        },
+        {
+          "question": "Which library provides date and time functions?",
+          "options": [
+            "chrono",
+            "ctime",
+            "datetime",
+            "time"
+          ],
+          "answer": "ctime",
+          "reasoning": "The ctime library (C time library) provides functions for working with dates and times."
+        },
+        {
+          "question": "What does the time() function return?",
+          "options": [
+            "A formatted string",
+            "A time_t value representing current time",
+            "A tm structure",
+            "The current hour"
+          ],
+          "answer": "A time_t value representing current time",
+          "reasoning": "The time() function returns a time_t value representing the current calendar time as seconds since epoch."
+        },
+        {
+          "question": "What is the advantage of using templates?",
+          "options": [
+            "Code reuse for different data types",
+            "Faster execution",
+            "Smaller executable size",
+            "Easier debugging"
+          ],
+          "answer": "Code reuse for different data types",
+          "reasoning": "Templates promote code reuse by allowing the same algorithm to work with multiple data types without duplication."
+        },
+        {
+          "question": "Which class is used for writing to files?",
+          "options": [
+            "ifstream",
+            "ofstream",
+            "fstream",
+            "Both 2 and 3"
+          ],
+          "answer": "Both 2 and 3",
+          "reasoning": "Both ofstream (output file stream) and fstream (general file stream) can be used for writing to files."
+        }
+      ]
+    },
+    {
+      "title": "Day 23 – C++ STL Containers - Vector and List",
+      "definition": "Vectors and Lists are fundamental STL containers for dynamic data storage with different access patterns.",
+      "explanation": "The Standard Template Library (STL) provides powerful data structures called containers. Vectors are dynamic arrays that can grow and shrink, supporting random access via indexes. Lists are doubly-linked sequences that allow efficient insertion and deletion at both ends but don't support random access. Vectors are ideal when you need frequent access by position, while lists excel when you need frequent insertions and deletions anywhere in the sequence. Both automatically manage memory and provide convenient methods for common operations.",
+      "code_example": "#include <iostream>\n#include <vector>\n#include <list>\nusing namespace std;\n\nint main() {\n    // Vector demonstration\n    cout << \"=== VECTOR ===\" << endl;\n    vector<string> cars = {\"Volvo\", \"BMW\", \"Ford\", \"Mazda\"};\n    \n    // Vector operations\n    cars.push_back(\"Tesla\");      // Add to end\n    cars.pop_back();              // Remove from end\n    cars.insert(cars.begin() + 1, \"Audi\");  // Insert at position\n    \n    cout << \"Vector elements: \";\n    for (size_t i = 0; i < cars.size(); i++) {\n        cout << cars[i] << \" \";  // Random access\n    }\n    cout << endl;\n    \n    cout << \"First element: \" << cars.front() << endl;\n    cout << \"Last element: \" << cars.back() << endl;\n    cout << \"Size: \" << cars.size() << endl;\n    \n    // List demonstration\n    cout << \"\\n=== LIST ===\" << endl;\n    list<string> animals = {\"Dog\", \"Cat\", \"Elephant\", \"Lion\"};\n    \n    // List operations\n    animals.push_front(\"Tiger\");   // Add to front\n    animals.push_back(\"Bear\");     // Add to back\n    animals.pop_front();           // Remove from front\n    \n    cout << \"List elements: \";\n    for (const string& animal : animals) {\n        cout << animal << \" \";     // Sequential access only\n    }\n    cout << endl;\n    \n    cout << \"First element: \" << animals.front() << endl;\n    cout << \"Last element: \" << animals.back() << endl;\n    cout << \"Size: \" << animals.size() << endl;\n    \n    // Performance comparison\n    cout << \"\\n=== PERFORMANCE ===\" << endl;\n    cout << \"Vector: Fast random access, slow insert/delete in middle\" << endl;\n    cout << \"List: Fast insert/delete anywhere, no random access\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Vectors are used for storing game levels, user lists, and any collection where you need fast access by position. Lists are used for browser history, undo/redo functionality, and music playlists where you frequently add/remove items. Vectors are like books on a shelf (easy to find by position), while lists are like train cars (easy to add/remove anywhere).",
+      "interactive_tasks": [
+        "Create a vector of integers, add 10 numbers, then remove the first and last elements.",
+        "Create a list of student names and implement functions to add to front and back.",
+        "Compare the performance of inserting in the middle of a vector vs list with 1000 elements."
+      ],
+      "quiz": [
+        {
+          "question": "What is the main advantage of vectors over arrays?",
+          "options": [
+            "Vectors can store different data types",
+            "Vectors can dynamically resize",
+            "Vectors are faster",
+            "Vectors use less memory"
+          ],
+          "answer": "Vectors can dynamically resize",
+          "reasoning": "Vectors can grow and shrink dynamically, unlike arrays which have fixed size."
+        },
+        {
+          "question": "How do you add an element to the end of a vector?",
+          "options": [
+            "vector.add()",
+            "vector.push_back()",
+            "vector.insert_end()",
+            "vector.append()"
+          ],
+          "answer": "vector.push_back()",
+          "reasoning": "The push_back() method adds an element to the end of a vector."
+        },
+        {
+          "question": "Can you access list elements using index notation like list[0]?",
+          "options": [
+            "Yes, always",
+            "No, never",
+            "Only if the list is sorted",
+            "Only for integer lists"
+          ],
+          "answer": "No, never",
+          "reasoning": "Lists don't support random access; you must traverse sequentially using iterators."
+        },
+        {
+          "question": "Which method adds an element to the front of a list?",
+          "options": [
+            "list.push_front()",
+            "list.add_front()",
+            "list.insert_begin()",
+            "list.front_add()"
+          ],
+          "answer": "list.push_front()",
+          "reasoning": "The push_front() method adds an element to the beginning of a list."
+        },
+        {
+          "question": "What happens when you call pop_back() on an empty vector?",
+          "options": [
+            "It returns 0",
+            "It throws an exception",
+            "Undefined behavior",
+            "It does nothing"
+          ],
+          "answer": "Undefined behavior",
+          "reasoning": "Calling pop_back() on an empty vector leads to undefined behavior - it may crash or cause errors."
+        },
+        {
+          "question": "Which container is better for frequent insertions in the middle?",
+          "options": [
+            "Vector",
+            "List",
+            "Array",
+            "They are equally good"
+          ],
+          "answer": "List",
+          "reasoning": "Lists have O(1) insertion time anywhere, while vectors have O(n) for middle insertions."
+        },
+        {
+          "question": "How do you get the number of elements in a vector?",
+          "options": [
+            "vector.length()",
+            "vector.size()",
+            "vector.count()",
+            "vector.elements()"
+          ],
+          "answer": "vector.size()",
+          "reasoning": "The size() method returns the number of elements in a vector."
+        }
+      ]
+    }
+
+  ]
+}

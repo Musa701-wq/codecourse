@@ -41,53 +41,51 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBM-R1sTcAssd6t0DTy3HZygogVQUxznOM',
-    appId: '1:236188595426:web:9933be0038542f29699abb',
-    messagingSenderId: '236188595426',
-    projectId: 'coding-tutor-42184',
-    authDomain: 'coding-tutor-42184.firebaseapp.com',
-    storageBucket: 'coding-tutor-42184.firebasestorage.app',
-    measurementId: 'G-907TMRBFH4',
+    apiKey: 'AIzaSyDgOFpNvxYcz4nzBXuiupOxklRfOcYmSE8',
+    appId: '1:420130426022:web:2f6b849c74c5cd571d7867',
+    messagingSenderId: '420130426022',
+    projectId: 'codecousre',
+    authDomain: 'codecousre.firebaseapp.com',
+    storageBucket: 'codecousre.firebasestorage.app',
+    measurementId: 'G-PXNV8RXPY5',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAdZRe06GPB81GFJ5fnbDhgJQt2nV8FJeU',
-    appId: '1:236188595426:android:a94d086f0a35fa14699abb',
-    messagingSenderId: '236188595426',
-    projectId: 'coding-tutor-42184',
-    storageBucket: 'coding-tutor-42184.firebasestorage.app',
+    apiKey: 'AIzaSyCa9NFWSk6i5ocunhqqDt8CegU9VcIFnVw',
+    appId: '1:420130426022:android:a7a2d5609ff686151d7867',
+    messagingSenderId: '420130426022',
+    projectId: 'codecousre',
+    storageBucket: 'codecousre.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBNVe_QOfUDFwx_nD2PBsrcN7PkVmVic3o',
-    appId: '1:236188595426:ios:4e9406c371900841699abb',
-    messagingSenderId: '236188595426',
-    projectId: 'coding-tutor-42184',
-    storageBucket: 'coding-tutor-42184.firebasestorage.app',
-    androidClientId: '236188595426-kq3f5rlltr14r6e43ejp9u9vnuk83emb.apps.googleusercontent.com',
-    iosClientId: '236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com',
-    iosBundleId: 'com.example.codingTutor',
+    apiKey: 'AIzaSyDdNP44_SjXkwlRznr6jaMK2Bg6RN36DJ0',
+    appId: '1:420130426022:ios:31c92c4c344ba15f1d7867',
+    messagingSenderId: '420130426022',
+    projectId: 'codecousre',
+    storageBucket: 'codecousre.firebasestorage.app',
+    iosClientId: '420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0.apps.googleusercontent.com',
+    iosBundleId: 'com.vectorlabs.codecourse',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBNVe_QOfUDFwx_nD2PBsrcN7PkVmVic3o',
-    appId: '1:236188595426:ios:4e9406c371900841699abb',
-    messagingSenderId: '236188595426',
-    projectId: 'coding-tutor-42184',
-    storageBucket: 'coding-tutor-42184.firebasestorage.app',
-    androidClientId: '236188595426-kq3f5rlltr14r6e43ejp9u9vnuk83emb.apps.googleusercontent.com',
-    iosClientId: '236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDdNP44_SjXkwlRznr6jaMK2Bg6RN36DJ0',
+    appId: '1:420130426022:ios:31ceb2af058040691d7867',
+    messagingSenderId: '420130426022',
+    projectId: 'codecousre',
+    storageBucket: 'codecousre.firebasestorage.app',
+    iosClientId: '420130426022-n7o76rleopq0ki2879vvvplrj1r4sr42.apps.googleusercontent.com',
     iosBundleId: 'com.example.codingTutor',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBM-R1sTcAssd6t0DTy3HZygogVQUxznOM',
-    appId: '1:236188595426:web:959616fe1a593317699abb',
-    messagingSenderId: '236188595426',
-    projectId: 'coding-tutor-42184',
-    authDomain: 'coding-tutor-42184.firebaseapp.com',
-    storageBucket: 'coding-tutor-42184.firebasestorage.app',
-    measurementId: 'G-BNGTPR4VG9',
+    apiKey: 'AIzaSyDgOFpNvxYcz4nzBXuiupOxklRfOcYmSE8',
+    appId: '1:420130426022:web:e8435b6f79b0d89b1d7867',
+    messagingSenderId: '420130426022',
+    projectId: 'codecousre',
+    authDomain: 'codecousre.firebaseapp.com',
+    storageBucket: 'codecousre.firebasestorage.app',
+    measurementId: 'G-VZET8MCXDD',
   );
 
 }

@@ -1,0 +1,689 @@
+{
+  "course_title": "JavaScript Advanced Level",
+  "description": "Advanced JavaScript concepts focusing on performance optimization, design patterns, metaprogramming, and real-world production scenarios",
+  "prerequisites": [
+    "JavaScript Intermediate Level",
+    "ES6+ Knowledge",
+    "Basic understanding of algorithms"
+  ],
+  "days": [
+    {
+      "title": "Day 1 – Advanced Design Patterns",
+      "definition": "Design patterns are reusable solutions to common software design problems that provide best practices and architectural guidance.",
+      "explanation": {
+        "main": "Mastering design patterns enables writing scalable, maintainable, and efficient JavaScript applications.",
+        "key_points": [
+          "Creational Patterns: Factory, Builder, Singleton, Prototype",
+          "Structural Patterns: Adapter, Decorator, Facade, Proxy, Composite",
+          "Behavioral Patterns: Observer, Strategy, Command, Iterator, State",
+          "Module Pattern and Revealing Module Pattern",
+          "Modern patterns: HOC, Render Props, Hooks (React patterns)",
+          "Performance implications of different patterns",
+          "Anti-patterns to avoid in JavaScript"
+        ]
+      },
+      "code_example": "class StrategyContext {\n  constructor(strategy) {\n    this.strategy = strategy;\n  }\n  execute(amount) {\n    return this.strategy(amount);\n  }\n}\nconst strategy = (value) => `Processed ${value}`;\nconst context = new StrategyContext(strategy);\nconsole.log(context.execute(100));",
+      "real_world_example": "Design patterns are extensively used in: React (Observer pattern for state management, Factory pattern for components), Express.js (Middleware pattern), Redux (Observer + Command patterns), Angular (Dependency Injection pattern), Vue (Proxy pattern for reactivity), and in building scalable architectures like microservices.",
+      "interactive_tasks": [
+        "Implement a state management system using Observer pattern",
+        "Build a plugin system using Strategy pattern",
+        "Create a reactive data layer using Proxy pattern",
+        "Design a caching system with Decorator pattern"
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary benefit of using the Observer pattern?",
+          "options": [
+            "Reduces memory usage",
+            "Decouples subjects from observers",
+            "Increases execution speed",
+            "Simplifies inheritance"
+          ],
+          "answer": "Decouples subjects from observers",
+          "reasoning": "Observer pattern establishes a one-to-many dependency between objects, allowing multiple observers to react to state changes without tight coupling."
+        },
+        {
+          "question": "When should you use the Proxy pattern?",
+          "options": [
+            "When you need to create many objects",
+            "When you need to control access to an object",
+            "When you need to sort collections",
+            "When you need to parse strings"
+          ],
+          "answer": "When you need to control access to an object",
+          "reasoning": "Proxy pattern provides a surrogate or placeholder for another object to control access, add logging, validation, or caching."
+        },
+        {
+          "question": "What makes the Strategy pattern different from State pattern?",
+          "options": [
+            "Strategy changes behavior, State changes object's state",
+            "Strategy is for algorithms, State is for object states",
+            "Strategy uses inheritance, State uses composition",
+            "There is no difference"
+          ],
+          "answer": "Strategy is for algorithms, State is for object states",
+          "reasoning": "Strategy pattern defines a family of interchangeable algorithms, while State pattern allows an object to alter its behavior when its internal state changes."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_object_maps.asp",
+        "https://www.w3schools.com/js/js_classes.asp",
+        "https://www.w3schools.com/js/js_proxy.asp",
+        "https://refactoring.guru/design-patterns"
+      ]
+    },
+    {
+      "title": "Day 2 – Performance Optimization",
+      "definition": "Performance optimization involves techniques to make JavaScript code run faster, use less memory, and provide better user experience.",
+      "explanation": {
+        "main": "Advanced optimization techniques are crucial for building high-performance applications, especially for mobile and data-intensive applications.",
+        "key_points": [
+          "Memory management and garbage collection",
+          "Execution context and scope chain optimization",
+          "Debouncing and throttling for event handling",
+          "Virtual scrolling and list virtualization",
+          "Web Workers for CPU-intensive tasks",
+          "Service Workers for network optimization",
+          "Code splitting and lazy loading",
+          "Bundle optimization and tree shaking",
+          "Animation performance with requestAnimationFrame",
+          "Memory leak detection and prevention"
+        ]
+      },
+      "code_example": "const debounce = (fn, wait) => {\n  let timeout;\n  return (...args) => {\n    clearTimeout(timeout);\n    timeout = setTimeout(() => fn(...args), wait);\n  };\n};\nconst throttled = debounce((value) => console.log('invoke', value), 200);\nthrottled('event');",
+      "real_world_example": "Performance optimization is critical in: Google Maps (virtual scrolling), Excel Online (Web Workers for calculations), Figma (requestAnimationFrame for smooth interactions), Netflix (code splitting for faster loading), and Trading platforms (debouncing real-time data updates).",
+      "interactive_tasks": [
+        "Implement a virtualized data table with 100k+ rows",
+        "Create a memory leak detector",
+        "Build a smooth animation engine using requestAnimationFrame",
+        "Optimize a heavy computation using Web Workers"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main advantage of using requestAnimationFrame over setTimeout for animations?",
+          "options": [
+            "It's easier to use",
+            "It syncs with browser repaint for smoother animations",
+            "It uses less memory",
+            "It works in all browsers"
+          ],
+          "answer": "It syncs with browser repaint for smoother animations",
+          "reasoning": "requestAnimationFrame calls the callback before the next repaint, ensuring smoother animations and preventing frame skipping."
+        },
+        {
+          "question": "When should you use virtual scrolling?",
+          "options": [
+            "When you have less than 100 items",
+            "When dealing with large lists (1000+ items)",
+            "For all scrollable content",
+            "Only on mobile devices"
+          ],
+          "answer": "When dealing with large lists (1000+ items)",
+          "reasoning": "Virtual scrolling renders only visible items, dramatically improving performance for large datasets by reducing DOM nodes and memory usage."
+        },
+        {
+          "question": "What's the difference between debouncing and throttling?",
+          "options": [
+            "Debouncing groups calls, throttling limits call frequency",
+            "Throttling is for clicks, debouncing for scrolls",
+            "They are the same thing",
+            "Debouncing is faster"
+          ],
+          "answer": "Debouncing groups calls, throttling limits call frequency",
+          "reasoning": "Debouncing waits for a pause in events before executing, while throttling ensures execution happens at most once per specified period."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_performance.asp",
+        "https://www.w3schools.com/js/js_best_practices.asp",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame",
+        "https://web.dev/performance/"
+      ]
+    },
+    {
+      "title": "Day 3 – Metaprogramming and Reflection",
+      "definition": "Metaprogramming involves writing code that can inspect, generate, or modify other code at runtime, enabling dynamic and flexible program structures.",
+      "explanation": {
+        "main": "Advanced metaprogramming techniques allow for creating highly dynamic applications, frameworks, and DSLs (Domain Specific Languages).",
+        "key_points": [
+          "Reflection: inspecting and modifying objects at runtime",
+          "Proxy API for object virtualization",
+          "Reflect API for meta-operations",
+          "Symbols for unique property keys and meta-programming",
+          "Generators and Iterators for custom iteration protocols",
+          "Decorators for class and method metadata",
+          "eval() and Function constructor (with caution)",
+          "AST manipulation and code generation",
+          "Property descriptors and object freezing"
+        ]
+      },
+      "code_example": "const proxy = new Proxy({ count: 0 }, {\n  get(target, prop) {\n    console.log('access', prop);\n    return target[prop];\n  }\n});\nproxy.count = 1;\nconsole.log(proxy.count);",
+      "real_world_example": "Metaprogramming powers: Vue 3's reactivity system (Proxy), MobX state management (Proxies and Symbols), TypeScript decorators, Jest's mocking system, Express middleware composition, and Babel's AST transformations for code compilation.",
+      "interactive_tasks": [
+        "Create a reactive state management system using Proxy",
+        "Implement a validation framework using decorators",
+        "Build a query builder using method chaining and symbols",
+        "Create a dynamic form generator using metaprogramming"
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary use case for JavaScript Proxy?",
+          "options": [
+            "Making HTTP requests",
+            "Creating virtual objects with custom behavior",
+            "Optimizing images",
+            "Database queries"
+          ],
+          "answer": "Creating virtual objects with custom behavior",
+          "reasoning": "Proxy allows creating objects with custom behavior for fundamental operations like property lookup, assignment, enumeration, etc."
+        },
+        {
+          "question": "Why are Symbols useful in metaprogramming?",
+          "options": [
+            "They make code run faster",
+            "They create unique property keys that avoid collisions",
+            "They reduce memory usage",
+            "They simplify syntax"
+          ],
+          "answer": "They create unique property keys that avoid collisions",
+          "reasoning": "Symbols create unique identifiers that can be used as property keys, preventing naming collisions and enabling private-like properties."
+        },
+        {
+          "question": "What's the difference between Reflect and direct object operations?",
+          "options": [
+            "Reflect is faster",
+            "Reflect provides trap methods that work well with Proxy",
+            "Reflect is deprecated",
+            "No difference"
+          ],
+          "answer": "Reflect provides trap methods that work well with Proxy",
+          "reasoning": "Reflect methods correspond to Proxy traps, making them ideal for implementing default behavior in Proxy handlers."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_es6.asp#mark_symbol",
+        "https://www.w3schools.com/js/js_object_properties.asp",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect"
+      ]
+    },
+    {
+      "title": "Day 4 – Advanced Asynchronous Programming",
+      "definition": "Advanced asynchronous patterns go beyond promises to handle complex scenarios like cancellation, error recovery, parallel execution, and backpressure.",
+      "explanation": {
+        "main": "Mastering advanced async patterns is essential for building responsive, efficient, and robust applications.",
+        "key_points": [
+          "Async iterators and generators",
+          "Promise combinators: allSettled, any, race",
+          "Cancellable promises and AbortController",
+          "Async error handling patterns",
+          "Rate limiting and concurrency control",
+          "Reactive programming with Observables",
+          "Worker threads and parallel processing",
+          "Streams API for handling large data",
+          "Event-driven architecture with async/await",
+          "Microtask vs macrotask queues"
+        ]
+      },
+      "code_example": "const asyncWork = async (value) => {\n  await new Promise((r) => setTimeout(r, 50));\n  return value * 2;\n};\nPromise.all([asyncWork(1), asyncWork(2)]).then(console.log);",
+      "real_world_example": "Advanced async patterns are used in: Google Drive (rate limiting uploads), Trading platforms (WebSocket streams with backpressure), Video streaming services (adaptive bitrate with async generators), CI/CD systems (parallel test execution), and Real-time dashboards (Observable patterns).",
+      "interactive_tasks": [
+        "Implement a file uploader with progress, cancellation, and retry",
+        "Create a real-time data stream processor",
+        "Build a task scheduler with priority queues",
+        "Implement a WebSocket reconnection strategy with exponential backoff"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main advantage of async generators over regular async functions?",
+          "options": [
+            "They are faster",
+            "They can yield multiple values over time",
+            "They use less memory",
+            "They handle errors better"
+          ],
+          "answer": "They can yield multiple values over time",
+          "reasoning": "Async generators can pause and resume execution, yielding multiple values over time, making them ideal for streaming data."
+        },
+        {
+          "question": "When should you use AbortController?",
+          "options": [
+            "For all async operations",
+            "When you need to cancel ongoing async operations",
+            "To improve performance",
+            "To handle errors"
+          ],
+          "answer": "When you need to cancel ongoing async operations",
+          "reasoning": "AbortController provides a way to abort one or more DOM requests, including fetch requests, when they're no longer needed."
+        },
+        {
+          "question": "What's the difference between Promise.all and Promise.allSettled?",
+          "options": [
+            "allSettled is faster",
+            "all rejects on first rejection, allSettled waits for all",
+            "all handles more promises",
+            "No difference"
+          ],
+          "answer": "all rejects on first rejection, allSettled waits for all",
+          "reasoning": "Promise.all rejects immediately upon any rejection, while Promise.allSettled waits for all promises to settle and returns their results."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_async.asp",
+        "https://www.w3schools.com/js/js_promise.asp",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+        "https://developer.mozilla.org/en-US/docs/Web/API/AbortController"
+      ]
+    },
+    {
+      "title": "Day 5 – Advanced Security and Best Practices",
+      "definition": "Advanced security practices protect applications from vulnerabilities while best practices ensure code quality, maintainability, and performance.",
+      "explanation": {
+        "main": "Security and best practices are critical for production applications to prevent attacks and ensure reliability.",
+        "key_points": [
+          "XSS prevention and Content Security Policy",
+          "CSRF protection and SameSite cookies",
+          "Security headers implementation",
+          "Input validation and sanitization",
+          "Secure authentication patterns",
+          "Code quality tools: ESLint, Prettier, TypeScript",
+          "Testing strategies: unit, integration, E2E",
+          "Monitoring and logging best practices",
+          "Performance auditing and profiling",
+          "Accessibility considerations",
+          "Internationalization and localization",
+          "Progressive enhancement"
+        ]
+      },
+      "code_example": "const sanitizeInput = (value) => value.replace(/[^a-z0-9 ]/gi, '');\nconsole.log(sanitizeInput('hello<script>'));",
+      "real_world_example": "Security practices are critical in: Banking applications (CSRF tokens, input validation), Healthcare systems (data sanitization, audit trails), E-commerce platforms (payment security, fraud detection), and Social media (XSS prevention, content moderation). Best practices ensure maintainability in large codebases like Google, Facebook, and Microsoft applications.",
+      "interactive_tasks": [
+        "Implement a secure authentication flow with JWT",
+        "Create a Content Security Policy generator",
+        "Build an accessibility audit tool",
+        "Implement a comprehensive logging and monitoring system"
+      ],
+      "quiz": [
+        {
+          "question": "What is the primary purpose of Content Security Policy (CSP)?",
+          "options": [
+            "To compress web pages",
+            "To prevent XSS attacks by restricting resource loading",
+            "To improve SEO",
+            "To cache content"
+          ],
+          "answer": "To prevent XSS attacks by restricting resource loading",
+          "reasoning": "CSP helps prevent XSS attacks by specifying valid sources for scripts, styles, and other resources, preventing injection of malicious code."
+        },
+        {
+          "question": "What does SameSite cookie attribute prevent?",
+          "options": [
+            "Cookie theft",
+            "CSRF attacks",
+            "XSS attacks",
+            "SQL injection"
+          ],
+          "answer": "CSRF attacks",
+          "reasoning": "SameSite attribute prevents cookies from being sent with cross-site requests, protecting against CSRF attacks."
+        },
+        {
+          "question": "Why should you avoid using eval() in production code?",
+          "options": [
+            "It's slow",
+            "It can execute arbitrary code, creating security vulnerabilities",
+            "It's deprecated",
+            "It doesn't work in all browsers"
+          ],
+          "answer": "It can execute arbitrary code, creating security vulnerabilities",
+          "reasoning": "eval() can execute any JavaScript code passed to it, making it vulnerable to code injection attacks if untrusted data reaches it."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_best_practices.asp",
+        "https://www.w3schools.com/js/js_security.asp",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP",
+        "https://owasp.org/www-project-top-ten/"
+      ]
+    },
+    {
+      "title": "Day 6 – Functional Programming Advanced",
+      "definition": "Advanced functional programming concepts including monads, functors, transducers, and functional composition techniques for building robust, predictable applications.",
+      "explanation": {
+        "main": "Mastering advanced FP patterns enables writing more declarative, testable, and maintainable code with fewer side effects.",
+        "key_points": [
+          "Monads: Maybe, Either, IO, Task monads",
+          "Functors and their laws",
+          "Applicatives and monadic composition",
+          "Transducers for efficient data transformation pipelines",
+          "Lenses for immutable data manipulation",
+          "Algebraic data types in JavaScript",
+          "Functional reactive programming basics",
+          "Point-free style and combinator patterns",
+          "Category theory fundamentals for JavaScript"
+        ]
+      },
+      "code_example": "const compose = (...fns) => (value) => fns.reduce((acc, fn) => fn(acc), value);\nconst addOne = (v) => v + 1;\nconst double = (v) => v * 2;\nconsole.log(compose(addOne, double)(3));",
+      "real_world_example": "Advanced FP patterns are used in: Ramda/ Lodash FP libraries, RxJS (reactive programming), Redux-Observable middleware, Immutable.js data structures, and in functional UI frameworks like Cycle.js. Financial applications use monads for safe calculations, while data processing pipelines use transducers for efficiency.",
+      "interactive_tasks": [
+        "Implement a validation library using Either monad",
+        "Create a data transformation pipeline with transducers",
+        "Build a state management system using functional patterns",
+        "Implement a parser combinator library"
+      ],
+      "quiz": [
+        {
+          "question": "What problem does the Maybe monad solve?",
+          "options": [
+            "Async operations",
+            "Null/undefined safety",
+            "Performance optimization",
+            "Memory management"
+          ],
+          "answer": "Null/undefined safety",
+          "reasoning": "Maybe monad encapsulates values that might be null or undefined, providing safe operations without null checks."
+        },
+        {
+          "question": "What is the main advantage of using transducers over chaining map/filter?",
+          "options": [
+            "Better syntax",
+            "Single pass through data",
+            "Easier debugging",
+            "Smaller bundle size"
+          ],
+          "answer": "Single pass through data",
+          "reasoning": "Transducers compose transformations that are applied in a single pass, improving performance for large datasets."
+        },
+        {
+          "question": "What does the trampoline pattern prevent?",
+          "options": [
+            "Memory leaks",
+            "Stack overflow in recursion",
+            "Race conditions",
+            "Type errors"
+          ],
+          "answer": "Stack overflow in recursion",
+          "reasoning": "Trampoline converts recursive calls into loops, preventing stack overflow in deep recursion."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_function_definition.asp",
+        "https://www.w3schools.com/js/js_arrow_function.asp",
+        "https://github.com/fantasyland/fantasy-land",
+        "https://mostly-adequate.gitbook.io/mostly-adequate-guide/"
+      ]
+    },
+    {
+      "title": "Day 7 – Advanced TypeScript and Static Analysis",
+      "definition": "Advanced TypeScript features and static analysis tools that enhance code quality, developer experience, and application robustness through type safety and code validation.",
+      "explanation": {
+        "main": "Mastering advanced TypeScript enables building large-scale applications with confidence through compile-time checks and sophisticated type inference.",
+        "key_points": [
+          "Advanced type system: conditional types, mapped types, template literal types",
+          "Generics constraints and variance",
+          "Type inference and type guards",
+          "Declaration merging and module augmentation",
+          "Utility types and type transformations",
+          "Decorators and metadata reflection",
+          "Namespace and module resolution",
+          "Compiler API for custom tooling",
+          "Integration with ESLint and other static analyzers",
+          "Performance considerations with types"
+        ]
+      },
+      "code_example": "const assertAssignable = (value) => {\n  if (typeof value !== 'string') {\n    throw new Error('Expected string');\n  }\n  return value;\n};\nconsole.log(assertAssignable('test'));",
+      "real_world_example": "Advanced TypeScript is used in: VS Code (editor features), Angular (framework internals), NestJS (decorator-based architecture), tRPC (end-to-end type safety), Prisma (type-safe database queries), and in large codebases at Microsoft, Google, and Airbnb to maintain code quality at scale.",
+      "interactive_tasks": [
+        "Create a type-safe ORM with advanced generics",
+        "Build a validation library with conditional types",
+        "Implement a type-safe router for SPA applications",
+        "Create custom ESLint rules for TypeScript"
+      ],
+      "quiz": [
+        {
+          "question": "What is the purpose of conditional types in TypeScript?",
+          "options": [
+            "To add if-else logic to types",
+            "To create types that depend on other types",
+            "To improve performance",
+            "To simplify syntax"
+          ],
+          "answer": "To create types that depend on other types",
+          "reasoning": "Conditional types select one of two possible types based on a condition expressed as a type relationship."
+        },
+        {
+          "question": "What does the 'infer' keyword do?",
+          "options": [
+            "Infers types automatically",
+            "Declares inference rules",
+            "Captures a type within a conditional type",
+            "Imports types"
+          ],
+          "answer": "Captures a type within a conditional type",
+          "reasoning": "The infer keyword introduces a type variable to capture a type for use in the true branch of a conditional type."
+        },
+        {
+          "question": "What are branded/types useful for?",
+          "options": [
+            "Making code run faster",
+            "Creating nominal type checking in structural type system",
+            "Reducing bundle size",
+            "Simplifying syntax"
+          ],
+          "answer": "Creating nominal type checking in structural type system",
+          "reasoning": "Branded types create nominal typing in TypeScript's structural type system, preventing accidental assignment of different semantic types."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/typescript/",
+        "https://www.typescriptlang.org/docs/handbook/advanced-types.html",
+        "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+        "https://github.com/microsoft/TypeScript"
+      ]
+    },
+    {
+      "title": "Day 8 – WebAssembly with JavaScript",
+      "definition": "WebAssembly (Wasm) is a binary instruction format that enables high-performance execution of code in web browsers, allowing JavaScript to integrate with languages like C, C++, and Rust.",
+      "explanation": {
+        "main": "WebAssembly extends JavaScript's capabilities by enabling near-native performance for compute-intensive tasks while maintaining secure sandboxed execution.",
+        "key_points": [
+          "Wasm module compilation and instantiation",
+          "JavaScript-Wasm interoperability",
+          "Memory management and shared memory",
+          "Multi-threading with Web Workers",
+          "SIMD (Single Instruction Multiple Data) operations",
+          "Wasm modules from different languages",
+          "Debugging and profiling WebAssembly",
+          "WebAssembly System Interface (WASI)",
+          "Performance optimization strategies",
+          "Use cases: games, image/video processing, scientific computing"
+        ]
+      },
+      "code_example": "const loadWasmModule = async () => ({ name: 'wasm', exports: {} });\nloadWasmModule().then(console.log);",
+      "real_world_example": "WebAssembly powers: Figma (design tool performance), Google Earth (3D rendering), AutoCAD Web (CAD software), Photoshop Web (image processing), Google Meet (video processing), and games like Doom 3 in browser. Also used in blockchain (Ethereum smart contracts) and scientific simulations.",
+      "interactive_tasks": [
+        "Create an image filter using WebAssembly",
+        "Build a physics simulation with WASM",
+        "Implement cryptographic functions in WASM",
+        "Create a data compression library with WASM"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main advantage of WebAssembly over JavaScript for certain tasks?",
+          "options": [
+            "Easier syntax",
+            "Near-native performance for compute-intensive tasks",
+            "Better browser compatibility",
+            "Smaller file size"
+          ],
+          "answer": "Near-native performance for compute-intensive tasks",
+          "reasoning": "WebAssembly is compiled to machine code and executes at near-native speed, making it ideal for performance-critical computations."
+        },
+        {
+          "question": "How does WebAssembly interact with JavaScript?",
+          "options": [
+            "It replaces JavaScript completely",
+            "Through imports/exports and shared memory",
+            "It cannot interact with JavaScript",
+            "Through DOM manipulation"
+          ],
+          "answer": "Through imports/exports and shared memory",
+          "reasoning": "WASM modules export functions to JavaScript and import JavaScript functions, with shared memory for data exchange."
+        },
+        {
+          "question": "What is WebAssembly SIMD used for?",
+          "options": [
+            "Simple operations",
+            "Single Instruction Multiple Data parallelism",
+            "Synchronous execution",
+            "Simplified debugging"
+          ],
+          "answer": "Single Instruction Multiple Data parallelism",
+          "reasoning": "SIMD allows parallel processing of multiple data points with a single instruction, accelerating vector/matrix operations."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_wasm_intro.asp",
+        "https://webassembly.org/",
+        "https://developer.mozilla.org/en-US/docs/WebAssembly",
+        "https://github.com/WebAssembly"
+      ]
+    },
+    {
+      "title": "Day 9 – Advanced Build Tools and Tooling",
+      "definition": "Modern JavaScript development requires sophisticated build tools, bundlers, and development tooling for optimization, development experience, and production readiness.",
+      "explanation": {
+        "main": "Mastering build tools enables creating efficient development workflows, optimized production bundles, and maintainable codebases at scale.",
+        "key_points": [
+          "Module bundlers: Webpack 5, Vite, Rollup, Parcel",
+          "Compiler toolchains: Babel, SWC, esbuild",
+          "Task runners and monorepo tools",
+          "Development servers and HMR (Hot Module Replacement)",
+          "Code splitting and lazy loading strategies",
+          "Tree shaking and dead code elimination",
+          "Source maps and debugging",
+          "Performance budgets and bundle analysis",
+          "CI/CD integration and automation",
+          "Custom plugin/loader development"
+        ]
+      },
+      "code_example": "const buildConfig = (overrides = {}) => ({\n  entry: './src/index.js',\n  mode: 'production',\n  ...overrides\n});\nconsole.log(buildConfig({ mode: 'development' }));",
+      "real_world_example": "Build tools power: React/Next.js (Webpack/SWC), Vue/Nuxt.js (Vite), Angular (custom CLI), Create React App (Webpack), and enterprise applications at companies like Netflix, Airbnb, and Uber. Modern tools like Vite and esbuild enable sub-second cold starts for large projects.",
+      "interactive_tasks": [
+        "Create a custom Webpack loader for a specific file type",
+        "Build a bundle size analyzer with visualization",
+        "Implement a code splitting strategy for a large application",
+        "Create a custom development server with HMR"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main purpose of tree shaking?",
+          "options": [
+            "To make code more readable",
+            "To eliminate unused code from bundles",
+            "To improve runtime performance",
+            "To add type checking"
+          ],
+          "answer": "To eliminate unused code from bundles",
+          "reasoning": "Tree shaking removes dead code (unused exports) from the final bundle, reducing file size and improving load times."
+        },
+        {
+          "question": "What advantage does Vite have over traditional bundlers?",
+          "options": [
+            "Better documentation",
+            "Faster development server via ES modules",
+            "More plugins",
+            "Simpler configuration"
+          ],
+          "answer": "Faster development server via ES modules",
+          "reasoning": "Vite uses native ES modules during development, enabling instant server start and HMR without bundling."
+        },
+        {
+          "question": "What is code splitting primarily used for?",
+          "options": [
+            "Organizing code",
+            "Reducing initial bundle size",
+            "Improving syntax highlighting",
+            "Adding comments"
+          ],
+          "answer": "Reducing initial bundle size",
+          "reasoning": "Code splitting breaks bundles into smaller chunks that can be loaded on demand, reducing initial page load time."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/whatis/whatis_buildtools.asp",
+        "https://webpack.js.org/",
+        "https://vitejs.dev/",
+        "https://rollupjs.org/"
+      ]
+    },
+    {
+      "title": "Day 10 – Advanced Testing and Quality Assurance",
+      "definition": "Comprehensive testing strategies, tools, and methodologies to ensure JavaScript application reliability, maintainability, and correctness across different levels.",
+      "explanation": {
+        "main": "Advanced testing practices are essential for building robust, enterprise-grade applications with confidence in code quality and behavior.",
+        "key_points": [
+          "Testing pyramid: unit, integration, E2E tests",
+          "Test runners: Jest, Mocha, Jasmine, Vitest",
+          "Testing frameworks and assertion libraries",
+          "Mocking and stubbing strategies",
+          "Snapshot testing and visual regression",
+          "Performance testing and benchmarking",
+          "Accessibility testing",
+          "Test coverage analysis and reporting",
+          "Mutation testing for test quality",
+          "Continuous testing in CI/CD pipelines",
+          "Testing best practices and patterns"
+        ]
+      },
+      "code_example": "const runTest = (name, fn) => {\n  try {\n    fn();\n    console.log(name, 'passed');\n  } catch (error) {\n    console.log(name, 'failed', error.message);\n  }\n};\nrunTest('example', () => { if (true) return true; });",
+      "real_world_example": "Advanced testing is crucial at: Google (end-to-end testing at scale), Facebook (Jest framework), Netflix (performance and chaos testing), Airbnb (visual regression testing), and Microsoft (accessibility compliance). Modern practices include shift-left testing, test automation in CI/CD, and testing microservices.",
+      "interactive_tasks": [
+        "Create a custom test runner with parallel execution",
+        "Implement visual regression testing",
+        "Build a mutation testing framework",
+        "Create a performance testing suite for APIs"
+      ],
+      "quiz": [
+        {
+          "question": "What is the testing pyramid principle?",
+          "options": [
+            "More UI tests than unit tests",
+            "More unit tests than integration tests, more integration than E2E",
+            "Equal number of all test types",
+            "Only E2E tests matter"
+          ],
+          "answer": "More unit tests than integration tests, more integration than E2E",
+          "reasoning": "The testing pyramid emphasizes many fast, cheap unit tests, fewer integration tests, and even fewer slow, expensive E2E tests."
+        },
+        {
+          "question": "What is the purpose of mutation testing?",
+          "options": [
+            "To test performance",
+            "To measure test suite quality by introducing faults",
+            "To test accessibility",
+            "To mock external services"
+          ],
+          "answer": "To measure test suite quality by introducing faults",
+          "reasoning": "Mutation testing introduces small changes (mutations) to code to see if tests detect them, measuring test effectiveness."
+        },
+        {
+          "question": "What does snapshot testing verify?",
+          "options": [
+            "Code performance",
+            "UI component output remains consistent",
+            "Network requests",
+            "Database schemas"
+          ],
+          "answer": "UI component output remains consistent",
+          "reasoning": "Snapshot testing captures component output and compares it to stored snapshots to detect unintended changes."
+        }
+      ],
+      "references": [
+        "https://www.w3schools.com/js/js_testing.asp",
+        "https://jestjs.io/",
+        "https://mochajs.org/",
+        "https://testing-library.com/"
+      ]
+    }
+  ]
+}

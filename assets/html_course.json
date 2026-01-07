@@ -1,0 +1,1126 @@
+{
+  "course_title": "HTML Beginner Level",
+  "days": [
+    {
+      "title": "Day 1 – Introduction to HTML",
+      "definition": "HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications. It describes the structure of web pages using markup.",
+      "explanation": "HTML is like the skeleton of a website. It provides the basic structure that is then enhanced and modified by CSS and JavaScript. HTML uses tags like <h1>, <p>, <div> to define elements such as headings, paragraphs, and divisions. These elements tell the browser how to display the content. Think of HTML as the building blocks of web pages - without it, there would be no structure to display text, images, or links on the web.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>My First HTML Page</title>\n</head>\n<body>\n    <h1>Welcome to HTML!</h1>\n    <p>This is a paragraph of text on my first web page.</p>\n    <p>HTML is fun and easy to learn!</p>\n</body>\n</html>",
+      "real_world_example": "Every website you visit uses HTML. From simple blogs to complex web applications like Facebook or Google Docs, all use HTML to structure their content. News websites use HTML for articles, e-commerce sites use it for product listings, and social media platforms use it to display posts and comments.",
+      "interactive_tasks": [
+        "Create a basic HTML page with a heading and two paragraphs",
+        "Add a title to your HTML page that appears in the browser tab",
+        "Create an HTML page with your name as the main heading"
+      ],
+      "quiz": [
+        {
+          "question": "What does HTML stand for?",
+          "options": ["Hyper Tool Markup Language", "HyperText Markup Language", "Hyper Transfer Markup Language", "Home Tool Markup Language"],
+          "answer": "HyperText Markup Language",
+          "reasoning": "HTML stands for HyperText Markup Language, which is the standard language for creating web pages."
+        },
+        {
+          "question": "Which tag is used to create a paragraph?",
+          "options": ["<para>", "<p>", "<paragraph>", "<text>"],
+          "answer": "<p>",
+          "reasoning": "The <p> tag is used to define a paragraph in HTML."
+        },
+        {
+          "question": "What is the purpose of the <title> tag?",
+          "options": ["To display a title on the webpage", "To define the browser title/tab name", "To create a heading", "To name the HTML file"],
+          "answer": "To define the browser title/tab name",
+          "reasoning": "The <title> tag defines the title of the document shown in the browser's title bar or tab."
+        },
+        {
+          "question": "Which tag is the root element of an HTML page?",
+          "options": ["<body>", "<html>", "<head>", "<!DOCTYPE>"],
+          "answer": "<html>",
+          "reasoning": "The <html> tag is the root element that contains all other HTML elements."
+        },
+        {
+          "question": "What does the <!DOCTYPE html> declaration do?",
+          "options": ["Defines a paragraph", "Tells browser this is HTML5", "Creates a document", "Links to CSS"],
+          "answer": "Tells browser this is HTML5",
+          "reasoning": "<!DOCTYPE html> declares that the document is an HTML5 document."
+        },
+        {
+          "question": "Which section contains metadata about the HTML document?",
+          "options": ["<body>", "<html>", "<head>", "<meta>"],
+          "answer": "<head>",
+          "reasoning": "The <head> element contains meta information about the HTML document."
+        },
+        {
+          "question": "Where does the visible content of a webpage go?",
+          "options": ["<head> section", "<body> section", "<html> tag", "<main> section"],
+          "answer": "<body> section",
+          "reasoning": "The <body> element contains all the visible content of a webpage."
+        }
+      ]
+    },
+    {
+      "title": "Day 2 – HTML Editors and Setup",
+      "definition": "HTML editors are software tools used to create and edit HTML code, ranging from simple text editors to sophisticated Integrated Development Environments (IDEs).",
+      "explanation": "You can write HTML using any text editor, but specialized HTML editors make the process easier with features like syntax highlighting, code completion, and live preview. Basic editors like Notepad work fine for beginners, while advanced editors like VS Code or specialized tools like Dreamweaver provide powerful features. The most important thing is to save your files with the .html extension so browsers recognize them as web pages.",
+      "code_example": "<!-- Basic HTML structure that any editor can create -->\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>HTML Editor Example</title>\n</head>\n<body>\n    <header>\n        <h1>Welcome to My Website</h1>\n    </header>\n    <main>\n        <p>This HTML file was created using a text editor.</p>\n        <p>Remember to save files with .html extension!</p>\n    </main>\n</body>\n</html>",
+      "real_world_example": "Professional web developers use editors like VS Code, Sublime Text, or WebStorm. These tools help manage large projects with multiple files, provide error checking, and integrate with version control systems like Git. Even simple tools like Notepad++ or online editors like CodePen are used for quick prototyping and learning.",
+      "interactive_tasks": [
+        "Create an HTML file using a text editor and open it in a browser",
+        "Install VS Code or another HTML editor and create a simple page",
+        "Create an HTML file with proper structure and validate it works in a browser"
+      ],
+      "quiz": [
+        {
+          "question": "What file extension should HTML files have?",
+          "options": [".txt", ".html", ".htm", ".web"],
+          "answer": ".html",
+          "reasoning": "HTML files should be saved with the .html extension (though .htm also works, .html is standard)."
+        },
+        {
+          "question": "Which of these is NOT an HTML editor?",
+          "options": ["VS Code", "Notepad", "Microsoft Word", "Sublime Text"],
+          "answer": "Microsoft Word",
+          "reasoning": "Microsoft Word is a word processor that saves in its own format, not a proper HTML editor."
+        },
+        {
+          "question": "What is syntax highlighting in editors?",
+          "options": ["Making code run faster", "Coloring different code elements for readability", "Removing errors automatically", "Converting code to other languages"],
+          "answer": "Coloring different code elements for readability",
+          "reasoning": "Syntax highlighting uses colors to distinguish tags, attributes, and content, making code easier to read."
+        },
+        {
+          "question": "What does IDE stand for?",
+          "options": ["Integrated Development Environment", "Internet Development Editor", "Interactive Design Environment", "International Development Engine"],
+          "answer": "Integrated Development Environment",
+          "reasoning": "IDE stands for Integrated Development Environment, which provides comprehensive tools for coding."
+        },
+        {
+          "question": "Which feature helps prevent typos in code?",
+          "options": ["Code completion", "Syntax highlighting", "Live preview", "File management"],
+          "answer": "Code completion",
+          "reasoning": "Code completion suggests code as you type, helping prevent spelling errors in tags and attributes."
+        },
+        {
+          "question": "What is the advantage of using a specialized HTML editor over Notepad?",
+          "options": ["More expensive", "Better looking interface", "Features like syntax highlighting and error checking", "Only works on certain computers"],
+          "answer": "Features like syntax highlighting and error checking",
+          "reasoning": "Specialized editors provide helpful features that make coding easier and less error-prone."
+        },
+        {
+          "question": "How do you view an HTML file in a browser?",
+          "options": ["Type the code in browser", "Save as .exe file", "Double-click the .html file", "Import into browser settings"],
+          "answer": "Double-click the .html file",
+          "reasoning": "HTML files can be opened in a web browser by double-clicking them or dragging them into a browser window."
+        }
+      ]
+    },
+    {
+      "title": "Day 3 – HTML Elements and Tags",
+      "definition": "HTML elements are the building blocks of HTML pages, represented by tags that define the content and structure of a webpage.",
+      "explanation": "HTML elements consist of a start tag, content, and an end tag. For example, <p>This is a paragraph</p>. Some elements are self-closing, like <img> or <br>. Tags tell the browser what type of content is being presented - whether it's a heading, paragraph, image, or link. Understanding elements and tags is fundamental to creating well-structured web pages.",
+      "code_example": "<!-- Examples of different HTML elements -->\n<!DOCTYPE html>\n<html>\n<body>\n    <!-- Headings -->\n    <h1>Main Heading (Level 1)</h1>\n    <h2>Subheading (Level 2)</h2>\n    <h3>Smaller Heading (Level 3)</h3>\n    \n    <!-- Paragraphs -->\n    <p>This is a paragraph element.</p>\n    \n    <!-- Line break (self-closing) -->\n    <p>First line<br>Second line after break</p>\n    \n    <!-- Horizontal rule (self-closing) -->\n    <hr>\n    \n    <!-- Division/Container -->\n    <div>\n        <p>This paragraph is inside a div element.</p>\n    </div>\n</body>\n</html>",
+      "real_world_example": "Every webpage uses HTML elements. News articles use <h1> for headlines, <p> for paragraphs, and <img> for images. Navigation menus use <nav> and <ul> elements. Forms on websites use <input>, <select>, and <button> elements. Social media posts are structured with various HTML elements to display text, images, and interactive elements.",
+      "interactive_tasks": [
+        "Create an HTML page with headings from h1 to h4",
+        "Use paragraph and line break elements to format text",
+        "Create a div element containing multiple paragraphs"
+      ],
+      "quiz": [
+        {
+          "question": "What is the correct structure of an HTML element?",
+          "options": ["tag-content-tag", "start tag-content-end tag", "element-content-element", "open-content-close"],
+          "answer": "start tag-content-end tag",
+          "reasoning": "HTML elements have a start tag, content, and an end tag (except void elements)."
+        },
+        {
+          "question": "Which tag creates the largest heading?",
+          "options": ["<h6>", "<h1>", "<head>", "<heading>"],
+          "answer": "<h1>",
+          "reasoning": "<h1> defines the most important (largest) heading, while <h6> defines the least important."
+        },
+        {
+          "question": "What is a self-closing element?",
+          "options": ["Element that closes automatically", "Element with no end tag", "Element that disappears", "Element that repeats"],
+          "answer": "Element with no end tag",
+          "reasoning": "Self-closing elements (like <br>, <img>, <hr>) don't have separate end tags."
+        },
+        {
+          "question": "Which tag creates a horizontal line?",
+          "options": ["<line>", "<hr>", "<hl>", "<horizontal>"],
+          "answer": "<hr>",
+          "reasoning": "The <hr> tag creates a horizontal line/rule on the page."
+        },
+        {
+          "question": "What does the <div> element do?",
+          "options": ["Divides numbers", "Creates a divider line", "Defines a division or section", "Makes content invisible"],
+          "answer": "Defines a division or section",
+          "reasoning": "<div> is a container element used to group other elements for styling or organizational purposes."
+        },
+        {
+          "question": "Which of these is a valid self-closing tag?",
+          "options": ["<br></br>", "<br>", "<break>", "</br>"],
+          "answer": "<br>",
+          "reasoning": "<br> is a self-closing tag that creates a line break."
+        },
+        {
+          "question": "How many heading levels does HTML have?",
+          "options": ["3", "6", "10", "Unlimited"],
+          "answer": "6",
+          "reasoning": "HTML provides six levels of headings from <h1> (most important) to <h6> (least important)."
+        }
+      ]
+    },
+    {
+      "title": "Day 4 – HTML Attributes",
+      "definition": "HTML attributes provide additional information about elements, modifying their behavior or appearance. They are always specified in the start tag.",
+      "explanation": "Attributes add extra details to HTML elements. For example, the <img> tag needs a 'src' attribute to specify the image source, and the <a> tag needs an 'href' attribute to specify the link destination. Attributes usually come in name/value pairs like name=\"value\". Some attributes are global (work on all elements) while others are specific to certain elements.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- href attribute for links -->\n    <a href=\"https://www.example.com\">Visit Example.com</a>\n    \n    <!-- src and alt attributes for images -->\n    <img src=\"image.jpg\" alt=\"Description of image\" width=\"200\" height=\"150\">\n    \n    <!-- style attribute for inline CSS -->\n    <p style=\"color: blue; font-size: 20px;\">This is blue text with larger font.</p>\n    \n    <!-- class attribute for CSS styling -->\n    <div class=\"container\">\n        <p class=\"highlight\">This paragraph has a highlight class.</p>\n    </div>\n    \n    <!-- id attribute for unique identification -->\n    <h1 id=\"main-title\">Main Title of Page</h1>\n    \n    <!-- title attribute for tooltips -->\n    <p title=\"This is a tooltip\">Hover over this text to see the tooltip.</p>\n</body>\n</html>",
+      "real_world_example": "Attributes are used everywhere in web development. The 'href' attribute in links makes navigation possible. The 'src' attribute loads images and videos. The 'alt' attribute provides text descriptions for images (important for accessibility). The 'class' and 'id' attributes are used extensively with CSS and JavaScript to style and manipulate elements.",
+      "interactive_tasks": [
+        "Create a link to your favorite website using the href attribute",
+        "Add an image with src, alt, width, and height attributes",
+        "Use the style attribute to change text color and background"
+      ],
+      "quiz": [
+        {
+          "question": "Where are HTML attributes specified?",
+          "options": ["In the end tag", "In the start tag", "After the element", "In a separate file"],
+          "answer": "In the start tag",
+          "reasoning": "Attributes are always specified in the start tag of an HTML element."
+        },
+        {
+          "question": "Which attribute specifies the destination of a link?",
+          "options": ["src", "link", "href", "url"],
+          "answer": "href",
+          "reasoning": "The href attribute specifies the URL (destination) of a link in the <a> tag."
+        },
+        {
+          "question": "What does the alt attribute do for images?",
+          "options": ["Makes images load faster", "Provides alternative text for screen readers", "Changes image size", "Adds borders to images"],
+          "answer": "Provides alternative text for screen readers",
+          "reasoning": "The alt attribute provides alternative text for images, important for accessibility and SEO."
+        },
+        {
+          "question": "Which attribute is used to apply inline CSS styles?",
+          "options": ["css", "style", "design", "look"],
+          "answer": "style",
+          "reasoning": "The style attribute is used to apply inline CSS styles directly to an element."
+        },
+        {
+          "question": "What is the purpose of the title attribute?",
+          "options": ["Sets page title", "Creates tooltips", "Names the element", "Adds titles to images"],
+          "answer": "Creates tooltips",
+          "reasoning": "The title attribute creates a tooltip that appears when hovering over an element."
+        },
+        {
+          "question": "Which attribute should be unique on a page?",
+          "options": ["class", "id", "name", "style"],
+          "answer": "id",
+          "reasoning": "The id attribute should have a unique value on a page, as it identifies a specific element."
+        },
+        {
+          "question": "What does the src attribute specify?",
+          "options": ["Source code", "Source file or URL", "Screen resolution", "Style rules"],
+          "answer": "Source file or URL",
+          "reasoning": "The src attribute specifies the source (file path or URL) for elements like <img>, <script>, <iframe>."
+        }
+      ]
+    },
+    {
+      "title": "Day 5 – Headings and Paragraphs",
+      "definition": "Headings define the titles and subtitles of your content, while paragraphs contain the main textual content of your webpage.",
+      "explanation": "Headings (<h1> to <h6>) create a hierarchical structure for your content, with <h1> being the most important and <h6> the least. Paragraphs (<p>) group sentences and ideas together. Proper use of headings helps with readability, accessibility, and SEO. Search engines use headings to understand the structure and importance of your content.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Main page title -->\n    <h1>Understanding Climate Change</h1>\n    \n    <!-- Introduction paragraph -->\n    <p>Climate change refers to long-term shifts in temperatures and weather patterns. These shifts may be natural, but since the 1800s, human activities have been the main driver of climate change.</p>\n    \n    <!-- Section heading -->\n    <h2>Causes of Climate Change</h2>\n    \n    <!-- Content paragraphs -->\n    <p>The primary cause of climate change is the burning of fossil fuels like coal, oil, and gas. This produces heat-trapping gases that are responsible for most of the warming observed in recent decades.</p>\n    \n    <p>Deforestation, agriculture, and industrial processes also contribute to greenhouse gas emissions.</p>\n    \n    <!-- Subsection heading -->\n    <h3>Greenhouse Gas Effect</h3>\n    <p>Greenhouse gases trap heat in the Earth's atmosphere, much like the glass walls of a greenhouse.</p>\n    \n    <!-- Another section -->\n    <h2>Impacts of Climate Change</h2>\n    <p>Climate change affects everything from weather patterns to sea levels, biodiversity, and human health.</p>\n    \n    <h3>Sea Level Rise</h3>\n    <p>As temperatures rise, ice sheets and glaciers melt, contributing to sea level rise that threatens coastal communities.</p>\n    \n    <h3>Extreme Weather Events</h3>\n    <p>Climate change increases the frequency and intensity of extreme weather events like hurricanes, droughts, and heatwaves.</p>\n</body>\n</html>",
+      "real_world_example": "Headings and paragraphs structure all written content on the web. News articles use <h1> for headlines, <h2> for section headings, and <p> for article content. Academic papers online use heading hierarchy for chapters and sections. Product pages on e-commerce sites use headings for product names and descriptions, with paragraphs for detailed specifications.",
+      "interactive_tasks": [
+        "Create an article with a main heading, two subheadings, and paragraphs under each",
+        "Write a short biography using proper heading hierarchy",
+        "Create a recipe page with headings for ingredients and instructions sections"
+      ],
+      "quiz": [
+        {
+          "question": "Which heading tag should be used for the main title of a page?",
+          "options": ["<h6>", "<h2>", "<h1>", "<title>"],
+          "answer": "<h1>",
+          "reasoning": "<h1> should be used for the main title as it's the highest level heading."
+        },
+        {
+          "question": "How many heading levels are available in HTML?",
+          "options": ["3", "6", "10", "Unlimited"],
+          "answer": "6",
+          "reasoning": "HTML provides six heading levels from <h1> to <h6>."
+        },
+        {
+          "question": "What is the correct way to create a paragraph?",
+          "options": ["<para>text</para>", "<p>text</p>", "<paragraph>text</paragraph>", "<pg>text</pg>"],
+          "answer": "<p>text</p>",
+          "reasoning": "The <p> tag is used to define paragraphs in HTML."
+        },
+        {
+          "question": "Why is heading hierarchy important?",
+          "options": ["Makes text bigger", "Creates visual structure and improves accessibility", "Only for SEO", "Makes pages load faster"],
+          "answer": "Creates visual structure and improves accessibility",
+          "reasoning": "Proper heading hierarchy creates logical structure, helps screen readers, and improves user experience."
+        },
+        {
+          "question": "What happens if you skip heading levels (e.g., h1 then h3)?",
+          "options": ["Page breaks", "Better SEO", "Accessibility issues", "Faster loading"],
+          "answer": "Accessibility issues",
+          "reasoning": "Skipping heading levels creates poor structure that can confuse screen readers and users."
+        },
+        {
+          "question": "Which element groups sentences into logical blocks?",
+          "options": ["<heading>", "<div>", "<p>", "<section>"],
+          "answer": "<p>",
+          "reasoning": "The <p> element groups sentences and ideas into coherent paragraphs."
+        },
+        {
+          "question": "What is a good practice for heading usage?",
+          "options": ["Use only h1 tags", "Use headings for styling only", "Maintain proper hierarchy", "Avoid using headings"],
+          "answer": "Maintain proper hierarchy",
+          "reasoning": "Always maintain a logical heading hierarchy (h1 → h2 → h3, etc.) for better structure."
+        }
+      ]
+    },
+    {
+      "title": "Day 6 – Links and Navigation",
+      "definition": "Links (hyperlinks) allow users to navigate between web pages and resources. They are created using the <a> (anchor) element with the href attribute.",
+      "explanation": "Links are what make the web a 'web' - they connect pages together. The <a> tag creates clickable links that can point to other web pages, files, email addresses, or specific locations within the same page. Links can be text, images, or other elements. Understanding how to create and structure links is essential for building navigable websites.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Basic text link -->\n    <a href=\"https://www.example.com\">Visit Example Website</a>\n    \n    <!-- Link opening in new tab -->\n    <a href=\"https://www.example.com\" target=\"_blank\">Open in New Tab</a>\n    \n    <!-- Link to an email address -->\n    <a href=\"mailto:someone@example.com\">Send Email</a>\n    \n    <!-- Link to a phone number -->\n    <a href=\"tel:+1234567890\">Call Us</a>\n    \n    <!-- Image as a link -->\n    <a href=\"https://www.example.com\">\n        <img src=\"logo.jpg\" alt=\"Example Logo\" width=\"100\">\n    </a>\n    \n    <!-- Link to another page on same site -->\n    <a href=\"about.html\">About Us</a>\n    \n    <!-- Link to a specific section on same page -->\n    <a href=\"#section2\">Jump to Section 2</a>\n    \n    <!-- Navigation menu -->\n    <nav>\n        <ul>\n            <li><a href=\"index.html\">Home</a></li>\n            <li><a href=\"about.html\">About</a></li>\n            <li><a href=\"services.html\">Services</a></li>\n            <li><a href=\"contact.html\">Contact</a></li>\n        </ul>\n    </nav>\n    \n    <!-- Bookmark anchor for page jump -->\n    <h2 id=\"section2\">Section 2 Content</h2>\n    <p>This is the section you can jump to using the link above.</p>\n</body>\n</html>",
+      "real_world_example": "Links are fundamental to web navigation. Websites use them in menus to connect pages. Articles link to related content or sources. Social media platforms use links to connect profiles and content. E-commerce sites link product listings to detail pages. Footer sections often contain links to legal pages, contact information, and social media profiles.",
+      "interactive_tasks": [
+        "Create a navigation menu with links to Home, About, and Contact pages",
+        "Make an image clickable that links to a website",
+        "Create an email link and a link that opens in a new tab"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag creates a hyperlink in HTML?",
+          "options": ["<link>", "<a>", "<href>", "<nav>"],
+          "answer": "<a>",
+          "reasoning": "The <a> (anchor) tag creates hyperlinks in HTML."
+        },
+        {
+          "question": "What attribute specifies the link destination?",
+          "options": ["src", "link", "href", "url"],
+          "answer": "href",
+          "reasoning": "The href attribute specifies the URL or destination of a link."
+        },
+        {
+          "question": "How do you make a link open in a new tab?",
+          "options": ["target=\"_new\"", "target=\"_blank\"", "new=\"true\"", "open=\"new\""],
+          "answer": "target=\"_blank\"",
+          "reasoning": "target=\"_blank\" opens the linked document in a new window or tab."
+        },
+        {
+          "question": "What does mailto: do in a link?",
+          "options": ["Sends email automatically", "Opens email client", "Links to mailbox", "Checks email"],
+          "answer": "Opens email client",
+          "reasoning": "mailto: in href opens the user's default email client with the specified address."
+        },
+        {
+          "question": "How do you link to a specific part of the same page?",
+          "options": ["Use # with id", "Use . with class", "Use * with name", "Use & with section"],
+          "answer": "Use # with id",
+          "reasoning": "Use href=\"#idname\" to link to an element with that id on the same page."
+        },
+        {
+          "question": "What is the purpose of the <nav> element?",
+          "options": ["Navigate ships", "Define navigation links", "Create navy color", "Make links naval"],
+          "answer": "Define navigation links",
+          "reasoning": "The <nav> element defines a set of navigation links."
+        },
+        {
+          "question": "Can images be used as links?",
+          "options": ["No, only text", "Yes, by wrapping img in <a>", "Only with JavaScript", "Only in forms"],
+          "answer": "Yes, by wrapping img in <a>",
+          "reasoning": "Images can be links by placing the <img> tag inside an <a> tag."
+        }
+      ]
+    },
+    {
+      "title": "Day 7 – Images and Multimedia",
+      "definition": "HTML provides elements to embed images, audio, video, and other multimedia content into web pages, making them more engaging and interactive.",
+      "explanation": "Images and multimedia elements make websites visually appealing and informative. The <img> tag displays images, while <audio> and <video> tags embed sound and video content. These elements have attributes that control their display, source, and behavior. Proper use of multimedia enhances user experience but requires consideration of file sizes, formats, and accessibility.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Basic image -->\n    <img src=\"nature.jpg\" alt=\"Beautiful nature landscape\" width=\"400\">\n    \n    <!-- Image with all common attributes -->\n    <img src=\"mountains.jpg\" alt=\"Snowy mountains\" width=\"600\" height=\"400\" title=\"Mountain view\">\n    \n    <!-- Image as a figure with caption -->\n    <figure>\n        <img src=\"sunset.jpg\" alt=\"Ocean sunset\" width=\"500\">\n        <figcaption>Fig.1 - Beautiful sunset over the ocean.</figcaption>\n    </figure>\n    \n    <!-- Audio player -->\n    <audio controls>\n        <source src=\"audio.mp3\" type=\"audio/mpeg\">\n        <source src=\"audio.ogg\" type=\"audio/ogg\">\n        Your browser does not support the audio element.\n    </audio>\n    \n    <!-- Video player -->\n    <video width=\"320\" height=\"240\" controls>\n        <source src=\"movie.mp4\" type=\"video/mp4\">\n        <source src=\"movie.ogg\" type=\"video/ogg\">\n        Your browser does not support the video tag.\n    </video>\n    \n    <!-- Video with poster image -->\n    <video controls poster=\"preview.jpg\" width=\"400\">\n        <source src=\"video.mp4\" type=\"video/mp4\">\n        Your browser does not support video.\n    </video>\n</body>\n</html>",
+      "real_world_example": "Images are used everywhere: product photos on e-commerce sites, profile pictures on social media, illustrations in articles. Videos are used for tutorials, product demonstrations, entertainment content. Audio elements are used for podcasts, music players, sound effects. News sites use images and videos to accompany stories, while educational sites use multimedia for interactive learning.",
+      "interactive_tasks": [
+        "Add an image to a webpage with proper alt text and dimensions",
+        "Create a figure with an image and caption",
+        "Embed a video with controls and multiple source formats"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag displays images in HTML?",
+          "options": ["<pic>", "<image>", "<img>", "<photo>"],
+          "answer": "<img>",
+          "reasoning": "The <img> tag is used to embed images in HTML pages."
+        },
+        {
+          "question": "What is the required attribute for the <img> tag?",
+          "options": ["alt", "src", "width", "height"],
+          "answer": "src",
+          "reasoning": "The src attribute is required as it specifies the image source/path."
+        },
+        {
+          "question": "Why is the alt attribute important for images?",
+          "options": ["Makes images load faster", "Provides text for screen readers", "Changes image colors", "Adds borders"],
+          "answer": "Provides text for screen readers",
+          "reasoning": "Alt text describes images for visually impaired users and displays if images fail to load."
+        },
+        {
+          "question": "Which tag embeds video content?",
+          "options": ["<media>", "<video>", "<movie>", "<vp>"],
+          "answer": "<video>",
+          "reasoning": "The <video> tag is used to embed video content in HTML5."
+        },
+        {
+          "question": "What does the controls attribute do for video/audio?",
+          "options": ["Adds play/pause controls", "Controls volume automatically", "Controls playback speed", "Adds subtitles"],
+          "answer": "Adds play/pause controls",
+          "reasoning": "The controls attribute adds video/audio controls like play, pause, and volume."
+        },
+        {
+          "question": "What is the purpose of the <figure> element?",
+          "options": ["Draw figures", "Group images with captions", "Create diagrams", "Make images responsive"],
+          "answer": "Group images with captions",
+          "reasoning": "<figure> specifies self-contained content like images with an optional <figcaption>."
+        },
+        {
+          "question": "How do you provide multiple video formats?",
+          "options": ["Multiple src attributes", "Multiple <video> tags", "<source> elements inside <video>", "Using format attribute"],
+          "answer": "<source> elements inside <video>",
+          "reasoning": "Multiple <source> elements inside <video> provide different formats for browser compatibility."
+        }
+      ]
+    },
+    {
+      "title": "Day 8 – Lists (Ordered, Unordered)",
+      "definition": "HTML lists organize items in either ordered (numbered) or unordered (bulleted) formats, helping present information in a structured, readable way.",
+      "explanation": "Lists are essential for presenting collections of related items. Unordered lists (<ul>) use bullets and are for items without a specific sequence. Ordered lists (<ol>) use numbers/letters and are for sequential items. Each list item uses the <li> tag. Lists can be nested to create hierarchies and are frequently used for navigation menus, instructions, features lists, and more.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Unordered list (bulleted) -->\n    <h3>Grocery List</h3>\n    <ul>\n        <li>Milk</li>\n        <li>Eggs</li>\n        <li>Bread</li>\n        <li>Fruits</li>\n    </ul>\n    \n    <!-- Ordered list (numbered) -->\n    <h3>Instructions</h3>\n    <ol>\n        <li>Preheat oven to 350°F</li>\n        <li>Mix dry ingredients</li>\n        <li>Add wet ingredients</li>\n        <li>Bake for 30 minutes</li>\n    </ol>\n    \n    <!-- Nested lists -->\n    <h3>Course Outline</h3>\n    <ul>\n        <li>HTML Basics\n            <ul>\n                <li>Elements and Tags</li>\n                <li>Attributes</li>\n                <li>Headings and Paragraphs</li>\n            </ul>\n        </li>\n        <li>CSS Basics\n            <ul>\n                <li>Selectors</li>\n                <li>Properties</li>\n                <li>Box Model</li>\n            </ul>\n        </li>\n    </ul>\n    \n    <!-- Ordered list with different numbering -->\n    <h3>Top 3 Programming Languages</h3>\n    <ol type=\"I\">\n        <li>Python</li>\n        <li>JavaScript</li>\n        <li>Java</li>\n    </ol>\n    \n    <!-- Description list -->\n    <h3>Web Technologies</h3>\n    <dl>\n        <dt>HTML</dt>\n        <dd>HyperText Markup Language - structures web pages</dd>\n        \n        <dt>CSS</dt>\n        <dd>Cascading Style Sheets - styles web pages</dd>\n        \n        <dt>JavaScript</dt>\n        <dd>Programming language for web interactivity</dd>\n    </dl>\n</body>\n</html>",
+      "real_world_example": "Lists are used extensively across websites. Navigation menus are often unordered lists. Recipe sites use ordered lists for instructions. Product feature lists on e-commerce sites are unordered lists. FAQ pages often use description lists. Blog articles use lists to present key points. Table of contents are ordered lists. Social media feeds can be considered lists of posts.",
+      "interactive_tasks": [
+        "Create a todo list using unordered list",
+        "Make step-by-step instructions using ordered list",
+        "Create a nested list for a table of contents"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag creates an unordered (bulleted) list?",
+          "options": ["<list>", "<ul>", "<ol>", "<li>"],
+          "answer": "<ul>",
+          "reasoning": "<ul> defines an unordered list with bullet points."
+        },
+        {
+          "question": "Which tag creates an ordered (numbered) list?",
+          "options": ["<list>", "<ul>", "<ol>", "<li>"],
+          "answer": "<ol>",
+          "reasoning": "<ol> defines an ordered list with numbers or letters."
+        },
+        {
+          "question": "What tag defines list items in both ordered and unordered lists?",
+          "options": ["<item>", "<li>", "<listitem>", "<it>"],
+          "answer": "<li>",
+          "reasoning": "<li> defines a list item in both <ul> and <ol> lists."
+        },
+        {
+          "question": "Which list type would you use for a recipe's steps?",
+          "options": ["Unordered list", "Ordered list", "Description list", "Any list"],
+          "answer": "Ordered list",
+          "reasoning": "Ordered lists are for sequential items like recipe steps where order matters."
+        },
+        {
+          "question": "What does the <dl> tag create?",
+          "options": ["Data list", "Description list", "Detailed list", "Directory list"],
+          "answer": "Description list",
+          "reasoning": "<dl> defines a description list, with <dt> for terms and <dd> for descriptions."
+        },
+        {
+          "question": "How do you create a nested list?",
+          "options": ["Put one list inside another list item", "Use special nesting tags", "It's not possible", "Use CSS only"],
+          "answer": "Put one list inside another list item",
+          "reasoning": "Place a new <ul> or <ol> inside an <li> element to create nested lists."
+        },
+        {
+          "question": "Which attribute changes ordered list numbering type?",
+          "options": ["number", "style", "type", "format"],
+          "answer": "type",
+          "reasoning": "The type attribute changes numbering style (1, A, a, I, i) in ordered lists."
+        }
+      ]
+    },
+    {
+      "title": "Day 9 – Tables",
+      "definition": "HTML tables arrange data into rows and columns, creating a grid structure for presenting tabular information in an organized format.",
+      "explanation": "Tables are used to display data that has a natural tabular structure - think spreadsheets, schedules, pricing grids, or comparison charts. The <table> element creates the table, <tr> creates rows, <td> creates data cells, and <th> creates header cells. Tables can have headers, footers, captions, and can span multiple rows or columns for complex data presentation.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <style>\n        table, th, td {\n            border: 1px solid black;\n            border-collapse: collapse;\n            padding: 8px;\n        }\n        th { background-color: #f2f2f2; }\n    </style>\n</head>\n<body>\n    <!-- Basic table -->\n    <h3>Student Grades</h3>\n    <table>\n        <tr>\n            <th>Student Name</th>\n            <th>Math</th>\n            <th>Science</th>\n            <th>English</th>\n        </tr>\n        <tr>\n            <td>Alice Johnson</td>\n            <td>95</td>\n            <td>88</td>\n            <td>92</td>\n        </tr>\n        <tr>\n            <td>Bob Smith</td>\n            <td>78</td>\n            <td>85</td>\n            <td>80</td>\n        </tr>\n        <tr>\n            <td>Carol Davis</td>\n            <td>92</td>\n            <td>90</td>\n            <td>94</td>\n        </tr>\n    </table>\n    \n    <!-- Table with header, body, footer -->\n    <h3>Monthly Sales Report</h3>\n    <table>\n        <caption>Q1 Sales Data</caption>\n        <thead>\n            <tr>\n                <th>Month</th>\n                <th>Product A</th>\n                <th>Product B</th>\n                <th>Total</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>January</td>\n                <td>$1,200</td>\n                <td>$800</td>\n                <td>$2,000</td>\n            </tr>\n            <tr>\n                <td>February</td>\n                <td>$1,500</td>\n                <td>$900</td>\n                <td>$2,400</td>\n            </tr>\n            <tr>\n                <td>March</td>\n                <td>$1,800</td>\n                <td>$1,200</td>\n                <td>$3,000</td>\n            </tr>\n        </tbody>\n        <tfoot>\n            <tr>\n                <td><strong>Quarter Total</strong></td>\n                <td><strong>$4,500</strong></td>\n                <td><strong>$2,900</strong></td>\n                <td><strong>$7,400</strong></td>\n            </tr>\n        </tfoot>\n    </table>\n    \n    <!-- Table with rowspan and colspan -->\n    <h3>Class Schedule</h3>\n    <table>\n        <tr>\n            <th>Time</th>\n            <th>Monday</th>\n            <th>Tuesday</th>\n            <th>Wednesday</th>\n        </tr>\n        <tr>\n            <td>9:00-10:00</td>\n            <td rowspan=\"2\">Math</td>\n            <td>Science</td>\n            <td>English</td>\n        </tr>\n        <tr>\n            <td>10:00-11:00</td>\n            <td colspan=\"2\">Computer Lab</td>\n        </tr>\n        <tr>\n            <td>11:00-12:00</td>\n            <td>History</td>\n            <td>Math</td>\n            <td>Science</td>\n        </tr>\n    </table>\n</body>\n</html>",
+      "real_world_example": "Tables are used for financial data (bank statements, invoices), product comparison charts, sports statistics, pricing grids, schedules (class timetables, train schedules), and data dashboards. E-commerce sites use tables for shopping carts, comparison charts show product features side by side, and admin panels display user data in tabular format.",
+      "interactive_tasks": [
+        "Create a table showing weekly schedule with days and times",
+        "Make a product comparison table with 3 products and 4 features",
+        "Create a table using rowspan and colspan for merged cells"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag creates an HTML table?",
+          "options": ["<tab>", "<table>", "<grid>", "<tb>"],
+          "answer": "<table>",
+          "reasoning": "The <table> tag defines an HTML table."
+        },
+        {
+          "question": "What does <tr> stand for?",
+          "options": ["Table row", "Table record", "Table rule", "Table range"],
+          "answer": "Table row",
+          "reasoning": "<tr> defines a table row containing one or more <td> or <th> elements."
+        },
+        {
+          "question": "Which tag creates a table cell?",
+          "options": ["<cell>", "<td>", "<tc>", "<tablecell>"],
+          "answer": "<td>",
+          "reasoning": "<td> defines a standard data cell in a table."
+        },
+        {
+          "question": "What is the purpose of <th>?",
+          "options": ["Table header", "Table highlight", "Table heavy", "Table horizontal"],
+          "answer": "Table header",
+          "reasoning": "<th> defines a header cell in a table, usually bold and centered."
+        },
+        {
+          "question": "How do you merge two cells horizontally?",
+          "options": ["rowspan", "colspan", "merge", "span"],
+          "answer": "colspan",
+          "reasoning": "colspan attribute merges cells horizontally across columns."
+        },
+        {
+          "question": "What does <caption> do in a table?",
+          "options": ["Adds border caption", "Adds table title/description", "Creates captions for images", "Makes table responsive"],
+          "answer": "Adds table title/description",
+          "reasoning": "<caption> adds a title or explanation to a table."
+        },
+        {
+          "question": "Which section contains table footer content?",
+          "options": ["<tfoot>", "<footer>", "<bottom>", "<tbottom>"],
+          "answer": "<tfoot>",
+          "reasoning": "<tfoot> groups footer content in a table, typically containing sums or totals."
+        }
+      ]
+    },
+    {
+      "title": "Day 10 – Forms and Input Elements",
+      "definition": "HTML forms collect user input through various controls like text fields, checkboxes, radio buttons, and submit buttons, enabling interaction between users and websites.",
+      "explanation": "Forms are how websites gather information from users - for login, registration, search, feedback, purchases, etc. The <form> element wraps form controls, while <input> creates various input types. Each form control should have a <label> for accessibility. Forms submit data to servers for processing, making them essential for interactive websites.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <!-- Basic contact form -->\n    <h2>Contact Us</h2>\n    <form action=\"/submit-form\" method=\"POST\">\n        <!-- Text input -->\n        <label for=\"name\">Full Name:</label><br>\n        <input type=\"text\" id=\"name\" name=\"name\" required><br><br>\n        \n        <!-- Email input -->\n        <label for=\"email\">Email Address:</label><br>\n        <input type=\"email\" id=\"email\" name=\"email\" required><br><br>\n        \n        <!-- Password input -->\n        <label for=\"password\">Password:</label><br>\n        <input type=\"password\" id=\"password\" name=\"password\" minlength=\"8\"><br><br>\n        \n        <!-- Textarea -->\n        <label for=\"message\">Message:</label><br>\n        <textarea id=\"message\" name=\"message\" rows=\"4\" cols=\"50\"></textarea><br><br>\n        \n        <!-- Select dropdown -->\n        <label for=\"country\">Country:</label><br>\n        <select id=\"country\" name=\"country\">\n            <option value=\"\">Select a country</option>\n            <option value=\"us\">United States</option>\n            <option value=\"ca\">Canada</option>\n            <option value=\"uk\">United Kingdom</option>\n            <option value=\"au\">Australia</option>\n        </select><br><br>\n        \n        <!-- Radio buttons -->\n        <label>Gender:</label><br>\n        <input type=\"radio\" id=\"male\" name=\"gender\" value=\"male\">\n        <label for=\"male\">Male</label><br>\n        <input type=\"radio\" id=\"female\" name=\"gender\" value=\"female\">\n        <label for=\"female\">Female</label><br>\n        <input type=\"radio\" id=\"other\" name=\"gender\" value=\"other\">\n        <label for=\"other\">Other</label><br><br>\n        \n        <!-- Checkboxes -->\n        <label>Interests:</label><br>\n        <input type=\"checkbox\" id=\"sports\" name=\"interests\" value=\"sports\">\n        <label for=\"sports\">Sports</label><br>\n        <input type=\"checkbox\" id=\"music\" name=\"interests\" value=\"music\">\n        <label for=\"music\">Music</label><br>\n        <input type=\"checkbox\" id=\"reading\" name=\"interests\" value=\"reading\">\n        <label for=\"reading\">Reading</label><br><br>\n        \n        <!-- File input -->\n        <label for=\"file\">Upload File:</label><br>\n        <input type=\"file\" id=\"file\" name=\"file\"><br><br>\n        \n        <!-- Range input -->\n        <label for=\"volume\">Volume:</label><br>\n        <input type=\"range\" id=\"volume\" name=\"volume\" min=\"0\" max=\"100\"><br><br>\n        \n        <!-- Date input -->\n        <label for=\"birthdate\">Birth Date:</label><br>\n        <input type=\"date\" id=\"birthdate\" name=\"birthdate\"><br><br>\n        \n        <!-- Color input -->\n        <label for=\"color\">Favorite Color:</label><br>\n        <input type=\"color\" id=\"color\" name=\"color\"><br><br>\n        \n        <!-- Submit and reset buttons -->\n        <input type=\"submit\" value=\"Submit Form\">\n        <input type=\"reset\" value=\"Clear Form\">\n    </form>\n</body>\n</html>",
+      "real_world_example": "Forms are everywhere online: login forms on websites, registration forms for services, search boxes, contact forms, checkout forms for shopping, feedback surveys, job applications, online bookings (hotels, flights), social media posts, comment sections, file uploads, and settings/preferences panels.",
+      "interactive_tasks": [
+        "Create a registration form with name, email, and password fields",
+        "Build a survey form with radio buttons and checkboxes",
+        "Create a contact form with text inputs and a textarea"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag creates an HTML form?",
+          "options": ["<input>", "<form>", "<fieldset>", "<submit>"],
+          "answer": "<form>",
+          "reasoning": "The <form> element creates a form containing input elements."
+        },
+        {
+          "question": "What does the action attribute specify in a form?",
+          "options": ["Form appearance", "Where to submit form data", "Form validation", "Input types"],
+          "answer": "Where to submit form data",
+          "reasoning": "The action attribute specifies where to send form data when submitted."
+        },
+        {
+          "question": "Which input type creates a password field?",
+          "options": ["type=\"text\"", "type=\"hidden\"", "type=\"password\"", "type=\"secret\""],
+          "answer": "type=\"password\"",
+          "reasoning": "type=\"password\" creates a password field that masks entered characters."
+        },
+        {
+          "question": "What is the purpose of the <label> element?",
+          "options": ["Adds labels to pages", "Creates text labels for form controls", "Makes forms look better", "Only for accessibility"],
+          "answer": "Creates text labels for form controls",
+          "reasoning": "<label> defines a label for form elements, improving accessibility and usability."
+        },
+        {
+          "question": "Which input type allows multiple selections?",
+          "options": ["Radio buttons", "Checkboxes", "Select dropdown", "Text input"],
+          "answer": "Checkboxes",
+          "reasoning": "Checkboxes allow multiple selections, while radio buttons allow only one selection."
+        },
+        {
+          "question": "What does the required attribute do?",
+          "options": ["Makes field read-only", "Makes field must be filled", "Hides the field", "Changes field color"],
+          "answer": "Makes field must be filled",
+          "reasoning": "The required attribute specifies that an input field must be filled before submitting."
+        },
+        {
+          "question": "Which element creates a multi-line text input?",
+          "options": ["<input type=\"text\">", "<textarea>", "<multiline>", "<textbox>"],
+          "answer": "<textarea>",
+          "reasoning": "The <textarea> element creates a multi-line text input control."
+        }
+      ]
+    },
+    {
+      "title": "Day 11 – Semantic HTML",
+      "definition": "Semantic HTML uses meaningful tags that clearly describe their content and role, making web pages more accessible, SEO-friendly, and maintainable.",
+      "explanation": "Semantic tags like <header>, <nav>, <main>, <article>, <section>, and <footer> give meaning to the structure of a webpage. Unlike generic <div> tags, semantic elements tell both browsers and developers what kind of content they contain. This improves accessibility for screen readers, helps search engines understand page structure, and makes code easier to read and maintain.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Semantic HTML Example</title>\n</head>\n<body>\n    <!-- Header section -->\n    <header>\n        <h1>My Awesome Website</h1>\n        <p>Welcome to our semantic web page!</p>\n    </header>\n    \n    <!-- Navigation menu -->\n    <nav>\n        <ul>\n            <li><a href=\"#home\">Home</a></li>\n            <li><a href=\"#about\">About</a></li>\n            <li><a href=\"#services\">Services</a></li>\n            <li><a href=\"#contact\">Contact</a></li>\n        </ul>\n    </nav>\n    \n    <!-- Main content -->\n    <main>\n        <!-- Introductory content -->\n        <section id=\"intro\">\n            <h2>Introduction</h2>\n            <p>This section introduces our website's purpose.</p>\n        </section>\n        \n        <!-- Independent article -->\n        <article>\n            <header>\n                <h2>Understanding Semantic HTML</h2>\n                <p>Published on: <time datetime=\"2023-10-01\">October 1, 2023</time></p>\n            </header>\n            \n            <section>\n                <h3>What is Semantic HTML?</h3>\n                <p>Semantic HTML uses elements that clearly describe their meaning...</p>\n            </section>\n            \n            <section>\n                <h3>Benefits of Semantic HTML</h3>\n                <p>Improved accessibility, better SEO, easier maintenance...</p>\n            </section>\n            \n            <footer>\n                <p>Tags: HTML, Semantic, Web Development</p>\n            </footer>\n        </article>\n        \n        <!-- Another article -->\n        <article>\n            <h2>Another Article Title</h2>\n            <p>This is another independent article on the page.</p>\n        </article>\n        \n        <!-- Aside content -->\n        <aside>\n            <h3>Related Links</h3>\n            <ul>\n                <li><a href=\"#\">HTML5 Specification</a></li>\n                <li><a href=\"#\">Accessibility Guidelines</a></li>\n                <li><a href=\"#\">SEO Best Practices</a></li>\n            </ul>\n        </aside>\n    </main>\n    \n    <!-- Footer -->\n    <footer>\n        <p>&copy; 2023 My Awesome Website. All rights reserved.</p>\n        <address>\n            Contact: <a href=\"mailto:info@example.com\">info@example.com</a><br>\n            123 Web Street, Internet City<br>\n            +1-234-567-8900\n        </address>\n    </footer>\n</body>\n</html>",
+      "real_world_example": "Semantic HTML is used by modern websites for better structure. News sites use <article> for each news story. Blogs use <main> for primary content and <aside> for sidebars. E-commerce sites use <header> for top navigation and <footer> for bottom links. Government and educational sites use semantic HTML extensively for accessibility compliance. Search engines like Google reward semantic structure with better rankings.",
+      "interactive_tasks": [
+        "Convert a div-based layout to semantic HTML",
+        "Create a blog post using article, section, and header elements",
+        "Build a webpage with proper header, main, and footer sections"
+      ],
+      "quiz": [
+        {
+          "question": "What is semantic HTML?",
+          "options": ["HTML with colors", "HTML that describes content meaning", "HTML with JavaScript", "HTML for semantics only"],
+          "answer": "HTML that describes content meaning",
+          "reasoning": "Semantic HTML uses elements that clearly describe their meaning to both browser and developer."
+        },
+        {
+          "question": "Which tag defines navigation links?",
+          "options": ["<navigation>", "<nav>", "<menu>", "<links>"],
+          "answer": "<nav>",
+          "reasoning": "The <nav> element defines a set of navigation links."
+        },
+        {
+          "question": "What does the <article> element represent?",
+          "options": ["Any content", "Independent, self-contained content", "Articles only", "News content"],
+          "answer": "Independent, self-contained content",
+          "reasoning": "<article> represents independent, self-contained content like blog posts or news articles."
+        },
+        {
+          "question": "Which element contains the main content of a document?",
+          "options": ["<content>", "<body>", "<main>", "<primary>"],
+          "answer": "<main>",
+          "reasoning": "The <main> element contains the dominant content of the document."
+        },
+        {
+          "question": "What is the purpose of the <aside> element?",
+          "options": ["Hide content", "Content aside from main content", "Create sidebars only", "Footer content"],
+          "answer": "Content aside from main content",
+          "reasoning": "<aside> defines content aside from the main content (like sidebars or pull-quotes)."
+        },
+        {
+          "question": "Which element defines a footer for a document or section?",
+          "options": ["<bottom>", "<foot>", "<footer>", "<end>"],
+          "answer": "<footer>",
+          "reasoning": "The <footer> element defines a footer for a document or section."
+        },
+        {
+          "question": "What is the main benefit of semantic HTML?",
+          "options": ["Smaller file size", "Better accessibility and SEO", "Faster loading", "More colors"],
+          "answer": "Better accessibility and SEO",
+          "reasoning": "Semantic HTML improves accessibility for screen readers and helps search engines understand content."
+        }
+      ]
+    },
+    {
+      "title": "Day 12 – HTML Entities and Symbols",
+      "definition": "HTML entities are special codes used to display reserved characters, symbols, and characters not found on keyboards, ensuring they render correctly in browsers.",
+      "explanation": "Since some characters have special meaning in HTML (like < and >), we use entities to display them. Entities also allow showing symbols like ©, €, or mathematical symbols. Entities start with & and end with ;. They're essential for displaying special characters correctly across different browsers and systems, and for ensuring HTML code doesn't break when it contains reserved characters.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <h2>HTML Entities and Symbols</h2>\n    \n    <!-- Reserved characters -->\n    <h3>Reserved Characters in HTML:</h3>\n    <p>Less than: &lt; (use &amp;lt;)</p>\n    <p>Greater than: &gt; (use &amp;gt;)</p>\n    <p>Ampersand: &amp; (use &amp;amp;)</p>\n    <p>Double quote: &quot; (use &amp;quot;)</p>\n    <p>Single quote: &apos; (use &amp;apos;)</p>\n    \n    <!-- Common symbols -->\n    <h3>Common Symbols:</h3>\n    <p>Copyright: &copy;</p>\n    <p>Registered trademark: &reg;</p>\n    <p>Trademark: &trade;</p>\n    <p>Euro: &euro;</p>\n    <p>Pound: &pound;</p>\n    <p>Yen: &yen;</p>\n    <p>Cent: &cent;</p>\n    \n    <!-- Mathematical symbols -->\n    <h3>Mathematical Symbols:</h3>\n    <p>Plus/Minus: &plusmn;</p>\n    <p>Multiplication: &times;</p>\n    <p>Division: &divide;</p>\n    <p>Not equal: &ne;</p>\n    <p>Less than or equal: &le;</p>\n    <p>Greater than or equal: &ge;</p>\n    <p>Infinity: &infin;</p>\n    \n    <!-- Arrows -->\n    <h3>Arrow Symbols:</h3>\n    <p>Left arrow: &larr;</p>\n    <p>Right arrow: &rarr;</p>\n    <p>Up arrow: &uarr;</p>\n    <p>Down arrow: &darr;</p>\n    \n    <!-- Shapes and other symbols -->\n    <h3>Other Useful Symbols:</h3>\n    <p>Heart: &hearts;</p>\n    <p>Spade: &spades;</p>\n    <p>Club: &clubs;</p>\n    <p>Diamond: &diams;</p>\n    <p>Check mark: &check;</p>\n    <p>Degree: &deg;</p>\n    <p>Paragraph: &para;</p>\n    \n    <!-- Non-breaking space -->\n    <h3>Special Spaces:</h3>\n    <p>Regular spaces collapse: Hello     World</p>\n    <p>Non-breaking spaces don't: Hello&nbsp;&nbsp;&nbsp;&nbsp;World</p>\n    \n    <!-- Using entities in code examples -->\n    <h3>Showing HTML Code:</h3>\n    <p>To display &lt;h1&gt;Title&lt;/h1&gt; use: &amp;lt;h1&amp;gt;Title&amp;lt;/h1&amp;gt;</p>\n    \n    <!-- Emoji using decimal/hex entities -->\n    <h3>Emoji via Entities:</h3>\n    <p>Smile: &#9786; or &#x263A;</p>\n    <p>Sun: &#9728;</p>\n    <p>Star: &#9733;</p>\n</body>\n</html>",
+      "real_world_example": "Entities are used whenever special characters are needed. Copyright notices use &copy;. Mathematical websites use entities for equations. Currency symbols like &euro; or &pound; appear on e-commerce sites. Code tutorials display HTML tags using &lt; and &gt;. Legal documents use &reg; for registered trademarks. Recipe sites use &deg; for temperature. International websites use entities for accented characters like é or ñ.",
+      "interactive_tasks": [
+        "Create a copyright notice using HTML entities",
+        "Display mathematical equations using symbol entities",
+        "Show HTML code examples using reserved character entities"
+      ],
+      "quiz": [
+        {
+          "question": "How do HTML entities start and end?",
+          "options": ["[ and ]", "{ and }", "& and ;", "< and >"],
+          "answer": "& and ;",
+          "reasoning": "HTML entities start with an ampersand (&) and end with a semicolon (;)."
+        },
+        {
+          "question": "Which entity displays the less than symbol (<)?",
+          "options": ["&lt;", "&gt;", "&amp;", "&less;"],
+          "answer": "&lt;",
+          "reasoning": "&lt; is the entity for the less than symbol (<)."
+        },
+        {
+          "question": "What does &nbsp; represent?",
+          "options": ["New paragraph", "Non-breaking space", "No space", "New break space"],
+          "answer": "Non-breaking space",
+          "reasoning": "&nbsp; creates a non-breaking space that won't collapse like regular spaces."
+        },
+        {
+          "question": "Which entity shows the copyright symbol?",
+          "options": ["&copy;", "&copyright;", "&c;", "&copyright;"],
+          "answer": "&copy;",
+          "reasoning": "&copy; displays the copyright symbol (©)."
+        },
+        {
+          "question": "Why use &amp; instead of just &?",
+          "options": ["& is prettier", "& might be confused with entities", "&amp; is shorter", "No reason"],
+          "answer": "& might be confused with entities",
+          "reasoning": "& has special meaning in HTML (starts entities), so use &amp; to display it literally."
+        },
+        {
+          "question": "What does &euro; display?",
+          "options": ["Euro symbol", "Pound symbol", "Dollar symbol", "Yen symbol"],
+          "answer": "Euro symbol",
+          "reasoning": "&euro; displays the Euro currency symbol (€)."
+        },
+        {
+          "question": "How do you display the registered trademark symbol?",
+          "options": ["&reg;", "&rtm;", "&trade;", "&tm;"],
+          "answer": "&reg;",
+          "reasoning": "&reg; displays the registered trademark symbol (®)."
+        }
+      ]
+    },
+    {
+      "title": "Day 13 – HTML Formatting Elements",
+      "definition": "HTML formatting elements apply specific text styles and meanings to content, such as bold, italic, emphasized, or marked text, without using CSS.",
+      "explanation": "Formatting elements give semantic meaning or visual emphasis to text. While CSS is preferred for visual styling, HTML formatting elements convey meaning. For example, <strong> indicates importance, while <b> just makes text bold. <em> indicates emphasis, while <i> just makes text italic. Understanding when to use each element helps create semantically correct and accessible content.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <h2>HTML Formatting Elements</h2>\n    \n    <!-- Bold text -->\n    <p>This is <b>bold text</b> using &lt;b&gt; tag.</p>\n    <p>This is <strong>important text</strong> using &lt;strong&gt; tag.</p>\n    \n    <!-- Italic text -->\n    <p>This is <i>italic text</i> using &lt;i&gt; tag.</p>\n    <p>This is <em>emphasized text</em> using &lt;em&gt; tag.</p>\n    \n    <!-- Small text -->\n    <p>This is <small>smaller text</small> using &lt;small&gt; tag.</p>\n    \n    <!-- Marked/highlighted text -->\n    <p>This is <mark>highlighted text</mark> using &lt;mark&gt; tag.</p>\n    \n    <!-- Deleted/inserted text -->\n    <p>This is <del>deleted text</del> and this is <ins>inserted text</ins>.</p>\n    \n    <!-- Subscript and superscript -->\n    <p>H<sub>2</sub>O is water (subscript).</p>\n    <p>E = mc<sup>2</sup> (superscript).</p>\n    \n    <!-- Code formatting -->\n    <p>HTML code: <code>&lt;h1&gt;Title&lt;/h1&gt;</code></p>\n    \n    <!-- Keyboard input -->\n    <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>\n    \n    <!-- Sample output -->\n    <p>Computer output: <samp>File not found.</samp></p>\n    \n    <!-- Variable -->\n    <p>The variable <var>x</var> represents an unknown value.</p>\n    \n    <!-- Preformatted text -->\n    <pre>\n    This text\n    preserves    spaces\n    and line breaks\n    exactly as written.\n    </pre>\n    \n    <!-- Abbreviation -->\n    <p><abbr title=\"HyperText Markup Language\">HTML</abbr> is fun!</p>\n    \n    <!-- Address -->\n    <address>\n        Written by John Doe.<br>\n        Visit us at:<br>\n        Example.com<br>\n        Box 123, Internet City<br>\n        USA\n    </address>\n    \n    <!-- Blockquote -->\n    <blockquote cite=\"https://www.example.com/quotes\">\n        This is a long quotation that is set off from the main text.\n    </blockquote>\n    \n    <!-- Short quote -->\n    <p>Steve Jobs said: <q>Stay hungry, stay foolish.</q></p>\n    \n    <!-- Bidirectional override -->\n    <p>This text will go left to right.</p>\n    <p><bdo dir=\"rtl\">This text will go right to left.</bdo></p>\n</body>\n</html>",
+      "real_world_example": "Formatting elements are used throughout web content. News articles use <strong> for important terms. Scientific papers use <sub> and <sup> for formulas. Code documentation uses <code> and <kbd> for examples. Academic sites use <blockquote> for citations. Legal documents use <del> and <ins> to show changes. Product pages use <mark> to highlight features. Addresses use <address> for contact information.",
+      "interactive_tasks": [
+        "Format a paragraph with bold, italic, and highlighted text",
+        "Create a chemical formula using subscript and superscript",
+        "Write computer instructions using code and keyboard input tags"
+      ],
+      "quiz": [
+        {
+          "question": "Which tag defines important text?",
+          "options": ["<b>", "<strong>", "<important>", "<imp>"],
+          "answer": "<strong>",
+          "reasoning": "<strong> defines text with strong importance, typically displayed in bold."
+        },
+        {
+          "question": "What is the difference between <i> and <em>?",
+          "options": ["No difference", "<i> is italic, <em> is emphasis", "<em> is italic, <i> is emphasis", "Only <i> works"],
+          "answer": "<i> is italic, <em> is emphasis",
+          "reasoning": "<i> just makes text italic, while <em> adds semantic emphasis to text."
+        },
+        {
+          "question": "Which tag creates subscript text?",
+          "options": ["<sub>", "<sup>", "<subscript>", "<low>"],
+          "answer": "<sub>",
+          "reasoning": "<sub> defines subscript text (like H₂O)."
+        },
+        {
+          "question": "What does the <mark> tag do?",
+          "options": ["Creates bookmark", "Highlights/marks text", "Marks form fields", "Creates market text"],
+          "answer": "Highlights/marks text",
+          "reasoning": "<mark> defines marked/highlighted text for reference or emphasis."
+        },
+        {
+          "question": "Which tag defines a short quotation?",
+          "options": ["<quote>", "<q>", "<shortquote>", "<sq>"],
+          "answer": "<q>",
+          "reasoning": "<q> defines a short inline quotation."
+        },
+        {
+          "question": "What does the <code> tag do?",
+          "options": ["Creates code blocks", "Defines computer code", "Links to code files", "Encodes text"],
+          "answer": "Defines computer code",
+          "reasoning": "<code> defines a piece of computer code."
+        },
+        {
+          "question": "Which tag preserves whitespace and line breaks?",
+          "options": ["<keep>", "<pre>", "<whitespace>", "<preserve>"],
+          "answer": "<pre>",
+          "reasoning": "<pre> defines preformatted text that preserves spaces and line breaks."
+        }
+      ]
+    },
+    {
+      "title": "Day 14 – HTML5 New Elements",
+      "definition": "HTML5 introduced new semantic elements and APIs that improve web page structure, multimedia support, and interactivity, replacing older HTML4 features.",
+      "explanation": "HTML5 brought significant improvements to web development. New semantic elements like <header>, <footer>, <article>, and <section> provide better document structure. New form input types (date, email, range) improve user experience. Multimedia elements <audio> and <video> native support reduce plugin dependency. Canvas and SVG enable graphics. These features make websites more functional, accessible, and mobile-friendly.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>HTML5 Features</title>\n</head>\n<body>\n    <!-- HTML5 semantic structure -->\n    <header>\n        <h1>HTML5 Features Demo</h1>\n        <nav>\n            <a href=\"#semantic\">Semantic</a> |\n            <a href=\"#multimedia\">Multimedia</a> |\n            <a href=\"#forms\">Forms</a> |\n            <a href=\"#graphics\">Graphics</a>\n        </nav>\n    </header>\n    \n    <main>\n        <!-- HTML5 semantic elements section -->\n        <section id=\"semantic\">\n            <h2>New Semantic Elements</h2>\n            <article>\n                <h3>&lt;header&gt; and &lt;footer&gt;</h3>\n                <p>Define header and footer for document or sections.</p>\n            </article>\n            <article>\n                <h3>&lt;nav&gt;</h3>\n                <p>Defines navigation links.</p>\n            </article>\n            <article>\n                <h3>&lt;section&gt; and &lt;article&gt;</h3>\n                <p>Define sections and independent content.</p>\n            </article>\n            <aside>\n                <p>HTML5 semantic elements improve accessibility.</p>\n            </aside>\n        </section>\n        \n        <!-- HTML5 multimedia section -->\n        <section id=\"multimedia\">\n            <h2>Multimedia Elements</h2>\n            \n            <h3>Audio Player</h3>\n            <audio controls>\n                <source src=\"audio.mp3\" type=\"audio/mpeg\">\n                Your browser doesn't support audio.\n            </audio>\n            \n            <h3>Video Player</h3>\n            <video width=\"320\" height=\"240\" controls>\n                <source src=\"movie.mp4\" type=\"video/mp4\">\n                Your browser doesn't support video.\n            </video>\n            \n            <h3>Embed Content</h3>\n            <embed src=\"demo.pdf\" width=\"500\" height=\"300\" type=\"application/pdf\">\n        </section>\n        \n        <!-- HTML5 form features -->\n        <section id=\"forms\">\n            <h2>New Form Input Types</h2>\n            <form>\n                <label>Email: <input type=\"email\" required></label><br>\n                <label>URL: <input type=\"url\"></label><br>\n                <label>Date: <input type=\"date\"></label><br>\n                <label>Time: <input type=\"time\"></label><br>\n                <label>Color: <input type=\"color\"></label><br>\n                <label>Range: <input type=\"range\" min=\"0\" max=\"100\"></label><br>\n                <label>Number: <input type=\"number\" min=\"1\" max=\"10\"></label><br>\n                <label>Search: <input type=\"search\"></label><br>\n                <input type=\"submit\" value=\"Test Inputs\">\n            </form>\n        </section>\n        \n        <!-- HTML5 graphics -->\n        <section id=\"graphics\">\n            <h2>Graphics Elements</h2>\n            \n            <h3>Canvas Element</h3>\n            <canvas id=\"myCanvas\" width=\"200\" height=\"100\" style=\"border:1px solid black;\">\n                Your browser doesn't support canvas.\n            </canvas>\n            \n            <h3>SVG Graphics</h3>\n            <svg width=\"100\" height=\"100\">\n                <circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"green\" stroke-width=\"4\" fill=\"yellow\" />\n                Sorry, your browser doesn't support inline SVG.\n            </svg>\n        </section>\n        \n        <!-- HTML5 storage -->\n        <section>\n            <h2>Storage APIs</h2>\n            <p>HTML5 provides localStorage and sessionStorage for client-side data storage.</p>\n        </section>\n        \n        <!-- HTML5 geolocation -->\n        <section>\n            <h2>Geolocation API</h2>\n            <p>HTML5 can get user's geographical position with permission.</p>\n            <button onclick=\"getLocation()\">Get Location</button>\n            <p id=\"demo\"></p>\n        </section>\n    </main>\n    \n    <footer>\n        <p>&copy; 2023 HTML5 Demo. All HTML5 features demonstrated.</p>\n        <p>Contact: <a href=\"mailto:info@example.com\">info@example.com</a></p>\n    </footer>\n    \n    <script>\n        // Canvas drawing\n        var canvas = document.getElementById('myCanvas');\n        var ctx = canvas.getContext('2d');\n        ctx.font = \"30px Arial\";\n        ctx.fillText(\"Hello Canvas\", 10, 50);\n        \n        // Geolocation\n        function getLocation() {\n            if (navigator.geolocation) {\n                navigator.geolocation.getCurrentPosition(showPosition);\n            } else {\n                document.getElementById(\"demo\").innerHTML = \"Geolocation not supported.\";\n            }\n        }\n        function showPosition(position) {\n            document.getElementById(\"demo\").innerHTML = \n                \"Latitude: \" + position.coords.latitude + \n                \"<br>Longitude: \" + position.coords.longitude;\n        }\n    </script>\n</body>\n</html>",
+      "real_world_example": "HTML5 powers modern web experiences. Video streaming services use <video> elements. Online forms use new input types for better validation. Interactive games use <canvas> for graphics. Maps services use Geolocation API. Web applications use localStorage for offline functionality. News sites use semantic elements for better structure. Drawing applications use SVG for vector graphics. Mobile websites benefit from HTML5's responsive features.",
+      "interactive_tasks": [
+        "Create a page using HTML5 semantic elements",
+        "Build a form with HTML5 input types (date, email, range)",
+        "Add a video player and canvas element to a page"
+      ],
+      "quiz": [
+        {
+          "question": "Which is NOT an HTML5 semantic element?",
+          "options": ["<header>", "<footer>", "<div>", "<article>"],
+          "answer": "<div>",
+          "reasoning": "<div> is not an HTML5-specific semantic element; it's a generic container from earlier HTML."
+        },
+        {
+          "question": "Which HTML5 element plays video without plugins?",
+          "options": ["<video>", "<media>", "<movie>", "<flash>"],
+          "answer": "<video>",
+          "reasoning": "HTML5 <video> element plays video content natively without plugins like Flash."
+        },
+        {
+          "question": "What does the canvas element do?",
+          "options": ["Displays pictures", "Draws graphics via JavaScript", "Creates tables", "Shows videos"],
+          "answer": "Draws graphics via JavaScript",
+          "reasoning": "<canvas> is used to draw graphics via JavaScript for games, graphs, etc."
+        },
+        {
+          "question": "Which input type validates email format?",
+          "options": ["type=\"text\"", "type=\"email\"", "type=\"mail\"", "type=\"validate\""],
+          "answer": "type=\"email\"",
+          "reasoning": "type=\"email\" validates that the input is a properly formatted email address."
+        },
+        {
+          "question": "What is the purpose of the Geolocation API?",
+          "options": ["Locate HTML elements", "Get user's geographical position", "Find websites", "Locate servers"],
+          "answer": "Get user's geographical position",
+          "reasoning": "Geolocation API gets the geographical position of a user (with permission)."
+        },
+        {
+          "question": "Which element defines vector graphics?",
+          "options": ["<canvas>", "<svg>", "<vector>", "<graphic>"],
+          "answer": "<svg>",
+          "reasoning": "<svg> defines vector-based graphics in XML format."
+        },
+        {
+          "question": "What does localStorage provide?",
+          "options": ["Server storage", "Client-side data storage", "CSS storage", "Image storage"],
+          "answer": "Client-side data storage",
+          "reasoning": "localStorage provides client-side storage that persists between browser sessions."
+        }
+      ]
+    },
+    {
+      "title": "Day 15 – Iframes and Embedding",
+      "definition": "Iframes (inline frames) embed external content, like other web pages, videos, or maps, within the current HTML document, creating a window to view external resources.",
+      "explanation": "Iframes act like little browsers within your webpage, displaying content from other sources. They're commonly used for embedding YouTube videos, Google Maps, advertisements, or external applications. The <iframe> tag creates a rectangular region that displays the external content. While powerful, iframes should be used judiciously due to security considerations and potential performance impacts.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<body>\n    <h2>Iframes and Embedding Examples</h2>\n    \n    <!-- Basic iframe -->\n    <h3>1. Basic Iframe</h3>\n    <iframe src=\"https://www.example.com\" width=\"500\" height=\"300\" title=\"Example Website\">\n        Your browser doesn't support iframes.\n    </iframe>\n    \n    <!-- Iframe with no border -->\n    <h3>2. Iframe Without Border</h3>\n    <iframe src=\"https://www.example.com\" width=\"500\" height=\"200\" style=\"border:none;\" title=\"Borderless Iframe\"></iframe>\n    \n    <!-- YouTube video embed -->\n    <h3>3. YouTube Video Embed</h3>\n    <iframe width=\"560\" height=\"315\" \n            src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" \n            title=\"YouTube video player\" \n            frameborder=\"0\" \n            allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" \n            allowfullscreen>\n    </iframe>\n    \n    <!-- Google Maps embed -->\n    <h3>4. Google Maps Embed</h3>\n    <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2s150%20Park%20Row%2C%20New%20York%2C%20NY%2010007%2C%20USA!5e0!3m2!1sen!2s!4v1629781234567!5m2!1sen!2s\" \n            width=\"600\" height=\"450\" \n            style=\"border:0;\" \n            allowfullscreen=\"\" \n            loading=\"lazy\">\n    </iframe>\n    \n    <!-- Embed PDF document -->\n    <h3>5. PDF Document Embed</h3>\n    <iframe src=\"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf\" \n            width=\"100%\" \n            height=\"500px\">\n        This browser does not support PDFs. Please download the PDF to view it.\n    </iframe>\n    \n    <!-- Embed using embed tag -->\n    <h3>6. Using &lt;embed&gt; Tag</h3>\n    <embed src=\"https://www.example.com\" width=\"500\" height=\"300\">\n    \n    <!-- Embed using object tag -->\n    <h3>7. Using &lt;object&gt; Tag</h3>\n    <object data=\"https://www.example.com\" width=\"500\" height=\"300\"></object>\n    \n    <!-- Multiple iframes -->\n    <h3>8. Responsive Iframe</h3>\n    <div style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\">\n        <iframe src=\"https://www.example.com\" \n                style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\" \n                frameborder=\"0\" \n                allowfullscreen>\n        </iframe>\n    </div>\n    \n    <!-- Iframe with sandbox for security -->\n    <h3>9. Sandboxed Iframe (Restricted)</h3>\n    <iframe src=\"https://www.example.com\" \n            width=\"500\" \n            height=\"200\" \n            sandbox=\"allow-scripts allow-forms\">\n        Your browser doesn't support iframes.\n    </iframe>\n    \n    <!-- Named iframe for targeting -->\n    <h3>10. Named Iframe for Links</h3>\n    <iframe name=\"myFrame\" width=\"500\" height=\"200\" src=\"about:blank\"></iframe>\n    <p>\n        <a href=\"https://www.example.com\" target=\"myFrame\">Load Example.com in iframe</a><br>\n        <a href=\"https://www.google.com\" target=\"myFrame\">Load Google in iframe</a>\n    </p>\n</body>\n</html>",
+      "real_world_example": "Iframes are widely used: YouTube videos embedded in blogs, Google Maps on business websites, social media widgets (like Twitter feeds or Facebook posts), advertisements from ad networks, payment gateways in e-commerce checkout, embedded forms (like contact forms or surveys), live chat widgets, weather widgets, stock tickers, and embedded code editors (like CodePen examples).",
+      "interactive_tasks": [
+        "Embed a YouTube video in a webpage",
+        "Create an iframe that displays another webpage",
+        "Make links that load different pages in the same iframe"
+      ],
+      "quiz": [
+        {
+          "question": "What does iframe stand for?",
+          "options": ["Internet frame", "Inline frame", "Internal frame", "Input frame"],
+          "answer": "Inline frame",
+          "reasoning": "iframe stands for inline frame, which embeds another document within the current HTML document."
+        },
+        {
+          "question": "Which attribute specifies the content source for an iframe?",
+          "options": ["source", "href", "src", "content"],
+          "answer": "src",
+          "reasoning": "The src attribute specifies the URL of the page to embed in the iframe."
+        },
+        {
+          "question": "What is a common use for iframes?",
+          "options": ["Creating tables", "Embedding videos or maps", "Making text bold", "Creating forms"],
+          "answer": "Embedding videos or maps",
+          "reasoning": "Iframes are commonly used to embed external content like YouTube videos or Google Maps."
+        },
+        {
+          "question": "How do you make an iframe borderless?",
+          "options": ["border=\"0\" or style=\"border:none;\"", "noborder=\"true\"", "border=\"false\"", "frameborder=\"remove\""],
+          "answer": "border=\"0\" or style=\"border:none;\"",
+          "reasoning": "Use border=\"0\" or CSS style=\"border:none;\" to remove iframe borders."
+        },
+        {
+          "question": "What does the sandbox attribute do?",
+          "options": ["Creates sand art", "Restricts iframe capabilities for security", "Makes iframes sandy", "Adds beach theme"],
+          "answer": "Restricts iframe capabilities for security",
+          "reasoning": "The sandbox attribute enables extra restrictions for iframe content for security."
+        },
+        {
+          "question": "How can links open in a specific iframe?",
+          "options": ["Use target attribute with iframe name", "Use iframe attribute in link", "Use load attribute", "It's not possible"],
+          "answer": "Use target attribute with iframe name",
+          "reasoning": "Give iframe a name attribute, then use target=\"framename\" in links to load content in that iframe."
+        },
+        {
+          "question": "Which is NOT a method to embed external content?",
+          "options": ["<iframe>", "<embed>", "<object>", "<import>"],
+          "answer": "<import>",
+          "reasoning": "<import> is not a standard HTML embedding tag; <iframe>, <embed>, and <object> are."
+        }
+      ]
+    },
+    {
+      "title": "Day 16 – HTML Head Elements",
+      "definition": "The HTML head section contains meta-information about the document, including its title, character set, styles, scripts, and other metadata that isn't displayed on the page.",
+      "explanation": "The <head> element is a container for metadata about the HTML document. It's placed between <html> and <body> tags. While its content isn't visible on the page, it's crucial for browsers, search engines, and other web services. The head includes the page title, character encoding, viewport settings for mobile, links to CSS files, and scripts. Proper head configuration improves SEO, accessibility, and user experience.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <!-- Character encoding -->\n    <meta charset=\"UTF-8\">\n    \n    <!-- Viewport for responsive design -->\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    \n    <!-- Page title (appears in browser tab) -->\n    <title>Complete HTML Head Example - My Website</title>\n    \n    <!-- Meta description for SEO -->\n    <meta name=\"description\" content=\"Learn HTML head elements with this comprehensive example page.\">\n    \n    <!-- Keywords (less important now but still used) -->\n    <meta name=\"keywords\" content=\"HTML, Head, Metadata, SEO, Web Development\">\n    \n    <!-- Author information -->\n    <meta name=\"author\" content=\"John Doe\">\n    \n    <!-- Refresh page every 30 seconds (use sparingly) -->\n    <!-- <meta http-equiv=\"refresh\" content=\"30\"> -->\n    \n    <!-- Prevent search engines from indexing -->\n    <!-- <meta name=\"robots\" content=\"noindex, nofollow\"> -->\n    \n    <!-- Open Graph meta tags for social media -->\n    <meta property=\"og:title\" content=\"HTML Head Elements Guide\">\n    <meta property=\"og:description\" content=\"Complete guide to HTML head elements and metadata.\">\n    <meta property=\"og:image\" content=\"https://example.com/image.jpg\">\n    <meta property=\"og:url\" content=\"https://example.com/page.html\">\n    \n    <!-- Twitter Card meta tags -->\n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"HTML Head Elements Guide\">\n    <meta name=\"twitter:description\" content=\"Learn all about HTML head section.\">\n    <meta name=\"twitter:image\" content=\"https://example.com/image.jpg\">\n    \n    <!-- Favicon (website icon) -->\n    <link rel=\"icon\" href=\"favicon.ico\" type=\"image/x-icon\">\n    \n    <!-- Apple Touch Icon (for iOS devices) -->\n    <link rel=\"apple-touch-icon\" href=\"apple-touch-icon.png\">\n    \n    <!-- External CSS stylesheet -->\n    <link rel=\"stylesheet\" href=\"styles.css\">\n    \n    <!-- Internal CSS -->\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            line-height: 1.6;\n            margin: 20px;\n        }\n        h1 { color: #333; }\n    </style>\n    \n    <!-- External JavaScript (deferred) -->\n    <script src=\"script.js\" defer></script>\n    \n    <!-- Internal JavaScript -->\n    <script>\n        console.log('Page head loaded');\n        // JavaScript code can go here\n    </script>\n    \n    <!-- Base URL for all relative URLs -->\n    <!-- <base href=\"https://www.example.com/\"> -->\n    \n    <!-- Canonical URL to avoid duplicate content -->\n    <link rel=\"canonical\" href=\"https://example.com/page.html\">\n    \n    <!-- RSS feed link -->\n    <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS Feed\" href=\"feed.xml\">\n    \n    <!-- Preconnect for performance -->\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    \n    <!-- Preload critical resources -->\n    <link rel=\"preload\" href=\"critical-image.jpg\" as=\"image\">\n</head>\n<body>\n    <h1>HTML Head Elements Demonstration</h1>\n    <p>Check the page head section in the HTML code to see all the metadata elements.</p>\n    \n    <h2>Common Head Elements:</h2>\n    <ul>\n        <li><strong>&lt;title&gt;</strong> - Page title in browser tab</li>\n        <li><strong>&lt;meta charset&gt;</strong> - Character encoding</li>\n        <li><strong>&lt;meta name=\"viewport\"&gt;</strong> - Responsive design</li>\n        <li><strong>&lt;link rel=\"stylesheet\"&gt;</strong> - External CSS</li>\n        <li><strong>&lt;script&gt;</strong> - JavaScript code</li>\n        <li><strong>&lt;link rel=\"icon\"&gt;</strong> - Favicon</li>\n        <li><strong>&lt;meta name=\"description\"&gt;</strong> - SEO description</li>\n    </ul>\n</body>\n</html>",
+      "real_world_example": "The head section is crucial for all websites. Search engines read meta descriptions for search results. Social media platforms use Open Graph tags to display shared links properly. Mobile devices use viewport settings for responsive rendering. Browsers use favicons in tabs and bookmarks. Content management systems set character encoding to display special characters correctly. Analytics scripts in the head track page visits. SEO tools rely on properly configured head elements for ranking.",
+      "interactive_tasks": [
+        "Create an HTML page with proper head section including title and meta tags",
+        "Add a favicon and viewport meta tag to a webpage",
+        "Include external CSS and JavaScript files in the head"
+      ],
+      "quiz": [
+        {
+          "question": "Where is the <head> section located?",
+          "options": ["After <body>", "Between <html> and <body>", "Inside <body>", "Before <html>"],
+          "answer": "Between <html> and <body>",
+          "reasoning": "The <head> element is placed between the <html> and <body> tags."
+        },
+        {
+          "question": "What does the <title> tag do?",
+          "options": ["Creates page heading", "Sets browser tab title", "Titles images", "Names HTML file"],
+          "answer": "Sets browser tab title",
+          "reasoning": "The <title> tag sets the title displayed in the browser tab and search results."
+        },
+        {
+          "question": "Which meta tag is essential for responsive design?",
+          "options": ["viewport", "description", "author", "keywords"],
+          "answer": "viewport",
+          "reasoning": "The viewport meta tag controls layout on mobile devices for responsive design."
+        },
+        {
+          "question": "What is the purpose of charset=\"UTF-8\"?",
+          "options": ["Sets page speed", "Defines character encoding", "Chooses color scheme", "Selects language"],
+          "answer": "Defines character encoding",
+          "reasoning": "charset=\"UTF-8\" defines the character encoding for proper display of special characters."
+        },
+        {
+          "question": "How do you link an external CSS file?",
+          "options": ["<style src=\"file.css\">", "<link rel=\"stylesheet\" href=\"file.css\">", "<css href=\"file.css\">", "<script type=\"text/css\" src=\"file.css\">"],
+          "answer": "<link rel=\"stylesheet\" href=\"file.css\">",
+          "reasoning": "Use <link rel=\"stylesheet\" href=\"file.css\"> to link external CSS files."
+        },
+        {
+          "question": "What does the favicon represent?",
+          "options": ["Favorite icon in browser tab", "Navigation menu", "Background image", "Font icon"],
+          "answer": "Favorite icon in browser tab",
+          "reasoning": "Favicon is the small icon displayed in browser tabs, bookmarks, and history."
+        },
+        {
+          "question": "Which meta tag is important for SEO?",
+          "options": ["description", "refresh", "author", "generator"],
+          "answer": "description",
+          "reasoning": "The meta description tag provides a summary for search engine results pages (SERP)."
+        }
+      ]
+    },
+    {
+      "title": "Day 17 – HTML Validation and Best Practices",
+      "definition": "HTML validation checks that HTML code follows official standards and best practices, ensuring cross-browser compatibility, accessibility, and proper rendering.",
+      "explanation": "Valid HTML means your code follows the rules of the HTML specification. Validators check for errors like missing closing tags, improper nesting, or deprecated elements. Following best practices makes your websites more accessible, faster, easier to maintain, and compatible across different browsers and devices. While browsers often render invalid HTML, validation helps prevent unpredictable behavior and improves quality.",
+      "code_example": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Valid HTML Example - Best Practices</title>\n    \n    <!-- External CSS with proper media attribute -->\n    <link rel=\"stylesheet\" href=\"styles.css\" media=\"screen\">\n    <link rel=\"stylesheet\" href=\"print.css\" media=\"print\">\n    \n    <!-- Preload important resources -->\n    <link rel=\"preload\" href=\"hero-image.jpg\" as=\"image\">\n    \n    <!-- Favicon in multiple formats -->\n    <link rel=\"icon\" href=\"favicon.ico\" sizes=\"any\">\n    <link rel=\"icon\" href=\"icon.svg\" type=\"image/svg+xml\">\n    <link rel=\"apple-touch-icon\" href=\"apple-touch-icon.png\">\n</head>\n<body>\n    <!-- Semantic structure with proper heading hierarchy -->\n    <header role=\"banner\">\n        <h1>Valid HTML & Best Practices</h1>\n        <nav aria-label=\"Main navigation\">\n            <ul>\n                <li><a href=\"#home\">Home</a></li>\n                <li><a href=\"#about\">About</a></li>\n                <li><a href=\"#contact\">Contact</a></li>\n            </ul>\n        </nav>\n    </header>\n    \n    <main>\n        <article>\n            <h2>Why Validate HTML?</h2>\n            \n            <section>\n                <h3>Benefits of Valid HTML</h3>\n                <ul>\n                    <li>Better cross-browser compatibility</li>\n                    <li>Improved accessibility</li>\n                    <li>Easier maintenance</li>\n                    <li>Better search engine ranking</li>\n                    <li>Future-proof code</li>\n                </ul>\n            </section>\n            \n            <section>\n                <h3>Common Validation Errors</h3>\n                \n                <!-- Example of proper image with alt text -->\n                <figure>\n                    <img src=\"validation.jpg\" \n                         alt=\"HTML validation report showing no errors\" \n                         width=\"600\" \n                         height=\"400\" \n                         loading=\"lazy\">\n                    <figcaption>Example of a valid HTML validation report</figcaption>\n                </figure>\n                \n                <h4>1. Missing Alt Attributes</h4>\n                <p><strong>Invalid:</strong> &lt;img src=\"image.jpg\"&gt;</p>\n                <p><strong>Valid:</strong> &lt;img src=\"image.jpg\" alt=\"Description\"&gt;</p>\n                \n                <h4>2. Improper Nesting</h4>\n                <p><strong>Invalid:</strong> &lt;p&gt;&lt;div&gt;Content&lt;/div&gt;&lt;/p&gt;</p>\n                <p><strong>Valid:</strong> &lt;div&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/div&gt;</p>\n                \n                <h4>3. Missing Closing Tags</h4>\n                <p><strong>Invalid:</strong> &lt;p&gt;Some text</p>\n                <p><strong>Valid:</strong> &lt;p&gt;Some text&lt;/p&gt;</p>\n            </section>\n            \n            <section>\n                <h3>Accessibility Best Practices</h3>\n                \n                <!-- Proper form with labels -->\n                <form>\n                    <fieldset>\n                        <legend>Contact Information</legend>\n                        \n                        <div>\n                            <label for=\"name\">Full Name:</label>\n                            <input type=\"text\" id=\"name\" name=\"name\" required aria-required=\"true\">\n                        </div>\n                        \n                        <div>\n                            <label for=\"email\">Email:</label>\n                            <input type=\"email\" id=\"email\" name=\"email\" required>\n                        </div>\n                        \n                        <div>\n                            <label for=\"message\">Message:</label>\n                            <textarea id=\"message\" name=\"message\" rows=\"4\"></textarea>\n                        </div>\n                        \n                        <button type=\"submit\">Send Message</button>\n                    </fieldset>\n                </form>\n            </section>\n        </article>\n        \n        <!-- Aside with related content -->\n        <aside>\n            <h3>Validation Tools</h3>\n            <ul>\n                <li><a href=\"https://validator.w3.org\">W3C HTML Validator</a></li>\n                <li><a href=\"https://wave.webaim.org\">WAVE Accessibility Tool</a></li>\n                <li><a href=\"https://pagespeed.web.dev\">PageSpeed Insights</a></li>\n            </ul>\n        </aside>\n    </main>\n    \n    <footer role=\"contentinfo\">\n        <p>&copy; 2023 Valid HTML Example. All rights reserved.</p>\n        <p>This page follows HTML5 standards and accessibility guidelines.</p>\n        \n        <!-- Valid HTML5 structural elements -->\n        <address>\n            Contact: <a href=\"mailto:webmaster@example.com\">webmaster@example.com</a>\n        </address>\n    </footer>\n    \n    <!-- JavaScript at bottom for performance -->\n    <script src=\"script.js\"></script>\n    <script>\n        // Progressive enhancement example\n        document.addEventListener('DOMContentLoaded', function() {\n            console.log('Page loaded successfully');\n        });\n    </script>\n</body>\n</html>",
+      "real_world_example": "Professional websites prioritize HTML validation. Government and educational sites must meet accessibility standards (WCAG). E-commerce sites validate HTML for consistent shopping experience across browsers. News organizations ensure valid markup for proper syndication. Web applications validate forms for better user experience. SEO agencies check HTML validity for better search rankings. Quality assurance teams use validators during development.",
+      "interactive_tasks": [
+        "Validate an HTML page using the W3C validator",
+        "Fix common HTML errors in a provided code snippet",
+        "Improve accessibility by adding proper labels and ARIA attributes"
+      ],
+      "quiz": [
+        {
+          "question": "What is HTML validation?",
+          "options": ["Checking spelling", "Testing if code follows HTML standards", "Measuring page speed", "Checking colors"],
+          "answer": "Testing if code follows HTML standards",
+          "reasoning": "HTML validation checks if code follows official HTML specifications and standards."
+        },
+        {
+          "question": "Which organization provides the official HTML validator?",
+          "options": ["Google", "W3C", "Mozilla", "Microsoft"],
+          "answer": "W3C",
+          "reasoning": "W3C (World Wide Web Consortium) provides the official HTML validator at validator.w3.org."
+        },
+        {
+          "question": "Why is valid HTML important for accessibility?",
+          "options": ["Screen readers work better", "Makes text larger", "Adds more colors", "Creates animations"],
+          "answer": "Screen readers work better",
+          "reasoning": "Valid HTML helps screen readers and assistive technologies interpret content correctly."
+        },
+        {
+          "question": "What is a common validation error?",
+          "options": ["Missing alt attributes", "Too many images", "Using CSS", "Having JavaScript"],
+          "answer": "Missing alt attributes",
+          "reasoning": "Missing alt attributes on images is a common HTML validation error."
+        },
+        {
+          "question": "Which is a best practice for images?",
+          "options": ["Always use PNG", "Include alt text", "Make them huge", "Use only as background"],
+          "answer": "Include alt text",
+          "reasoning": "Always include descriptive alt text for images for accessibility and validation."
+        },
+        {
+          "question": "What does proper nesting mean?",
+          "options": ["Elements inside correct parents", "Birds making nests", "Code indentation", "Using nest tags"],
+          "answer": "Elements inside correct parents",
+          "reasoning": "Proper nesting means elements are closed in the correct order and placed in valid parent elements."
+        },
+        {
+          "question": "Why put JavaScript at bottom of page?",
+          "options": ["Better performance", "Makes code secret", "Required by HTML", "Only works there"],
+          "answer": "Better performance",
+          "reasoning": "JavaScript at bottom allows page content to load first, improving perceived performance."
+        }
+      ]
+    },
+    {
+      "title": "Day 18 – HTML and CSS Integration",
+      "definition": "HTML provides structure while CSS (Cascading Style Sheets) controls presentation. Integrating both creates visually appealing, well-structured web pages.",
+      "explanation": "HTML defines what content is on a page, while CSS defines how it looks. They work together like a house: HTML is the structure (walls, rooms), CSS is the decoration (paint, furniture). CSS can be added inline within HTML elements, internally in the <style> tag, or externally in separate .css files. Understanding how to integrate CSS with HTML is essential for creating modern, responsive, and attractive websites.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>HTML and CSS Integration</title>\n    \n    <!-- External CSS (most common method) -->\n    <link rel=\"stylesheet\" href=\"styles.css\">\n    \n    <!-- Internal CSS -->\n    <style>\n        /* Internal styles for this page only */\n        body {\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n            line-height: 1.6;\n            color: #333;\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 20px;\n            background-color: #f9f9f9;\n        }\n        \n        .page-header {\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            color: white;\n            padding: 2rem;\n            border-radius: 10px;\n            margin-bottom: 2rem;\n            text-align: center;\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n        }\n        \n        .method-box {\n            background: white;\n            border-radius: 8px;\n            padding: 1.5rem;\n            margin: 1.5rem 0;\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n            border-left: 4px solid #667eea;\n        }\n    </style>\n</head>\n<body>\n    <header class=\"page-header\">\n        <h1>HTML and CSS Integration Methods</h1>\n        <p>Three ways to combine HTML structure with CSS styling</p>\n    </header>\n    \n    <main>\n        <!-- Method 1: Inline CSS -->\n        <section class=\"method-box\">\n            <h2 style=\"color: #667eea; border-bottom: 2px solid #667eea; padding-bottom: 0.5rem;\">\n                1. Inline CSS (style attribute)\n            </h2>\n            <p style=\"font-style: italic; color: #666;\">\n                CSS added directly to HTML elements using the style attribute.\n            </p>\n            \n            <div style=\"background: #f0f0f0; padding: 1rem; border-radius: 5px; margin: 1rem 0;\">\n                <h3 style=\"color: #e53e3e;\">Example:</h3>\n                <p style=\"color: #2d3748; font-size: 1.1rem;\">\n                    &lt;p style=\"color: blue; font-size: 16px;\"&gt;<br>\n                    &nbsp;&nbsp;This text is styled with inline CSS.<br>\n                    &lt;/p&gt;\n                </p>\n                \n                <div style=\"display: flex; gap: 1rem; margin-top: 1rem;\">\n                    <button style=\"background: #48bb78; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;\">\n                        Inline Styled Button\n                    </button>\n                    <button style=\"background: #ed8936; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;\">\n                        Another Button\n                    </button>\n                </div>\n            </div>\n            \n            <p><strong>Pros:</strong> Quick, specific to element</p>\n            <p><strong>Cons:</strong> Hard to maintain, not reusable</p>\n        </section>\n        \n        <!-- Method 2: Internal CSS -->\n        <section class=\"method-box\">\n            <h2>2. Internal CSS (&lt;style&gt; tag)</h2>\n            <p class=\"method-description\">CSS added in the &lt;head&gt; section using &lt;style&gt; tags.</p>\n            \n            <div class=\"example-box\">\n                <h3>Example:</h3>\n                <code>\n                    &lt;style&gt;<br>\n                    &nbsp;&nbsp;.internal-example {<br>\n                    &nbsp;&nbsp;&nbsp;&nbsp;color: green;<br>\n                    &nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>\n                    &nbsp;&nbsp;}<br>\n                    &lt;/style&gt;<br><br>\n                    &lt;p class=\"internal-example\"&gt;Styled with internal CSS&lt;/p&gt;\n                </code>\n                \n                <div class=\"button-group\">\n                    <button class=\"internal-btn primary\">Primary Button</button>\n                    <button class=\"internal-btn secondary\">Secondary Button</button>\n                </div>\n            </div>\n            \n            <p><strong>Pros:</strong> Page-specific, better organization</p>\n            <p><strong>Cons:</strong> Not reusable across pages</p>\n        </section>\n        \n        <!-- Method 3: External CSS -->\n        <section class=\"method-box\">\n            <h2>3. External CSS (separate .css file)</h2>\n            <p class=\"method-description\">CSS in separate file linked with &lt;link&gt; tag.</p>\n            \n            <div class=\"example-box\">\n                <h3>Example:</h3>\n                <code>\n                    &lt;link rel=\"stylesheet\" href=\"styles.css\"&gt;<br><br>\n                    &lt;p class=\"external-example\"&gt;Styled with external CSS&lt;/p&gt;\n                </code>\n                \n                <div class=\"button-group\">\n                    <button class=\"external-btn success\">Success Button</button>\n                    <button class=\"external-btn warning\">Warning Button</button>\n                    <button class=\"external-btn danger\">Danger Button</button>\n                </div>\n            </div>\n            \n            <p><strong>Pros:</strong> Reusable, cacheable, best practice</p>\n            <p><strong>Cons:</strong> Extra HTTP request</p>\n        </section>\n        \n        <!-- CSS Selectors Demonstration -->\n        <section class=\"method-box\">\n            <h2>CSS Selectors in HTML</h2>\n            \n            <div id=\"selectors-demo\">\n                <p class=\"intro\">This paragraph has class=\"intro\"</p>\n                <p>This paragraph has no class</p>\n                <p class=\"special\" data-type=\"example\">This has class=\"special\" and data-type=\"example\"</p>\n                \n                <ul>\n                    <li>First list item</li>\n                    <li class=\"highlight\">Second list item (highlighted)</li>\n                    <li>Third list item</li>\n                    <li>Fourth list item</li>\n                </ul>\n                \n                <form>\n                    <input type=\"text\" placeholder=\"Text input\">\n                    <input type=\"email\" placeholder=\"Email input\" required>\n                    <input type=\"submit\" value=\"Submit\">\n                </form>\n            </div>\n        </section>\n    </main>\n    \n    <footer style=\"background: #2d3748; color: white; padding: 2rem; margin-top: 3rem; border-radius: 8px;\">\n        <p style=\"text-align: center; margin: 0;\">\n            HTML + CSS = Beautiful Websites<br>\n            <small style=\"opacity: 0.8;\">Combining structure with style for optimal web experiences</small>\n        </p>\n    </footer>\n    \n    <!-- Internal CSS for methods 2 and 3 -->\n    <style>\n        /* Internal styles for demonstration */\n        .method-description {\n            font-style: italic;\n            color: #666;\n        }\n        \n        .example-box {\n            background: #f8f9fa;\n            padding: 1.5rem;\n            border-radius: 6px;\n            margin: 1rem 0;\n            border: 1px solid #e9ecef;\n        }\n        \n        .example-box h3 {\n            color: #2d3748;\n            margin-top: 0;\n        }\n        \n        .example-box code {\n            display: block;\n            background: #2d3748;\n            color: #e2e8f0;\n            padding: 1rem;\n            border-radius: 4px;\n            font-family: 'Courier New', monospace;\n            margin: 1rem 0;\n            overflow-x: auto;\n        }\n        \n        .button-group {\n            display: flex;\n            gap: 1rem;\n            margin-top: 1rem;\n            flex-wrap: wrap;\n        }\n        \n        /* Internal CSS button styles */\n        .internal-btn {\n            border: none;\n            padding: 0.75rem 1.5rem;\n            border-radius: 4px;\n            cursor: pointer;\n            font-weight: bold;\n            transition: all 0.3s ease;\n        }\n        \n        .internal-btn.primary {\n            background: #4299e1;\n            color: white;\n        }\n        \n        .internal-btn.primary:hover {\n            background: #3182ce;\n            transform: translateY(-2px);\n        }\n        \n        .internal-btn.secondary {\n            background: #a0aec0;\n            color: white;\n        }\n        \n        .internal-btn.secondary:hover {\n            background: #718096;\n        }\n        \n        /* External CSS simulation */\n        .external-btn {\n            border: none;\n            padding: 0.75rem 1.5rem;\n            border-radius: 4px;\n            cursor: pointer;\n            font-weight: bold;\n            transition: all 0.3s ease;\n        }\n        \n        .external-btn.success {\n            background: #48bb78;\n            color: white;\n        }\n        \n        .external-btn.success:hover {\n            background: #38a169;\n            box-shadow: 0 4px 6px rgba(72, 187, 120, 0.2);\n        }\n        \n        .external-btn.warning {\n            background: #ed8936;\n            color: white;\n        }\n        \n        .external-btn.warning:hover {\n            background: #dd6b20;\n        }\n        \n        .external-btn.danger {\n            background: #f56565;\n            color: white;\n        }\n        \n        .external-btn.danger:hover {\n            background: #e53e3e;\n            transform: scale(1.05);\n        }\n        \n        /* Selector demonstration styles */\n        #selectors-demo .intro {\n            font-weight: bold;\n            color: #2b6cb0;\n        }\n        \n        #selectors-demo p.special {\n            background: #fed7d7;\n            padding: 0.5rem;\n            border-radius: 4px;\n        }\n        \n        #selectors-demo li.highlight {\n            background: #c6f6d5;\n            padding: 0.25rem 0.5rem;\n            border-radius: 3px;\n        }\n        \n        #selectors-demo input[type=\"email\"]:invalid {\n            border: 2px solid #fc8181;\n        }\n        \n        #selectors-demo input[type=\"email\"]:valid {\n            border: 2px solid #68d391;\n        }\n    </style>\n</body>\n</html>",
+      "real_world_example": "All modern websites integrate HTML and CSS. Corporate sites use external CSS for consistent branding. Web applications use CSS frameworks like Bootstrap. E-commerce sites use CSS for product galleries and interactive elements. Blogs use CSS for typography and layout. Portfolios use CSS for animations and responsive design. Social media platforms use CSS for UI components and themes. News sites use CSS for readable typography and ad placements.",
+      "interactive_tasks": [
+        "Style an HTML page using inline, internal, and external CSS methods",
+        "Create a styled navigation menu using CSS classes",
+        "Make a responsive layout using CSS media queries in HTML"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main purpose of CSS?",
+          "options": ["Add structure", "Style and layout", "Add interactivity", "Store data"],
+          "answer": "Style and layout",
+          "reasoning": "CSS (Cascading Style Sheets) controls the visual presentation and layout of HTML elements."
+        },
+        {
+          "question": "Which method adds CSS directly to an HTML element?",
+          "options": ["External CSS", "Internal CSS", "Inline CSS", "Embedded CSS"],
+          "answer": "Inline CSS",
+          "reasoning": "Inline CSS uses the style attribute directly on HTML elements."
+        },
+        {
+          "question": "Where do you put internal CSS?",
+          "options": ["In .css file", "In style attribute", "In <style> tag in head", "In body"],
+          "answer": "In <style> tag in head",
+          "reasoning": "Internal CSS is placed within <style> tags in the HTML document's <head> section."
+        },
+        {
+          "question": "How do you link external CSS?",
+          "options": ["<style src=\"file.css\">", "<link rel=\"stylesheet\" href=\"file.css\">", "<css href=\"file.css\">", "<script type=\"text/css\" src=\"file.css\">"],
+          "answer": "<link rel=\"stylesheet\" href=\"file.css\">",
+          "reasoning": "External CSS files are linked using <link rel=\"stylesheet\" href=\"file.css\"> in the head."
+        },
+        {
+          "question": "Which CSS method is best for multiple pages?",
+          "options": ["Inline", "Internal", "External", "All are equal"],
+          "answer": "External",
+          "reasoning": "External CSS is best for multiple pages as one file styles all pages consistently."
+        },
+        {
+          "question": "What does CSS selector 'p.intro' target?",
+          "options": ["All paragraphs", "Paragraphs with class=\"intro\"", "Element with id=\"intro\"", "All intro elements"],
+          "answer": "Paragraphs with class=\"intro\"",
+          "reasoning": "p.intro selects <p> elements that have class=\"intro\"."
+        },
+        {
+          "question": "Why separate HTML and CSS?",
+          "options": ["Better organization and maintenance", "Makes pages slower", "Required by browsers", "Only for experts"],
+          "answer": "Better organization and maintenance",
+          "reasoning": "Separating HTML (structure) and CSS (presentation) improves maintainability and organization."
+        }
+      ]
+    },
+    {
+      "title": "Day 19 – Responsive Design Basics",
+      "definition": "Responsive web design creates websites that adapt to different screen sizes and devices, providing optimal viewing experience on desktops, tablets, and mobile phones.",
+      "explanation": "Responsive design uses flexible layouts, images, and CSS media queries to automatically adjust web pages to fit different screen sizes. With the variety of devices people use to access the web (phones, tablets, laptops, desktops), responsive design ensures your website looks good and works well everywhere. Key concepts include fluid grids, flexible images, and media queries that apply different CSS rules based on device characteristics.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <!-- Essential viewport tag for responsive design -->\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Responsive Design Basics</title>\n    \n    <style>\n        /* Reset and base styles */\n        * {\n            box-sizing: border-box;\n            margin: 0;\n            padding: 0;\n        }\n        \n        body {\n            font-family: 'Arial', sans-serif;\n            line-height: 1.6;\n            color: #333;\n            background-color: #f4f4f4;\n        }\n        \n        .container {\n            width: 90%;\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n        \n        /* Header */\n        header {\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            color: white;\n            padding: 2rem 0;\n            text-align: center;\n        }\n        \n        /* Navigation */\n        nav ul {\n            list-style: none;\n            display: flex;\n            justify-content: center;\n            gap: 2rem;\n            margin-top: 1rem;\n        }\n        \n        nav a {\n            color: white;\n            text-decoration: none;\n            padding: 0.5rem 1rem;\n            border-radius: 4px;\n            transition: background 0.3s;\n        }\n        \n        nav a:hover {\n            background: rgba(255, 255, 255, 0.2);\n        }\n        \n        /* Responsive grid */\n        .grid {\n            display: grid;\n            gap: 20px;\n            margin: 2rem 0;\n        }\n        \n        .card {\n            background: white;\n            border-radius: 8px;\n            padding: 1.5rem;\n            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n            transition: transform 0.3s, box-shadow 0.3s;\n        }\n        \n        .card:hover {\n            transform: translateY(-5px);\n            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);\n        }\n        \n        .card img {\n            width: 100%;\n            height: 200px;\n            object-fit: cover;\n            border-radius: 4px;\n            margin-bottom: 1rem;\n        }\n        \n        /* Responsive typography */\n        h1 {\n            font-size: 2.5rem;\n            margin-bottom: 1rem;\n        }\n        \n        h2 {\n            font-size: 2rem;\n            margin: 1.5rem 0 1rem 0;\n            color: #2d3748;\n        }\n        \n        /* Responsive images */\n        .responsive-img {\n            max-width: 100%;\n            height: auto;\n            display: block;\n            margin: 1rem 0;\n        }\n        \n        /* Responsive iframe */\n        .video-container {\n            position: relative;\n            padding-bottom: 56.25%; /* 16:9 aspect ratio */\n            height: 0;\n            margin: 2rem 0;\n        }\n        \n        .video-container iframe {\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n        }\n        \n        /* Media Queries - The heart of responsive design */\n        \n        /* Small devices (phones, less than 600px) */\n        @media (max-width: 599px) {\n            h1 { font-size: 1.8rem; }\n            h2 { font-size: 1.5rem; }\n            \n            nav ul {\n                flex-direction: column;\n                gap: 0.5rem;\n                align-items: center;\n            }\n            \n            .grid {\n                grid-template-columns: 1fr;\n            }\n            \n            .container {\n                width: 95%;\n                padding: 10px;\n            }\n            \n            .card {\n                padding: 1rem;\n            }\n        }\n        \n        /* Medium devices (tablets, 600px to 899px) */\n        @media (min-width: 600px) and (max-width: 899px) {\n            .grid {\n                grid-template-columns: repeat(2, 1fr);\n            }\n            \n            h1 { font-size: 2rem; }\n            h2 { font-size: 1.75rem; }\n        }\n        \n        /* Large devices (desktops, 900px and up) */\n        @media (min-width: 900px) {\n            .grid {\n                grid-template-columns: repeat(3, 1fr);\n            }\n            \n            h1 { font-size: 2.5rem; }\n            h2 { font-size: 2rem; }\n        }\n        \n        /* Extra large screens */\n        @media (min-width: 1200px) {\n            .grid {\n                grid-template-columns: repeat(4, 1fr);\n            }\n        }\n        \n        /* Print styles */\n        @media print {\n            nav, .video-container, button {\n                display: none;\n            }\n            \n            body {\n                background: white;\n                color: black;\n                font-size: 12pt;\n            }\n            \n            .card {\n                box-shadow: none;\n                border: 1px solid #ddd;\n                page-break-inside: avoid;\n            }\n        }\n        \n        /* Dark mode preference */\n        @media (prefers-color-scheme: dark) {\n            body {\n                background: #1a202c;\n                color: #e2e8f0;\n            }\n            \n            .card {\n                background: #2d3748;\n                color: #e2e8f0;\n            }\n        }\n        \n        /* High contrast mode */\n        @media (prefers-contrast: high) {\n            a {\n                color: #0044cc;\n                text-decoration: underline;\n            }\n        }\n        \n        /* Reduced motion preference */\n        @media (prefers-reduced-motion: reduce) {\n            * {\n                animation-duration: 0.01ms !important;\n                animation-iteration-count: 1 !important;\n                transition-duration: 0.01ms !important;\n            }\n        }\n        \n        /* Demo buttons */\n        .demo-buttons {\n            display: flex;\n            gap: 1rem;\n            margin: 2rem 0;\n            flex-wrap: wrap;\n        }\n        \n        button {\n            padding: 0.75rem 1.5rem;\n            border: none;\n            border-radius: 4px;\n            cursor: pointer;\n            font-weight: bold;\n            transition: all 0.3s ease;\n        }\n        \n        .primary-btn {\n            background: #4299e1;\n            color: white;\n        }\n        \n        .secondary-btn {\n            background: #a0aec0;\n            color: white;\n        }\n        \n        /* Responsive button adjustments */\n        @media (max-width: 599px) {\n            .demo-buttons {\n                flex-direction: column;\n            }\n            \n            button {\n                width: 100%;\n            }\n        }\n        \n        /* Footer */\n        footer {\n            background: #2d3748;\n            color: white;\n            text-align: center;\n            padding: 2rem;\n            margin-top: 3rem;\n        }\n    </style>\n</head>\n<body>\n    <header>\n        <div class=\"container\">\n            <h1>Responsive Design Basics</h1>\n            <p>This page adapts to different screen sizes</p>\n            \n            <nav>\n                <ul>\n                    <li><a href=\"#home\">Home</a></li>\n                    <li><a href=\"#about\">About</a></li>\n                    <li><a href=\"#services\">Services</a></li>\n                    <li><a href=\"#portfolio\">Portfolio</a></li>\n                    <li><a href=\"#contact\">Contact</a></li>\n                </ul>\n            </nav>\n        </div>\n    </header>\n    \n    <main class=\"container\">\n        <section>\n            <h2>Why Responsive Design?</h2>\n            <p>With the variety of devices used to access the web, responsive design ensures your website looks good and works well everywhere.</p>\n            \n            <img src=\"https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80\" \n                 alt=\"Different devices showing responsive design\" \n                 class=\"responsive-img\">\n        </section>\n        \n        <section>\n            <h2>Key Principles</h2>\n            <div class=\"grid\">\n                <div class=\"card\">\n                    <img src=\"https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" alt=\"Fluid Grids\">\n                    <h3>Fluid Grids</h3>\n                    <p>Use percentage-based widths instead of fixed pixels to create flexible layouts that adapt to screen size.</p>\n                </div>\n                \n                <div class=\"card\">\n                    <img src=\"https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" alt=\"Flexible Images\">\n                    <h3>Flexible Images</h3>\n                    <p>Images scale within their containing elements using max-width: 100% to prevent overflow.</p>\n                </div>\n                \n                <div class=\"card\">\n                    <img src=\"https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" alt=\"Media Queries\">\n                    <h3>Media Queries</h3>\n                    <p>Apply different CSS rules based on device characteristics like width, height, and orientation.</p>\n                </div>\n            </div>\n        </section>\n        \n        <section>\n            <h2>Responsive Video Example</h2>\n            <p>Videos and iframes also need to be responsive. This video container maintains 16:9 aspect ratio.</p>\n            \n            <div class=\"video-container\">\n                <iframe src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" \n                        title=\"Responsive Video\" \n                        frameborder=\"0\" \n                        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" \n                        allowfullscreen>\n                </iframe>\n            </div>\n        </section>\n        \n        <section>\n            <h2>Try It Yourself</h2>\n            <p>Resize your browser window or open this page on different devices to see responsive design in action.</p>\n            \n            <div class=\"demo-buttons\">\n                <button class=\"primary-btn\">Primary Action</button>\n                <button class=\"secondary-btn\">Secondary Action</button>\n                <button class=\"primary-btn\">Another Button</button>\n            </div>\n            \n            <div class=\"grid\">\n                <div class=\"card\">\n                    <h3>Mobile View</h3>\n                    <p>Single column layout, larger touch targets, simplified navigation.</p>\n                </div>\n                <div class=\"card\">\n                    <h3>Tablet View</h3>\n                    <p>Two column layout, balanced spacing, adapted typography.</p>\n                </div>\n                <div class=\"card\">\n                    <h3>Desktop View</h3>\n                    <p>Multi-column layout, full navigation, detailed content display.</p>\n                </div>\n            </div>\n        </section>\n    </main>\n    \n    <footer>\n        <div class=\"container\">\n            <p>Responsive Design Example &copy; 2023</p>\n            <p>Try viewing this page on phone, tablet, and desktop to see the differences!</p>\n            <p>Current viewport width: <span id=\"viewport-width\"></span>px</p>\n        </div>\n    </footer>\n    \n    <script>\n        // Display current viewport width\n        function updateViewportWidth() {\n            document.getElementById('viewport-width').textContent = \n                window.innerWidth || document.documentElement.clientWidth;\n        }\n        \n        // Update on load and resize\n        window.addEventListener('load', updateViewportWidth);\n        window.addEventListener('resize', updateViewportWidth);\n        \n        // Log media query changes\n        const mediaQuery = window.matchMedia('(max-width: 599px)');\n        function handleTabletChange(e) {\n            if (e.matches) {\n                console.log('Now in mobile view (<= 599px)');\n            }\n        }\n        mediaQuery.addListener(handleTabletChange);\n        handleTabletChange(mediaQuery);\n    </script>\n</body>\n</html>",
+      "real_world_example": "All modern websites use responsive design. E-commerce sites like Amazon adjust product grids based on screen size. News sites like CNN rearrange articles for mobile reading. Social media platforms like Facebook optimize feeds for different devices. Restaurant sites show menus differently on phones versus desktops. Portfolio sites adjust project displays. Government sites ensure accessibility across devices. Educational platforms adapt courses for mobile learning.",
+      "interactive_tasks": [
+        "Create a responsive navigation menu that changes layout on mobile",
+        "Build a responsive image gallery using CSS Grid",
+        "Make a webpage that adapts to dark mode preferences"
+      ],
+      "quiz": [
+        {
+          "question": "What is responsive web design?",
+          "options": ["Fast loading websites", "Websites that adapt to different screen sizes", "Websites with videos", "Interactive websites"],
+          "answer": "Websites that adapt to different screen sizes",
+          "reasoning": "Responsive design creates websites that adjust layout and content based on device screen size."
+        },
+        {
+          "question": "Which meta tag is essential for mobile responsive design?",
+          "options": ["description", "viewport", "author", "keywords"],
+          "answer": "viewport",
+          "reasoning": "The viewport meta tag controls layout on mobile devices and is essential for responsive design."
+        },
+        {
+          "question": "What do media queries do?",
+          "options": ["Query databases", "Apply CSS based on device characteristics", "Make media files smaller", "Create queries for users"],
+          "answer": "Apply CSS based on device characteristics",
+          "reasoning": "Media queries apply different CSS rules based on device characteristics like width, height, or orientation."
+        },
+        {
+          "question": "How do you make images responsive?",
+          "options": ["Set fixed width", "Use max-width: 100%", "Use width: 100px", "Make them smaller"],
+          "answer": "Use max-width: 100%",
+          "reasoning": "max-width: 100% makes images scale down if needed but not scale up beyond original size."
+        },
+        {
+          "question": "What is a fluid grid?",
+          "options": ["Grid with water effect", "Grid using percentage-based widths", "Grid that flows like liquid", "Grid with fluid animations"],
+          "answer": "Grid using percentage-based widths",
+          "reasoning": "Fluid grids use percentage-based widths instead of fixed pixels to adapt to screen size."
+        },
+        {
+          "question": "Which CSS feature helps create responsive layouts?",
+          "options": ["CSS Grid and Flexbox", "Only tables", "Fixed positioning", "Float only"],
+          "answer": "CSS Grid and Flexbox",
+          "reasoning": "CSS Grid and Flexbox are modern CSS features that help create responsive layouts."
+        },
+        {
+          "question": "What does @media (max-width: 768px) target?",
+          "options": ["Screens wider than 768px", "Screens 768px or narrower", "Print only", "High resolution screens"],
+          "answer": "Screens 768px or narrower",
+          "reasoning": "@media (max-width: 768px) applies styles to screens with width 768 pixels or less."
+        }
+      ]
+    },
+    {
+      "title": "Day 20 – Final Project: Personal Portfolio Website",
+      "definition": "A complete personal portfolio website that showcases your skills, projects, and contact information, combining all HTML concepts learned throughout the course.",
+      "explanation": "This final project brings together everything you've learned about HTML. You'll create a professional portfolio website with multiple sections: header with navigation, hero section introducing yourself, projects showcase, skills section, about me, and contact form. The portfolio will be responsive, semantic, accessible, and visually appealing. This project demonstrates how HTML structures real-world websites and serves as a great starting point for your web development portfolio.",
+      "code_example": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta name=\"description\" content=\"Personal portfolio website showcasing web development projects and skills.\">\n    <meta name=\"keywords\" content=\"web development, portfolio, HTML, CSS, JavaScript, projects\">\n    <meta name=\"author\" content=\"Alex Johnson\">\n    \n    <!-- Open Graph tags for social media -->\n    <meta property=\"og:title\" content=\"Alex Johnson | Web Developer Portfolio\">\n    <meta property=\"og:description\" content=\"Check out my web development projects and skills.\">\n    <meta property=\"og:image\" content=\"https://example.com/portfolio-preview.jpg\">\n    <meta property=\"og:url\" content=\"https://example.com\">\n    \n    <title>Alex Johnson | Web Developer Portfolio</title>\n    \n    <!-- Favicon -->\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n    <link rel=\"apple-touch-icon\" href=\"apple-touch-icon.png\">\n    \n    <!-- Font Awesome for icons -->\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css\">\n    \n    <style>\n        /* Reset and base styles */\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n        \n        :root {\n            --primary-color: #2563eb;\n            --secondary-color: #1e40af;\n            --text-color: #1f2937;\n            --light-color: #f9fafb;\n            --dark-color: #111827;\n            --gray-color: #6b7280;\n            --success-color: #10b981;\n            --transition: all 0.3s ease;\n        }\n        \n        html {\n            scroll-behavior: smooth;\n        }\n        \n        body {\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n            line-height: 1.6;\n            color: var(--text-color);\n            background-color: var(--light-color);\n        }\n        \n        .container {\n            width: 90%;\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 0 20px;\n        }\n        \n        /* Typography */\n        h1, h2, h3, h4 {\n            font-weight: 700;\n            line-height: 1.2;\n            margin-bottom: 1rem;\n        }\n        \n        h1 { font-size: 3rem; }\n        h2 { font-size: 2.5rem; }\n        h3 { font-size: 1.75rem; }\n        h4 { font-size: 1.25rem; }\n        \n        p {\n            margin-bottom: 1rem;\n        }\n        \n        /* Header and Navigation */\n        header {\n            background-color: white;\n            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n            position: fixed;\n            width: 100%;\n            top: 0;\n            z-index: 1000;\n        }\n        \n        .navbar {\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            padding: 1rem 0;\n        }\n        \n        .logo {\n            font-size: 1.5rem;\n            font-weight: 700;\n            color: var(--primary-color);\n            text-decoration: none;\n        }\n        \n        .nav-links {\n            display: flex;\n            list-style: none;\n            gap: 2rem;\n        }\n        \n        .nav-links a {\n            text-decoration: none;\n            color: var(--text-color);\n            font-weight: 500;\n            transition: var(--transition);\n        }\n        \n        .nav-links a:hover {\n            color: var(--primary-color);\n        }\n        \n        .menu-toggle {\n            display: none;\n            background: none;\n            border: none;\n            font-size: 1.5rem;\n            cursor: pointer;\n            color: var(--text-color);\n        }\n        \n        /* Hero Section */\n        #hero {\n            padding: 10rem 0 5rem;\n            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);\n            text-align: center;\n        }\n        \n        .hero-content h1 {\n            margin-bottom: 1rem;\n        }\n        \n        .hero-content p {\n            font-size: 1.25rem;\n            color: var(--gray-color);\n            max-width: 800px;\n            margin: 0 auto 2rem;\n        }\n        \n        .btn {\n            display: inline-block;\n            padding: 0.75rem 2rem;\n            background-color: var(--primary-color);\n            color: white;\n            text-decoration: none;\n            border-radius: 4px;\n            font-weight: 600;\n            transition: var(--transition);\n            border: 2px solid var(--primary-color);\n        }\n        \n        .btn:hover {\n            background-color: var(--secondary-color);\n            border-color: var(--secondary-color);\n            transform: translateY(-2px);\n        }\n        \n        .btn-outline {\n            background-color: transparent;\n            color: var(--primary-color);\n        }\n        \n        .btn-outline:hover {\n            background-color: var(--primary-color);\n            color: white;\n        }\n        \n        /* Sections */\n        section {\n            padding: 5rem 0;\n        }\n        \n        .section-title {\n            text-align: center;\n            margin-bottom: 3rem;\n        }\n        \n        .section-title h2 {\n            position: relative;\n            display: inline-block;\n            padding-bottom: 0.5rem;\n        }\n        \n        .section-title h2::after {\n            content: '';\n            position: absolute;\n            bottom: 0;\n            left: 25%;\n            width: 50%;\n            height: 3px;\n            background-color: var(--primary-color);\n        }\n        \n        /* Projects Section */\n        .projects-grid {\n            display: grid;\n            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n            gap: 2rem;\n        }\n        \n        .project-card {\n            background-color: white;\n            border-radius: 8px;\n            overflow: hidden;\n            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n            transition: var(--transition);\n        }\n        \n        .project-card:hover {\n            transform: translateY(-5px);\n            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);\n        }\n        \n        .project-img {\n            width: 100%;\n            height: 200px;\n            object-fit: cover;\n        }\n        \n        .project-content {\n            padding: 1.5rem;\n        }\n        \n        .project-content h3 {\n            margin-bottom: 0.5rem;\n        }\n        \n        .project-tags {\n            display: flex;\n            flex-wrap: wrap;\n            gap: 0.5rem;\n            margin: 1rem 0;\n        }\n        \n        .tag {\n            background-color: #dbeafe;\n            color: var(--primary-color);\n            padding: 0.25rem 0.75rem;\n            border-radius: 20px;\n            font-size: 0.875rem;\n            font-weight: 500;\n        }\n        \n        /* Skills Section */\n        .skills-container {\n            display: grid;\n            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n            gap: 2rem;\n        }\n        \n        .skill-category {\n            background-color: white;\n            padding: 1.5rem;\n            border-radius: 8px;\n            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n        }\n        \n        .skill-list {\n            list-style: none;\n        }\n        \n        .skill-list li {\n            margin-bottom: 0.75rem;\n            display: flex;\n            align-items: center;\n        }\n        \n        .skill-list i {\n            color: var(--success-color);\n            margin-right: 0.5rem;\n        }\n        \n        /* About Section */\n        .about-content {\n            display: grid;\n            grid-template-columns: 1fr 2fr;\n            gap: 3rem;\n            align-items: center;\n        }\n        \n        .profile-img {\n            width: 100%;\n            max-width: 300px;\n            border-radius: 8px;\n            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);\n        }\n        \n        /* Contact Section */\n        #contact {\n            background-color: var(--dark-color);\n            color: white;\n        }\n        \n        #contact .section-title h2::after {\n            background-color: white;\n        }\n        \n        .contact-container {\n            display: grid;\n            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n            gap: 3rem;\n        }\n        \n        .contact-info {\n            display: flex;\n            flex-direction: column;\n            gap: 1.5rem;\n        }\n        \n        .contact-item {\n            display: flex;\n            align-items: center;\n            gap: 1rem;\n        }\n        \n        .contact-item i {\n            font-size: 1.25rem;\n            color: var(--primary-color);\n        }\n        \n        .social-links {\n            display: flex;\n            gap: 1rem;\n            margin-top: 1rem;\n        }\n        \n        .social-links a {\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            width: 40px;\n            height: 40px;\n            background-color: rgba(255, 255, 255, 0.1);\n            color: white;\n            border-radius: 50%;\n            text-decoration: none;\n            transition: var(--transition);\n        }\n        \n        .social-links a:hover {\n            background-color: var(--primary-color);\n            transform: translateY(-3px);\n        }\n        \n        /* Contact Form */\n        .contact-form {\n            background-color: rgba(255, 255, 255, 0.05);\n            padding: 2rem;\n            border-radius: 8px;\n        }\n        \n        .form-group {\n            margin-bottom: 1.5rem;\n        }\n        \n        .form-group label {\n            display: block;\n            margin-bottom: 0.5rem;\n            font-weight: 500;\n        }\n        \n        .form-group input,\n        .form-group textarea {\n            width: 100%;\n            padding: 0.75rem;\n            background-color: rgba(255, 255, 255, 0.1);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            border-radius: 4px;\n            color: white;\n            font-family: inherit;\n            font-size: 1rem;\n        }\n        \n        .form-group input:focus,\n        .form-group textarea:focus {\n            outline: none;\n            border-color: var(--primary-color);\n        }\n        \n        /* Footer */\n        footer {\n            background-color: #0f172a;\n            color: white;\n            text-align: center;\n            padding: 2rem 0;\n        }\n        \n        /* Responsive Design */\n        @media (max-width: 768px) {\n            h1 { font-size: 2.25rem; }\n            h2 { font-size: 2rem; }\n            h3 { font-size: 1.5rem; }\n            \n            .menu-toggle {\n                display: block;\n            }\n            \n            .nav-links {\n                position: fixed;\n                top: 70px;\n                left: 0;\n                width: 100%;\n                background-color: white;\n                flex-direction: column;\n                padding: 2rem;\n                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);\n                transform: translateY(-100%);\n                opacity: 0;\n                visibility: hidden;\n                transition: var(--transition);\n                z-index: 999;\n            }\n            \n            .nav-links.active {\n                transform: translateY(0);\n                opacity: 1;\n                visibility: visible;\n            }\n            \n            .about-content {\n                grid-template-columns: 1fr;\n                text-align: center;\n            }\n            \n            .profile-img {\n                margin: 0 auto;\n            }\n            \n            section {\n                padding: 3rem 0;\n            }\n        }\n        \n        @media (max-width: 480px) {\n            .container {\n                width: 95%;\n                padding: 0 10px;\n            }\n            \n            h1 { font-size: 2rem; }\n            h2 { font-size: 1.75rem; }\n            \n            .hero-content p {\n                font-size: 1rem;\n            }\n            \n            .btn {\n                padding: 0.6rem 1.5rem;\n            }\n            \n            .projects-grid {\n                grid-template-columns: 1fr;\n            }\n        }\n        \n        /* Print styles */\n        @media print {\n            .menu-toggle, .nav-links, .btn, .social-links, .contact-form {\n                display: none !important;\n            }\n            \n            header {\n                position: static;\n                box-shadow: none;\n            }\n            \n            section {\n                padding: 2rem 0;\n                page-break-inside: avoid;\n            }\n            \n            .project-card {\n                box-shadow: none;\n                border: 1px solid #ddd;\n            }\n        }\n    </style>\n</head>\n<body>\n    <!-- Header with Navigation -->\n    <header role=\"banner\">\n        <div class=\"container\">\n            <nav class=\"navbar\" aria-label=\"Main navigation\">\n                <a href=\"#hero\" class=\"logo\">AJ</a>\n                \n                <button class=\"menu-toggle\" aria-label=\"Toggle menu\" aria-expanded=\"false\">\n                    <i class=\"fas fa-bars\"></i>\n                </button>\n                \n                <ul class=\"nav-links\">\n                    <li><a href=\"#hero\">Home</a></li>\n                    <li><a href=\"#projects\">Projects</a></li>\n                    <li><a href=\"#skills\">Skills</a></li>\n                    <li><a href=\"#about\">About</a></li>\n                    <li><a href=\"#contact\">Contact</a></li>\n                </ul>\n            </nav>\n        </div>\n    </header>\n\n    <!-- Hero Section -->\n    <section id=\"hero\">\n        <div class=\"container\">\n            <div class=\"hero-content\">\n                <h1>Hi, I'm <span style=\"color: var(--primary-color);\">Alex Johnson</span></h1>\n                <h2>Frontend Web Developer</h2>\n                <p>I create beautiful, responsive websites and web applications with clean code and great user experiences. Welcome to my portfolio!</p>\n                <div>\n                    <a href=\"#projects\" class=\"btn\">View My Work</a>\n                    <a href=\"#contact\" class=\"btn btn-outline\">Contact Me</a>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <!-- Projects Section -->\n    <section id=\"projects\">\n        <div class=\"container\">\n            <div class=\"section-title\">\n                <h2>Featured Projects</h2>\n                <p>Here are some of my recent web development projects</p>\n            </div>\n            \n            <div class=\"projects-grid\">\n                <!-- Project 1 -->\n                <article class=\"project-card\">\n                    <img src=\"https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" \n                         alt=\"E-commerce website dashboard\" \n                         class=\"project-img\">\n                    <div class=\"project-content\">\n                        <h3>E-commerce Dashboard</h3>\n                        <p>A responsive admin dashboard for an online store with sales analytics, product management, and order tracking.</p>\n                        <div class=\"project-tags\">\n                            <span class=\"tag\">HTML</span>\n                            <span class=\"tag\">CSS</span>\n                            <span class=\"tag\">JavaScript</span>\n                            <span class=\"tag\">Chart.js</span>\n                        </div>\n                        <a href=\"#\" class=\"btn\" style=\"display: inline-block; margin-top: 1rem;\">View Project</a>\n                    </div>\n                </article>\n                \n                <!-- Project 2 -->\n                <article class=\"project-card\">\n                    <img src=\"https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" \n                         alt=\"Weather application interface\" \n                         class=\"project-img\">\n                    <div class=\"project-content\">\n                        <h3>Weather App</h3>\n                        <p>A weather application that displays current conditions and forecasts using a weather API with location detection.</p>\n                        <div class=\"project-tags\">\n                            <span class=\"tag\">HTML</span>\n                            <span class=\"tag\">CSS</span>\n                            <span class=\"tag\">JavaScript</span>\n                            <span class=\"tag\">API</span>\n                        </div>\n                        <a href=\"#\" class=\"btn\" style=\"display: inline-block; margin-top: 1rem;\">View Project</a>\n                    </div>\n                </article>\n                \n                <!-- Project 3 -->\n                <article class=\"project-card\">\n                    <img src=\"https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" \n                         alt=\"Task management application\" \n                         class=\"project-img\">\n                    <div class=\"project-content\">\n                        <h3>Task Manager</h3>\n                        <p>A productivity application for managing tasks with drag-and-drop functionality, deadlines, and project categorization.</p>\n                        <div class=\"project-tags\">\n                            <span class=\"tag\">HTML</span>\n                            <span class=\"tag\">CSS</span>\n                            <span class=\"tag\">JavaScript</span>\n                            <span class=\"tag\">LocalStorage</span>\n                        </div>\n                        <a href=\"#\" class=\"btn\" style=\"display: inline-block; margin-top: 1rem;\">View Project</a>\n                    </div>\n                </article>\n            </div>\n        </div>\n    </section>\n\n    <!-- Skills Section -->\n    <section id=\"skills\">\n        <div class=\"container\">\n            <div class=\"section-title\">\n                <h2>My Skills</h2>\n                <p>Technologies and tools I work with</p>\n            </div>\n            \n            <div class=\"skills-container\">\n                <div class=\"skill-category\">\n                    <h3>Frontend</h3>\n                    <ul class=\"skill-list\">\n                        <li><i class=\"fas fa-check\"></i> HTML5 & Semantic HTML</li>\n                        <li><i class=\"fas fa-check\"></i> CSS3 & Responsive Design</li>\n                        <li><i class=\"fas fa-check\"></i> JavaScript (ES6+)</li>\n                        <li><i class=\"fas fa-check\"></i> React.js</li>\n                        <li><i class=\"fas fa-check\"></i> Bootstrap & Tailwind CSS</li>\n                    </ul>\n                </div>\n                \n                <div class=\"skill-category\">\n                    <h3>Tools & Practices</h3>\n                    <ul class=\"skill-list\">\n                        <li><i class=\"fas fa-check\"></i> Git & GitHub</li>\n                        <li><i class=\"fas fa-check\"></i> Responsive Web Design</li>\n                        <li><i class=\"fas fa-check\"></i> Cross-Browser Compatibility</li>\n                        <li><i class=\"fas fa-check\"></i> Web Accessibility (WCAG)</li>\n                        <li><i class=\"fas fa-check\"></i> Chrome DevTools</li>\n                    </ul>\n                </div>\n                \n                <div class=\"skill-category\">\n                    <h3>Currently Learning</h3>\n                    <ul class=\"skill-list\">\n                        <li><i class=\"fas fa-book\"></i> Node.js & Express</li>\n                        <li><i class=\"fas fa-book\"></i> MongoDB</li>\n                        <li><i class=\"fas fa-book\"></i> TypeScript</li>\n                        <li><i class=\"fas fa-book\"></i> Next.js</li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <!-- About Section -->\n    <section id=\"about\">\n        <div class=\"container\">\n            <div class=\"section-title\">\n                <h2>About Me</h2>\n            </div>\n            \n            <div class=\"about-content\">\n                <div>\n                    <img src=\"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80\" \n                         alt=\"Alex Johnson portrait\" \n                         class=\"profile-img\">\n                </div>\n                \n                <div>\n                    <h3>Hello! I'm Alex</h3>\n                    <p>I'm a passionate frontend web developer with 2 years of experience creating engaging and user-friendly websites. I specialize in turning designs into functional, responsive websites that work across all devices.</p>\n                    \n                    <p>My journey into web development started during my computer science studies, and I've been hooked ever since. I love the challenge of solving problems and creating solutions that make people's lives easier.</p>\n                    \n                    <p>When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new web technologies. I'm always eager to learn and take on new challenges.</p>\n                    \n                    <a href=\"#contact\" class=\"btn\" style=\"margin-top: 1.5rem;\">Let's Work Together</a>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <!-- Contact Section -->\n    <section id=\"contact\">\n        <div class=\"container\">\n            <div class=\"section-title\">\n                <h2>Get In Touch</h2>\n                <p>Feel free to reach out for collaborations or just a friendly hello</p>\n            </div>\n            \n            <div class=\"contact-container\">\n                <div class=\"contact-info\">\n                    <h3>Contact Information</h3>\n                    <p>I'm currently available for freelance work or full-time opportunities. Don't hesitate to reach out!</p>\n                    \n                    <div class=\"contact-item\">\n                        <i class=\"fas fa-envelope\"></i>\n                        <div>\n                            <h4>Email</h4>\n                            <p>alex@example.com</p>\n                        </div>\n                    </div>\n                    \n                    <div class=\"contact-item\">\n                        <i class=\"fas fa-phone\"></i>\n                        <div>\n                            <h4>Phone</h4>\n                            <p>+1 (123) 456-7890</p>\n                        </div>\n                    </div>\n                    \n                    <div class=\"contact-item\">\n                        <i class=\"fas fa-map-marker-alt\"></i>\n                        <div>\n                            <h4>Location</h4>\n                            <p>San Francisco, CA</p>\n                        </div>\n                    </div>\n                    \n                    <div class=\"social-links\">\n                        <a href=\"https://github.com\" aria-label=\"GitHub\"><i class=\"fab fa-github\"></i></a>\n                        <a href=\"https://linkedin.com\" aria-label=\"LinkedIn\"><i class=\"fab fa-linkedin-in\"></i></a>\n                        <a href=\"https://twitter.com\" aria-label=\"Twitter\"><i class=\"fab fa-twitter\"></i></a>\n                        <a href=\"https://codepen.io\" aria-label=\"CodePen\"><i class=\"fab fa-codepen\"></i></a>\n                    </div>\n                </div>\n                \n                <div class=\"contact-form\">\n                    <h3>Send a Message</h3>\n                    <form action=\"#\" method=\"POST\">\n                        <div class=\"form-group\">\n                            <label for=\"name\">Full Name</label>\n                            <input type=\"text\" id=\"name\" name=\"name\" required>\n                        </div>\n                        \n                        <div class=\"form-group\">\n                            <label for=\"email\">Email Address</label>\n                            <input type=\"email\" id=\"email\" name=\"email\" required>\n                        </div>\n                        \n                        <div class=\"form-group\">\n                            <label for=\"subject\">Subject</label>\n                            <input type=\"text\" id=\"subject\" name=\"subject\">\n                        </div>\n                        \n                        <div class=\"form-group\">\n                            <label for=\"message\">Message</label>\n                            <textarea id=\"message\" name=\"message\" rows=\"5\" required></textarea>\n                        </div>\n                        \n                        <button type=\"submit\" class=\"btn\">Send Message</button>\n                    </form>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <!-- Footer -->\n    <footer role=\"contentinfo\">\n        <div class=\"container\">\n            <p>&copy; 2023 Alex Johnson. All rights reserved.</p>\n            <p>Designed and built with HTML, CSS, and JavaScript</p>\n            <p style=\"margin-top: 1rem; font-size: 0.875rem; opacity: 0.8;\">This portfolio website was created as a final project for an HTML beginner course.</p>\n        </div>\n    </footer>\n\n    <script>\n        // Mobile menu toggle\n        const menuToggle = document.querySelector('.menu-toggle');\n        const navLinks = document.querySelector('.nav-links');\n        \n        menuToggle.addEventListener('click', () => {\n            navLinks.classList.toggle('active');\n            const isExpanded = navLinks.classList.contains('active');\n            menuToggle.setAttribute('aria-expanded', isExpanded);\n        });\n        \n        // Close menu when clicking a link\n        document.querySelectorAll('.nav-links a').forEach(link => {\n            link.addEventListener('click', () => {\n                navLinks.classList.remove('active');\n                menuToggle.setAttribute('aria-expanded', 'false');\n            });\n        });\n        \n        // Smooth scroll for anchor links\n        document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {\n            anchor.addEventListener('click', function(e) {\n                e.preventDefault();\n                \n                const targetId = this.getAttribute('href');\n                if (targetId === '#') return;\n                \n                const targetElement = document.querySelector(targetId);\n                if (targetElement) {\n                    window.scrollTo({\n                        top: targetElement.offsetTop - 80,\n                        behavior: 'smooth'\n                    });\n                }\n            });\n        });\n        \n        // Form submission (basic example)\n        const contactForm = document.querySelector('.contact-form form');\n        contactForm.addEventListener('submit', function(e) {\n            e.preventDefault();\n            \n            // In a real application, you would send the form data to a server here\n            alert('Thank you for your message! This is a demo form, so no message was actually sent.');\n            this.reset();\n        });\n        \n        // Update copyright year automatically\n        document.querySelector('footer p').innerHTML = \n            document.querySelector('footer p').innerHTML.replace('2023', new Date().getFullYear());\n        \n        console.log('Portfolio website loaded successfully!');\n    </script>\n</body>\n</html>",
+      "real_world_example": "Portfolio websites are essential for web developers, designers, and creative professionals. Freelancers use them to attract clients. Job seekers use them to showcase skills to employers. Agencies use them to display client work. Content creators use them to share their work. This project demonstrates real-world web development practices and can be customized for any profession or personal brand.",
+      "interactive_tasks": [
+        "Customize the portfolio with your own information and projects",
+        "Add a new section for testimonials or certifications",
+        "Implement dark/light mode toggle functionality",
+        "Make the contact form actually submit data (with backend integration)"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main purpose of a portfolio website?",
+          "options": ["Store files", "Showcase skills and projects", "Sell products", "Host videos"],
+          "answer": "Showcase skills and projects",
+          "reasoning": "Portfolio websites showcase an individual's work, skills, and accomplishments to potential clients or employers."
+        },
+        {
+          "question": "Which semantic element is best for the main content?",
+          "options": ["<div>", "<main>", "<content>", "<body>"],
+          "answer": "<main>",
+          "reasoning": "<main> represents the dominant content of the document and is semantically appropriate."
+        },
+        {
+          "question": "Why use ARIA attributes in the portfolio?",
+          "options": ["Make site faster", "Improve accessibility", "Add animations", "Change colors"],
+          "answer": "Improve accessibility",
+          "reasoning": "ARIA (Accessible Rich Internet Applications) attributes improve accessibility for assistive technologies."
+        },
+        {
+          "question": "What makes this portfolio responsive?",
+          "options": ["Media queries and flexible layouts", "Only works on desktop", "Uses Flash", "Needs mobile app"],
+          "answer": "Media queries and flexible layouts",
+          "reasoning": "Media queries, flexible grids, and responsive images make the portfolio adapt to different screen sizes."
+        },
+        {
+          "question": "Which section is typically at the top of a portfolio?",
+          "options": ["Contact form", "Projects", "Hero/Introduction", "Skills"],
+          "answer": "Hero/Introduction",
+          "reasoning": "The hero section introduces the person and their role, creating immediate engagement."
+        },
+        {
+          "question": "What is the purpose of the viewport meta tag?",
+          "options": ["Set page title", "Control mobile layout", "Add keywords", "Link CSS"],
+          "answer": "Control mobile layout",
+          "reasoning": "The viewport meta tag controls how the page is displayed on mobile devices for responsive design."
+        },
+        {
+          "question": "Why include a contact form in a portfolio?",
+          "options": ["Make site longer", "Allow visitors to get in touch", "Show programming skills", "All of the above"],
+          "answer": "All of the above",
+          "reasoning": "Contact forms enable communication, demonstrate form-building skills, and add functionality."
+        }
+      ]
+    }
+  ]
+}

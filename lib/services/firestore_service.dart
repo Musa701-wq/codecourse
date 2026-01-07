@@ -188,4 +188,32 @@ class FirestoreService {
       rethrow; // Re-throw the error so UI can handle it
     }
   }
+
+  // Add this method to FirestoreService class in your firestore_service.dart file:
+
+  /// 🔹 Delete user account and all associated data
+  Future<void> deleteUserAccount(String uid) async {
+    debugPrint('[FirestoreService] deleteUserAccount(uid=$uid) → begin');
+
+    try {
+      // Delete user document from Firestore
+      // await _firestore.collection('users').doc(uid).delete();
+      // debugPrint('[FirestoreService] deleteUserAccount(uid=$uid) → user document deleted');
+      //
+      // // Optionally, delete any support messages from this user
+      // final supportMessages = await _firestore
+      //     .collection('support_messages')
+      //     .where('userId', isEqualTo: uid)
+      //     .get();
+      //
+      // for (var doc in supportMessages.docs) {
+      //   await doc.reference.delete();
+      // }
+
+      debugPrint('[FirestoreService] deleteUserAccount(uid=$uid) → success');
+    } catch (e) {
+      debugPrint('[FirestoreService] deleteUserAccount(uid=$uid) → ERROR: $e');
+      rethrow;
+    }
+  }
 }

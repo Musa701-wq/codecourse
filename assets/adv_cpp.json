@@ -1,0 +1,547 @@
+{
+  "course_title": "C++ Advanced Level",
+  "description": "Master modern C++ features such as RAII, templates, and concurrency patterns that power high-performance systems.",
+  "days": [
+    {
+      "title": "Day 25 – C++ List (Doubly Linked List)",
+      "definition": "List is a sequence container that allows fast insertion/deletion anywhere, implemented as doubly linked list.",
+      "explanation": "List is like a chain where each link knows its neighbors. Easy to add/remove links anywhere.",
+      "code_example": "#include <iostream>\n#include <list>\nusing namespace std;\n\nint main() {\n    list<string> names = {\"Ali\", \"Sara\", \"Ahmed\"};\n    \n    // Add elements\n    names.push_back(\"Fatima\");  // End\n    names.push_front(\"Zain\");   // Beginning\n    \n    // Remove\n    names.remove(\"Ahmed\");\n    \n    // Display\n    for(string name : names) {\n        cout << name << \" \";\n    }\n    \n    cout << \"\\nFront: \" << names.front();\n    cout << \"\\nBack: \" << names.back();\n    \n    return 0;\n}",
+      "real_world_example": "Used in music playlists, browser history, undo/redo operations.",
+      "interactive_tasks": [
+        "Create list of integers",
+        "Add/remove from both ends"
+      ],
+      "quiz": [
+        {"question": "Can list access elements by index?", "options": ["Yes", "No", "Only front/back", "Sometimes"], "answer": "No", "reasoning": "List doesn't support random access by index."},
+        {"question": "Where can you add elements in list?", "options": ["Beginning", "End", "Middle", "All of above"], "answer": "All of above", "reasoning": "List supports insertion anywhere."},
+        {"question": "How is list implemented?", "options": ["Array", "Doubly linked list", "Vector", "Stack"], "answer": "Doubly linked list", "reasoning": "List uses doubly linked nodes."}
+      ]
+    },
+    {
+      "title": "Day 26 – C++ Stack (LIFO)",
+      "definition": "Stack is a LIFO (Last-In-First-Out) container where elements are added/removed only from top.",
+      "explanation": "Stack is like a pile of plates - you add/remove from top only. Last plate added is first removed.",
+      "code_example": "#include <iostream>\n#include <stack>\nusing namespace std;\n\nint main() {\n    stack<string> books;\n    \n    // Push (add to top)\n    books.push(\"C++ Guide\");\n    books.push(\"Python Book\");\n    books.push(\"Java Tutorial\");\n    \n    // Access top\n    cout << \"Top book: \" << books.top() << endl;\n    \n    // Pop (remove top)\n    books.pop();\n    cout << \"After pop, top: \" << books.top() << endl;\n    \n    // Check size\n    cout << \"Books count: \" << books.size() << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Used in function calls, undo operations, expression evaluation, browser back button.",
+      "interactive_tasks": [
+        "Create stack of integers",
+        "Implement simple undo system"
+      ],
+      "quiz": [
+        {"question": "What does LIFO mean?", "options": ["Last In First Out", "First In First Out", "Last In Last Out", "First In Last Out"], "answer": "Last In First Out", "reasoning": "LIFO = Last element added is first removed."},
+        {"question": "Where are elements added in stack?", "options": ["Top", "Bottom", "Middle", "Anywhere"], "answer": "Top", "reasoning": "Stack only allows top operations."},
+        {"question": "Which function removes top element?", "options": ["pop()", "push()", "top()", "remove()"], "answer": "pop()", "reasoning": "pop() removes top element."}
+      ]
+    },
+
+    {
+      "title": "Day 27 – C++ Map (Key-Value Pairs)",
+      "definition": "Map stores key-value pairs with unique keys, providing fast lookup by key.",
+      "explanation": "Map is like a dictionary - look up word (key) to find meaning (value). Each word appears once.",
+      "code_example": "#include <iostream>\n#include <map>\nusing namespace std;\n\nint main() {\n    map<string, int> ages;\n    \n    // Add key-value pairs\n    ages[\"Ali\"] = 25;\n    ages[\"Sara\"] = 22;\n    ages[\"Ahmed\"] = 30;\n    \n    // Access by key\n    cout << \"Ali's age: \" << ages[\"Ali\"] << endl;\n    \n    // Update value\n    ages[\"Ali\"] = 26;\n    \n    // Check if key exists\n    if(ages.count(\"Sara\")) {\n        cout << \"Sara exists in map\" << endl;\n    }\n    \n    // Display all\n    for(auto pair : ages) {\n        cout << pair.first << \": \" << pair.second << endl;\n    }\n    \n    return 0;\n}",
+      "real_world_example": "Used in phone books (name→number), dictionaries (word→meaning), configurations (setting→value).",
+      "interactive_tasks": [
+        "Create map for student grades",
+        "Make phone directory"
+      ],
+      "quiz": [
+        {"question": "What does map store?", "options": ["Key-value pairs", "Only values", "Only keys", "Arrays"], "answer": "Key-value pairs", "reasoning": "Map stores pairs of keys and values."},
+        {"question": "Are map keys unique?", "options": ["Yes", "No", "Sometimes", "Depends"], "answer": "Yes", "reasoning": "Each key must be unique in map."},
+        {"question": "How to access map value?", "options": ["Using key", "Using index", "Using value", "Randomly"], "answer": "Using key", "reasoning": "Values are accessed by their keys."}
+      ]
+    },
+    {
+      "title": "Day 28 – C++ STL Algorithms",
+      "definition": "STL Algorithms are pre-built functions in the <algorithm> library that perform common operations like sorting, searching, and manipulating data structures using iterators.",
+      "explanation": "STL Algorithms are like power tools for programmers. Instead of writing repetitive loops for sorting or searching, you use these ready-made, optimized functions. They work with any data structure that supports iterators (like vectors, lists, arrays). Think of them as a toolbox: sort() is your hammer, find() is your screwdriver, and transform() is your power drill. They make your code shorter, faster, and less error-prone.",
+      "code_example": "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <numeric>\nusing namespace std;\n\nint main() {\n    cout << \"=== C++ STL Algorithms ===\" << endl;\n    \n    // Sorting Algorithms\n    cout << \"\\n--- Sorting Algorithms ---\" << endl;\n    \n    vector<int> numbers = {5, 2, 8, 1, 9, 3, 7, 4, 6};\n    vector<string> fruits = {\"banana\", \"apple\", \"orange\", \"grape\", \"mango\"};\n    \n    // Basic sort (ascending)\n    sort(numbers.begin(), numbers.end());\n    cout << \"Sorted numbers (ascending): \";\n    for (int n : numbers) cout << n << \" \";\n    cout << endl;\n    \n    // Sort strings alphabetically\n    sort(fruits.begin(), fruits.end());\n    cout << \"Sorted fruits: \";\n    for (string f : fruits) cout << f << \" \";\n    cout << endl;\n    \n    // Sort descending\n    sort(numbers.rbegin(), numbers.rend());\n    cout << \"Sorted numbers (descending): \";\n    for (int n : numbers) cout << n << \" \";\n    cout << endl;\n    \n    // Partial sort (first 3 elements)\n    numbers = {9, 2, 5, 1, 8, 3, 7, 4, 6};\n    partial_sort(numbers.begin(), numbers.begin() + 3, numbers.end());\n    cout << \"First 3 sorted elements: \";\n    for (int n : numbers) cout << n << \" \";\n    cout << endl;\n    \n    // Searching Algorithms\n    cout << \"\\n--- Searching Algorithms ---\" << endl;\n    \n    numbers = {1, 3, 5, 7, 9, 2, 4, 6, 8};\n    \n    // Find specific value\n    auto it = find(numbers.begin(), numbers.end(), 5);\n    if (it != numbers.end()) {\n        cout << \"Found 5 at position: \" << distance(numbers.begin(), it) << endl;\n    }\n    \n    // Find if condition matches\n    it = find_if(numbers.begin(), numbers.end(), [](int n) {\n        return n > 6;\n    });\n    if (it != numbers.end()) {\n        cout << \"First number > 6: \" << *it << endl;\n    }\n    \n    // Binary search (requires sorted data)\n    sort(numbers.begin(), numbers.end());\n    bool found = binary_search(numbers.begin(), numbers.end(), 7);\n    cout << \"Binary search for 7: \" << (found ? \"Found\" : \"Not found\") << endl;\n    \n    // Lower and upper bound\n    it = lower_bound(numbers.begin(), numbers.end(), 5);\n    cout << \"Lower bound of 5: \" << *it << endl;\n    \n    it = upper_bound(numbers.begin(), numbers.end(), 5);\n    cout << \"Upper bound of 5: \" << *it << endl;\n    \n    // Min/Max Algorithms\n    cout << \"\\n--- Min/Max Algorithms ---\" << endl;\n    \n    numbers = {4, 2, 9, 1, 7, 3};\n    \n    auto min_it = min_element(numbers.begin(), numbers.end());\n    auto max_it = max_element(numbers.begin(), numbers.end());\n    \n    cout << \"Minimum element: \" << *min_it << endl;\n    cout << \"Maximum element: \" << *max_it << endl;\n    \n    int a = 10, b = 20;\n    cout << \"Min of 10 and 20: \" << min(a, b) << endl;\n    cout << \"Max of 10 and 20: \" << max(a, b) << endl;\n    \n    // Modifying Algorithms\n    cout << \"\\n--- Modifying Algorithms ---\" << endl;\n    \n    vector<int> source = {1, 2, 3, 4, 5};\n    vector<int> destination(5);\n    \n    // Copy elements\n    copy(source.begin(), source.end(), destination.begin());\n    cout << \"Copied vector: \";\n    for (int n : destination) cout << n << \" \";\n    cout << endl;\n    \n    // Fill with value\n    fill(destination.begin(), destination.end(), 0);\n    cout << \"Filled with zeros: \";\n    for (int n : destination) cout << n << \" \";\n    cout << endl;\n    \n    // Generate values\n    vector<int> generated(5);\n    int counter = 1;\n    generate(generated.begin(), generated.end(), [&counter]() {\n        return counter++ * 10;\n    });\n    cout << \"Generated numbers: \";\n    for (int n : generated) cout << n << \" \";\n    cout << endl;\n    \n    // Remove elements\n    vector<int> with_duplicates = {1, 2, 2, 3, 4, 4, 5};\n    auto new_end = unique(with_duplicates.begin(), with_duplicates.end());\n    with_duplicates.erase(new_end, with_duplicates.end());\n    cout << \"After removing duplicates: \";\n    for (int n : with_duplicates) cout << n << \" \";\n    cout << endl;\n    \n    // Counting Algorithms\n    cout << \"\\n--- Counting Algorithms ---\" << endl;\n    \n    numbers = {1, 2, 3, 2, 4, 2, 5};\n    \n    int count_2 = count(numbers.begin(), numbers.end(), 2);\n    cout << \"Number 2 appears \" << count_2 << \" times\" << endl;\n    \n    int count_even = count_if(numbers.begin(), numbers.end(), [](int n) {\n        return n % 2 == 0;\n    });\n    cout << \"Even numbers: \" << count_even << endl;\n    \n    // Numeric Algorithms\n    cout << \"\\n--- Numeric Algorithms ---\" << endl;\n    \n    numbers = {1, 2, 3, 4, 5};\n    \n    int sum = accumulate(numbers.begin(), numbers.end(), 0);\n    cout << \"Sum of numbers: \" << sum << endl;\n    \n    int product = accumulate(numbers.begin(), numbers.end(), 1, multiplies<int>());\n    cout << \"Product of numbers: \" << product << endl;\n    \n    // Transform (apply function to each element)\n    cout << \"\\n--- Transform Algorithm ---\" << endl;\n    \n    vector<int> original = {1, 2, 3, 4, 5};\n    vector<int> squared(original.size());\n    \n    transform(original.begin(), original.end(), squared.begin(), [](int n) {\n        return n * n;\n    });\n    \n    cout << \"Original: \";\n    for (int n : original) cout << n << \" \";\n    cout << endl;\n    \n    cout << \"Squared: \";\n    for (int n : squared) cout << n << \" \";\n    cout << endl;\n    \n    // Reverse Algorithm\n    cout << \"\\n--- Reverse Algorithm ---\" << endl;\n    \n    vector<int> to_reverse = {1, 2, 3, 4, 5};\n    reverse(to_reverse.begin(), to_reverse.end());\n    cout << \"Reversed: \";\n    for (int n : to_reverse) cout << n << \" \";\n    cout << endl;\n    \n    cout << \"\\n=== Algorithm Categories ===\" << endl;\n    cout << \"1. Non-modifying: find, count, search\" << endl;\n    cout << \"2. Modifying: copy, fill, transform\" << endl;\n    cout << \"3. Sorting: sort, stable_sort, partial_sort\" << endl;\n    cout << \"4. Binary Search: binary_search, lower_bound\" << endl;\n    cout << \"5. Min/Max: min_element, max_element\" << endl;\n    cout << \"6. Numeric: accumulate, inner_product\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "STL Algorithms are used everywhere: Sorting products by price on e-commerce sites, searching for users in databases, filtering spam emails, ranking search results, processing sensor data in IoT devices, and analyzing financial data. When you sort contacts in your phone, when you search for a file on your computer, when a website filters products - all these use algorithms similar to STL algorithms.",
+      "interactive_tasks": [
+        "Create a vector of 10 random numbers and sort them in descending order",
+        "Find all prime numbers in a vector using find_if algorithm",
+        "Use transform to convert a vector of Celsius temperatures to Fahrenheit"
+      ],
+      "quiz": [
+        {
+          "question": "Which header file is needed for STL algorithms?",
+          "options": [
+            "<vector>",
+            "<algorithm>",
+            "<iostream>",
+            "<iterator>"
+          ],
+          "answer": "<algorithm>",
+          "reasoning": "The <algorithm> header contains most STL algorithm functions."
+        },
+        {
+          "question": "What does sort() function do by default?",
+          "options": [
+            "Sorts in ascending order",
+            "Sorts in descending order",
+            "Sorts only numbers",
+            "Sorts only strings"
+          ],
+          "answer": "Sorts in ascending order",
+          "reasoning": "sort() uses the < operator by default, which results in ascending order."
+        },
+        {
+          "question": "Which algorithm finds a specific value in a container?",
+          "options": [
+            "search()",
+            "find()",
+            "locate()",
+            "get()"
+          ],
+          "answer": "find()",
+          "reasoning": "find() searches for a specific value and returns an iterator to it."
+        },
+        {
+          "question": "What is required before using binary_search()?",
+          "options": [
+            "Container must be sorted",
+            "Container must be empty",
+            "Container must have even size",
+            "Container must contain only integers"
+          ],
+          "answer": "Container must be sorted",
+          "reasoning": "binary_search() works only on sorted ranges."
+        },
+        {
+          "question": "Which algorithm adds all elements of a container?",
+          "options": [
+            "sum()",
+            "add()",
+            "accumulate()",
+            "total()"
+          ],
+          "answer": "accumulate()",
+          "reasoning": "accumulate() computes the sum (or other operation) of all elements."
+        },
+        {
+          "question": "What does transform() algorithm do?",
+          "options": [
+            "Changes container size",
+            "Applies function to each element",
+            "Sorts elements",
+            "Removes duplicates"
+          ],
+          "answer": "Applies function to each element",
+          "reasoning": "transform() applies a given function to each element and stores results."
+        },
+        {
+          "question": "Which function finds the smallest element?",
+          "options": [
+            "smallest()",
+            "min_element()",
+            "find_min()",
+            "minimum()"
+          ],
+          "answer": "min_element()",
+          "reasoning": "min_element() returns iterator to the smallest element."
+        }
+      ]
+    },
+    {
+      "title": "Day 29 – C++ STL (Standard Template Library)",
+      "definition": "STL provides ready-to-use data structures and algorithms for efficient programming.",
+      "explanation": "STL is like a toolbox with containers (boxes for data) and tools (algorithms) to work with them.",
+      "code_example": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    // Vector (dynamic array)\n    vector<int> nums = {5, 2, 8, 1, 9};\n    \n    // Sort algorithm\n    sort(nums.begin(), nums.end());\n    \n    // Display\n    for(int n : nums) {\n        cout << n << \" \";\n    }\n    \n    cout << \"\\nFirst element: \" << nums[0];\n    cout << \"\\nSize: \" << nums.size();\n    \n    return 0;\n}",
+      "real_world_example": "Used in games for enemy lists, in websites for user data, in apps for storing information.",
+      "interactive_tasks": [
+        "Create vector of strings",
+        "Use sort on custom data"
+      ],
+      "quiz": [
+        {"question": "What does STL stand for?", "options": ["Standard Template Library", "Simple Tool Library", "System Template Library", "Standard Type Library"], "answer": "Standard Template Library", "reasoning": "STL = Standard Template Library."},
+        {"question": "Which is NOT STL container?", "options": ["vector", "array", "list", "printf"], "answer": "printf", "reasoning": "printf is C function, not STL container."},
+        {"question": "What does vector provide?", "options": ["Dynamic array", "Fixed array", "Linked list", "Queue"], "answer": "Dynamic array", "reasoning": "Vector is resizable array."}
+      ]
+    },
+    {
+      "title": "Day 30 – C++ Namespaces",
+      "definition": "Namespaces are containers that group related code elements together under a unique name to prevent naming conflicts and organize code logically.",
+      "explanation": "Namespaces are like family surnames in a large city. Imagine two people named 'Ali' - one might be 'Ali Khan' and another 'Ali Ahmed'. The surnames (namespaces) help distinguish between them. Similarly, in programming, namespaces prevent conflicts when different libraries or code sections use the same identifier names. They're like virtual folders that keep your code organized and avoid collisions.",
+      "code_example": "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Basic namespace declaration\nnamespace MathOperations {\n    const double PI = 3.14159;\n    \n    double add(double a, double b) {\n        return a + b;\n    }\n    \n    double multiply(double a, double b) {\n        return a * b;\n    }\n    \n    class Calculator {\n    public:\n        static double square(double x) {\n            return x * x;\n        }\n    };\n}\n\n// Another namespace\nnamespace StringOperations {\n    string toUpper(string str) {\n        for (char &c : str) {\n            c = toupper(c);\n        }\n        return str;\n    }\n    \n    string toLower(string str) {\n        for (char &c : str) {\n            c = tolower(c);\n        }\n        return str;\n    }\n}\n\n// Nested namespaces\nnamespace Company {\n    namespace HR {\n        class Employee {\n        public:\n            string name;\n            int id;\n            Employee(string n, int i) : name(n), id(i) {}\n        };\n        \n        void showEmployee(Employee e) {\n            cout << \"ID: \" << e.id << \", Name: \" << e.name << endl;\n        }\n    }\n    \n    namespace Finance {\n        double calculateTax(double salary) {\n            return salary * 0.15;\n        }\n    }\n}\n\n// Global scope\nint count = 100;  // Global variable\n\n// Namespace with same variable name\nnamespace ProjectA {\n    int count = 50;\n    \n    void display() {\n        cout << \"ProjectA count: \" << count << endl;\n        cout << \"Global count: \" << ::count << endl;  // Access global\n    }\n}\n\nnamespace ProjectB {\n    int count = 75;\n}\n\n// Anonymous namespace (only accessible in this file)\nnamespace {\n    int internalCounter = 0;\n    \n    void increment() {\n        internalCounter++;\n    }\n}\n\nint main() {\n    cout << \"=== C++ Namespaces ===\" << endl;\n    \n    // Accessing namespace elements with scope resolution\n    cout << \"\\n--- Using Scope Resolution (::) ---\" << endl;\n    \n    cout << \"Math PI: \" << MathOperations::PI << endl;\n    cout << \"5 + 3 = \" << MathOperations::add(5, 3) << endl;\n    cout << \"Square of 4: \" << MathOperations::Calculator::square(4) << endl;\n    \n    string text = \"Hello World\";\n    cout << \"Uppercase: \" << StringOperations::toUpper(text) << endl;\n    cout << \"Lowercase: \" << StringOperations::toLower(text) << endl;\n    \n    // Using nested namespaces\n    cout << \"\\n--- Nested Namespaces ---\" << endl;\n    Company::HR::Employee emp(\"Ali Khan\", 101);\n    Company::HR::showEmployee(emp);\n    \n    double salary = 50000;\n    double tax = Company::Finance::calculateTax(salary);\n    cout << \"Tax on \" << salary << \" is: \" << tax << endl;\n    \n    // Name conflict resolution\n    cout << \"\\n--- Name Conflict Resolution ---\" << endl;\n    cout << \"Global count: \" << count << endl;\n    cout << \"ProjectA count: \" << ProjectA::count << endl;\n    cout << \"ProjectB count: \" << ProjectB::count << endl;\n    \n    ProjectA::display();\n    \n    // Using 'using' keyword\n    cout << \"\\n--- Using 'using' Keyword ---\" << endl;\n    \n    // Bring specific elements into current scope\n    using MathOperations::PI;\n    using MathOperations::add;\n    \n    cout << \"Using PI directly: \" << PI << endl;\n    cout << \"Using add directly: \" << add(10, 20) << endl;\n    \n    // Bring entire namespace (use with caution!)\n    {\n        using namespace MathOperations;\n        cout << \"Inside block - Multiply: \" << multiply(3, 4) << endl;\n    }\n    // multiply() not accessible here\n    \n    // The 'std' namespace example\n    cout << \"\\n--- The std Namespace ---\" << endl;\n    \n    // Method 1: Always use std::\n    std::cout << \"Using std::cout\" << std::endl;\n    std::string message1 = \"Hello\";\n    \n    // Method 2: Use 'using' for specific elements\n    using std::cout;\n    using std::endl;\n    cout << \"Using specific using statements\" << endl;\n    \n    // Method 3: Using entire namespace (common in small programs)\n    // using namespace std;\n    // cout << \"Entire namespace\" << endl;\n    \n    // Namespace aliases\n    cout << \"\\n--- Namespace Aliases ---\" << endl;\n    \n    namespace MO = MathOperations;  // Create alias\n    namespace SO = StringOperations;\n    \n    cout << \"Using alias - PI: \" << MO::PI << endl;\n    cout << \"Using alias - toUpper: \" << SO::toUpper(\"test\") << endl;\n    \n    // Anonymous namespace usage\n    cout << \"\\n--- Anonymous Namespace ---\" << endl;\n    cout << \"Initial counter: \" << internalCounter << endl;\n    increment();\n    increment();\n    cout << \"After increments: \" << internalCounter << endl;\n    \n    // Real-world simulation\n    cout << \"\\n--- Real-World Simulation ---\" << endl;\n    \n    namespace GraphicsLibrary {\n        void drawCircle(int x, int y, int radius) {\n            cout << \"Drawing circle at (\" << x << \",\" << y << \") with radius \" << radius << endl;\n        }\n        \n        void drawRectangle(int x, int y, int width, int height) {\n            cout << \"Drawing rectangle at (\" << x << \",\" << y << \") size \" << width << \"x\" << height << endl;\n        }\n    }\n    \n    namespace PhysicsLibrary {\n        void calculateVelocity(double distance, double time) {\n            cout << \"Velocity: \" << distance / time << \" m/s\" << endl;\n        }\n        \n        void calculateForce(double mass, double acceleration) {\n            cout << \"Force: \" << mass * acceleration << \" N\" << endl;\n        }\n    }\n    \n    // No conflict even with same function names!\n    GraphicsLibrary::drawCircle(100, 100, 50);\n    PhysicsLibrary::calculateVelocity(100, 10);\n    \n    cout << \"\\n=== Best Practices ===\" << endl;\n    cout << \"1. Use namespaces to organize large projects\" << endl;\n    cout << \"2. Avoid 'using namespace' in header files\" << endl;\n    cout << \"3. Prefer 'using std::cout' over 'using namespace std'\" << endl;\n    cout << \"4. Use descriptive namespace names\" << endl;\n    cout << \"5. Use nested namespaces for better organization\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Namespaces are used extensively in real projects: The C++ Standard Library uses 'std' namespace, game engines use namespaces like 'Physics', 'Graphics', 'Audio', large applications use 'CompanyName::ModuleName::SubModule' structure, and third-party libraries use their own namespaces to avoid conflicts. When you write 'std::cout' or 'sf::RenderWindow' (SFML library), you're using namespaces.",
+      "interactive_tasks": [
+        "Create a 'Geometry' namespace with classes for Circle, Rectangle, and Triangle",
+        "Create two namespaces 'English' and 'Spanish' with greeting functions",
+        "Create nested namespaces for a school management system"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main purpose of namespaces?",
+          "options": [
+            "To make code run faster",
+            "To avoid naming conflicts",
+            "To reduce memory usage",
+            "To compile code quickly"
+          ],
+          "answer": "To avoid naming conflicts",
+          "reasoning": "Namespaces prevent different code sections from having naming collisions."
+        },
+        {
+          "question": "Which operator is used to access namespace members?",
+          "options": [".", "->", "::", ":"],
+          "answer": "::",
+          "reasoning": "The scope resolution operator (::) accesses namespace elements."
+        },
+        {
+          "question": "What does 'using namespace std;' do?",
+          "options": [
+            "Imports all std functions without std:: prefix",
+            "Creates a new namespace",
+            "Deletes the std namespace",
+            "Makes code slower"
+          ],
+          "answer": "Imports all std functions without std:: prefix",
+          "reasoning": "It brings all std namespace members into current scope."
+        },
+        {
+          "question": "When should you avoid 'using namespace std;'?",
+          "options": [
+            "In large projects",
+            "In header files",
+            "When using multiple libraries",
+            "All of the above"
+          ],
+          "answer": "All of the above",
+          "reasoning": "It can cause name conflicts in these situations."
+        },
+        {
+          "question": "What is an anonymous namespace?",
+          "options": [
+            "Namespace without name",
+            "Namespace that others can't see",
+            "Namespace limited to file scope",
+            "All of the above"
+          ],
+          "answer": "All of the above",
+          "reasoning": "Anonymous namespace has no name and is file-specific."
+        },
+        {
+          "question": "How to create a namespace alias?",
+          "options": [
+            "namespace alias = original;",
+            "using alias = namespace;",
+            "alias namespace = original;",
+            "namespace::alias = original;"
+          ],
+          "answer": "namespace alias = original;",
+          "reasoning": "This syntax creates a shorter name for a namespace."
+        },
+        {
+          "question": "What is the benefit of nested namespaces?",
+          "options": [
+            "Better organization",
+            "Avoids deep hierarchies",
+            "Faster compilation",
+            "Smaller binary size"
+          ],
+          "answer": "Better organization",
+          "reasoning": "They create logical hierarchies for complex projects."
+        }
+      ]
+    },
+    {
+      "title": "Day 31 – C++ Keywords Complete Guide",
+      "definition": "Keywords are reserved words in C++ that have special meaning to the compiler and cannot be used as identifiers (variable names, function names, etc.).",
+      "explanation": "Keywords are like the grammar rules of C++ language. Just as you can't use punctuation marks as words in English, you can't use keywords as variable names in C++. They are the building blocks that tell the compiler what you want to do: create loops (for, while), make decisions (if, else), define data types (int, double), control access (public, private), and much more. Understanding keywords is essential for writing correct C++ code.",
+      "code_example": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\n// Class to demonstrate multiple keywords\nclass Employee {\nprivate:\n    string name;\n    int id;\n    static int totalEmployees;  // static keyword\n    \npublic:\n    // Constructor\n    Employee(string n, int i) : name(n), id(i) {\n        totalEmployees++;\n    }\n    \n    // Virtual function for polymorphism\n    virtual void display() const {  // const keyword\n        cout << \"ID: \" << id << \", Name: \" << name << endl;\n    }\n    \n    // Static method\n    static int getTotalEmployees() {\n        return totalEmployees;\n    }\n    \n    // Friend function\n    friend void showEmployeeDetails(const Employee& e);\n    \n    // Virtual destructor\n    virtual ~Employee() {\n        totalEmployees--;\n    }\n};\n\n// Initialize static member\nint Employee::totalEmployees = 0;\n\n// Friend function definition\nvoid showEmployeeDetails(const Employee& e) {\n    cout << \"Friend Function - \" << e.name << \" (\" << e.id << \")\" << endl;\n}\n\n// Derived class\nclass Manager : public Employee {  // public keyword for inheritance\nprivate:\n    string department;\n    \npublic:\n    Manager(string n, int i, string dept) \n        : Employee(n, i), department(dept) {}\n    \n    // Override base class method\n    void display() const override {  // override keyword\n        Employee::display();\n        cout << \"Department: \" << department << endl;\n    }\n};\n\n// Template function\ntemplate<typename T>  // template keyword\nT getMax(T a, T b) {\n    return (a > b) ? a : b;\n}\n\n// Enumeration\nenum class Day {  // enum keyword\n    Monday,\n    Tuesday,\n    Wednesday,\n    Thursday,\n    Friday,\n    Saturday,\n    Sunday\n};\n\n// Type alias using typedef\ntypedef unsigned long long ULL;\n\n// Alternative type alias using using\nusing StringVector = vector<string>;\n\nint main() {\n    cout << \"=== C++ Keywords Complete Guide ===\" << endl;\n    \n    // Data type keywords\n    cout << \"\\n--- Data Type Keywords ---\" << endl;\n    bool isActive = true;       // bool keyword\n    char grade = 'A';           // char keyword\n    int age = 25;               // int keyword\n    float price = 99.99f;       // float keyword\n    double pi = 3.14159;        // double keyword\n    long bigNumber = 1000000L;  // long keyword\n    \n    // unsigned and signed\n    unsigned int positiveOnly = 100;  // unsigned keyword\n    signed int canBeNegative = -50;   // signed keyword\n    \n    cout << \"bool: \" << isActive << endl;\n    cout << \"char: \" << grade << endl;\n    cout << \"int: \" << age << endl;\n    cout << \"float: \" << price << endl;\n    cout << \"double: \" << pi << endl;\n    \n    // Control flow keywords\n    cout << \"\\n--- Control Flow Keywords ---\" << endl;\n    \n    // if, else\n    if (age >= 18) {  // if keyword\n        cout << \"Adult\" << endl;\n    } else {          // else keyword\n        cout << \"Minor\" << endl;\n    }\n    \n    // switch, case, default\n    int dayNumber = 3;\n    switch (dayNumber) {  // switch keyword\n        case 1:           // case keyword\n            cout << \"Monday\" << endl;\n            break;        // break keyword\n        case 2:\n            cout << \"Tuesday\" << endl;\n            break;\n        case 3:\n            cout << \"Wednesday\" << endl;\n            break;\n        default:          // default keyword\n            cout << \"Other day\" << endl;\n            break;\n    }\n    \n    // Loop keywords\n    cout << \"\\n--- Loop Keywords ---\" << endl;\n    \n    // for loop\n    cout << \"for loop: \";\n    for (int i = 0; i < 5; i++) {  // for keyword\n        cout << i << \" \";\n    }\n    cout << endl;\n    \n    // while loop\n    cout << \"while loop: \";\n    int count = 0;\n    while (count < 3) {  // while keyword\n        cout << count << \" \";\n        count++;\n        continue;  // continue keyword (not necessary here, just demonstration)\n    }\n    cout << endl;\n    \n    // do-while loop\n    cout << \"do-while loop: \";\n    count = 0;\n    do {  // do keyword\n        cout << count << \" \";\n        count++;\n    } while (count < 3);  // while keyword\n    cout << endl;\n    \n    // Function and return keywords\n    cout << \"\\n--- Function Keywords ---\" << endl;\n    \n    auto multiply = [](int a, int b) -> int {  // auto keyword (C++11)\n        return a * b;  // return keyword\n    };\n    \n    cout << \"5 * 6 = \" << multiply(5, 6) << endl;\n    \n    // void function\n    auto greet = []() -> void {  // void keyword\n        cout << \"Hello!\" << endl;\n    };\n    greet();\n    \n    // Memory management keywords\n    cout << \"\\n--- Memory Management Keywords ---\" << endl;\n    \n    // new and delete\n    int* dynamicArray = new int[5];  // new keyword\n    for (int i = 0; i < 5; i++) {\n        dynamicArray[i] = i * 10;\n    }\n    cout << \"Dynamic array: \";\n    for (int i = 0; i < 5; i++) {\n        cout << dynamicArray[i] << \" \";\n    }\n    cout << endl;\n    delete[] dynamicArray;  // delete keyword\n    \n    // Class and OOP keywords\n    cout << \"\\n--- OOP Keywords ---\" << endl;\n    \n    Employee emp1(\"Ali\", 101);\n    Manager mgr1(\"Sara\", 102, \"IT\");\n    \n    emp1.display();\n    mgr1.display();\n    \n    showEmployeeDetails(emp1);\n    \n    cout << \"Total employees: \" << Employee::getTotalEmployees() << endl;\n    \n    // Access modifiers\n    cout << \"\\n--- Access Modifiers ---\" << endl;\n    cout << \"public: Accessible from anywhere\" << endl;\n    cout << \"private: Accessible only within class\" << endl;\n    cout << \"protected: Accessible within class and derived classes\" << endl;\n    \n    // const keyword\n    cout << \"\\n--- const Keyword ---\" << endl;\n    const int MAX_SIZE = 100;  // const variable\n    // MAX_SIZE = 200;  // Error: cannot modify const\n    \n    // volatile keyword (for hardware programming)\n    volatile int hardwareRegister = 0;\n    cout << \"volatile variable: \" << hardwareRegister << endl;\n    \n    // sizeof operator\n    cout << \"\\n--- sizeof Operator ---\" << endl;\n    cout << \"sizeof(int): \" << sizeof(int) << \" bytes\" << endl;\n    cout << \"sizeof(double): \" << sizeof(double) << \" bytes\" << endl;\n    cout << \"sizeof(Employee): \" << sizeof(Employee) << \" bytes\" << endl;\n    \n    // typedef and using\n    cout << \"\\n--- Type Aliases ---\" << endl;\n    ULL bigValue = 18446744073709551615ULL;\n    cout << \"ULL value: \" << bigValue << endl;\n    \n    StringVector names = {\"Ali\", \"Sara\", \"Ahmed\"};\n    cout << \"StringVector: \";\n    for (const auto& name : names) {\n        cout << name << \" \";\n    }\n    cout << endl;\n    \n    // Alternative tokens\n    cout << \"\\n--- Alternative Tokens ---\" << endl;\n    bool a = true;\n    bool b = false;\n    \n    // Traditional way\n    if (a && b) {  // && operator\n        cout << \"Both true\" << endl;\n    }\n    \n    // Alternative way\n    if (a and b) {  // and keyword\n        cout << \"Both true (using and)\" << endl;\n    }\n    \n    if (not a) {  // not keyword\n        cout << \"a is false\" << endl;\n    }\n    \n    // Exception handling keywords\n    cout << \"\\n--- Exception Handling ---\" << endl;\n    try {  // try keyword\n        int x = 10;\n        int y = 0;\n        \n        if (y == 0) {\n            throw runtime_error(\"Division by zero!\");  // throw keyword\n        }\n        \n        int result = x / y;\n        cout << \"Result: \" << result << endl;\n    } \n    catch (const exception& e) {  // catch keyword\n        cout << \"Error: \" << e.what() << endl;\n    }\n    \n    // Enum demonstration\n    cout << \"\\n--- Enum Keyword ---\" << endl;\n    Day today = Day::Wednesday;\n    switch (today) {\n        case Day::Monday:\n            cout << \"It's Monday\" << endl;\n            break;\n        case Day::Wednesday:\n            cout << \"It's Wednesday\" << endl;\n            break;\n        default:\n            cout << \"Other day\" << endl;\n    }\n    \n    // Template demonstration\n    cout << \"\\n--- Template Keyword ---\" << endl;\n    cout << \"Max of 5 and 10: \" << getMax(5, 10) << endl;\n    cout << \"Max of 3.14 and 2.71: \" << getMax(3.14, 2.71) << endl;\n    cout << \"Max of 'a' and 'z': \" << getMax('a', 'z') << endl;\n    \n    // this pointer\n    cout << \"\\n--- this Pointer ---\" << endl;\n    class TestClass {\n    public:\n        void printAddress() {\n            cout << \"this address: \" << this << endl;\n        }\n    };\n    \n    TestClass obj;\n    obj.printAddress();\n    \n    // goto keyword (use sparingly!)\n    cout << \"\\n--- goto Keyword ---\" << endl;\n    int i = 0;\n    \n    loop_start:\n    if (i < 3) {\n        cout << i << \" \";\n        i++;\n        goto loop_start;  // goto keyword\n    }\n    cout << endl;\n    \n    cout << \"\\n=== Keyword Categories ===\" << endl;\n    cout << \"1. Data Types: bool, char, int, float, double, void\" << endl;\n    cout << \"2. Storage Classes: auto, static, register, extern\" << endl;\n    cout << \"3. Control Flow: if, else, switch, case, default\" << endl;\n    cout << \"4. Loops: for, while, do, break, continue\" << endl;\n    cout << \"5. OOP: class, struct, public, private, protected\" << endl;\n    cout << \"6. Inheritance: virtual, override, final\" << endl;\n    cout << \"7. Memory: new, delete\" << endl;\n    cout << \"8. Exception: try, catch, throw\" << endl;\n    cout << \"9. Templates: template, typename, class\" << endl;\n    cout << \"10. Others: const, volatile, sizeof, typedef\" << endl;\n    \n    return 0;\n}",
+      "real_world_example": "Keywords are used in every C++ program: When you create a variable (int, double), control program flow (if, for), define classes (class, public, private), handle errors (try, catch), manage memory (new, delete), or create templates (template). In game development, 'virtual' enables polymorphism for game objects. In system programming, 'volatile' is used for hardware registers. In large projects, 'namespace' organizes code.",
+      "interactive_tasks": [
+        "Create a program using at least 15 different C++ keywords",
+        "Write a class demonstrating public, private, and protected access",
+        "Create a template function that works with multiple data types"
+      ],
+      "quiz": [
+        {
+          "question": "Which keyword cannot be used as a variable name?",
+          "options": [
+            "All keywords",
+            "Only data type keywords",
+            "Only control flow keywords",
+            "None of the above"
+          ],
+          "answer": "All keywords",
+          "reasoning": "All keywords are reserved and cannot be used as identifiers."
+        },
+        {
+          "question": "What does the 'virtual' keyword do?",
+          "options": [
+            "Makes function faster",
+            "Enables polymorphism",
+            "Creates virtual memory",
+            "Hides implementation"
+          ],
+          "answer": "Enables polymorphism",
+          "reasoning": "virtual allows function overriding in derived classes."
+        },
+        {
+          "question": "Which keyword is used for dynamic memory allocation?",
+          "options": ["malloc", "alloc", "new", "create"],
+          "answer": "new",
+          "reasoning": "new allocates memory dynamically in C++."
+        },
+        {
+          "question": "What is the purpose of 'const' keyword?",
+          "options": [
+            "Make variable constant",
+            "Make function not modify members",
+            "Both A and B",
+            "Make code run faster"
+          ],
+          "answer": "Both A and B",
+          "reasoning": "const can make variables unchangeable or indicate const member functions."
+        },
+        {
+          "question": "Which keyword is an alternative to '&&'?",
+          "options": ["and", "or", "not", "xor"],
+          "answer": "and",
+          "reasoning": "and is an alternative token for && operator."
+        },
+        {
+          "question": "What does 'typedef' do?",
+          "options": [
+            "Defines new type",
+            "Creates type alias",
+            "Declares template",
+            "Defines function"
+          ],
+          "answer": "Creates type alias",
+          "reasoning": "typedef creates an alias for an existing type."
+        },
+        {
+          "question": "Which keyword is used in exception handling?",
+          "options": ["error", "exception", "try", "check"],
+          "answer": "try",
+          "reasoning": "try is used to enclose code that might throw exceptions."
+        }
+      ]
+    },
+    {
+      "title": "Day 32 – Resource Management, RAII & Move Semantics",
+      "definition": "RAII (Resource Acquisition Is Initialization) ties resource lifetime to object lifetime, while move semantics allow efficient transfers without deep copies.",
+      "explanation": {
+        "main": "Every resource should be owned by a smart RAII wrapper. Move semantics keep operations efficient by stealing rather than copying ownership.",
+        "key_points": [
+          "Prefer std::unique_ptr and std::shared_ptr over raw pointers",
+          "Implement copy/move constructors alongside assignment operators",
+          "Use std::move when transfer of ownership is intended",
+          "std::lock_guard and std::scoped_lock automatically unlock mutexes"
+        ]
+      },
+      "code_example": "#include <iostream>\n#include <memory>\n\nstd::unique_ptr<int> makeValue() {\n    return std::make_unique<int>(42);\n}\n\nint main() {\n    auto value = makeValue();\n    std::cout << \"Value: \" << *value << std::endl;\n    auto moved = std::move(value); // Transfers ownership\n    if (!value) std::cout << \"Original pointer is empty after move.\" << std::endl;\n}\n",
+      "real_world_example": "Game engines and graphics libraries use RAII wrappers for textures, shaders, and GPU buffers to avoid leaks under exceptions.",
+      "interactive_tasks": [
+        "Wrap a legacy C API in a class that uses RAII to manage handles",
+        "Implement copy, move constructors, and assignment for a Matrix struct",
+        "Convert a codebase that uses raw new/delete into smart pointers"
+      ],
+      "quiz": [
+        {
+          "question": "What does RAII guarantee?",
+          "options": [
+            "Resources are freed when scope exits",
+            "Objects never go out of scope",
+            "Memory is only allocated, never freed",
+            "Destructor never runs"
+          ],
+          "answer": "Resources are freed when scope exits",
+          "reasoning": "RAII ties acquisition/destruction to constructors/destructors."
+        },
+        {
+          "question": "What does std::move do?",
+          "options": [
+            "Performs deep copy",
+            "Marks object as movable",
+            "Locks a mutex",
+            "Forces stack allocation"
+          ],
+          "answer": "Marks object as movable",
+          "reasoning": "std::move produces an rvalue reference, enabling move constructors."
+        },
+        {
+          "question": "Which guard helps with automatic mutex unlocking?",
+          "options": [
+            "std::lock_guard",
+            "std::unique_lock",
+            "std::if_guard",
+            "std::guard"
+          ],
+          "answer": "std::lock_guard",
+          "reasoning": "lock_guard releases the mutex when it goes out of scope."
+        }
+      ],
+      "learning_objectives": [
+        "Identify when to default/delete copy/move constructors",
+        "Use smart pointers to avoid manual delete",
+        "Ensure mutexes unlock even during exceptions"
+      ],
+      "sections": [
+        {
+          "heading": "RAII Patterns",
+          "content": [
+            "Encapsulate pointers with unique_ptr/shared_ptr",
+            "Release resources inside destructors",
+            "Avoid raw owning pointers"
+          ]
+        }
+      ],
+      "tips": [
+        "Favor RAII wrappers over manual cleanup",
+        "Use std::move only when you know ownership is transferred"
+      ]
+    },
+    {
+      "title": "Day 33 – Templates, Concepts & Compile-Time Introspection",
+      "definition": "Advanced templates unlock generic algorithms that work across types, with Concepts and constexpr enabling compile-time guarantees.",
+      "explanation": {
+        "main": "Combine templates with Concepts to express requirements, and use constexpr to compute invariants during compilation.",
+        "key_points": [
+          "Write Concepts that document template expectations",
+          "Use constexpr functions for compile-time evaluation",
+          "Leverage std::type_traits and SFINAE for conditional logic",
+          "Template specialization customizes behavior per type"
+        ]
+      },
+      "code_example": "#include <concepts>\n#include <type_traits>\n\ntemplate <typename T>\nconcept Addable = requires(T a, T b) {\n    { a + b } -> std::convertible_to<T>;\n};\n\ntemplate <Addable T>\nconstexpr T add(T a, T b) {\n    return a + b;\n}\n\nint main() {\n    static_assert(add(3, 5) == 8);\n}\n",
+      "real_world_example": "Template-based logging systems choose formatters via Concepts, ensuring only types supporting streaming can be logged.",
+      "interactive_tasks": [
+        "Define a Concept for container-like types and constrain a template function",
+        "Implement constexpr factorial and verify at compile time",
+        "Use type_traits to detect if a type has a .size() method"
+      ],
+      "quiz": [
+        {
+          "question": "What is a C++ Concept?",
+          "options": [
+            "A runtime plugin",
+            "A compile-time constraint on templates",
+            "A memory allocator",
+            "A debugging tool"
+          ],
+          "answer": "A compile-time constraint on templates",
+          "reasoning": "Concepts describe the requirements a type must satisfy for a template."
+        },
+        {
+          "question": "What does constexpr do?",
+          "options": [
+            "Marks a function for debugging",
+            "Allows evaluation during compilation",
+            "Disables exceptions",
+            "Creates a global variable"
+          ],
+          "answer": "Allows evaluation during compilation",
+          "reasoning": "constexpr guarantees a function can run at compile time when given constant arguments."
+        },
+        {
+          "question": "Which trait helps detect if a type is integral?",
+          "options": [
+            "std::is_integral",
+            "std::is_object",
+            "std::is_new",
+            "std::has_integral"
+          ],
+          "answer": "std::is_integral",
+          "reasoning": "std::is_integral is a type trait checking for integral types."
+        }
+      ],
+      "learning_objectives": [
+        "Write Concepts to document template requirements",
+        "Use constexpr to precompute expensive results",
+        "Apply type traits for conditional compilation"
+      ],
+      "sections": [
+        {
+          "heading": "Template Strategies",
+          "content": [
+            "Use Concepts over tag dispatch when possible",
+            "Keep templates readable by splitting logic into helper functions",
+            "Prefer constexpr if you need branching during compilation"
+          ]
+        }
+      ],
+      "tips": [
+        "Comment the intent of template constraints for other developers",
+        "Use static_assert to provide helpful compile-time messages"
+      ]
+    },
+    {
+      "title": "Day 34 – Concurrency, Coroutines & Patterns",
+      "definition": "Modern concurrency combines threads, futures, and coroutines to build responsive systems without data races.",
+      "explanation": {
+        "main": "Use structured concurrency, prefer task-based APIs, and let coroutines describe asynchronous flows naturally.",
+        "key_points": [
+          "std::async and std::future for lightweight tasks",
+          "std::scoped_lock to avoid mutex inversion",
+          "Coroutines (co_await, co_return) for asynchronous pipelines",
+          "Thread pools keep CPU utilization predictable"
+        ]
+      },
+      "code_example": "#include <future>\n#include <iostream>\n\nint heavyTask(int value) {\n    return value * value;\n}\n\nint main() {\n    auto fut = std::async(std::launch::async, heavyTask, 7);\n    std::cout << \"Result: \" << fut.get() << std::endl;\n}\n",
+      "real_world_example": "Web servers use futures and coroutines to handle thousands of requests concurrently while keeping each handler readable.",
+      "interactive_tasks": [
+        "Combine std::async tasks with std::future::wait_for timeout handling",
+        "Protect shared data with scoped_lock inside a producer/consumer queue",
+        "Sketch a coroutine-based pipeline that loads, processes, and stores data"
+      ],
+      "quiz": [
+        {
+          "question": "What ensures multiple mutexes unlock safely?",
+          "options": [
+            "std::lock_guard",
+            "std::scoped_lock",
+            "std::mutex_guard",
+            "std::unlock_all"
+          ],
+          "answer": "std::scoped_lock",
+          "reasoning": "scoped_lock can lock multiple mutexes without deadlock."
+        },
+        {
+          "question": "What does std::async return?",
+          "options": [
+            "std::thread",
+            "std::future",
+            "std::promise",
+            "std::task"
+          ],
+          "answer": "std::future",
+          "reasoning": "std::async returns a future that represents the asynchronous result."
+        },
+        {
+          "question": "Which keyword is used in coroutines to suspend execution?",
+          "options": [
+            "co_await",
+            "async",
+            "suspend",
+            "yield"
+          ],
+          "answer": "co_await",
+          "reasoning": "co_await pauses a coroutine until the awaited operation completes."
+        }
+      ],
+      "learning_objectives": [
+        "Structure code around tasks instead of raw threads",
+        "Avoid data races using scoped locks",
+        "Understand coroutine syntax and when to use it"
+      ],
+      "sections": [
+        {
+          "heading": "Concurrency Workflow",
+          "content": [
+            "Launch tasks with std::async or a thread pool",
+            "Collect results with std::future",
+            "Use scoped_lock when multiple mutexes are involved"
+          ]
+        }
+      ],
+      "tips": [
+        "Keep async tasks short to reduce scheduling overhead",
+        "Use co_await only when you have an asynchronous producer/consumer pipeline"
+      ]
+    }
+  ]
+}
+

@@ -1,21 +1,68 @@
-import 'dart:io';
+// import 'package:flutter/foundation.dart';
+// import 'dart:io';
+//
+// class AdHelper {
+//   // iOS ad unit IDs (production)
+//   static const Map<String, String> _iosAds = {
+//     'homeAd1': 'ca-app-pub-3774337907915828/1575027464', // native ad
+//     'homeAd2': 'ca-app-pub-3774337907915828/6398326345', // native ad
+//     'calendarAd': 'ca-app-pub-3774337907915828/3855923488', // native ad
+//     'myGardenAd': 'ca-app-pub-3774337907915828/6911114625', // native ad
+//     'discoverPlantAd': 'ca-app-pub-3774337907915828/1738678993', // native ad
+//     'courseTopicsAd1': 'ca-app-pub-3774337907915828/5322700789', // native ad
+//     'courseTopicsAd2': 'ca-app-pub-3774337907915828/8641346306', // native ad
+//     'courseTopicsAd3': 'ca-app-pub-3774337907915828/4887586512', // native ad
+//     'lensAd': 'ca-app-pub-3774337907915828/6448080193', // REWARDED ad
+//   };
+//
+//   // Test ad unit IDs (iOS)
+//   static const Map<String, String> _testAds = {
+//     'nativeIOS': 'ca-app-pub-3940256099942544/3986624511',
+//     'rewardedIOS': 'ca-app-pub-3940256099942544/1712485313',
+//   };
+//
+//   /// Use test ads in debug mode
+//   static bool get useTestAds => kDebugMode;
+//
+//   static String _getAd(String adName, {bool isRewarded = false}) {
+//     if (!Platform.isIOS) {
+//       throw UnsupportedError('This app only supports iOS ads');
+//     }
+//
+//     // Test mode
+//     if (useTestAds) {
+//       return isRewarded ? _testAds['rewardedIOS']! : _testAds['nativeIOS']!;
+//     }
+//
+//     // Production mode
+//     final adId = _iosAds[adName];
+//     if (adId == null || adId.contains('XXXXXXX')) {
+//       print(
+//         "⚠️ Warning: Real ad ID not configured for $adName, using test ad",
+//       );
+//       return isRewarded ? _testAds['rewardedIOS']! : _testAds['nativeIOS']!;
+//     }
+//     return adId;
+//   }
+//
+//   // Ad getters
+//   static String get homeAd1 => _getAd('homeAd1');
+//   static String get homeAd2 => _getAd('homeAd2');
+//   static String get lensAd => _getAd('lensAd', isRewarded: true);
+//   static String get calendarAd => _getAd('calendarAd');
+//   static String get myGardenAd => _getAd('myGardenAd');
+//   static String get discoverPlantAd => _getAd('discoverPlantAd');
+//   static String get courseTopicsAd1 => _getAd('courseTopicsAd1');
+//   static String get courseTopicsAd2 => _getAd('courseTopicsAd2');
+//   static String get courseTopicsAd3 => _getAd('courseTopicsAd3');
+// }
+
+
 import 'package:flutter/foundation.dart';
+import 'dart:io';
 
 class AdHelper {
-  // Android ad unit IDs
-  static const Map<String, String> _androidAds = {
-    'homeAd1': 'ca-app-pub-3774337907915828/1575027464', // native ad
-    'homeAd2': 'ca-app-pub-3774337907915828/6398326345', // native ad
-    'calendarAd': 'ca-app-pub-3774337907915828/3855923488', // native ad
-    'myGardenAd': 'ca-app-pub-3774337907915828/6911114625', // native ad
-    'discoverPlantAd': 'ca-app-pub-3774337907915828/1738678993', // native ad
-    'courseTopicsAd1': 'ca-app-pub-3774337907915828/5322700789', // native ad
-    'courseTopicsAd2': 'ca-app-pub-3774337907915828/8641346306', // native ad
-    'courseTopicsAd3': 'ca-app-pub-3774337907915828/4887586512', // native ad
-    'lensAd': 'ca-app-pub-3774337907915828/6448080193', //  REWARDED ad unit
-  };
-
-  // iOS ad unit IDs
+  // iOS ad unit IDs (production)
   static const Map<String, String> _iosAds = {
     'homeAd1': 'ca-app-pub-3774337907915828/1575027464', // native ad
     'homeAd2': 'ca-app-pub-3774337907915828/6398326345', // native ad
@@ -25,66 +72,25 @@ class AdHelper {
     'courseTopicsAd1': 'ca-app-pub-3774337907915828/5322700789', // native ad
     'courseTopicsAd2': 'ca-app-pub-3774337907915828/8641346306', // native ad
     'courseTopicsAd3': 'ca-app-pub-3774337907915828/4887586512', // native ad
-    'lensAd': 'ca-app-pub-3774337907915828/6448080193', // REWARDED ad unit
+    'lensAd': 'ca-app-pub-3774337907915828/6448080193', // REWARDED ad
   };
 
-  // Test ad unit IDs
-  static const Map<String, String> _testAds = {
-    'native': 'ca-app-pub-3940256099942544/2247696110',
-    'rewarded':
-        'ca-app-pub-3940256099942544/5224354917', // Test Rewarded Ad Android
-    'banner': 'ca-app-pub-3940256099942544/6300978111',
-    'nativeIOS': 'ca-app-pub-3940256099942544/3986624511',
-    'rewardedIOS':
-        'ca-app-pub-3940256099942544/1712485313', // Test Rewarded Ad iOS
-  };
-
-  /// Check if we should use test ads
-  static bool get useTestAds {
-    // Use test ads in debug mode
-    return kDebugMode;
-  }
-
-  static String _getAd(String adName, {bool isRewarded = false}) {
-    // Test mode: return test ads
-    if (useTestAds) {
-      if (Platform.isAndroid) {
-        return isRewarded ? _testAds['rewarded']! : _testAds['native']!;
-      } else if (Platform.isIOS) {
-        return isRewarded ? _testAds['rewardedIOS']! : _testAds['nativeIOS']!;
-      }
+  static String _getAd(String adName) {
+    if (!Platform.isIOS) {
+      throw UnsupportedError('This app only supports iOS ads');
     }
 
-    // Production mode: return real ads
-    if (Platform.isAndroid) {
-      final adId = _androidAds[adName];
-      if (adId == null || adId.contains('XXXXXXX')) {
-        // Fallback to test ad if real ID not configured
-        print(
-          "⚠️ Warning: Real ad ID not configured for $adName, using test ad",
-        );
-        return isRewarded ? _testAds['rewarded']! : _testAds['native']!;
-      }
-      return adId;
-    } else if (Platform.isIOS) {
-      final adId = _iosAds[adName];
-      if (adId == null || adId.contains('XXXXXXX')) {
-        print(
-          "⚠️ Warning: Real ad ID not configured for $adName, using test ad",
-        );
-        return isRewarded ? _testAds['rewardedIOS']! : _testAds['nativeIOS']!;
-      }
-      return adId;
+    final adId = _iosAds[adName];
+    if (adId == null || adId.contains('XXXXXXX')) {
+      throw Exception("⚠️ Real ad ID not configured for $adName");
     }
-
-    throw UnsupportedError('Unsupported platform');
+    return adId;
   }
 
   // Ad getters
   static String get homeAd1 => _getAd('homeAd1');
   static String get homeAd2 => _getAd('homeAd2');
-  static String get lensAd =>
-      _getAd('lensAd', isRewarded: true); // ✅ FIXED: Added isRewarded flag
+  static String get lensAd => _getAd('lensAd');
   static String get calendarAd => _getAd('calendarAd');
   static String get myGardenAd => _getAd('myGardenAd');
   static String get discoverPlantAd => _getAd('discoverPlantAd');

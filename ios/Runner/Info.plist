@@ -22,36 +22,26 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>GoogleSignIn</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.236188595426-kcmmbqugv27jke21qojtvsitseks3q5n</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>SignInWithApple</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.example.codingTutor</string>
-			</array>
-		</dict>
-	</array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>GoogleSignIn</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0</string>
+            </array>
+        </dict>
+    </array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-1234567890123456~1234567890</string>
 	<key>GIDClientID</key>
-	<string>236188595426-kcmmbqugv27jke21qojtvsitseks3q5n.apps.googleusercontent.com</string>
+    <string>420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>com.googleusercontent.apps.236188595426-kcmmbqugv27jke21qojtvsitseks3q5n</string>
+		<string>com.googleusercontent.apps.420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0</string>
 		<string>googlechrome</string>
 		<string>com.google</string>
 		<string>com.google.sso</string>
@@ -66,7 +56,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to provide more relevant advertising content based on your location.</string>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>This identifier will be used to deliver personalized ads to you.</string>
+	<string>This app uses your device identifier to show personalized and relevant ads.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -86,5 +76,19 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+
+    <key>io.flutter.embedded_views_preview</key>
+    <true/>
+    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+    <true/>
+    <key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+    <false/>
+    <key>GoogleAnalyticsDefaultAllowAdPersonalizationSignals</key>
+    <true/>
 </dict>
 </plist>

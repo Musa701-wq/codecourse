@@ -17,6 +17,32 @@ class AppColors {
 }
 
 class AppTheme {
+  static const Color primaryColor = AppColors.primary;
+  static const Color secondaryColor = AppColors.secondary;
+  static const Color secondaryColor1 = Color(0xFFD5F7F4);
+
+  static bool _tabletLayout(BuildContext context) =>
+      MediaQuery.of(context).size.shortestSide >= 600;
+
+  static double responsiveSize(
+    BuildContext context, {
+    required double phone,
+    required double tablet,
+  }) {
+    return _tabletLayout(context) ? tablet : phone;
+  }
+
+  static double responsiveFont(
+    BuildContext context, {
+    required double phone,
+    required double tablet,
+  }) {
+    return responsiveSize(context, phone: phone, tablet: tablet);
+  }
+
+  static double appBarHeight(BuildContext context) =>
+      responsiveSize(context, phone: 64, tablet: 72);
+
   // Keep old accessor for backward compatibility (maps to dark)
   static ThemeData get theme => dark;
 

@@ -1,0 +1,716 @@
+{
+  "course_title": "Python Intermediate Level",
+
+  "days": [
+    {
+      "title": "Day 15 – Python Modules",
+      "definition": "A module is a Python file containing code that can be imported and used in other programs.",
+      "explanation": "Modules help organize code into separate files. Think of them like chapters in a book - each chapter (module) contains related content. You can create your own modules or use built-in ones.",
+      "code_example": "# Creating a module (save as mymodule.py)\ndef greet(name):\n    print(f\"Hello, {name}!\")\n\nperson = {\"name\": \"John\", \"age\": 30}\n\n# Using the module\nimport mymodule\nmymodule.greet(\"Ali\")\n\n# Using built-in module\nimport math\nprint(f\"Pi value: {math.pi}\")",
+      "real_world_example": "Real applications use modules to organize code. For example, a web app might have separate modules for user authentication, database operations, and page rendering.",
+      "interactive_tasks": [
+        "Create a module with a function that calculates area of rectangle",
+        "Import math module and use 3 different functions",
+        "Create a module with a dictionary of your favorite books"
+      ],
+      "quiz": [
+        {
+          "question": "What is a Python module?",
+          "options": ["A Python function", "A Python file with .py extension", "A Python variable", "A Python error"],
+          "answer": "A Python file with .py extension",
+          "reasoning": "A module is a Python file containing code that can be imported."
+        },
+        {
+          "question": "How do you import a module named 'utils'?",
+          "options": ["include utils", "import utils", "load utils", "require utils"],
+          "answer": "import utils",
+          "reasoning": "The 'import' keyword is used to import modules in Python."
+        },
+        {
+          "question": "What does 'import math as m' do?",
+          "options": ["Creates new module", "Imports math with alias m", "Deletes math module", "Checks if math exists"],
+          "answer": "Imports math with alias m",
+          "reasoning": "'as' keyword creates an alias for the imported module."
+        },
+        {
+          "question": "How to use sqrt function from math module?",
+          "options": ["sqrt(4)", "math.sqrt(4)", "math->sqrt(4)", "sqrt.math(4)"],
+          "answer": "math.sqrt(4)",
+          "reasoning": "Module functions are accessed using dot notation: module_name.function_name()"
+        },
+        {
+          "question": "What is the purpose of modules?",
+          "options": ["Make code run faster", "Organize and reuse code", "Create graphics", "Connect to internet"],
+          "answer": "Organize and reuse code",
+          "reasoning": "Modules help organize code into logical units and promote code reuse."
+        },
+        {
+          "question": "Which is NOT a built-in Python module?",
+          "options": ["math", "random", "requests", "datetime"],
+          "answer": "requests",
+          "reasoning": "Requests is a third-party module, not built into Python."
+        },
+        {
+          "question": "What does from math import pi do?",
+          "options": ["Imports entire math module", "Imports only pi constant", "Deletes pi from math", "Creates new pi variable"],
+          "answer": "Imports only pi constant",
+          "reasoning": "'from module import item' imports only specific items from a module."
+        }
+      ]
+    },
+
+
+    {
+      "title": "Day 16 – Python DateTime Module",
+      "definition": "The datetime module in Python provides classes for working with dates and times, allowing you to create, manipulate, and format date-time objects.",
+      "explanation": "Think of the datetime module like a digital calendar and clock combined. It helps your Python programs understand and work with dates and times - just like you check the date on your phone or set reminders. With this module, you can get the current date and time, create specific dates, calculate differences between dates, and format dates in different styles. It's essential for any program that needs to track time, schedule tasks, or display dates to users.",
+      "code_example": "# Working with dates and times in Python\n\nimport datetime\n\n# Get current date and time\nprint(\"--- Current Date and Time ---\")\nnow = datetime.datetime.now()\nprint(f\"Current datetime: {now}\")\n\n# Access individual components\nprint(\"\\n--- Date Components ---\")\nprint(f\"Year: {now.year}\")\nprint(f\"Month: {now.month}\")\nprint(f\"Day: {now.day}\")\nprint(f\"Hour: {now.hour}\")\nprint(f\"Minute: {now.minute}\")\nprint(f\"Second: {now.second}\")\n\n# Format dates using strftime()\nprint(\"\\n--- Formatted Dates ---\")\nprint(f\"Full date: {now.strftime('%Y-%m-%d')}\")\nprint(f\"Day name: {now.strftime('%A')}\")\nprint(f\"Month name: {now.strftime('%B')}\")\nprint(f\"Time: {now.strftime('%I:%M %p')}\")\n\n# Create specific dates\nprint(\"\\n--- Creating Specific Dates ---\")\nbirthday = datetime.datetime(1990, 5, 17)\nprint(f\"Birthday: {birthday}\")\nprint(f\"Birthday day: {birthday.strftime('%A')}\")\n\n# Date calculations\nprint(\"\\n--- Date Calculations ---\")\ntoday = datetime.datetime.now()\nnext_week = today + datetime.timedelta(days=7)\nprint(f\"Today: {today.strftime('%Y-%m-%d')}\")\nprint(f\"Next week: {next_week.strftime('%Y-%m-%d')}\")\n\n# Date comparison\nprint(\"\\n--- Date Comparison ---\")\nif today > birthday:\n    years_old = today.year - birthday.year\n    print(f\"Person is {years_old} years old\")",
+      "real_world_example": "The datetime module is used everywhere: Social media shows when posts were made, banking apps track transaction dates, reservation systems schedule appointments, games track play times, and logging systems timestamp events. For example, when you see 'Posted 2 hours ago' on social media, datetime calculations are working behind the scenes.",
+      "interactive_tasks": [
+        "Write a program that displays today's date in DD/MM/YYYY format",
+        "Create a function that calculates age when given birth year",
+        "Write a program that shows what date it will be after 100 days"
+      ],
+      "quiz": [
+        {
+          "question": "Which module is used for working with dates in Python?",
+          "options": ["time", "calendar", "datetime", "date"],
+          "answer": "datetime",
+          "reasoning": "The datetime module provides classes for working with dates and times."
+        },
+        {
+          "question": "How do you get current date and time?",
+          "options": ["datetime.current()", "datetime.today()", "datetime.now()", "datetime.date()"],
+          "answer": "datetime.now()",
+          "reasoning": "datetime.datetime.now() returns the current local date and time."
+        },
+        {
+          "question": "What does strftime() do?",
+          "options": ["Converts string to date", "Formats date as string", "Compares dates", "Creates date object"],
+          "answer": "Formats date as string",
+          "reasoning": "strftime() formats datetime objects into readable strings."
+        },
+        {
+          "question": "What format code shows full month name?",
+          "options": ["%m", "%b", "%B", "%M"],
+          "answer": "%B",
+          "reasoning": "%B gives full month name (January), %b gives short name (Jan)."
+        },
+        {
+          "question": "How to create a date for 25th December 2023?",
+          "options": [
+            "datetime(2023, 12, 25)",
+            "datetime.date(2023, 25, 12)",
+            "datetime.create(2023, 12, 25)",
+            "new datetime(2023, 12, 25)"
+          ],
+          "answer": "datetime(2023, 12, 25)",
+          "reasoning": "datetime(year, month, day) creates a date object."
+        },
+        {
+          "question": "What is the output of datetime.datetime.now().year?",
+          "options": ["Current hour", "Current year", "Current month", "Error"],
+          "answer": "Current year",
+          "reasoning": ".year attribute returns the year component of the datetime object."
+        },
+        {
+          "question": "How to add 30 days to current date?",
+          "options": [
+            "datetime.now() + 30",
+            "datetime.now() + datetime.days(30)",
+            "datetime.now() + datetime.timedelta(days=30)",
+            "datetime.add_days(30)"
+          ],
+          "answer": "datetime.now() + datetime.timedelta(days=30)",
+          "reasoning": "timedelta is used for date arithmetic like adding days."
+        }
+      ]
+    },
+
+
+
+    {
+      "title": "Day 17 – Python Math Module",
+      "definition": "Python provides built-in math functions and a comprehensive math module that allows you to perform various mathematical operations and calculations.",
+      "explanation": "Think of Python's math capabilities like a scientific calculator built into the language. You have basic functions for everyday calculations (like min, max, abs) and a powerful math module for advanced operations (like square roots, trigonometry, logarithms). Whether you're calculating discounts, measuring distances, analyzing data, or building games with physics, Python's math tools have you covered. The math module is like having a math textbook's worth of formulas ready to use in your code.",
+      "code_example": "# Python Math Functions and Module\n\nprint(\"--- Built-in Math Functions ---\")\n\n# min() and max() functions\nnumbers = [5, 10, 25, 3, 15]\nprint(f\"Numbers: {numbers}\")\nprint(f\"Minimum: {min(numbers)}\")\nprint(f\"Maximum: {max(numbers)}\")\n\n# abs() function\nprint(f\"\\nAbsolute value of -7.25: {abs(-7.25)}\")\nprint(f\"Absolute value of 15: {abs(15)}\")\n\n# pow() function\nprint(f\"\\n4 to power of 3: {pow(4, 3)}\")\nprint(f\"2 to power of 8: {pow(2, 8)}\")\n\nprint(\"\\n--- Math Module ---\")\nimport math\n\n# Square root\nprint(f\"Square root of 64: {math.sqrt(64)}\")\nprint(f\"Square root of 25: {math.sqrt(25)}\")\n\n# Rounding\nprint(f\"\\nCeil of 1.4: {math.ceil(1.4)}\")   # Rounds up\nprint(f\"Floor of 1.4: {math.floor(1.4)}\")  # Rounds down\nprint(f\"Ceil of 2.7: {math.ceil(2.7)}\")\nprint(f\"Floor of 2.7: {math.floor(2.7)}\")\n\n# Math constants\nprint(f\"\\nValue of pi: {math.pi}\")\nprint(f\"Value of e: {math.e}\")\n\n# Trigonometric functions\nprint(f\"\\nSine of 90 degrees: {math.sin(math.radians(90)):.2f}\")\nprint(f\"Cosine of 0 degrees: {math.cos(math.radians(0)):.2f}\")\n\n# Logarithms\nprint(f\"\\nNatural log of 10: {math.log(10):.2f}\")\nprint(f\"Log base 10 of 100: {math.log10(100):.2f}\")\n\n# Practical example\nprint(\"\\n--- Practical Example: Circle Calculations ---\")\nradius = 7\narea = math.pi * math.pow(radius, 2)\ncircumference = 2 * math.pi * radius\nprint(f\"Circle with radius {radius}:\")\nprint(f\"Area: {area:.2f}\")\nprint(f\"Circumference: {circumference:.2f}\")",
+      "real_world_example": "Math functions are used everywhere: E-commerce sites calculate discounts and taxes, games use trigonometry for character movement, banking apps compute interest rates, data science tools perform statistical analysis, and construction software calculates measurements. For example, when you see '30% off' on a shopping site, Python's math functions are calculating the final price.",
+      "interactive_tasks": [
+        "Write a program that calculates area of triangle using math functions",
+        "Create a temperature converter between Celsius and Fahrenheit",
+        "Write a program that finds min and max of 5 user-input numbers"
+      ],
+      "quiz": [
+        {
+          "question": "Which function finds the smallest number?",
+          "options": ["min()", "max()", "small()", "minimum()"],
+          "answer": "min()",
+          "reasoning": "min() returns the smallest item in an iterable or smallest of given arguments."
+        },
+        {
+          "question": "What does math.sqrt(16) return?",
+          "options": ["2", "4", "8", "256"],
+          "answer": "4",
+          "reasoning": "Square root of 16 is 4 because 4 × 4 = 16."
+        },
+        {
+          "question": "What is the value of abs(-10)?",
+          "options": ["-10", "10", "0", "Error"],
+          "answer": "10",
+          "reasoning": "abs() returns absolute value (positive value) of a number."
+        },
+        {
+          "question": "How do you round 3.7 up to nearest integer?",
+          "options": ["math.floor(3.7)", "math.ceil(3.7)", "round(3.7)", "int(3.7)"],
+          "answer": "math.ceil(3.7)",
+          "reasoning": "math.ceil() always rounds up to the nearest integer."
+        },
+        {
+          "question": "What is pow(2, 3)?",
+          "options": ["5", "6", "8", "9"],
+          "answer": "8",
+          "reasoning": "2 to power of 3 = 2 × 2 × 2 = 8."
+        },
+        {
+          "question": "Which module constant gives value of pi?",
+          "options": ["math.PI", "math.pi", "math.Pi", "math.Pi_Value"],
+          "answer": "math.pi",
+          "reasoning": "math.pi (lowercase) returns the mathematical constant π."
+        },
+        {
+          "question": "What does math.floor(5.9) return?",
+          "options": ["5", "6", "5.9", "5.0"],
+          "answer": "5",
+          "reasoning": "math.floor() rounds down to nearest integer, so 5.9 becomes 5."
+        }
+      ]
+    },
+
+
+
+    {
+      "title": "Day 18 – Python JSON Module",
+      "definition": "JSON (JavaScript Object Notation) is a lightweight data format for storing and exchanging data, and Python's json module allows you to work with JSON data.",
+      "explanation": "Think of JSON as a universal language for data that both humans and computers can understand. It's like having a standard form that different applications can fill out and read. Python's json module acts as a translator - it converts Python data (like dictionaries and lists) into JSON format for storage or sending to other systems, and converts JSON data back into Python objects. This is essential for web APIs, configuration files, and data exchange between different programming languages.",
+      "code_example": "# Working with JSON in Python\n\nimport json\n\nprint(\"--- JSON Basics ---\")\n\n# Python dictionary\nperson = {\n    \"name\": \"John\",\n    \"age\": 30,\n    \"city\": \"New York\",\n    \"is_student\": False,\n    \"hobbies\": [\"reading\", \"swimming\", \"coding\"]\n}\n\nprint(\"Original Python dictionary:\")\nprint(person)\n\nprint(\"\\n--- Convert Python to JSON (Serialization) ---\")\n# Convert Python object to JSON string\njson_string = json.dumps(person)\nprint(\"JSON string:\")\nprint(json_string)\n\n# Pretty print JSON with indentation\nprint(\"\\nFormatted JSON:\")\npretty_json = json.dumps(person, indent=4)\nprint(pretty_json)\n\nprint(\"\\n--- Convert JSON to Python (Parsing) ---\")\n# JSON string (could come from file or API)\njson_data = '{ \"name\": \"Alice\", \"age\": 25, \"city\": \"London\" }'\n\n# Parse JSON string to Python dictionary\nparsed_data = json.loads(json_data)\nprint(\"Parsed Python dictionary:\")\nprint(parsed_data)\nprint(f\"\\nAccessing data: {parsed_data['name']} is {parsed_data['age']} years old\")\n\nprint(\"\\n--- Working with Files ---\")\n# Writing JSON to file\nwith open(\"data.json\", \"w\") as file:\n    json.dump(person, file, indent=4)\nprint(\"Data written to data.json\")\n\n# Reading JSON from file\nwith open(\"data.json\", \"r\") as file:\n    loaded_data = json.load(file)\nprint(\"\\nData loaded from file:\")\nprint(loaded_data)\n\nprint(\"\\n--- JSON with Different Data Types ---\")\n# Various Python objects to JSON\ndata_types = {\n    \"string\": \"Hello World\",\n    \"number\": 42,\n    \"float\": 3.14,\n    \"boolean\": True,\n    \"none_value\": None,\n    \"list\": [1, 2, 3],\n    \"dictionary\": {\"key\": \"value\"}\n}\n\nprint(\"Different data types as JSON:\")\nfor key, value in data_types.items():\n    print(f\"{key}: {json.dumps(value)}\")\n\nprint(\"\\n--- JSON Formatting Options ---\")\n# Custom formatting\ncustom_json = json.dumps(person, \n                         indent=2, \n                         sort_keys=True,  # Sort keys alphabetically\n                         separators=(\", \", \": \"))  # Custom separators\nprint(\"Custom formatted JSON:\")\nprint(custom_json)",
+      "real_world_example": "JSON is used everywhere in modern applications: Web APIs send and receive JSON data (like weather APIs, social media APIs), mobile apps store settings as JSON, web browsers use JSON for configuration, and cloud services exchange data in JSON format. When you use a weather app, it's receiving JSON data from a server. When you save preferences in an app, they're often stored as JSON.",
+      "interactive_tasks": [
+        "Create a Python dictionary of book details and convert it to JSON",
+        "Write a program that reads JSON from a string and extracts specific values",
+        "Create a configuration file in JSON format and read it in Python"
+      ],
+      "quiz": [
+        {
+          "question": "What does JSON stand for?",
+          "options": [
+            "Java Source Object Notation",
+            "JavaScript Object Notation",
+            "JavaScript Online Notation",
+            "Java System Object Network"
+          ],
+          "answer": "JavaScript Object Notation",
+          "reasoning": "JSON stands for JavaScript Object Notation, though it's language-independent."
+        },
+        {
+          "question": "Which method converts Python to JSON?",
+          "options": ["json.parse()", "json.dumps()", "json.load()", "json.convert()"],
+          "answer": "json.dumps()",
+          "reasoning": "json.dumps() serializes Python object to JSON formatted string."
+        },
+        {
+          "question": "How to parse JSON string in Python?",
+          "options": ["json.parse()", "json.loads()", "json.read()", "json.decode()"],
+          "answer": "json.loads()",
+          "reasoning": "json.loads() parses JSON string and returns Python object."
+        },
+        {
+          "question": "What Python type does JSON object become?",
+          "options": ["list", "tuple", "dictionary", "string"],
+          "answer": "dictionary",
+          "reasoning": "JSON objects are converted to Python dictionaries."
+        },
+        {
+          "question": "How to write JSON to file?",
+          "options": ["json.write()", "json.save()", "json.dump()", "json.export()"],
+          "answer": "json.dump()",
+          "reasoning": "json.dump() writes JSON data to a file-like object."
+        },
+        {
+          "question": "What does indent parameter do in json.dumps()?",
+          "options": [
+            "Makes JSON smaller",
+            "Adds pretty-printing indentation",
+            "Encrypts JSON",
+            "Changes data types"
+          ],
+          "answer": "Adds pretty-printing indentation",
+          "reasoning": "indent parameter adds whitespace for readable, formatted JSON output."
+        },
+        {
+          "question": "Which is NOT valid in JSON?",
+          "options": ["Strings", "Numbers", "Functions", "Arrays"],
+          "answer": "Functions",
+          "reasoning": "JSON supports strings, numbers, objects, arrays, true, false, null - but not functions."
+        }
+      ]
+    },
+
+    {
+      "title": "Day 19 – Python Regular Expressions (RegEx)",
+      "definition": "Regular Expressions (RegEx) are patterns used to match character combinations in strings, allowing powerful text searching, validation, and manipulation.",
+      "explanation": "Think of RegEx as a super-powered search tool for text. It's like having a detective that can find specific patterns in documents - not just exact words, but patterns like 'all email addresses' or 'phone numbers starting with +92'. Regular expressions use special symbols to define what to look for. They're incredibly useful for validating user input (like checking if an email is properly formatted), extracting data from text, searching and replacing patterns, and cleaning data. While they look complex at first, they're one of the most powerful tools for working with text.",
+      "code_example": "# Python Regular Expressions\n\nimport re\n\nprint(\"--- Basic RegEx Functions ---\")\n\n# Sample text\ntext = \"The rain in Spain falls mainly on the plain.\"\n\n# findall() - Find all matches\nprint(\"1. findall() - Find all 'ai' occurrences:\")\nmatches = re.findall(\"ai\", text)\nprint(f\"   Matches: {matches}\")\n\n# search() - Search for pattern\nprint(\"\\n2. search() - Search for 'Spain':\")\nmatch = re.search(\"Spain\", text)\nif match:\n    print(f\"   Found at position: {match.start()} to {match.end()}\")\n\n# split() - Split by pattern\nprint(\"\\n3. split() - Split by spaces:\")\nwords = re.split(\"\\\\s\", text)  # \\\\s means whitespace\nprint(f\"   Result: {words[:5]}...\")  # Show first 5\n\n# sub() - Replace pattern\nprint(\"\\n4. sub() - Replace 'rain' with 'snow':\")\nnew_text = re.sub(\"rain\", \"snow\", text)\nprint(f\"   New text: {new_text}\")\n\nprint(\"\\n--- Common Patterns ---\")\n\n# Email validation\nemail = \"user@example.com\"\nemail_pattern = r\"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}$\"\nprint(f\"Email '{email}' is valid: {bool(re.match(email_pattern, email))}\")\n\n# Phone number pattern\nphone = \"+92-300-1234567\"\nphone_pattern = r\"^\\\\+\\\\d{2}-\\\\d{3}-\\\\d{7}$\"\nprint(f\"Phone '{phone}' matches pattern: {bool(re.match(phone_pattern, phone))}\")\n\n# Extracting dates\ndate_text = \"Meeting on 2023-12-25 and 2024-01-01\"\ndates = re.findall(r\"\\\\d{4}-\\\\d{2}-\\\\d{2}\", date_text)\nprint(f\"\\nDates found: {dates}\")\n\nprint(\"\\n--- Character Classes ---\")\n\n# \\\\d - digits\ntext2 = \"I have 3 apples and 15 oranges\"\ndigits = re.findall(r\"\\\\d+\", text2)  # + means one or more\nprint(f\"Digits found: {digits}\")\n\n# \\\\w - word characters\nwords = re.findall(r\"\\\\w+\", text2)\nprint(f\"Words found: {words[:5]}...\")\n\nprint(\"\\n--- Practical Examples ---\")\n\n# Password validation\npassword = \"Pass123!\"\n# At least 8 chars, contains uppercase, lowercase, digit, special char\npassword_pattern = r\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\\\d)(?=.*[@$!%*?&])[A-Za-z\\\\d@$!%*?&]{8,}$\"\nis_valid = bool(re.match(password_pattern, password))\nprint(f\"Password validation: {is_valid}\")\n\n# Extract hashtags from social media post\npost = \"Loving the #Python programming! #Learning #CodeNewbie\"\nhashtags = re.findall(r\"#\\\\w+\", post)\nprint(f\"\\nHashtags: {hashtags}\")",
+      "real_world_example": "Regular expressions are used everywhere: Web forms validate emails and passwords, search engines use them for advanced searches, text editors use them for find-and-replace, data analysts extract information from logs, and social media platforms parse hashtags and mentions. When you get a 'Invalid email format' message on a website, RegEx is working behind the scenes to validate your input.",
+      "interactive_tasks": [
+        "Write a RegEx pattern to validate Pakistani phone numbers",
+        "Create a program that extracts all URLs from a text",
+        "Write a RegEx to find words starting with capital letters"
+      ],
+      "quiz": [
+        {
+          "question": "What module is used for Regular Expressions in Python?",
+          "options": ["regex", "re", "regexp", "pattern"],
+          "answer": "re",
+          "reasoning": "The 're' module provides Regular Expression operations in Python."
+        },
+        {
+          "question": "Which function returns all matches as a list?",
+          "options": ["search()", "findall()", "match()", "find()"],
+          "answer": "findall()",
+          "reasoning": "findall() returns all non-overlapping matches as a list of strings."
+        },
+        {
+          "question": "What does \\\\d represent in RegEx?",
+          "options": ["Any digit", "Any character", "Start of string", "End of string"],
+          "answer": "Any digit",
+          "reasoning": "\\\\d matches any decimal digit (0-9)."
+        },
+        {
+          "question": "What is the purpose of ^ in RegEx?",
+          "options": ["End of string", "Start of string", "Any character", "Escape character"],
+          "answer": "Start of string",
+          "reasoning": "^ matches the beginning of the string."
+        },
+        {
+          "question": "Which function searches for first match?",
+          "options": ["findall()", "search()", "find()", "look()"],
+          "answer": "search()",
+          "reasoning": "search() scans through string looking for first match location."
+        },
+        {
+          "question": "What does . (dot) match in RegEx?",
+          "options": ["Only digits", "Only letters", "Any character except newline", "Only spaces"],
+          "answer": "Any character except newline",
+          "reasoning": ". matches any character except a newline character."
+        },
+        {
+          "question": "How to make RegEx case-insensitive?",
+          "options": ["Use re.A", "Use re.I", "Use re.CASE", "Use lowercase pattern"],
+          "answer": "Use re.I",
+          "reasoning": "re.IGNORECASE or re.I flag makes pattern matching case-insensitive."
+        }
+      ]
+    },
+
+
+
+
+
+
+    {
+      "title": "Day 20 – Python PIP Package Manager",
+      "definition": "PIP (Package Installer for Python) is a package manager that allows you to install and manage additional libraries and packages not included in the standard Python library.",
+      "explanation": "Think of PIP as an app store for Python. Just like you use an app store to install new apps on your phone, PIP lets you install new packages (collections of code) for Python. These packages add new functionality - like tools for web development, data analysis, game creation, and much more. PIP handles downloading packages from the Python Package Index (PyPI), installing them, managing dependencies, and keeping them updated. It's the gateway to Python's vast ecosystem of third-party libraries.",
+      "code_example": "# Understanding and Using PIP\n\n# Note: PIP commands are run in terminal/command prompt, not in Python script\n# This example shows what PIP does and how to use installed packages\n\nprint(\"--- What is PIP? ---\")\nprint(\"PIP is Python's package installer. It's used from command line, not Python script.\")\nprint(\"\\nCommon PIP commands:\")\nprint(\"pip --version           # Check PIP version\")\nprint(\"pip install package     # Install a package\")\nprint(\"pip uninstall package   # Remove a package\")\nprint(\"pip list                # List installed packages\")\nprint(\"pip show package        # Show package info\")\nprint(\"pip freeze              # List packages in requirements format\")\n\nprint(\"\\n--- Installing and Using Packages ---\")\nprint(\"Example: Installing and using a package step-by-step\")\nprint(\"\"\"\nSTEP 1: In terminal/command prompt:\n$ pip install requests\n\nSTEP 2: Then in Python code:\n\"\"\")\n\ntry:\n    # Try to import requests (assuming it's installed)\n    import requests\n    print(\"\\nRequests package is available!\")\n    print(\"You can now make HTTP requests:\")\n    print(\"Example: response = requests.get('https://api.github.com')\")\nexcept ImportError:\n    print(\"\\nRequests package is not installed.\")\n    print(\"Install it using: pip install requests\")\n\nprint(\"\\n--- Practical Examples of Popular Packages ---\")\n\nprint(\"1. requests - For making HTTP requests\")\nprint(\"   Command: pip install requests\")\nprint(\"   Use: Access web APIs, download web pages\")\n\nprint(\"\\n2. numpy - For numerical computing\")\nprint(\"   Command: pip install numpy\")\nprint(\"   Use: Mathematical operations, arrays, matrices\")\n\nprint(\"\\n3. pandas - For data analysis\")\nprint(\"   Command: pip install pandas\")\nprint(\"   Use: Data manipulation, CSV/Excel files, statistics\")\n\nprint(\"\\n4. flask - For web development\")\nprint(\"   Command: pip install flask\")\nprint(\"   Use: Create web applications and APIs\")\n\nprint(\"\\n--- Managing Package Versions ---\")\nprint(\"You can install specific versions:\")\nprint(\"pip install requests==2.28.0    # Exact version\")\nprint(\"pip install requests>=2.25.0    # Minimum version\")\nprint(\"pip install 'requests>=2.25,<3.0'  # Version range\")\n\nprint(\"\\n--- Requirements Files ---\")\nprint(\"Projects often use requirements.txt file:\")\nprint(\"\"\"\nrequirements.txt contents:\nrequests==2.28.0\nnumpy>=1.21.0\npandas\n\nInstall all: pip install -r requirements.txt\n\"\"\")\n\nprint(\"\\n--- Virtual Environments ---\")\nprint(\"Best practice: Use virtual environments for projects\")\nprint(\"\"\"\n# Create virtual environment\npython -m venv myenv\n\n# Activate (Windows)\nmyenv\\\\Scripts\\\\activate\n\n# Activate (Mac/Linux)\nsource myenv/bin/activate\n\n# Now install packages in isolated environment\npip install requests\n\"\"\")",
+      "real_world_example": "PIP is essential for real Python development. Data scientists use PIP to install pandas and numpy for data analysis. Web developers use it to install Django or Flask for building websites. Machine learning engineers use it to install TensorFlow or PyTorch. Even simple scripts often need external packages - like 'requests' for accessing APIs or 'pillow' for image processing. When you see a Python project on GitHub, it usually has a requirements.txt file listing all PIP packages needed.",
+      "interactive_tasks": [
+        "Create a requirements.txt file for a simple web project",
+        "Install a package using PIP and write a small program using it",
+        "List all installed packages and check their versions"
+      ],
+      "quiz": [
+        {
+          "question": "What is PIP?",
+          "options": [
+            "Python Image Processor",
+            "Package Installer for Python",
+            "Python Internet Protocol",
+            "Programming Interface for Python"
+          ],
+          "answer": "Package Installer for Python",
+          "reasoning": "PIP stands for 'Pip Installs Packages' or 'Package Installer for Python'."
+        },
+        {
+          "question": "How to check if PIP is installed?",
+          "options": ["pip version", "pip --version", "python pip", "check pip"],
+          "answer": "pip --version",
+          "reasoning": "'pip --version' shows the installed PIP version and location."
+        },
+        {
+          "question": "How to install a package named 'numpy'?",
+          "options": ["pip add numpy", "pip install numpy", "python install numpy", "get numpy"],
+          "answer": "pip install numpy",
+          "reasoning": "'pip install package_name' downloads and installs the package."
+        },
+        {
+          "question": "What does 'pip list' do?",
+          "options": [
+            "Shows available packages online",
+            "Lists installed packages",
+            "Downloads package list",
+            "Updates all packages"
+          ],
+          "answer": "Lists installed packages",
+          "reasoning": "'pip list' shows all packages installed in the current environment."
+        },
+        {
+          "question": "How to remove a package?",
+          "options": ["pip delete package", "pip remove package", "pip uninstall package", "pip erase package"],
+          "answer": "pip uninstall package",
+          "reasoning": "'pip uninstall package_name' removes an installed package."
+        },
+        {
+          "question": "What is PyPI?",
+          "options": [
+            "Python Package Index",
+            "Python Programming Interface",
+            "Python Performance Indicator",
+            "Python Program Installer"
+          ],
+          "answer": "Python Package Index",
+          "reasoning": "PyPI is the Python Package Index, the repository of Python packages."
+        },
+        {
+          "question": "Why use virtual environments?",
+          "options": [
+            "To make Python faster",
+            "To isolate project dependencies",
+            "To hide packages",
+            "To reduce memory usage"
+          ],
+          "answer": "To isolate project dependencies",
+          "reasoning": "Virtual environments keep dependencies separate for different projects."
+        }
+      ]
+    },
+
+
+
+
+    {
+      "title": "Day 21 – Python String Formatting",
+      "definition": "String formatting in Python allows you to create dynamic strings by inserting values into placeholders, with f-strings being the modern and preferred method since Python 3.6.",
+      "explanation": "Think of string formatting like filling in a form letter. You have a template with blanks (placeholders) that get filled with actual values. Python offers several ways to do this, but f-strings are the newest and most powerful. They're like magic templates where you can put variables, calculations, and even function calls directly inside strings. Before f-strings, we used the format() method, which is still useful but more verbose. String formatting makes your output clean, professional, and dynamic - essential for creating user-friendly messages, reports, and data displays.",
+      "code_example": "# Python String Formatting - F-Strings and format() method\n\nprint(\"--- F-Strings (Python 3.6+) ---\")\n\n# Basic f-string\nname = \"Ali\"\nage = 25\ntxt = f\"My name is {name} and I am {age} years old.\"\nprint(txt)\n\n# Formatting numbers\nprice = 49.956\nprint(f\"\\nPrice formatting:\")\nprint(f\"Original: {price}\")\nprint(f\"2 decimals: {price:.2f}\")\nprint(f\"No decimals: {price:.0f}\")\nprint(f\"With comma: {1234567:,}\")\nprint(f\"Percentage: {0.25:.2%}\")\n\n# Calculations inside f-strings\ntax_rate = 0.15\namount = 1000\ntotal = amount + (amount * tax_rate)\nprint(f\"\\nTax calculation:\")\nprint(f\"Amount: ${amount:.2f}\")\nprint(f\"Tax ({tax_rate:.0%}): ${amount * tax_rate:.2f}\")\nprint(f\"Total: ${total:.2f}\")\n\n# Conditional expressions in f-strings\nscore = 85\ngrade = f\"Your score is {score} which is {'A' if score >= 90 else 'B' if score >= 80 else 'C' if score >= 70 else 'F'}\"\nprint(f\"\\n{grade}\")\n\n# Function calls in f-strings\ndef get_discount(price):\n    return price * 0.10\n\nitem_price = 200\nprint(f\"\\nFunction in f-string:\")\nprint(f\"Item: ${item_price:.2f}\")\nprint(f\"Discount: ${get_discount(item_price):.2f}\")\nprint(f\"Final: ${item_price - get_discount(item_price):.2f}\")\n\n# Alignment in f-strings\nprint(\"\\nText alignment:\")\nproducts = [\"Apple\", \"Banana\", \"Cherry\"]\nprices = [2.50, 1.75, 3.20]\n\nfor product, price in zip(products, prices):\n    print(f\"{product:<10} : ${price:>6.2f}\")  # Left align product, right align price\n\nprint(\"\\n--- format() Method (Legacy) ---\")\n# Older format() method (still works)\nquantity = 3\nitemno = 567\nprice = 49.99\n\n# Basic format()\norder1 = \"I want {} pieces of item number {} for {:.2f} dollars.\".format(quantity, itemno, price)\nprint(order1)\n\n# With index numbers\norder2 = \"I want {0} pieces of item number {1} for {2:.2f} dollars.\".format(quantity, itemno, price)\nprint(order2)\n\n# With named placeholders\norder3 = \"I have a {carname}, it is a {model}.\".format(carname=\"Toyota\", model=\"Camry\")\nprint(order3)\n\nprint(\"\\n--- Comparison: F-String vs format() ---\")\n# Same output, different methods\nname = \"Sara\"\nage = 30\n\nfstring_method = f\"{name} is {age} years old.\"\nformat_method = \"{} is {} years old.\".format(name, age)\n\nprint(f\"F-string: {fstring_method}\")\nprint(f\"format(): {format_method}\")\nprint(\"\\nF-strings are generally preferred because:\")\nprint(\"1. More readable and concise\")\nprint(\"2. Faster execution\")\nprint(\"3. Allow expressions inside placeholders\")",
+      "real_world_example": "String formatting is used everywhere: Receipts show formatted prices, reports display aligned data, user interfaces show dynamic messages, logging systems format error messages, and APIs return formatted responses. When you see 'Hello, John! You have 3 new messages' in an app, string formatting is creating that personalized message. E-commerce sites use it for 'Total: $49.99' displays.",
+      "interactive_tasks": [
+        "Create a receipt generator using f-strings with item names, quantities, and prices",
+        "Write a program that formats a list of names in a table with aligned columns",
+        "Create a temperature display that shows Celsius and Fahrenheit with formatting"
+      ],
+      "quiz": [
+        {
+          "question": "What character starts an f-string in Python?",
+          "options": ["F", "f", "$", "#"],
+          "answer": "f",
+          "reasoning": "F-strings begin with the letter 'f' before the opening quote: f\"...\""
+        },
+        {
+          "question": "How to insert a variable 'name' in f-string?",
+          "options": ["{name}", "[name]", "(name)", "$name"],
+          "answer": "{name}",
+          "reasoning": "F-strings use curly braces {} as placeholders for variables."
+        },
+        {
+          "question": "What does :.2f format specifier do?",
+          "options": [
+            "2 characters width",
+            "2 decimal places",
+            "Fixed width of 2",
+            "2 digit number"
+          ],
+          "answer": "2 decimal places",
+          "reasoning": ":.2f formats a floating-point number with 2 decimal places."
+        },
+        {
+          "question": "Which is faster: f-string or format() method?",
+          "options": ["f-string", "format()", "Same speed", "Depends on situation"],
+          "answer": "f-string",
+          "reasoning": "F-strings are generally faster than the format() method."
+        },
+        {
+          "question": "How to align text left in f-string?",
+          "options": [":<", ":>", ":^", ":-"],
+          "answer": ":<",
+          "reasoning": ":< left aligns text within available space."
+        },
+        {
+          "question": "What does {1234567:,} display?",
+          "options": [
+            "1,234,567",
+            "1234567.0",
+            "1234567,00",
+            "Error"
+          ],
+          "answer": "1,234,567",
+          "reasoning": "The :, format adds comma as thousand separator."
+        },
+        {
+          "question": "Can you put if-else in f-string?",
+          "options": ["No", "Yes, with ternary operator", "Only simple if", "Only in Python 3.8+"],
+          "answer": "Yes, with ternary operator",
+          "reasoning": "F-strings support ternary expressions: {x if condition else y}"
+        }
+      ]
+    },
+
+
+    {
+      "title": "Day 22 – Python None and Null Values",
+      "definition": "None is a special constant in Python that represents the absence of a value or a null value. It is the sole instance of the NoneType data type.",
+      "explanation": "Think of None as an empty box or a blank space. It's Python's way of saying 'there's nothing here' or 'this hasn't been set yet.' Unlike other programming languages that might use null, nil, or undefined, Python uses None. It's important to understand that None is not the same as 0, False, or an empty string - it's a complete absence of value. You'll encounter None when functions don't return anything, when variables haven't been assigned, or when you want to explicitly indicate 'no value.' Proper handling of None is crucial for writing robust Python code.",
+      "code_example": "# Understanding None in Python\n\nprint(\"--- What is None? ---\")\n\n# Assigning None to variables\nx = None\nprint(f\"Value of x: {x}\")\nprint(f\"Type of x: {type(x)}\")\n\n# None vs other 'empty' values\nprint(\"\\n--- None vs Other Values ---\")\nprint(\"Comparison of different 'empty' values:\")\nvalues = [None, 0, False, \"\", [], {}, ()]\n\nfor value in values:\n    print(f\"Value: {repr(value):10} | Type: {type(value).__name__:10} | Bool: {bool(value)}\")\n\nprint(\"\\n--- Comparing with None ---\")\n# Correct way to compare with None\nresult = None\n\n# Use 'is' or 'is not' (not == or !=)\nif result is None:\n    print(\"Result is None (using 'is')\")\n\nif result is not None:\n    print(\"Result is not None\")\nelse:\n    print(\"Result is None (using 'is not')\")\n\n# Incorrect way (avoid)\nprint(\"\\nWrong way (avoid):\")\nprint(f\"result == None: {result == None}\")\nprint(\"Always use 'is' for None comparison\")\n\nprint(\"\\n--- Functions Returning None ---\")\n# Functions without return statement return None\ndef greet(name):\n    print(f\"Hello, {name}!\")\n    # No return statement\n\nresult = greet(\"Ali\")\nprint(f\"Function returned: {result}\")\n\n# Explicitly returning None\ndef find_item(items, target):\n    for item in items:\n        if item == target:\n            return item\n    return None  # Explicitly return None if not found\n\nitems = [\"apple\", \"banana\", \"cherry\"]\nprint(f\"\\nSearch for 'banana': {find_item(items, 'banana')}\")\nprint(f\"Search for 'orange': {find_item(items, 'orange')}\")\n\nprint(\"\\n--- Practical Use Cases ---\")\n\n# 1. Default parameter values\ndef create_user(name, age=None):\n    \"\"\"Create user with optional age\"\"\"\n    user = {\"name\": name}\n    if age is not None:\n        user[\"age\"] = age\n    return user\n\nprint(\"User creation:\")\nprint(create_user(\"Ali\", 25))\nprint(create_user(\"Sara\"))  # age is None\n\n# 2. Placeholder for uninitialized variables\nuser_preferences = None  # Will be set later\n\n# Later in code...\nuser_preferences = {\"theme\": \"dark\", \"language\": \"en\"}\nprint(f\"\\nUser preferences: {user_preferences}\")\n\n# 3. Checking if value exists\ndef process_data(data):\n    if data is None:\n        print(\"No data to process\")\n        return\n    print(f\"Processing data: {data}\")\n\nprint(\"\\nData processing:\")\nprocess_data(None)\nprocess_data([1, 2, 3])\n\nprint(\"\\n--- None in Collections ---\")\n# None can be in lists, tuples, dictionaries\nmixed_list = [1, \"hello\", None, 3.14, None]\nprint(f\"List with None: {mixed_list}\")\n\n# Counting None in list\nnone_count = mixed_list.count(None)\nprint(f\"Number of None values: {none_count}\")\n\n# Filtering out None\nfiltered_list = [item for item in mixed_list if item is not None]\nprint(f\"List without None: {filtered_list}\")\n\nprint(\"\\n--- Boolean Context ---\")\n# None evaluates to False in boolean context\nvalues_to_check = [None, 0, 1, \"\", \"hello\", [], [1, 2]]\n\nprint(\"Truthiness of values:\")\nfor value in values_to_check:\n    if value:\n        print(f\"{repr(value):10} → True\")\n    else:\n        print(f\"{repr(value):10} → False\")",
+      "real_world_example": "None is used extensively in real applications: Database queries return None when no records are found, API calls return None when data is unavailable, configuration settings use None for optional values, and functions use None as default parameters. When you search for a product that doesn't exist in an e-commerce app, the function returns None. When a user hasn't set their profile picture, it's stored as None.",
+      "interactive_tasks": [
+        "Write a function that returns None if input is invalid",
+        "Create a program that filters None values from a list",
+        "Write a configuration loader that handles None values for optional settings"
+      ],
+      "quiz": [
+        {
+          "question": "What is None in Python?",
+          "options": [
+            "Same as 0",
+            "Same as empty string",
+            "A special null value",
+            "A boolean value"
+          ],
+          "answer": "A special null value",
+          "reasoning": "None represents the absence of a value, distinct from 0 or empty string."
+        },
+        {
+          "question": "What is the type of None?",
+          "options": ["None", "NoneType", "NullType", "EmptyType"],
+          "answer": "NoneType",
+          "reasoning": "None is the sole instance of the NoneType class."
+        },
+        {
+          "question": "How to check if a variable is None?",
+          "options": ["variable == None", "variable is None", "variable = None", "variable.None"],
+          "answer": "variable is None",
+          "reasoning": "Always use 'is' or 'is not' for None comparisons, not '=='."
+        },
+        {
+          "question": "What does a function return by default?",
+          "options": ["0", "None", "False", "Error"],
+          "answer": "None",
+          "reasoning": "Functions without a return statement implicitly return None."
+        },
+        {
+          "question": "Is None equal to False?",
+          "options": ["Yes", "No", "Sometimes", "Only in if statements"],
+          "answer": "No",
+          "reasoning": "None is not equal to False, though both evaluate to False in boolean context."
+        },
+        {
+          "question": "Can None be in a list?",
+          "options": ["No", "Yes", "Only at the end", "Only one None per list"],
+          "answer": "Yes",
+          "reasoning": "None can be an element in lists, tuples, dictionaries, etc."
+        },
+        {
+          "question": "What does bool(None) return?",
+          "options": ["True", "False", "None", "Error"],
+          "answer": "False",
+          "reasoning": "None evaluates to False in boolean context."
+        }
+      ]
+    },
+
+    {
+      "title": "Day 23 – Python Arrays (Using Lists as Arrays)",
+      "definition": "Arrays are data structures that store multiple values in a single variable, and in Python, lists are commonly used as arrays since Python doesn't have built-in array support.",
+      "explanation": "Think of arrays like a row of lockers or a shelf with compartments. Each compartment (array element) can hold one item, and they're all organized in order with numbers (indices) to identify them. While Python doesn't have a separate 'array' type like some languages, Python lists work perfectly as arrays - they store multiple items, maintain order, and allow access by index number. Arrays are essential when you need to work with collections of data: storing student grades, tracking inventory items, or managing any group of related values.",
+      "code_example": "# Using Python Lists as Arrays\n\nprint(\"--- Creating Arrays ---\")\n\n# Creating an array (using list)\nfruits = [\"apple\", \"banana\", \"cherry\"]\nprint(f\"Fruits array: {fruits}\")\n\n# Array with numbers\nnumbers = [1, 2, 3, 4, 5]\nprint(f\"Numbers array: {numbers}\")\n\n# Mixed type array (Python allows this)\nmixed = [\"apple\", 10, 3.14, True]\nprint(f\"Mixed array: {mixed}\")\n\nprint(\"\\n--- Accessing Array Elements ---\")\n# Access by index (0-based)\nprint(f\"First fruit: {fruits[0]}\")\nprint(f\"Second fruit: {fruits[1]}\")\nprint(f\"Last fruit: {fruits[-1]}\")  # Negative index\n\nprint(\"\\n--- Modifying Arrays ---\")\n# Change array elements\nfruits[0] = \"orange\"\nprint(f\"After modification: {fruits}\")\n\n# Array length\nprint(f\"Number of fruits: {len(fruits)}\")\n\nprint(\"\\n--- Looping Through Arrays ---\")\nprint(\"All fruits:\")\nfor fruit in fruits:\n    print(f\"- {fruit}\")\n\nprint(\"\\nWith index:\")\nfor i, fruit in enumerate(fruits):\n    print(f\"Index {i}: {fruit}\")\n\nprint(\"\\n--- Adding Elements ---\")\n# Add elements\nfruits.append(\"grape\")  # Add to end\nprint(f\"After append: {fruits}\")\n\nfruits.insert(1, \"mango\")  # Insert at specific position\nprint(f\"After insert: {fruits}\")\n\nprint(\"\\n--- Removing Elements ---\")\n# Remove by value\nfruits.remove(\"banana\")\nprint(f\"After remove: {fruits}\")\n\n# Remove by index\nremoved = fruits.pop(2)  # Remove and return\nprint(f\"Removed: {removed}\")\nprint(f\"After pop: {fruits}\")\n\n# Clear array\nfruits_copy = fruits.copy()\nfruits_copy.clear()\nprint(f\"After clear: {fruits_copy}\")\n\nprint(\"\\n--- Array Operations ---\")\narr1 = [1, 2, 3]\narr2 = [4, 5, 6]\n\n# Concatenation\ncombined = arr1 + arr2\nprint(f\"Combined arrays: {combined}\")\n\n# Repetition\nrepeated = arr1 * 3\nprint(f\"Repeated array: {repeated}\")\n\n# Check existence\nprint(f\"Is 3 in array? {3 in arr1}\")\nprint(f\"Is 7 in array? {7 in arr1}\")\n\nprint(\"\\n--- Sorting Arrays ---\")\nnumbers = [5, 2, 8, 1, 9]\nnumbers.sort()\nprint(f\"Sorted numbers: {numbers}\")\n\nnumbers.reverse()\nprint(f\"Reversed: {numbers}\")\n\nprint(\"\\n--- Practical Example ---\")\n# Student grades example\ngrades = [85, 92, 78, 90, 88]\nprint(f\"Student grades: {grades}\")\nprint(f\"Highest grade: {max(grades)}\")\nprint(f\"Lowest grade: {min(grades)}\")\nprint(f\"Average grade: {sum(grades)/len(grades):.1f}\")\n\n# Find grade above 90\ngood_grades = [grade for grade in grades if grade >= 90]\nprint(f\"Grades above 90: {good_grades}\")",
+      "real_world_example": "Arrays (lists) are used everywhere: Shopping carts store product lists, games track player scores, social media stores friend lists, banking apps track transaction history, and weather apps store temperature data. When you see 'Your recent orders' on a shopping site, that's an array of order objects. When a game shows 'Top 10 scores', that's an array of scores.",
+      "interactive_tasks": [
+        "Create an array of 5 favorite movies and display them with numbers",
+        "Write a program that finds the largest number in an array",
+        "Create a temperature tracking system using arrays"
+      ],
+      "quiz": [
+        {
+          "question": "How does Python handle arrays?",
+          "options": [
+            "With built-in array type",
+            "Using lists as arrays",
+            "Doesn't support arrays",
+            "Only with NumPy library"
+          ],
+          "answer": "Using lists as arrays",
+          "reasoning": "Python uses lists to function as arrays since there's no separate built-in array type."
+        },
+        {
+          "question": "How to access first element of array 'arr'?",
+          "options": ["arr[1]", "arr[0]", "arr.first", "arr(0)"],
+          "answer": "arr[0]",
+          "reasoning": "Python uses 0-based indexing, so first element is at index 0."
+        },
+        {
+          "question": "Which method adds element to end of array?",
+          "options": ["add()", "append()", "insert()", "push()"],
+          "answer": "append()",
+          "reasoning": "append() adds an element to the end of the list/array."
+        },
+        {
+          "question": "How to get array length?",
+          "options": ["arr.length", "len(arr)", "arr.size", "length(arr)"],
+          "answer": "len(arr)",
+          "reasoning": "len() function returns number of elements in array/list."
+        },
+        {
+          "question": "What does arr.pop(2) do?",
+          "options": [
+            "Removes element at index 2",
+            "Removes element with value 2",
+            "Adds element at index 2",
+            "Prints element at index 2"
+          ],
+          "answer": "Removes element at index 2",
+          "reasoning": "pop(index) removes and returns element at specified index."
+        },
+        {
+          "question": "How to check if 'apple' is in array?",
+          "options": [
+            "arr.contains('apple')",
+            "'apple' in arr",
+            "arr.find('apple')",
+            "arr.has('apple')"
+          ],
+          "answer": "'apple' in arr",
+          "reasoning": "The 'in' operator checks if value exists in array/list."
+        },
+        {
+          "question": "What is the result of [1,2] + [3,4]?",
+          "options": ["[4,6]", "[1,2,3,4]", "[1,2][3,4]", "Error"],
+          "answer": "[1,2,3,4]",
+          "reasoning": "+ operator concatenates (combines) two lists/arrays."
+        }
+      ]
+    },
+    {
+      "title": "Day 24 – Introduction to Object-Oriented Programming",
+      "definition": "Object-Oriented Programming (OOP) is a programming paradigm that organizes code into objects containing both data (attributes) and behavior (methods), modeling real-world entities.",
+      "explanation": "Think of OOP like building with LEGO blocks. Each LEGO piece is an object with specific properties (color, size, shape) and capabilities (how it connects to other pieces). In OOP, we create blueprints called 'classes' that define what properties and behaviors objects will have. Then we create actual objects from these blueprints. This approach helps organize complex code, makes it reusable, and models the real world more naturally. Instead of just writing functions that manipulate data, we create objects that contain both data and the functions that work with that data.",
+      "code_example": "# Basic class definition\nprint(\"--- Basic Class and Object ---\")\n\nclass Dog:\n    \"\"\"A simple Dog class\"\"\"\n    \n    # Class attribute (shared by all instances)\n    species = \"Canis familiaris\"\n    \n    def __init__(self, name, age):\n        \"\"\"Initialize dog with name and age\"\"\"\n        # Instance attributes (unique to each instance)\n        self.name = name\n        self.age = age\n    \n    def bark(self):\n        \"\"\"Make the dog bark\"\"\"\n        return f\"{self.name} says Woof!\"\n    \n    def describe(self):\n        \"\"\"Describe the dog\"\"\"\n        return f\"{self.name} is {self.age} years old and is a {self.species}\"\n\n# Creating objects (instances)\ndog1 = Dog(\"Buddy\", 3)\ndog2 = Dog(\"Lucy\", 5)\n\n# Using objects\nprint(dog1.bark())\nprint(dog2.bark())\nprint(dog1.describe())\nprint(dog2.describe())\n\n# Accessing attributes\nprint(f\"\\n{dog1.name} is {dog1.age} years old\")\nprint(f\"Both dogs are {Dog.species}\")\n\nprint(\"\\n--- Bank Account Example ---\")\n\nclass BankAccount:\n    \"\"\"A simple bank account class\"\"\"\n    \n    def __init__(self, account_holder, initial_balance=0):\n        self.account_holder = account_holder\n        self.balance = initial_balance\n        self.account_number = id(self)  # Simple unique ID\n    \n    def deposit(self, amount):\n        \"\"\"Deposit money into account\"\"\"\n        if amount > 0:\n            self.balance += amount\n            return f\"Deposited ${amount}. New balance: ${self.balance}\"\n        else:\n            return \"Deposit amount must be positive\"\n    \n    def withdraw(self, amount):\n        \"\"\"Withdraw money from account\"\"\"\n        if amount > 0:\n            if amount <= self.balance:\n                self.balance -= amount\n                return f\"Withdrew ${amount}. New balance: ${self.balance}\"\n            else:\n                return \"Insufficient funds\"\n        else:\n            return \"Withdrawal amount must be positive\"\n    \n    def get_balance(self):\n        \"\"\"Get current balance\"\"\"\n        return f\"Balance: ${self.balance}\"\n    \n    def __str__(self):\n        \"\"\"String representation of the account\"\"\"\n        return f\"Account #{self.account_number}: {self.account_holder} - Balance: ${self.balance}\"\n\n# Using the BankAccount class\naccount1 = BankAccount(\"Alice\", 1000)\naccount2 = BankAccount(\"Bob\", 500)\n\nprint(account1)\nprint(account2)\n\nprint(\"\\n--- Performing Transactions ---\")\nprint(account1.deposit(200))\nprint(account1.withdraw(50))\nprint(account1.withdraw(2000))  # Should fail\n\nprint(account1.get_balance())\n\nprint(\"\\n--- Student Class Example ---\")\n\nclass Student:\n    \"\"\"A student class with course enrollment\"\"\"\n    \n    def __init__(self, name, student_id):\n        self.name = name\n        self.student_id = student_id\n        self.courses = []\n        self.grades = {}\n    \n    def enroll(self, course_name):\n        \"\"\"Enroll in a course\"\"\"\n        if course_name not in self.courses:\n            self.courses.append(course_name)\n            return f\"Enrolled in {course_name}\"\n        else:\n            return f\"Already enrolled in {course_name}\"\n    \n    def add_grade(self, course_name, grade):\n        \"\"\"Add a grade for a course\"\"\"\n        if course_name in self.courses:\n            self.grades[course_name] = grade\n            return f\"Added grade {grade} for {course_name}\"\n        else:\n            return f\"Not enrolled in {course_name}\"\n    \n    def get_gpa(self):\n        \"\"\"Calculate GPA\"\"\"\n        if not self.grades:\n            return 0.0\n        \n        grade_points = {\n            'A': 4.0, 'B': 3.0, 'C': 2.0, 'D': 1.0, 'F': 0.0\n        }\n        \n        total_points = sum(grade_points.get(grade, 0) for grade in self.grades.values())\n        return total_points / len(self.grades)\n    \n    def __str__(self):\n        return f\"Student: {self.name} (ID: {self.student_id})\"\n\n# Using Student class\nstudent = Student(\"John Doe\", \"S12345\")\nprint(student)\n\nprint(student.enroll(\"Math\"))\nprint(student.enroll(\"Science\"))\nprint(student.add_grade(\"Math\", \"A\"))\nprint(student.add_grade(\"Science\", \"B\"))\n\nprint(f\"GPA: {student.get_gpa():.2f}\")\nprint(f\"Courses: {student.courses}\")\nprint(f\"Grades: {student.grades}\")",
+      "real_world_example": "OOP is used in virtually all modern software. GUI applications use objects for windows, buttons, and menus. Game development uses objects for characters, items, and environments. Web frameworks use objects for requests, responses, and database models. Even the Python language itself is built using OOP - strings, lists, and dictionaries are all objects with methods. Banking systems use account objects, e-commerce sites use product and shopping cart objects, and social media platforms use user and post objects.",
+      "interactive_tasks": [
+        "Create a Rectangle class with methods to calculate area and perimeter",
+        "Write a Car class with attributes for make, model, year and methods to display info",
+        "Create a Book class that tracks title, author, and reading status"
+      ],
+      "quiz": [
+        {
+          "question": "What is a class in OOP?",
+          "options": ["A single object", "A blueprint for creating objects", "A function", "A variable"],
+          "answer": "A blueprint for creating objects",
+          "reasoning": "A class defines the properties and methods that objects of that type will have."
+        },
+        {
+          "question": "What is an object?",
+          "options": ["A class", "An instance of a class", "A method", "A variable"],
+          "answer": "An instance of a class",
+          "reasoning": "An object is a specific instance created from a class blueprint."
+        },
+        {
+          "question": "What is the purpose of the __init__ method?",
+          "options": ["To delete objects", "To initialize object attributes", "To print objects", "To compare objects"],
+          "answer": "To initialize object attributes",
+          "reasoning": "__init__ is the constructor method that sets up new objects with initial values."
+        },
+        {
+          "question": "What does 'self' refer to in a class method?",
+          "options": ["The class itself", "The current object instance", "The parent class", "The method name"],
+          "answer": "The current object instance",
+          "reasoning": "Self refers to the specific object instance that the method is being called on."
+        },
+        {
+          "question": "What is the difference between class and instance attributes?",
+          "options": ["No difference", "Class attributes are shared, instance are unique", "Instance attributes are shared, class are unique", "Only class attributes exist"],
+          "answer": "Class attributes are shared, instance are unique",
+          "reasoning": "Class attributes are shared by all instances, while instance attributes are specific to each object."
+        },
+        {
+          "question": "What is a method in OOP?",
+          "options": ["A variable in a class", "A function defined in a class", "A class itself", "An object"],
+          "answer": "A function defined in a class",
+          "reasoning": "Methods are functions that are defined inside a class and operate on object data."
+        },
+        {
+          "question": "What is encapsulation in OOP?",
+          "options": ["Breaking code into pieces", "Bundling data and methods together", "Creating multiple classes", "Inheriting from parent classes"],
+          "answer": "Bundling data and methods together",
+          "reasoning": "Encapsulation means keeping data and the methods that operate on that data together in one unit (object)."
+        }
+      ]
+    },
+    {
+      "title": "Day 25 – Inheritance and Polymorphism",
+      "definition": "Inheritance allows a class to inherit attributes and methods from another class, while polymorphism enables objects of different classes to be treated as objects of a common superclass.",
+      "explanation": "Think of inheritance like a family tree. Children inherit characteristics from their parents but can also have their own unique traits. In programming, inheritance lets you create new classes based on existing ones, reusing code and establishing relationships. Polymorphism is like different animals making sounds - a dog says 'woof', a cat says 'meow', but both are 'making sound'. This allows you to write flexible code that works with objects of different types as long as they share a common interface. Together, these concepts make code more organized, reusable, and flexible.",
+      "code_example": "# Basic inheritance\nprint(\"--- Basic Inheritance ---\")\n\nclass Animal:\n    \"\"\"Base class for all animals\"\"\"\n    \n    def __init__(self, name, species):\n        self.name = name\n        self.species = species\n    \n    def speak(self):\n        \"\"\"Make animal sound\"\"\"\n        return \"Some generic animal sound\"\n    \n    def describe(self):\n        return f\"{self.name} is a {self.species}\"\n\nclass Dog(Animal):  # Dog inherits from Animal\n    \"\"\"Dog class - inherits from Animal\"\"\"\n    \n    def __init__(self, name, breed):\n        # Call parent class constructor\n        super().__init__(name, \"Dog\")\n        self.breed = breed\n    \n    # Override the speak method\n    def speak(self):\n        return \"Woof!\"\n    \n    def describe(self):\n        # Extend parent method\n        base_description = super().describe()\n        return f\"{base_description} of breed {self.breed}\"\n\nclass Cat(Animal):  # Cat inherits from Animal\n    \"\"\"Cat class - inherits from Animal\"\"\"\n    \n    def __init__(self, name, color):\n        super().__init__(name, \"Cat\")\n        self.color = color\n    \n    # Override the speak method\n    def speak(self):\n        return \"Meow!\"\n    \n    def describe(self):\n        base_description = super().describe()\n        return f\"{base_description} with {self.color} fur\"\n\n# Using the classes\ndog = Dog(\"Buddy\", \"Golden Retriever\")\ncat = Cat(\"Whiskers\", \"orange\")\n\nprint(dog.describe())\nprint(cat.describe())\n\nprint(f\"{dog.name} says: {dog.speak()}\")\nprint(f\"{cat.name} says: {cat.speak()}\")\n\nprint(\"\\n--- Polymorphism Example ---\")\n\n# Polymorphism in action\nanimals = [dog, cat]\n\nprint(\"All animals speaking:\")\nfor animal in animals:\n    print(f\"{animal.name} says: {animal.speak()}\")\n\nprint(\"\\n--- Multiple Inheritance ---\")\n\nclass Flyable:\n    \"\"\"Mixin class for flying ability\"\"\"\n    \n    def fly(self):\n        return \"I can fly!\"\n\nclass Swimmable:\n    \"\"\"Mixin class for swimming ability\"\"\"\n    \n    def swim(self):\n        return \"I can swim!\"\n\nclass Duck(Animal, Flyable, Swimmable):\n    \"\"\"Duck class inherits from Animal, Flyable, and Swimmable\"\"\"\n    \n    def __init__(self, name):\n        super().__init__(name, \"Duck\")\n    \n    def speak(self):\n        return \"Quack!\"\n\n# Using multiple inheritance\nduck = Duck(\"Daffy\")\nprint(f\"{duck.name}: {duck.speak()}\")\nprint(duck.fly())\nprint(duck.swim())\n\nprint(\"\\n--- Method Resolution Order (MRO) ---\")\n\n# Check method resolution order\nprint(\"Duck MRO:\", Duck.__mro__)\n\nprint(\"\\n--- Abstract Base Class Example ---\")\n\nfrom abc import ABC, abstractmethod\n\nclass Shape(ABC):\n    \"\"\"Abstract base class for shapes\"\"\"\n    \n    @abstractmethod\n    def area(self):\n        \"\"\"Calculate area - must be implemented by subclasses\"\"\"\n        pass\n    \n    @abstractmethod\n    def perimeter(self):\n        \"\"\"Calculate perimeter - must be implemented by subclasses\"\"\"\n        pass\n\nclass Rectangle(Shape):\n    \"\"\"Rectangle class implementing Shape interface\"\"\"\n    \n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n    \n    def area(self):\n        return self.width * self.height\n    \n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\nclass Circle(Shape):\n    \"\"\"Circle class implementing Shape interface\"\"\"\n    \n    def __init__(self, radius):\n        self.radius = radius\n    \n    def area(self):\n        import math\n        return math.pi * self.radius ** 2\n    \n    def perimeter(self):\n        import math\n        return 2 * math.pi * self.radius\n\n# Using polymorphic behavior\nshapes = [Rectangle(4, 5), Circle(3)]\n\nprint(\"\\nShape areas and perimeters:\")\nfor shape in shapes:\n    print(f\"Area: {shape.area():.2f}, Perimeter: {shape.perimeter():.2f}\")\n\nprint(\"\\n--- isinstance() and issubclass() ---\")\n\n# Type checking\nprint(f\"dog is Animal: {isinstance(dog, Animal)}\")\nprint(f\"dog is Dog: {isinstance(dog, Dog)}\")\nprint(f\"Dog is subclass of Animal: {issubclass(Dog, Animal)}\")\nprint(f\"Dog is subclass of Cat: {issubclass(Dog, Cat)}\")",
+      "real_world_example": "Inheritance and polymorphism are fundamental in software development. GUI frameworks use inheritance to create specialized widgets from basic ones. Game engines use inheritance for game objects (characters, items, enemies). Web frameworks use inheritance for different types of requests and responses. Database ORMs use inheritance to map different types of database records. Even in business applications, you might have a base Employee class with Manager, Developer, and Designer subclasses, each with specialized behavior but sharing common employee functionality.",
+      "interactive_tasks": [
+        "Create a Vehicle base class with Car and Motorcycle subclasses",
+        "Implement a BankAccount hierarchy with SavingsAccount and CheckingAccount",
+        "Create a Shape hierarchy with different area calculation methods"
+      ],
+      "quiz": [
+        {
+          "question": "What is inheritance in OOP?",
+          "options": ["Copying code", "A class deriving from another class", "Creating multiple objects", "Deleting classes"],
+          "answer": "A class deriving from another class",
+          "reasoning": "Inheritance allows a class to inherit attributes and methods from a parent class."
+        },
+        {
+          "question": "What is polymorphism?",
+          "options": ["Multiple inheritance", "Objects of different types being treated similarly", "Creating many objects", "Inheriting from multiple classes"],
+          "answer": "Objects of different types being treated similarly",
+          "reasoning": "Polymorphism allows objects of different classes to be used interchangeably if they implement the same interface."
+        },
+        {
+          "question": "What does super() do?",
+          "options": ["Calls the parent class method", "Creates a super class", "Makes a class superior", "Deletes the parent class"],
+          "answer": "Calls the parent class method",
+          "reasoning": "super() is used to call methods from the parent class in the child class."
+        },
+        {
+          "question": "What is method overriding?",
+          "options": ["Creating a new method", "Changing a parent class method in child class", "Deleting a method", "Copying a method"],
+          "answer": "Changing a parent class method in child class",
+          "reasoning": "Method overriding means providing a different implementation of a method in the child class."
+        },
+        {
+          "question": "What is multiple inheritance?",
+          "options": ["A class with multiple methods", "A class inheriting from multiple parents", "Multiple objects from one class", "Inheriting multiple times"],
+          "answer": "A class inheriting from multiple parents",
+          "reasoning": "Multiple inheritance allows a class to inherit from more than one parent class."
+        },
+        {
+          "question": "What is an abstract class?",
+          "options": ["A class that can't be instantiated", "A very complex class", "A class with no methods", "A class that inherits from everything"],
+          "answer": "A class that can't be instantiated",
+          "reasoning": "Abstract classes define interfaces but cannot be instantiated directly - they must be subclassed."
+        },
+        {
+          "question": "What is the purpose of @abstractmethod?",
+          "options": ["To make methods faster", "To force subclasses to implement the method", "To hide methods", "To delete methods"],
+          "answer": "To force subclasses to implement the method",
+          "reasoning": "@abstractmethod decorator marks methods that must be implemented by concrete subclasses."
+        }
+      ]
+    }
+   
+
+  ]
+}

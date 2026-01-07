@@ -1,0 +1,297 @@
+{
+  "course_title": "JavaScript Intermediate Level",
+  "days": [
+    {
+      "title": "Day 12 – Advanced Functions and Closures",
+      "definition": "Advanced functions include concepts like closures, higher-order functions, function currying, and recursion that enable powerful programming patterns.",
+      "explanation": {
+        "main": "Understanding advanced function concepts is crucial for writing efficient and maintainable JavaScript code.",
+        "key_points": [
+          "Closures: Functions that remember their lexical scope",
+          "Higher-order functions: Functions that take other functions as arguments or return functions",
+          "Currying: Transforming a function with multiple arguments into a sequence of functions",
+          "Recursion: Functions that call themselves with modified parameters",
+          "Memoization: Caching function results for optimization"
+        ]
+      },
+      "code_example": "const createCounter = (start = 0) => {\n  let count = start;\n  return {\n    increment() {\n      count += 1;\n      return count;\n    },\n    decrement() {\n      count -= 1;\n      return count;\n    },\n    getCount() {\n      return count;\n    }\n  };\n};\nconst counter = createCounter(5);\nconsole.log(counter.increment(), counter.decrement(), counter.getCount());",
+      "real_world_example": "Closures are used in module patterns, private variables, and event handlers. Higher-order functions power array methods like map, filter, and reduce. Currying enables function specialization in libraries like Lodash. Recursion processes nested data structures. Memoization optimizes expensive calculations.",
+      "interactive_tasks": [
+        "Create a closure-based counter with increment/decrement",
+        "Implement a memoized Fibonacci function",
+        "Build a curry function that handles variable arguments",
+        "Create a higher-order function that logs execution time"
+      ],
+      "quiz": [
+        {
+          "question": "What is a closure in JavaScript?",
+          "options": [
+            "A function with no parameters",
+            "A function that remembers its lexical scope",
+            "A function that returns another function",
+            "A function with many variables"
+          ],
+          "answer": "A function that remembers its lexical scope",
+          "reasoning": "A closure gives you access to an outer function's scope from an inner function."
+        },
+        {
+          "question": "What is the main benefit of memoization?",
+          "options": [
+            "Reduces code length",
+            "Improves performance by caching results",
+            "Makes functions asynchronous",
+            "Increases memory usage"
+          ],
+          "answer": "Improves performance by caching results",
+          "reasoning": "Memoization stores the results of expensive function calls and returns cached result when same inputs occur."
+        },
+        {
+          "question": "What is function currying?",
+          "options": [
+            "Making a function spicier",
+            "Transforming a function to take multiple arguments one at a time",
+            "Converting synchronous to asynchronous",
+            "Adding error handling"
+          ],
+          "answer": "Transforming a function to take multiple arguments one at a time",
+          "reasoning": "Currying transforms a function with multiple arguments into a sequence of functions each with single argument."
+        }
+      ]
+    },
+    {
+      "title": "Day 13 – Prototypes and Inheritance",
+      "definition": "JavaScript uses prototypal inheritance where objects can inherit properties and methods from other objects through prototype chains.",
+      "explanation": {
+        "main": "Understanding prototypes is essential for working with JavaScript's object-oriented features.",
+        "key_points": [
+          "Every JavaScript object has a prototype property",
+          "Prototype chain allows inheritance of properties and methods",
+          "Constructor functions create objects with shared prototype",
+          "ES6 classes are syntactic sugar over prototypes",
+          "Object.create() creates objects with specified prototype",
+          "Instance vs prototype properties"
+        ]
+      },
+      "code_example": "class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return `${this.name} makes a sound`;  \n  }\n}\nclass Dog extends Animal {\n  speak() {\n    return `${this.name} barks`;\n  }\n}\nconst dog = new Dog('Buddy');\nconsole.log(dog.speak());",
+      "real_world_example": "Prototypal inheritance is used in JavaScript frameworks, custom class hierarchies, library development, and when extending built-in objects. Most JavaScript frameworks (React, Vue, Angular) use prototypes internally for component inheritance.",
+      "interactive_tasks": [
+        "Create a Shape hierarchy with Circle and Rectangle inheriting from Shape",
+        "Implement a custom Array class with additional methods",
+        "Build a Vehicle class hierarchy with Car, Bike, and Truck",
+        "Create a mixin pattern using Object.assign() with prototypes"
+      ],
+      "quiz": [
+        {
+          "question": "What is the prototype chain in JavaScript?",
+          "options": [
+            "A chain of functions",
+            "A linked list of objects",
+            "A series of parent objects that properties are inherited from",
+            "A type of array"
+          ],
+          "answer": "A series of parent objects that properties are inherited from",
+          "reasoning": "When accessing a property, JavaScript looks up the prototype chain until it finds the property or reaches null."
+        },
+        {
+          "question": "What does the 'new' keyword do?",
+          "options": [
+            "Creates a new variable",
+            "Creates a new object and sets its prototype",
+            "Imports a module",
+            "Declares a function"
+          ],
+          "answer": "Creates a new object and sets its prototype",
+          "reasoning": "The 'new' keyword creates a new object, sets its prototype to the constructor's prototype, and calls the constructor with 'this' bound to the new object."
+        },
+        {
+          "question": "How do ES6 classes relate to prototypes?",
+          "options": [
+            "They replace prototypes completely",
+            "They are syntactic sugar over prototypes",
+            "They have no relation to prototypes",
+            "They are faster than prototypes"
+          ],
+          "answer": "They are syntactic sugar over prototypes",
+          "reasoning": "ES6 classes provide a cleaner syntax for creating constructor functions and prototypes but work the same way under the hood."
+        }
+      ]
+    },
+    {
+      "title": "Day 14 – Error Handling and Debugging",
+      "definition": "Error handling involves catching and managing runtime errors, while debugging is the process of finding and fixing bugs in code.",
+      "explanation": {
+        "main": "Proper error handling makes applications more robust and debugging helps identify issues efficiently.",
+        "key_points": [
+          "try-catch-finally blocks for error handling",
+          "Throwing custom errors with Error objects",
+          "Error types: SyntaxError, ReferenceError, TypeError, etc.",
+          "Debugging tools: console methods, debugger statement, browser dev tools",
+          "Error propagation in async code",
+          "Best practices for error messages and logging"
+        ]
+      },
+      "code_example": "function validateUser(user) {\n  if (!user.name) { throw new Error('Name required'); }\n  if (user.age < 18) { throw new Error('Must be adult'); }\n  return true;\n}\ntry {\n  validateUser({ age: 16 });\n} catch (error) {\n  console.log('Validation failed:', error.message);\n}",
+      "real_world_example": "Error handling is crucial for form validation, API calls, file operations, and user input processing. Debugging techniques are used daily by developers to fix bugs, optimize performance, and understand code flow. Production applications use error tracking services like Sentry or LogRocket.",
+      "interactive_tasks": [
+        "Create a robust validation function with custom error types",
+        "Implement a retry mechanism for failed API calls",
+        "Build a debug logging utility with different log levels",
+        "Create error boundary component for frontend applications"
+      ],
+      "quiz": [
+        {
+          "question": "What is the purpose of the 'finally' block in try-catch?",
+          "options": [
+            "To handle errors",
+            "To execute code regardless of try/catch outcome",
+            "To throw new errors",
+            "To skip error handling"
+          ],
+          "answer": "To execute code regardless of try/catch outcome",
+          "reasoning": "The finally block executes after try and catch blocks, regardless of whether an exception was thrown or caught."
+        },
+        {
+          "question": "Which console method is useful for measuring code performance?",
+          "options": [
+            "console.log()",
+            "console.time() and console.timeEnd()",
+            "console.error()",
+            "console.warn()"
+          ],
+          "answer": "console.time() and console.timeEnd()",
+          "reasoning": "console.time() starts a timer and console.timeEnd() stops it, logging the elapsed time."
+        },
+        {
+          "question": "What does the 'debugger' statement do?",
+          "options": [
+            "Logs an error",
+            "Throws an exception",
+            "Pauses execution if dev tools are open",
+            "Stops the script"
+          ],
+          "answer": "Pauses execution if dev tools are open",
+          "reasoning": "The debugger statement invokes any available debugging functionality, typically pausing execution and opening dev tools."
+        }
+      ]
+    },
+    {
+      "title": "Day 15 – Modules and Code Organization",
+      "definition": "JavaScript modules allow you to split code into separate files that can be imported and exported, promoting better code organization and reusability.",
+      "explanation": {
+        "main": "Modules help manage complexity in large applications by separating concerns and dependencies.",
+        "key_points": [
+          "ES6 modules use import/export syntax",
+          "Named exports vs default exports",
+          "Module bundlers (Webpack, Rollup, Parcel) for production",
+          "CommonJS (require/module.exports) used in Node.js",
+          "Tree shaking for eliminating unused code",
+          "Circular dependency management",
+          "Dynamic imports for code splitting"
+        ]
+      },
+      "code_example": "const module = (() => {\n  const privateCounter = 0;\n  return {\n    increment(value) {\n      return privateCounter + value;\n    }\n  };\n})();\nconsole.log('module result', module.increment(3));",
+      "real_world_example": "Modern web applications use modules to organize code into components, services, utilities, and features. Frameworks like React, Vue, and Angular heavily rely on modules. Build tools like Webpack and Vite bundle modules for production. Node.js uses CommonJS modules. Large codebases use modules to separate concerns and improve maintainability.",
+      "interactive_tasks": [
+        "Create a math utility module with various functions",
+        "Build a user management module with CRUD operations",
+        "Implement a module bundler simulation",
+        "Create a plugin system using modules"
+      ],
+      "quiz": [
+        {
+          "question": "What is the difference between named and default exports?",
+          "options": [
+            "No difference",
+            "Named exports can be multiple, default is one per module",
+            "Default exports are faster",
+            "Named exports are deprecated"
+          ],
+          "answer": "Named exports can be multiple, default is one per module",
+          "reasoning": "A module can have multiple named exports but only one default export."
+        },
+        {
+          "question": "What is tree shaking?",
+          "options": [
+            "A debugging technique",
+            "Eliminating unused code from bundles",
+            "A way to organize files",
+            "A type of error"
+          ],
+          "answer": "Eliminating unused code from bundles",
+          "reasoning": "Tree shaking removes unused code (dead code) from the final bundle, reducing file size."
+        },
+        {
+          "question": "What are dynamic imports useful for?",
+          "options": [
+            "Faster initial loading",
+            "Code splitting and lazy loading",
+            "Better error messages",
+            "Simpler syntax"
+          ],
+          "answer": "Code splitting and lazy loading",
+          "reasoning": "Dynamic imports allow loading modules on demand, improving initial load time by splitting code."
+        }
+      ]
+    },
+    {
+      "title": "Day 17 – Web APIs and Browser APIs",
+      "definition": "Web APIs provide interfaces to interact with browser features and web platform capabilities beyond the core JavaScript language.",
+      "explanation": {
+        "main": "Browser APIs extend JavaScript's capabilities with web-specific functionality.",
+        "key_points": [
+          "DOM APIs: document, window, navigator, location, history",
+          "Storage APIs: localStorage, sessionStorage, IndexedDB",
+          "Fetch API: modern replacement for XMLHttpRequest",
+          "Canvas API: 2D drawing and animation",
+          "Geolocation API: access device location",
+          "Web Workers: run scripts in background threads",
+          "Service Workers: proxy for network requests",
+          "Media APIs: audio, video, getUserMedia"
+        ]
+      },
+      "code_example": "const fetchMock = async (endpoint) => ({ endpoint, status: 200 });\nasync function useApi() {\n  const response = await fetchMock('/data');\n  console.log('status', response.status);\n}\nuseApi();",
+      "real_world_example": "Web APIs power modern web applications: localStorage for offline data, Fetch API for API calls, Canvas for charts and games, Geolocation for maps, Web Workers for heavy computations without blocking UI, Service Workers for offline capabilities, and Media APIs for video/audio applications.",
+      "interactive_tasks": [
+        "Build a simple drawing application with Canvas API",
+        "Create an offline-first app with localStorage and Service Workers",
+        "Implement a location-based weather app",
+        "Build a file uploader with drag-and-drop API"
+      ],
+      "quiz": [
+        {
+          "question": "What is the main advantage of Web Workers?",
+          "options": [
+            "They make code shorter",
+            "They run JavaScript in background threads",
+            "They improve CSS rendering",
+            "They reduce network requests"
+          ],
+          "answer": "They run JavaScript in background threads",
+          "reasoning": "Web Workers run scripts in background threads, preventing heavy computations from blocking the UI."
+        },
+        {
+          "question": "What's the difference between localStorage and sessionStorage?",
+          "options": [
+            "No difference",
+            "localStorage persists, sessionStorage clears on tab close",
+            "sessionStorage is faster",
+            "localStorage has more space"
+          ],
+          "answer": "localStorage persists, sessionStorage clears on tab close",
+          "reasoning": "localStorage data persists until explicitly cleared, sessionStorage data clears when page session ends (tab closed)."
+        },
+        {
+          "question": "What does the Fetch API replace?",
+          "options": [
+            "jQuery",
+            "XMLHttpRequest",
+            "WebSockets",
+            "localStorage"
+          ],
+          "answer": "XMLHttpRequest",
+          "reasoning": "Fetch API is modern replacement for XMLHttpRequest for making HTTP requests."
+        }
+      ]
+    }
+  ]
+}

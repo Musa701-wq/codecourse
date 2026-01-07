@@ -1,0 +1,669 @@
+{
+  "course_title": "Java Advanced Level",
+  "description": "Elevate your Java skills with streams, concurrency, and architecture patterns used in modern back-end systems.",
+  "days": [
+    {
+      "title": "Day 30 – Java Data Structures Fundamentals",
+      "definition": "Java Data Structures are collections in the java.util package that provide efficient ways to store, organize, and manipulate data, going beyond basic arrays with enhanced functionality.",
+      "explanation": "Data Structures in Java are like specialized containers for different needs. Think of them as different types of storage furniture: Arrays are like fixed shelves, ArrayLists are like expandable shelves, HashSets are like labeled boxes where each item is unique, and HashMaps are like filing cabinets with labeled folders. Each has its purpose: some keep order, some don't allow duplicates, some allow fast searching. The java.util package provides these ready-to-use structures so you don't have to build them from scratch.",
+      "code_example": "import java.util.ArrayList;\nimport java.util.HashSet;\nimport java.util.HashMap;\nimport java.util.LinkedList;\nimport java.util.TreeSet;\nimport java.util.TreeMap;\nimport java.util.Iterator;\nimport java.util.Collections;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== Java Data Structures Fundamentals ===\");\n        \n        // 1. ArrayList - Dynamic Array\n        System.out.println(\"\\n--- 1. ArrayList (Resizable Array) ---\");\n        \n        ArrayList<String> fruits = new ArrayList<>();\n        \n        // Adding elements\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        fruits.add(\"Mango\");\n        fruits.add(\"Banana\");  // Duplicates allowed\n        \n        System.out.println(\"Fruits: \" + fruits);\n        System.out.println(\"Size: \" + fruits.size());\n        System.out.println(\"Element at index 2: \" + fruits.get(2));\n        \n        // Modifying\n        fruits.set(1, \"Grapes\");\n        System.out.println(\"After modification: \" + fruits);\n        \n        // Removing\n        fruits.remove(\"Banana\");  // Removes first occurrence\n        System.out.println(\"After removing Banana: \" + fruits);\n        \n        // Checking\n        System.out.println(\"Contains Apple? \" + fruits.contains(\"Apple\"));\n        System.out.println(\"Is empty? \" + fruits.isEmpty());\n        \n        // Sorting\n        Collections.sort(fruits);\n        System.out.println(\"Sorted: \" + fruits);\n        \n        // Iterating\n        System.out.print(\"Iterating: \");\n        for (String fruit : fruits) {\n            System.out.print(fruit + \" \");\n        }\n        System.out.println();\n        \n        // 2. LinkedList - Doubly Linked List\n        System.out.println(\"\\n--- 2. LinkedList ---\");\n        \n        LinkedList<Integer> numbers = new LinkedList<>();\n        numbers.add(10);\n        numbers.add(20);\n        numbers.add(30);\n        numbers.addFirst(5);   // Add at beginning\n        numbers.addLast(40);   // Add at end\n        \n        System.out.println(\"Numbers: \" + numbers);\n        System.out.println(\"First: \" + numbers.getFirst());\n        System.out.println(\"Last: \" + numbers.getLast());\n        \n        numbers.removeFirst();\n        numbers.removeLast();\n        System.out.println(\"After removing first & last: \" + numbers);\n        \n        // 3. HashSet - Unique Elements, No Order\n        System.out.println(\"\\n--- 3. HashSet (No Duplicates) ---\");\n        \n        HashSet<String> carSet = new HashSet<>();\n        carSet.add(\"Toyota\");\n        carSet.add(\"Honda\");\n        carSet.add(\"Ford\");\n        carSet.add(\"Toyota\");  // Duplicate - won't be added\n        carSet.add(\"BMW\");\n        \n        System.out.println(\"Car Set: \" + carSet);\n        System.out.println(\"Size: \" + carSet.size());\n        System.out.println(\"Contains Honda? \" + carSet.contains(\"Honda\"));\n        \n        // Iterating HashSet\n        System.out.print(\"Iterating HashSet: \");\n        for (String car : carSet) {\n            System.out.print(car + \" \");\n        }\n        System.out.println();\n        \n        // 4. TreeSet - Sorted Unique Elements\n        System.out.println(\"\\n--- 4. TreeSet (Sorted Unique) ---\");\n        \n        TreeSet<Integer> scores = new TreeSet<>();\n        scores.add(85);\n        scores.add(92);\n        scores.add(78);\n        scores.add(92);  // Duplicate\n        scores.add(65);\n        \n        System.out.println(\"Scores: \" + scores);\n        System.out.println(\"First (lowest): \" + scores.first());\n        System.out.println(\"Last (highest): \" + scores.last());\n        System.out.println(\"Higher than 80: \" + scores.higher(80));\n        \n        // 5. HashMap - Key-Value Pairs\n        System.out.println(\"\\n--- 5. HashMap (Key-Value Pairs) ---\");\n        \n        HashMap<String, Integer> studentGrades = new HashMap<>();\n        \n        // Adding key-value pairs\n        studentGrades.put(\"Ali\", 85);\n        studentGrades.put(\"Sara\", 92);\n        studentGrades.put(\"Ahmed\", 78);\n        studentGrades.put(\"Ali\", 88);  // Updates existing key\n        \n        System.out.println(\"Student Grades: \" + studentGrades);\n        System.out.println(\"Ali's grade: \" + studentGrades.get(\"Ali\"));\n        System.out.println(\"Contains Sara? \" + studentGrades.containsKey(\"Sara\"));\n        \n        // Iterating HashMap\n        System.out.println(\"\\nIterating HashMap:\");\n        for (String name : studentGrades.keySet()) {\n            System.out.println(name + \": \" + studentGrades.get(name));\n        }\n        \n        // 6. TreeMap - Sorted Key-Value Pairs\n        System.out.println(\"\\n--- 6. TreeMap (Sorted Keys) ---\");\n        \n        TreeMap<String, String> countries = new TreeMap<>();\n        countries.put(\"USA\", \"Washington\");\n        countries.put(\"Pakistan\", \"Islamabad\");\n        countries.put(\"India\", \"Delhi\");\n        countries.put(\"China\", \"Beijing\");\n        \n        System.out.println(\"Countries: \" + countries);\n        System.out.println(\"First country: \" + countries.firstKey());\n        System.out.println(\"Capital of Pakistan: \" + countries.get(\"Pakistan\"));\n        \n        // 7. Iterators\n        System.out.println(\"\\n--- 7. Iterators ---\");\n        \n        ArrayList<String> colors = new ArrayList<>();\n        colors.add(\"Red\");\n        colors.add(\"Green\");\n        colors.add(\"Blue\");\n        colors.add(\"Yellow\");\n        \n        System.out.println(\"Using Iterator:\");\n        Iterator<String> iterator = colors.iterator();\n        while (iterator.hasNext()) {\n            String color = iterator.next();\n            System.out.println(color);\n            if (color.equals(\"Green\")) {\n                iterator.remove();  // Safe removal during iteration\n            }\n        }\n        System.out.println(\"After removing Green: \" + colors);\n        \n        // 8. Stack - LIFO\n        System.out.println(\"\\n--- 8. Stack (LIFO) ---\");\n        \n        java.util.Stack<String> stack = new java.util.Stack<>();\n        stack.push(\"First\");\n        stack.push(\"Second\");\n        stack.push(\"Third\");\n        \n        System.out.println(\"Stack: \" + stack);\n        System.out.println(\"Top element: \" + stack.peek());\n        System.out.println(\"Popped: \" + stack.pop());\n        System.out.println(\"Stack after pop: \" + stack);\n        \n        // 9. Queue - FIFO\n        System.out.println(\"\\n--- 9. Queue (FIFO) ---\");\n        \n        java.util.Queue<String> queue = new java.util.LinkedList<>();\n        queue.add(\"First\");\n        queue.add(\"Second\");\n        queue.add(\"Third\");\n        \n        System.out.println(\"Queue: \" + queue);\n        System.out.println(\"Front element: \" + queue.peek());\n        System.out.println(\"Removed: \" + queue.remove());\n        System.out.println(\"Queue after removal: \" + queue);\n        \n        // 10. Performance Comparison\n        System.out.println(\"\\n=== Data Structures Comparison ===\");\n        System.out.println(\"\\n1. ArrayList vs LinkedList:\");\n        System.out.println(\"   ArrayList: Fast random access, slow insert/delete in middle\");\n        System.out.println(\"   LinkedList: Fast insert/delete anywhere, slow random access\");\n        \n        System.out.println(\"\\n2. HashSet vs TreeSet:\");\n        System.out.println(\"   HashSet: Faster, no order\");\n        System.out.println(\"   TreeSet: Slower, sorted order\");\n        \n        System.out.println(\"\\n3. HashMap vs TreeMap:\");\n        System.out.println(\"   HashMap: Faster, no order\");\n        System.out.println(\"   TreeMap: Slower, sorted by keys\");\n        \n        System.out.println(\"\\n=== When to Use What? ===\");\n        System.out.println(\"• Need indexed access? → ArrayList\");\n        System.out.println(\"• Frequent insertions/deletions? → LinkedList\");\n        System.out.println(\"• Need unique elements? → HashSet\");\n        System.out.println(\"• Need sorted unique elements? → TreeSet\");\n        System.out.println(\"• Key-value storage? → HashMap\");\n        System.out.println(\"• Sorted key-value storage? → TreeMap\");\n        \n        // Practical Example: Student Management System\n        System.out.println(\"\\n=== Practical Example: Student Management ===\");\n        \n        HashMap<String, ArrayList<Integer>> studentMarks = new HashMap<>();\n        \n        // Student Ali's marks\n        ArrayList<Integer> aliMarks = new ArrayList<>();\n        aliMarks.add(85);\n        aliMarks.add(90);\n        aliMarks.add(78);\n        studentMarks.put(\"Ali\", aliMarks);\n        \n        // Student Sara's marks\n        ArrayList<Integer> saraMarks = new ArrayList<>();\n        saraMarks.add(92);\n        saraMarks.add(88);\n        saraMarks.add(95);\n        studentMarks.put(\"Sara\", saraMarks);\n        \n        // Display all students and their marks\n        System.out.println(\"\\nStudent Marks Database:\");\n        for (String student : studentMarks.keySet()) {\n            System.out.print(student + \": \");\n            ArrayList<Integer> marks = studentMarks.get(student);\n            int total = 0;\n            for (int mark : marks) {\n                System.out.print(mark + \" \");\n                total += mark;\n            }\n            double average = total / (double) marks.size();\n            System.out.printf(\" (Average: %.2f)\\n\", average);\n        }\n        \n        // Find top student\n        String topStudent = \"\";\n        double highestAverage = 0;\n        \n        for (String student : studentMarks.keySet()) {\n            ArrayList<Integer> marks = studentMarks.get(student);\n            int total = 0;\n            for (int mark : marks) total += mark;\n            double average = total / (double) marks.size();\n            \n            if (average > highestAverage) {\n                highestAverage = average;\n                topStudent = student;\n            }\n        }\n        \n        System.out.printf(\"\\nTop Student: %s (Average: %.2f)\\n\", topStudent, highestAverage);\n    }\n}",
+      "real_world_example": "Data structures are used everywhere: E-commerce sites use ArrayLists for shopping carts, social media uses HashSets to track unique likes, databases use HashMaps for fast lookups, operating systems use Queues for process scheduling, and compilers use Stacks for syntax checking. When you add items to Amazon cart (ArrayList), when Facebook shows unique friends (HashSet), when your phone stores contacts with names and numbers (HashMap) - all use data structures.",
+      "interactive_tasks": [
+        "Create a phonebook using HashMap with name-phone number pairs",
+        "Implement a todo list using ArrayList with add, remove, and mark complete functions",
+        "Create a program to find duplicate words in a text using HashSet"
+      ],
+      "quiz": [
+        {
+          "question": "Which data structure allows duplicate elements?",
+          "options": [
+            "HashSet",
+            "TreeSet",
+            "ArrayList",
+            "Both HashSet and TreeSet"
+          ],
+          "answer": "ArrayList",
+          "reasoning": "ArrayList allows duplicates, while HashSet and TreeSet do not."
+        },
+        {
+          "question": "What is the main difference between ArrayList and LinkedList?",
+          "options": [
+            "ArrayList is faster for random access",
+            "LinkedList is faster for random access",
+            "ArrayList doesn't allow duplicates",
+            "LinkedList maintains sorted order"
+          ],
+          "answer": "ArrayList is faster for random access",
+          "reasoning": "ArrayList provides O(1) random access, while LinkedList requires traversal."
+        },
+        {
+          "question": "Which data structure stores key-value pairs?",
+          "options": ["ArrayList", "HashSet", "HashMap", "LinkedList"],
+          "answer": "HashMap",
+          "reasoning": "HashMap stores data as key-value pairs for fast lookup by key."
+        },
+        {
+          "question": "What happens if you add duplicate to HashSet?",
+          "options": [
+            "Error occurs",
+            "Duplicate is ignored",
+            "Old value is replaced",
+            "Both are stored"
+          ],
+          "answer": "Duplicate is ignored",
+          "reasoning": "HashSet doesn't allow duplicates; attempts to add duplicates are ignored."
+        },
+        {
+          "question": "Which maintains insertion order?",
+          "options": ["HashSet", "HashMap", "ArrayList", "TreeSet"],
+          "answer": "ArrayList",
+          "reasoning": "ArrayList maintains insertion order, while HashSet/HashMap don't guarantee order."
+        },
+        {
+          "question": "What is LIFO principle associated with?",
+          "options": ["Queue", "Stack", "ArrayList", "HashMap"],
+          "answer": "Stack",
+          "reasoning": "Stack follows Last-In-First-Out (LIFO) principle."
+        },
+        {
+          "question": "Which is faster for searching: HashMap or TreeMap?",
+          "options": ["HashMap", "TreeMap", "Both same", "Depends on data"],
+          "answer": "HashMap",
+          "reasoning": "HashMap provides O(1) average search time, while TreeMap provides O(log n)."
+        }
+      ]
+    },
+    {
+      "title": "Day 31 – Java Collections Framework",
+      "definition": "The Java Collections Framework is a unified architecture in java.util package that provides interfaces (List, Set, Map) and their implementations (ArrayList, HashSet, HashMap, etc.) for storing and manipulating groups of data.",
+      "explanation": "The Collections Framework is like a well-organized toolkit for data handling. Think of interfaces as blueprints (List says 'must have add, remove, get methods') and classes as actual tools (ArrayList is one tool following List blueprint). It's a hierarchy where interfaces define what can be done, and classes provide how to do it. This framework eliminates the need to create data structures from scratch and ensures consistency across Java programs.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== Java Collections Framework ===\");\n        \n        // 1. Understanding the Hierarchy\n        System.out.println(\"\\n--- 1. Collections Framework Hierarchy ---\");\n        \n        System.out.println(\"\\nInterface: Collection\");\n        System.out.println(\"    ├── List (Ordered, allows duplicates)\");\n        System.out.println(\"    │     ├── ArrayList (Resizable array)\");\n        System.out.println(\"    │     └── LinkedList (Doubly linked list)\");\n        System.out.println(\"    │\");\n        System.out.println(\"    └── Set (Unique elements)\");\n        System.out.println(\"          ├── HashSet (Hash table)\");\n        System.out.println(\"          ├── LinkedHashSet (Maintains insertion order)\");\n        System.out.println(\"          └── TreeSet (Sorted)\");\n        \n        System.out.println(\"\\nInterface: Map (Key-Value pairs)\");\n        System.out.println(\"    ├── HashMap (Hash table)\");\n        System.out.println(\"    ├── LinkedHashMap (Maintains insertion order)\");\n        System.out.println(\"    └── TreeMap (Sorted by keys)\");\n        \n        // 2. List Interface and Implementations\n        System.out.println(\"\\n--- 2. List Interface ---\");\n        \n        // Using List interface reference\n        List<String> fruits = new ArrayList<>();\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        \n        System.out.println(\"List fruits: \" + fruits);\n        System.out.println(\"Size: \" + fruits.size());\n        System.out.println(\"Get index 1: \" + fruits.get(1));\n        \n        // Switching implementation - Polymorphism in action!\n        List<Integer> numbers = new LinkedList<>();\n        numbers.add(10);\n        numbers.add(20);\n        numbers.add(30);\n        \n        System.out.println(\"\\nLinkedList numbers: \" + numbers);\n        \n        // Common List methods\n        System.out.println(\"\\nCommon List Methods:\");\n        System.out.println(\"add(element), get(index), remove(index/element)\");\n        System.out.println(\"size(), isEmpty(), contains(element)\");\n        System.out.println(\"indexOf(element), subList(from, to)\");\n        \n        // 3. Set Interface and Implementations\n        System.out.println(\"\\n--- 3. Set Interface ---\");\n        \n        // HashSet - No order\n        Set<String> hashSet = new HashSet<>();\n        hashSet.add(\"Red\");\n        hashSet.add(\"Green\");\n        hashSet.add(\"Blue\");\n        hashSet.add(\"Red\");  // Duplicate\n        hashSet.add(\"Yellow\");\n        \n        System.out.println(\"HashSet (no order): \" + hashSet);\n        \n        // LinkedHashSet - Insertion order maintained\n        Set<String> linkedHashSet = new LinkedHashSet<>();\n        linkedHashSet.add(\"Red\");\n        linkedHashSet.add(\"Green\");\n        linkedHashSet.add(\"Blue\");\n        linkedHashSet.add(\"Yellow\");\n        \n        System.out.println(\"LinkedHashSet (insertion order): \" + linkedHashSet);\n        \n        // TreeSet - Sorted order\n        Set<String> treeSet = new TreeSet<>();\n        treeSet.add(\"Red\");\n        treeSet.add(\"Green\");\n        treeSet.add(\"Blue\");\n        treeSet.add(\"Yellow\");\n        \n        System.out.println(\"TreeSet (sorted order): \" + treeSet);\n        \n        // Common Set methods\n        System.out.println(\"\\nCommon Set Methods:\");\n        System.out.println(\"add(element), remove(element), contains(element)\");\n        System.out.println(\"size(), isEmpty(), clear()\");\n        \n        // Set operations\n        Set<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5));\n        Set<Integer> set2 = new HashSet<>(Arrays.asList(4, 5, 6, 7, 8));\n        \n        System.out.println(\"\\nSet Operations:\");\n        System.out.println(\"Set1: \" + set1);\n        System.out.println(\"Set2: \" + set2);\n        \n        // Union\n        Set<Integer> union = new HashSet<>(set1);\n        union.addAll(set2);\n        System.out.println(\"Union: \" + union);\n        \n        // Intersection\n        Set<Integer> intersection = new HashSet<>(set1);\n        intersection.retainAll(set2);\n        System.out.println(\"Intersection: \" + intersection);\n        \n        // Difference\n        Set<Integer> difference = new HashSet<>(set1);\n        difference.removeAll(set2);\n        System.out.println(\"Difference (set1 - set2): \" + difference);\n        \n        // 4. Map Interface and Implementations\n        System.out.println(\"\\n--- 4. Map Interface ---\");\n        \n        // HashMap - No order\n        Map<String, Integer> hashMap = new HashMap<>();\n        hashMap.put(\"Ali\", 25);\n        hashMap.put(\"Sara\", 22);\n        hashMap.put(\"Ahmed\", 30);\n        hashMap.put(\"Ali\", 26);  // Updates existing key\n        \n        System.out.println(\"HashMap (no order): \" + hashMap);\n        \n        // LinkedHashMap - Insertion order maintained\n        Map<String, Integer> linkedHashMap = new LinkedHashMap<>();\n        linkedHashMap.put(\"Ali\", 25);\n        linkedHashMap.put(\"Sara\", 22);\n        linkedHashMap.put(\"Ahmed\", 30);\n        \n        System.out.println(\"LinkedHashMap (insertion order): \" + linkedHashMap);\n        \n        // TreeMap - Sorted by keys\n        Map<String, Integer> treeMap = new TreeMap<>();\n        treeMap.put(\"Ali\", 25);\n        treeMap.put(\"Sara\", 22);\n        treeMap.put(\"Ahmed\", 30);\n        \n        System.out.println(\"TreeMap (sorted by keys): \" + treeMap);\n        \n        // Common Map methods\n        System.out.println(\"\\nCommon Map Methods:\");\n        System.out.println(\"put(key, value), get(key), remove(key)\");\n        System.out.println(\"containsKey(key), containsValue(value)\");\n        System.out.println(\"keySet(), values(), entrySet()\");\n        \n        // Iterating through Map\n        System.out.println(\"\\nIterating Map entries:\");\n        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {\n            System.out.println(\"Key: \" + entry.getKey() + \", Value: \" + entry.getValue());\n        }\n        \n        // 5. Collections Utility Class\n        System.out.println(\"\\n--- 5. Collections Utility Class ---\");\n        \n        List<Integer> nums = new ArrayList<>(Arrays.asList(5, 2, 8, 1, 9, 3));\n        System.out.println(\"Original list: \" + nums);\n        \n        // Sorting\n        Collections.sort(nums);\n        System.out.println(\"Sorted: \" + nums);\n        \n        // Reverse\n        Collections.reverse(nums);\n        System.out.println(\"Reversed: \" + nums);\n        \n        // Shuffle\n        Collections.shuffle(nums);\n        System.out.println(\"Shuffled: \" + nums);\n        \n        // Binary search (list must be sorted first)\n        Collections.sort(nums);\n        int index = Collections.binarySearch(nums, 5);\n        System.out.println(\"Binary search for 5: index \" + index);\n        \n        // Max and Min\n        System.out.println(\"Max: \" + Collections.max(nums));\n        System.out.println(\"Min: \" + Collections.min(nums));\n        \n        // 6. Iterator and ListIterator\n        System.out.println(\"\\n--- 6. Iterators ---\");\n        \n        List<String> colors = new ArrayList<>(Arrays.asList(\"Red\", \"Green\", \"Blue\", \"Yellow\"));\n        \n        // Iterator (forward only)\n        System.out.println(\"Using Iterator:\");\n        Iterator<String> iterator = colors.iterator();\n        while (iterator.hasNext()) {\n            System.out.println(iterator.next());\n        }\n        \n        // ListIterator (bidirectional)\n        System.out.println(\"\\nUsing ListIterator (backwards):\");\n        ListIterator<String> listIterator = colors.listIterator(colors.size());\n        while (listIterator.hasPrevious()) {\n            System.out.println(listIterator.previous());\n        }\n        \n        // 7. Choosing the Right Collection\n        System.out.println(\"\\n=== Choosing the Right Collection ===\");\n        \n        System.out.println(\"\\nWhen to use List:\");\n        System.out.println(\"• Need to maintain insertion order\");\n        System.out.println(\"• Allow duplicate elements\");\n        System.out.println(\"• Need index-based access\");\n        System.out.println(\"• ArrayList: Frequent get/set operations\");\n        System.out.println(\"• LinkedList: Frequent add/remove operations\");\n        \n        System.out.println(\"\\nWhen to use Set:\");\n        System.out.println(\"• Need unique elements only\");\n        System.out.println(\"• Don't care about order: HashSet\");\n        System.out.println(\"• Need insertion order: LinkedHashSet\");\n        System.out.println(\"• Need sorted order: TreeSet\");\n        \n        System.out.println(\"\\nWhen to use Map:\");\n        System.out.println(\"• Need key-value pairs\");\n        System.out.println(\"• Don't care about order: HashMap\");\n        System.out.println(\"• Need insertion order: LinkedHashMap\");\n        System.out.println(\"• Need sorted keys: TreeMap\");\n        \n        // 8. Generics in Collections\n        System.out.println(\"\\n--- 7. Generics in Collections ---\");\n        \n        // Without generics (old way - not type safe)\n        List rawList = new ArrayList();  // Raw type\n        rawList.add(\"Hello\");\n        rawList.add(123);  // Mixed types allowed\n        \n        // With generics (type safe)\n        List<String> stringList = new ArrayList<>();\n        stringList.add(\"Hello\");\n        // stringList.add(123);  // Compile error!\n        \n        System.out.println(\"Generic List ensures type safety!\");\n        \n        // 9. Practical Example: Student Database\n        System.out.println(\"\\n=== Practical Example: Student Database ===\");\n        \n        class Student {\n            String name;\n            int id;\n            double gpa;\n            \n            Student(String name, int id, double gpa) {\n                this.name = name;\n                this.id = id;\n                this.gpa = gpa;\n            }\n            \n            @Override\n            public String toString() {\n                return name + \" (ID: \" + id + \", GPA: \" + gpa + \")\";\n            }\n        }\n        \n        // Using different collections for different purposes\n        List<Student> studentList = new ArrayList<>();\n        Set<Integer> studentIds = new HashSet<>();\n        Map<Integer, Student> studentMap = new HashMap<>();\n        \n        // Add students\n        Student s1 = new Student(\"Ali\", 101, 3.8);\n        Student s2 = new Student(\"Sara\", 102, 3.9);\n        Student s3 = new Student(\"Ahmed\", 103, 3.7);\n        \n        studentList.add(s1);\n        studentList.add(s2);\n        studentList.add(s3);\n        \n        studentIds.add(s1.id);\n        studentIds.add(s2.id);\n        studentIds.add(s3.id);\n        \n        studentMap.put(s1.id, s1);\n        studentMap.put(s2.id, s2);\n        studentMap.put(s3.id, s3);\n        \n        System.out.println(\"\\nStudent List (maintains order):\");\n        for (Student s : studentList) {\n            System.out.println(s);\n        }\n        \n        System.out.println(\"\\nStudent IDs (unique): \" + studentIds);\n        \n        System.out.println(\"\\nStudent Map (fast lookup by ID):\");\n        System.out.println(\"Student with ID 102: \" + studentMap.get(102));\n        \n        // 10. Performance Comparison\n        System.out.println(\"\\n=== Performance Characteristics ===\");\n        System.out.println(\"\\nArrayList vs LinkedList:\");\n        System.out.println(\"• ArrayList: O(1) for get/set, O(n) for add/remove in middle\");\n        System.out.println(\"• LinkedList: O(n) for get/set, O(1) for add/remove at ends\");\n        \n        System.out.println(\"\\nHashSet vs TreeSet:\");\n        System.out.println(\"• HashSet: O(1) for add/remove/contains (average)\");\n        System.out.println(\"• TreeSet: O(log n) for add/remove/contains\");\n        \n        System.out.println(\"\\nHashMap vs TreeMap:\");\n        System.out.println(\"• HashMap: O(1) for get/put (average)\");\n        System.out.println(\"• TreeMap: O(log n) for get/put\");\n    }\n}",
+      "real_world_example": "The Collections Framework is used in every Java application: Spring Framework uses Lists for dependency injection, Hibernate uses Sets for relationships, banking systems use Maps for account lookups, e-commerce sites use ArrayLists for shopping carts, and social media uses HashSets for tracking unique likes. When you see a friend list (LinkedHashSet maintains order), when you search products (HashMap for fast lookup), when you sort items (TreeSet for sorting) - all use Collections Framework.",
+      "interactive_tasks": [
+        "Create a library system with Book objects stored in different collections",
+        "Implement a voting system using HashMap to count votes",
+        "Create a program that removes duplicates from a list using Set"
+      ],
+      "quiz": [
+        {
+          "question": "What is the root interface of Collections Framework?",
+          "options": ["List", "Set", "Collection", "Map"],
+          "answer": "Collection",
+          "reasoning": "Collection is the root interface for List and Set hierarchies."
+        },
+        {
+          "question": "Which maintains insertion order?",
+          "options": ["HashSet", "TreeSet", "LinkedHashSet", "HashMap"],
+          "answer": "LinkedHashSet",
+          "reasoning": "LinkedHashSet maintains the order in which elements were inserted."
+        },
+        {
+          "question": "What is the advantage of using interface references?",
+          "options": [
+            "Faster execution",
+            "Polymorphism and flexibility",
+            "Smaller memory usage",
+            "Automatic sorting"
+          ],
+          "answer": "Polymorphism and flexibility",
+          "reasoning": "Using interfaces allows switching implementations easily."
+        },
+        {
+          "question": "Which collection provides fastest lookup by key?",
+          "options": ["TreeMap", "HashMap", "LinkedHashMap", "ArrayList"],
+          "answer": "HashMap",
+          "reasoning": "HashMap provides O(1) average time for get/put operations."
+        },
+        {
+          "question": "What does Collections.sort() require?",
+          "options": [
+            "List must be mutable",
+            "Elements must be Comparable",
+            "List must not be empty",
+            "Elements must be numbers"
+          ],
+          "answer": "Elements must be Comparable",
+          "reasoning": "sort() requires elements to implement Comparable interface."
+        },
+        {
+          "question": "Which is NOT a List implementation?",
+          "options": ["ArrayList", "LinkedList", "Vector", "TreeList"],
+          "answer": "TreeList",
+          "reasoning": "TreeList is not part of standard Java Collections Framework."
+        },
+        {
+          "question": "What is the main difference between Iterator and ListIterator?",
+          "options": [
+            "Iterator is faster",
+            "ListIterator is bidirectional",
+            "Iterator works with all collections",
+            "ListIterator sorts elements"
+          ],
+          "answer": "ListIterator is bidirectional",
+          "reasoning": "ListIterator can traverse in both directions, Iterator only forward."
+        }
+      ]
+    },
+    {
+      "title": "Day 32 – Java List Interface",
+      "definition": "The List interface represents an ordered collection that allows duplicate elements and provides indexed access to elements.",
+      "explanation": "List is like a numbered shopping list where items have positions and you can add the same item multiple times. It maintains the order in which you add items and lets you access them by their position number.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Create List using ArrayList\n        List<String> fruits = new ArrayList<>();\n        \n        // Add elements\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        \n        // Access elements\n        System.out.println(\"First fruit: \" + fruits.get(0));\n        \n        // Update element\n        fruits.set(1, \"Grapes\");\n        \n        // Remove element\n        fruits.remove(2);\n        \n        // Check size\n        System.out.println(\"Total fruits: \" + fruits.size());\n        \n        // Display all\n        System.out.println(\"Fruits: \" + fruits);\n    }\n}",
+      "real_world_example": "Used for shopping carts, to-do lists, playlists - anywhere order matters.",
+      "interactive_tasks": [
+        "Create a list of 5 student names",
+        "Remove the second student from list",
+        "Check if a name exists in list"
+      ],
+      "quiz": [
+        {
+          "question": "List allows duplicates?",
+          "options": ["Yes", "No"],
+          "answer": "Yes",
+          "reasoning": "List interface allows duplicate elements."
+        },
+        {
+          "question": "How to get element at index 2?",
+          "options": ["list.get(2)", "list[2]", "list.element(2)"],
+          "answer": "list.get(2)",
+          "reasoning": "get(index) method retrieves element at specified position."
+        },
+        {
+          "question": "Which maintains insertion order?",
+          "options": ["List", "Set", "Map"],
+          "answer": "List",
+          "reasoning": "List maintains the order in which elements were added."
+        }
+      ]
+    },
+    {
+      "title": "Day 33 – Java ArrayList vs LinkedList",
+      "definition": "ArrayList and LinkedList both implement the List interface but differ in their internal structure: ArrayList uses dynamic array while LinkedList uses doubly-linked list.",
+      "explanation": "ArrayList is like a dynamic bookshelf that expands when full. LinkedList is like a train where each carriage connects to the next. ArrayList is faster for reading, LinkedList is faster for adding/removing in middle.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== ArrayList Example ===\");\n        \n        // ArrayList - Dynamic array\n        ArrayList<String> arrayList = new ArrayList<>();\n        arrayList.add(\"Apple\");\n        arrayList.add(\"Banana\");\n        arrayList.add(\"Orange\");\n        \n        // Fast access by index\n        System.out.println(\"Element at index 1: \" + arrayList.get(1));\n        \n        System.out.println(\"\\n=== LinkedList Example ===\");\n        \n        // LinkedList - Doubly linked list\n        LinkedList<String> linkedList = new LinkedList<>();\n        linkedList.add(\"Red\");\n        linkedList.add(\"Green\");\n        linkedList.add(\"Blue\");\n        \n        // Special LinkedList methods\n        linkedList.addFirst(\"First\");\n        linkedList.addLast(\"Last\");\n        \n        System.out.println(\"First: \" + linkedList.getFirst());\n        System.out.println(\"Last: \" + linkedList.getLast());\n        \n        System.out.println(\"\\n=== Comparison ===\");\n        System.out.println(\"Use ArrayList for: Frequent get/set operations\");\n        System.out.println(\"Use LinkedList for: Frequent add/remove in middle\");\n    }\n}",
+      "real_world_example": "ArrayList: Student list (need fast access by roll number). LinkedList: Browser history (frequent add/remove).",
+      "interactive_tasks": [
+        "Create ArrayList of 5 numbers and get third element",
+        "Create LinkedList and add elements at beginning and end",
+        "Compare performance for adding in middle"
+      ],
+      "quiz": [
+        {
+          "question": "Which is faster for random access?",
+          "options": ["ArrayList", "LinkedList"],
+          "answer": "ArrayList",
+          "reasoning": "ArrayList provides O(1) access by index."
+        },
+        {
+          "question": "Which uses nodes with links?",
+          "options": ["ArrayList", "LinkedList"],
+          "answer": "LinkedList",
+          "reasoning": "LinkedList uses nodes connected to next/previous nodes."
+        },
+        {
+          "question": "addFirst() is available in?",
+          "options": ["ArrayList", "LinkedList", "Both"],
+          "answer": "LinkedList",
+          "reasoning": "addFirst() is specific to LinkedList class."
+        }
+      ]
+    },
+    {
+      "title": "Day 34 – Java List Sorting",
+      "definition": "List sorting in Java organizes elements in a specific order (ascending/descending) using the Collections.sort() method.",
+      "explanation": "Sorting arranges data in a meaningful order, like arranging names alphabetically or numbers from smallest to largest. Java provides easy sorting through Collections class methods.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== Sorting Lists ===\");\n        \n        // Sort Strings alphabetically\n        ArrayList<String> fruits = new ArrayList<>();\n        fruits.add(\"Mango\");\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        \n        System.out.println(\"Original: \" + fruits);\n        \n        Collections.sort(fruits);\n        System.out.println(\"Sorted A-Z: \" + fruits);\n        \n        // Sort in reverse order\n        Collections.sort(fruits, Collections.reverseOrder());\n        System.out.println(\"Sorted Z-A: \" + fruits);\n        \n        System.out.println(\"\\n=== Sorting Numbers ===\");\n        \n        // Sort Integers\n        ArrayList<Integer> numbers = new ArrayList<>();\n        numbers.add(42);\n        numbers.add(15);\n        numbers.add(8);\n        numbers.add(30);\n        \n        System.out.println(\"Original: \" + numbers);\n        \n        Collections.sort(numbers);\n        System.out.println(\"Ascending: \" + numbers);\n        \n        Collections.sort(numbers, Collections.reverseOrder());\n        System.out.println(\"Descending: \" + numbers);\n        \n        System.out.println(\"\\n=== Sorting Custom Objects ===\");\n        \n        // Sort custom objects\n        class Student implements Comparable<Student> {\n            String name;\n            int marks;\n            \n            Student(String name, int marks) {\n                this.name = name;\n                this.marks = marks;\n            }\n            \n            @Override\n            public int compareTo(Student other) {\n                return this.name.compareTo(other.name);\n            }\n            \n            @Override\n            public String toString() {\n                return name + \": \" + marks;\n            }\n        }\n        \n        List<Student> students = new ArrayList<>();\n        students.add(new Student(\"Ali\", 85));\n        students.add(new Student(\"Sara\", 92));\n        students.add(new Student(\"Ahmed\", 78));\n        \n        Collections.sort(students);\n        System.out.println(\"Students sorted by name:\");\n        for (Student s : students) {\n            System.out.println(s);\n        }\n    }\n}",
+      "real_world_example": "Sorting student names alphabetically, arranging products by price, ordering tasks by priority.",
+      "interactive_tasks": [
+        "Sort list of 5 names alphabetically",
+        "Sort list of numbers in descending order",
+        "Create and sort list of custom objects"
+      ],
+      "quiz": [
+        {
+          "question": "Which class provides sort() method?",
+          "options": ["ArrayList", "Collections", "Arrays", "List"],
+          "answer": "Collections",
+          "reasoning": "Collections.sort() is used to sort List collections."
+        },
+        {
+          "question": "How to sort in reverse order?",
+          "options": [
+            "sort(reverse)",
+            "Collections.reverseOrder()",
+            "sortDescending()",
+            "reverseSort()"
+          ],
+          "answer": "Collections.reverseOrder()",
+          "reasoning": "Pass Collections.reverseOrder() as second parameter."
+        },
+        {
+          "question": "Can we sort custom objects?",
+          "options": ["Yes", "No"],
+          "answer": "Yes",
+          "reasoning": "Objects must implement Comparable interface."
+        }
+      ]
+    },
+    {
+      "title": "Day 35 – Java Set Interface",
+      "definition": "The Set interface stores unique elements and does not allow duplicates, with different implementations for ordering needs.",
+      "explanation": "Set is like a unique club membership - no duplicate members allowed. HashSet doesn't care about order, TreeSet sorts automatically, LinkedHashSet remembers insertion order.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== Set Interface Examples ===\");\n        \n        // HashSet - No order, fastest\n        Set<String> hashSet = new HashSet<>();\n        hashSet.add(\"Apple\");\n        hashSet.add(\"Banana\");\n        hashSet.add(\"Apple\");  // Duplicate ignored\n        hashSet.add(\"Orange\");\n        \n        System.out.println(\"HashSet: \" + hashSet);\n        \n        // TreeSet - Sorted order\n        Set<String> treeSet = new TreeSet<>();\n        treeSet.add(\"Mango\");\n        treeSet.add(\"Apple\");\n        treeSet.add(\"Cherry\");\n        \n        System.out.println(\"TreeSet (sorted): \" + treeSet);\n        \n        // LinkedHashSet - Insertion order\n        Set<String> linkedHashSet = new LinkedHashSet<>();\n        linkedHashSet.add(\"Third\");\n        linkedHashSet.add(\"First\");\n        linkedHashSet.add(\"Second\");\n        \n        System.out.println(\"LinkedHashSet (insertion order): \" + linkedHashSet);\n        \n        // Set operations\n        Set<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));\n        Set<Integer> set2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));\n        \n        // Union\n        Set<Integer> union = new HashSet<>(set1);\n        union.addAll(set2);\n        System.out.println(\"\\nUnion: \" + union);\n        \n        // Intersection\n        Set<Integer> intersection = new HashSet<>(set1);\n        intersection.retainAll(set2);\n        System.out.println(\"Intersection: \" + intersection);\n        \n        // Difference\n        Set<Integer> difference = new HashSet<>(set1);\n        difference.removeAll(set2);\n        System.out.println(\"Difference: \" + difference);\n        \n        // Practical example: Remove duplicates from list\n        System.out.println(\"\\n=== Remove Duplicates ===\");\n        List<String> withDuplicates = Arrays.asList(\"A\", \"B\", \"A\", \"C\", \"B\");\n        Set<String> uniqueSet = new HashSet<>(withDuplicates);\n        System.out.println(\"Original: \" + withDuplicates);\n        System.out.println(\"Unique: \" + uniqueSet);\n    }\n}",
+      "real_world_example": "Used for storing unique user IDs, removing duplicate email addresses, tracking unique visitors.",
+      "interactive_tasks": [
+        "Create HashSet of 5 colors",
+        "Remove duplicates from a list using Set",
+        "Find common elements between two sets"
+      ],
+      "quiz": [
+        {
+          "question": "Set allows duplicates?",
+          "options": ["Yes", "No"],
+          "answer": "No",
+          "reasoning": "Set interface does not allow duplicate elements."
+        },
+        {
+          "question": "Which Set maintains sorted order?",
+          "options": ["HashSet", "TreeSet", "LinkedHashSet"],
+          "answer": "TreeSet",
+          "reasoning": "TreeSet sorts elements in natural order."
+        },
+        {
+          "question": "Which operation finds common elements?",
+          "options": ["Union", "Intersection", "Difference"],
+          "answer": "Intersection",
+          "reasoning": "Intersection returns elements present in both sets."
+        }
+      ]
+    },
+    {
+      "title": "Day 36 – Java HashSet",
+      "definition": "HashSet is an implementation of Set interface that stores unique elements using hash table, providing fast operations but no ordering guarantee.",
+      "explanation": "HashSet is like a bag of unique marbles - you can quickly check if a marble exists, but they're in random order. It uses hashing to store elements, making add, remove, and contains operations very fast.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== HashSet Examples ===\");\n        \n        // Creating HashSet\n        HashSet<String> fruits = new HashSet<>();\n        \n        // Adding elements\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        fruits.add(\"Apple\");  // Duplicate - ignored\n        fruits.add(\"Mango\");\n        \n        System.out.println(\"HashSet: \" + fruits);\n        System.out.println(\"Size: \" + fruits.size());\n        \n        // Checking elements\n        System.out.println(\"Contains Banana? \" + fruits.contains(\"Banana\"));\n        System.out.println(\"Contains Grape? \" + fruits.contains(\"Grape\"));\n        \n        // Removing elements\n        fruits.remove(\"Orange\");\n        System.out.println(\"After removing Orange: \" + fruits);\n        \n        // Iterating through HashSet\n        System.out.println(\"\\nIterating HashSet:\");\n        for (String fruit : fruits) {\n            System.out.println(fruit);\n        }\n        \n        // Using iterator\n        System.out.println(\"\\nUsing Iterator:\");\n        Iterator<String> iterator = fruits.iterator();\n        while (iterator.hasNext()) {\n            System.out.println(iterator.next());\n        }\n        \n        // HashSet with Integers\n        HashSet<Integer> numbers = new HashSet<>();\n        numbers.add(10);\n        numbers.add(20);\n        numbers.add(30);\n        numbers.add(10);  // Duplicate\n        \n        System.out.println(\"\\nNumber HashSet: \" + numbers);\n        \n        // Check numbers 1-35\n        System.out.println(\"\\nChecking numbers 1-35:\");\n        for (int i = 1; i <= 35; i++) {\n            if (numbers.contains(i)) {\n                System.out.println(i + \" - Found!\");\n            }\n        }\n        \n        // Practical example: Unique words counter\n        System.out.println(\"\\n=== Unique Words Counter ===\");\n        String text = \"apple banana apple orange banana mango apple\";\n        String[] words = text.split(\" \");\n        \n        HashSet<String> uniqueWords = new HashSet<>();\n        for (String word : words) {\n            uniqueWords.add(word);\n        }\n        \n        System.out.println(\"Text: \" + text);\n        System.out.println(\"Total words: \" + words.length);\n        System.out.println(\"Unique words: \" + uniqueWords.size());\n        System.out.println(\"Unique words list: \" + uniqueWords);\n        \n        // HashSet operations\n        System.out.println(\"\\n=== Set Operations ===\");\n        HashSet<String> setA = new HashSet<>(Arrays.asList(\"A\", \"B\", \"C\", \"D\"));\n        HashSet<String> setB = new HashSet<>(Arrays.asList(\"C\", \"D\", \"E\", \"F\"));\n        \n        System.out.println(\"Set A: \" + setA);\n        System.out.println(\"Set B: \" + setB);\n        \n        // Union\n        HashSet<String> union = new HashSet<>(setA);\n        union.addAll(setB);\n        System.out.println(\"Union (A ∪ B): \" + union);\n        \n        // Intersection\n        HashSet<String> intersection = new HashSet<>(setA);\n        intersection.retainAll(setB);\n        System.out.println(\"Intersection (A ∩ B): \" + intersection);\n        \n        // Difference\n        HashSet<String> difference = new HashSet<>(setA);\n        difference.removeAll(setB);\n        System.out.println(\"Difference (A - B): \" + difference);\n        \n        // Check subset\n        System.out.println(\"Is A subset of union? \" + union.containsAll(setA));\n        \n        // Clear HashSet\n        fruits.clear();\n        System.out.println(\"\\nAfter clear, fruits empty? \" + fruits.isEmpty());\n        \n        // HashSet vs ArrayList performance\n        System.out.println(\"\\n=== Performance Tips ===\");\n        System.out.println(\"• HashSet: Fast contains() - O(1) average\");\n        System.out.println(\"• ArrayList: Slow contains() - O(n) linear search\");\n        System.out.println(\"• Use HashSet when: Need fast lookup, unique elements\");\n        System.out.println(\"• Use ArrayList when: Need ordering, index access\");\n    }\n}",
+      "real_world_example": "Used for checking unique usernames, finding duplicate files, tracking visited URLs in web crawlers, storing unique product IDs.",
+      "interactive_tasks": [
+        "Create HashSet of 5 student IDs",
+        "Check if a specific ID exists",
+        "Remove duplicates from array using HashSet"
+      ],
+      "quiz": [
+        {
+          "question": "HashSet allows duplicates?",
+          "options": ["Yes", "No"],
+          "answer": "No",
+          "reasoning": "HashSet stores only unique elements."
+        },
+        {
+          "question": "What is time complexity of contains()?",
+          "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+          "answer": "O(1)",
+          "reasoning": "HashSet provides constant time for contains() on average."
+        },
+        {
+          "question": "How to create empty HashSet?",
+          "options": [
+            "new HashSet()",
+            "HashSet<>()",
+            "new HashSet<>()",
+            "All are correct"
+          ],
+          "answer": "All are correct",
+          "reasoning": "All are valid ways to create HashSet."
+        }
+      ]
+    },
+    {
+      "title": "Day 37 – Java TreeSet",
+      "definition": "TreeSet is a Set implementation that stores unique elements in sorted order using a Red-Black tree structure.",
+      "explanation": "TreeSet is like a sorted bookshelf that automatically arranges books alphabetically. It maintains elements in natural order (ascending) and provides efficient operations for sorted collections.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== TreeSet Examples ===\");\n        \n        // Creating TreeSet\n        TreeSet<String> fruits = new TreeSet<>();\n        \n        // Adding elements (automatically sorted)\n        fruits.add(\"Mango\");\n        fruits.add(\"Apple\");\n        fruits.add(\"Cherry\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Apple\");  // Duplicate ignored\n        \n        System.out.println(\"Sorted fruits: \" + fruits);\n        \n        // TreeSet with numbers\n        TreeSet<Integer> numbers = new TreeSet<>();\n        numbers.add(50);\n        numbers.add(20);\n        numbers.add(80);\n        numbers.add(10);\n        numbers.add(30);\n        \n        System.out.println(\"\\nSorted numbers: \" + numbers);\n        \n        // Navigation methods\n        System.out.println(\"\\n=== Navigation Methods ===\");\n        System.out.println(\"First element: \" + numbers.first());\n        System.out.println(\"Last element: \" + numbers.last());\n        System.out.println(\"Higher than 25: \" + numbers.higher(25));\n        System.out.println(\"Lower than 25: \" + numbers.lower(25));\n        System.out.println(\"Ceiling of 25: \" + numbers.ceiling(25));\n        System.out.println(\"Floor of 25: \" + numbers.floor(25));\n        \n        // Subset operations\n        System.out.println(\"\\n=== Subset Operations ===\");\n        System.out.println(\"HeadSet (less than 40): \" + numbers.headSet(40));\n        System.out.println(\"TailSet (greater than or equal to 30): \" + numbers.tailSet(30));\n        System.out.println(\"SubSet (20 to 50): \" + numbers.subSet(20, 50));\n        \n        // Poll methods (retrieve and remove)\n        System.out.println(\"\\nPoll methods:\");\n        System.out.println(\"Poll first: \" + numbers.pollFirst());\n        System.out.println(\"Poll last: \" + numbers.pollLast());\n        System.out.println(\"After poll: \" + numbers);\n        \n        // TreeSet vs HashSet comparison\n        System.out.println(\"\\n=== TreeSet vs HashSet ===\");\n        \n        HashSet<String> hashSet = new HashSet<>();\n        hashSet.add(\"Zebra\");\n        hashSet.add(\"Apple\");\n        hashSet.add(\"Monkey\");\n        \n        TreeSet<String> treeSet = new TreeSet<>();\n        treeSet.add(\"Zebra\");\n        treeSet.add(\"Apple\");\n        treeSet.add(\"Monkey\");\n        \n        System.out.println(\"HashSet (no order): \" + hashSet);\n        System.out.println(\"TreeSet (sorted): \" + treeSet);\n        \n        // Descending order\n        System.out.println(\"\\n=== Descending Order ===\");\n        System.out.println(\"Descending set: \" + treeSet.descendingSet());\n        \n        // Iterator in descending order\n        System.out.println(\"\\nIterating descending:\");\n        Iterator<String> descIterator = treeSet.descendingIterator();\n        while (descIterator.hasNext()) {\n            System.out.println(descIterator.next());\n        }\n        \n        // TreeSet with custom comparator\n        System.out.println(\"\\n=== Custom Sorting ===\");\n        \n        // Sort by string length\n        TreeSet<String> lengthSorted = new TreeSet<>(\n            (s1, s2) -> {\n                int lenCompare = Integer.compare(s1.length(), s2.length());\n                if (lenCompare == 0) {\n                    return s1.compareTo(s2);\n                }\n                return lenCompare;\n            }\n        );\n        \n        lengthSorted.add(\"Apple\");\n        lengthSorted.add(\"Kiwi\");\n        lengthSorted.add(\"Banana\");\n        lengthSorted.add(\"Mango\");\n        \n        System.out.println(\"Sorted by length: \" + lengthSorted);\n        \n        // Practical example: Exam scores\n        System.out.println(\"\\n=== Exam Scores Example ===\");\n        \n        TreeSet<Integer> scores = new TreeSet<>();\n        scores.add(85);\n        scores.add(92);\n        scores.add(78);\n        scores.add(95);\n        scores.add(88);\n        \n        System.out.println(\"All scores: \" + scores);\n        System.out.println(\"Top score: \" + scores.last());\n        System.out.println(\"Lowest score: \" + scores.first());\n        System.out.println(\"Scores above 85: \" + scores.tailSet(86));\n        \n        // Find student in top 3\n        System.out.println(\"\\nTop 3 scores:\");\n        Iterator<Integer> top3 = scores.descendingIterator();\n        for (int i = 0; i < 3 && top3.hasNext(); i++) {\n            System.out.println(top3.next());\n        }\n        \n        // Performance characteristics\n        System.out.println(\"\\n=== Performance ===\");\n        System.out.println(\"• add/remove/contains: O(log n)\");\n        System.out.println(\"• first/last: O(log n)\");\n        System.out.println(\"• headSet/tailSet: O(log n)\");\n        System.out.println(\"• Memory: More than HashSet (stores tree structure)\");\n        \n        System.out.println(\"\\n=== When to Use TreeSet ===\");\n        System.out.println(\"1. Need sorted unique elements\");\n        System.out.println(\"2. Need range queries (headSet, tailSet)\");\n        System.out.println(\"3. Need navigation methods (higher, lower)\");\n        System.out.println(\"4. Don't need fastest performance\");\n    }\n}",
+      "real_world_example": "Used for maintaining sorted student grades, storing unique words in dictionary order, keeping leaderboard scores sorted, storing dates in chronological order.",
+      "interactive_tasks": [
+        "Create TreeSet of 5 names and display sorted",
+        "Find elements greater than given value",
+        "Create TreeSet sorted by custom criteria"
+      ],
+      "quiz": [
+        {
+          "question": "TreeSet maintains elements in?",
+          "options": ["Random order", "Insertion order", "Sorted order", "Reverse order"],
+          "answer": "Sorted order",
+          "reasoning": "TreeSet stores elements in natural sorted order."
+        },
+        {
+          "question": "What is time complexity of add()?",
+          "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+          "answer": "O(log n)",
+          "reasoning": "TreeSet uses Red-Black tree with O(log n) operations."
+        },
+        {
+          "question": "Which method gets smallest element?",
+          "options": ["first()", "min()", "getFirst()", "smallest()"],
+          "answer": "first()",
+          "reasoning": "first() returns the lowest element in TreeSet."
+        }
+      ]
+    },
+    {
+      "title": "Day 38 – Java LinkedHashSet",
+      "definition": "LinkedHashSet is a Set implementation that combines HashSet's uniqueness with LinkedList's insertion order preservation.",
+      "explanation": "LinkedHashSet is like a queue of unique people - no duplicates allowed, and people stay in the order they joined. It maintains a doubly-linked list across all entries to remember insertion order.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== LinkedHashSet Examples ===\");\n        \n        // Creating LinkedHashSet\n        LinkedHashSet<String> fruits = new LinkedHashSet<>();\n        \n        // Adding elements (order preserved)\n        fruits.add(\"Mango\");\n        fruits.add(\"Apple\");\n        fruits.add(\"Banana\");\n        fruits.add(\"Orange\");\n        fruits.add(\"Apple\");  // Duplicate ignored\n        \n        System.out.println(\"LinkedHashSet (insertion order): \" + fruits);\n        System.out.println(\"Size: \" + fruits.size());\n        \n        // Check operations\n        System.out.println(\"\\nContains Banana? \" + fruits.contains(\"Banana\"));\n        System.out.println(\"Contains Grape? \" + fruits.contains(\"Grape\"));\n        \n        // Removing elements\n        fruits.remove(\"Apple\");\n        System.out.println(\"After removing Apple: \" + fruits);\n        \n        // Adding more elements\n        fruits.add(\"Grapes\");\n        fruits.add(\"Pineapple\");\n        \n        System.out.println(\"After adding more: \" + fruits);\n        \n        // Iterating (order maintained)\n        System.out.println(\"\\nIterating in insertion order:\");\n        for (String fruit : fruits) {\n            System.out.println(fruit);\n        }\n        \n        // Using iterator\n        System.out.println(\"\\nUsing Iterator:\");\n        Iterator<String> iterator = fruits.iterator();\n        while (iterator.hasNext()) {\n            System.out.println(iterator.next());\n        }\n        \n        // LinkedHashSet with numbers\n        LinkedHashSet<Integer> numbers = new LinkedHashSet<>();\n        numbers.add(30);\n        numbers.add(10);\n        numbers.add(20);\n        numbers.add(40);\n        numbers.add(30);  // Duplicate\n        \n        System.out.println(\"\\nNumber LinkedHashSet: \" + numbers);\n        \n        // Comparison with HashSet and TreeSet\n        System.out.println(\"\\n=== Set Comparison ===\");\n        \n        HashSet<String> hashSet = new HashSet<>();\n        LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();\n        TreeSet<String> treeSet = new TreeSet<>();\n        \n        // Add same elements in different order\n        String[] items = {\"Zebra\", \"Apple\", \"Monkey\", \"Banana\"};\n        \n        for (String item : items) {\n            hashSet.add(item);\n            linkedHashSet.add(item);\n            treeSet.add(item);\n        }\n        \n        System.out.println(\"HashSet (no order): \" + hashSet);\n        System.out.println(\"LinkedHashSet (insertion order): \" + linkedHashSet);\n        System.out.println(\"TreeSet (sorted order): \" + treeSet);\n        \n        // Performance comparison\n        System.out.println(\"\\n=== Performance Characteristics ===\");\n        System.out.println(\"• HashSet: Fastest, no order\");\n        System.out.println(\"• LinkedHashSet: Slightly slower, maintains order\");\n        System.out.println(\"• TreeSet: Slowest, sorted order\");\n        \n        // Practical example: Web browser history\n        System.out.println(\"\\n=== Browser History Example ===\");\n        \n        LinkedHashSet<String> browserHistory = new LinkedHashSet<>(5) {\n            @Override\n            protected boolean removeEldestEntry(Map.Entry<String, String> eldest) {\n                return size() > 5;  // Keep only last 5 visited sites\n            }\n        };\n        \n        // Simulating browsing\n        String[] visitedSites = {\n            \"google.com\",\n            \"github.com\", \n            \"stackoverflow.com\",\n            \"w3schools.com\",\n            \"github.com\",  // Duplicate visit\n            \"youtube.com\",\n            \"linkedin.com\"\n        };\n        \n        System.out.println(\"Visiting websites...\");\n        for (String site : visitedSites) {\n            browserHistory.add(site);\n            System.out.println(\"Visited: \" + site);\n        }\n        \n        System.out.println(\"\\nBrowser History (last 5 unique sites):\");\n        for (String site : browserHistory) {\n            System.out.println(site);\n        }\n        \n        // Another example: Shopping cart\n        System.out.println(\"\\n=== Shopping Cart Example ===\");\n        \n        LinkedHashSet<String> shoppingCart = new LinkedHashSet<>();\n        shoppingCart.add(\"Milk\");\n        shoppingCart.add(\"Bread\");\n        shoppingCart.add(\"Eggs\");\n        shoppingCart.add(\"Butter\");\n        shoppingCart.add(\"Milk\");  // Trying to add duplicate\n        \n        System.out.println(\"Shopping Cart (unique items in order added):\");\n        int itemNumber = 1;\n        for (String item : shoppingCart) {\n            System.out.println(itemNumber++ + \". \" + item);\n        }\n        \n        // Remove item\n        shoppingCart.remove(\"Bread\");\n        System.out.println(\"\\nAfter removing Bread: \" + shoppingCart);\n        \n        // Convert to array while preserving order\n        System.out.println(\"\\nConverting to array:\");\n        String[] cartArray = shoppingCart.toArray(new String[0]);\n        System.out.println(\"Array: \" + Arrays.toString(cartArray));\n        \n        // LinkedHashSet operations\n        System.out.println(\"\\n=== Set Operations ===\");\n        \n        LinkedHashSet<String> set1 = new LinkedHashSet<>(Arrays.asList(\"A\", \"B\", \"C\", \"D\"));\n        LinkedHashSet<String> set2 = new LinkedHashSet<>(Arrays.asList(\"C\", \"D\", \"E\", \"F\"));\n        \n        System.out.println(\"Set 1: \" + set1);\n        System.out.println(\"Set 2: \" + set2);\n        \n        // Union (order from first set then second)\n        LinkedHashSet<String> union = new LinkedHashSet<>(set1);\n        union.addAll(set2);\n        System.out.println(\"Union: \" + union);\n        \n        // Intersection (order from first set)\n        LinkedHashSet<String> intersection = new LinkedHashSet<>(set1);\n        intersection.retainAll(set2);\n        System.out.println(\"Intersection: \" + intersection);\n        \n        // Clear and check empty\n        fruits.clear();\n        System.out.println(\"\\nAfter clear, fruits empty? \" + fruits.isEmpty());\n        \n        System.out.println(\"\\n=== When to Use LinkedHashSet ===\");\n        System.out.println(\"1. Need unique elements with insertion order\");\n        System.out.println(\"2. Implementing LRU (Least Recently Used) cache\");\n        System.out.println(\"3. Maintaining access/insertion sequences\");\n        System.out.println(\"4. When order matters but sorting isn't needed\");\n    }\n}",
+      "real_world_example": "Used for browser history (unique sites in visit order), shopping cart items, maintaining insertion order in caches, tracking unique user actions in sequence.",
+      "interactive_tasks": [
+        "Create LinkedHashSet of 5 colors in specific order",
+        "Remove middle element and verify order",
+        "Create LRU cache with size limit"
+      ],
+      "quiz": [
+        {
+          "question": "LinkedHashSet maintains?",
+          "options": ["Random order", "Insertion order", "Sorted order", "No order"],
+          "answer": "Insertion order",
+          "reasoning": "LinkedHashSet preserves the order elements were added."
+        },
+        {
+          "question": "Which is faster?",
+          "options": ["HashSet", "LinkedHashSet", "TreeSet", "All same"],
+          "answer": "HashSet",
+          "reasoning": "HashSet is fastest as it doesn't maintain order."
+        },
+        {
+          "question": "LinkedHashSet allows duplicates?",
+          "options": ["Yes", "No"],
+          "answer": "No",
+          "reasoning": "Like all Sets, LinkedHashSet doesn't allow duplicates."
+        }
+      ]
+    },
+    {
+      "title": "Day 39 – Java Map Interface",
+      "definition": "The Map interface stores key-value pairs where each key is unique, allowing fast lookup by key.",
+      "explanation": "Map is like a dictionary - each word (key) has a definition (value). Keys must be unique, but values can repeat. It provides efficient lookup, insertion, and deletion of pairs.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== Map Interface Examples ===\");\n        \n        // Creating Map (using HashMap implementation)\n        Map<String, Integer> studentMarks = new HashMap<>();\n        \n        // Adding key-value pairs\n        studentMarks.put(\"Ali\", 85);\n        studentMarks.put(\"Sara\", 92);\n        studentMarks.put(\"Ahmed\", 78);\n        studentMarks.put(\"Ali\", 88);  // Updates existing key\n        \n        System.out.println(\"Student Marks: \" + studentMarks);\n        \n        // Accessing values\n        System.out.println(\"\\nAli's marks: \" + studentMarks.get(\"Ali\"));\n        System.out.println(\"Zara's marks: \" + studentMarks.get(\"Zara\"));  // null\n        \n        // Checking keys and values\n        System.out.println(\"\\nContains key 'Sara'? \" + studentMarks.containsKey(\"Sara\"));\n        System.out.println(\"Contains value 100? \" + studentMarks.containsValue(100));\n        \n        // Removing entry\n        studentMarks.remove(\"Ahmed\");\n        System.out.println(\"\\nAfter removing Ahmed: \" + studentMarks);\n        \n        // Map size and empty check\n        System.out.println(\"\\nSize: \" + studentMarks.size());\n        System.out.println(\"Is empty? \" + studentMarks.isEmpty());\n        \n        // Getting all keys\n        System.out.println(\"\\nAll keys: \" + studentMarks.keySet());\n        \n        // Getting all values\n        System.out.println(\"All values: \" + studentMarks.values());\n        \n        // Getting all entries\n        System.out.println(\"\\nAll entries:\");\n        for (Map.Entry<String, Integer> entry : studentMarks.entrySet()) {\n            System.out.println(entry.getKey() + \" : \" + entry.getValue());\n        }\n        \n        // Iterating through keys\n        System.out.println(\"\\nIterating through keys:\");\n        for (String key : studentMarks.keySet()) {\n            System.out.println(key + \" -> \" + studentMarks.get(key));\n        }\n        \n        // Map implementations comparison\n        System.out.println(\"\\n=== Map Implementations ===\");\n        \n        // HashMap - no order\n        Map<String, String> hashMap = new HashMap<>();\n        hashMap.put(\"Three\", \"3\");\n        hashMap.put(\"One\", \"1\");\n        hashMap.put(\"Two\", \"2\");\n        System.out.println(\"HashMap (no order): \" + hashMap);\n        \n        // LinkedHashMap - insertion order\n        Map<String, String> linkedHashMap = new LinkedHashMap<>();\n        linkedHashMap.put(\"Three\", \"3\");\n        linkedHashMap.put(\"One\", \"1\");\n        linkedHashMap.put(\"Two\", \"2\");\n        System.out.println(\"LinkedHashMap (insertion order): \" + linkedHashMap);\n        \n        // TreeMap - sorted by keys\n        Map<String, String> treeMap = new TreeMap<>();\n        treeMap.put(\"Three\", \"3\");\n        treeMap.put(\"One\", \"1\");\n        treeMap.put(\"Two\", \"2\");\n        System.out.println(\"TreeMap (sorted keys): \" + treeMap);\n        \n        // Practical example: Phone book\n        System.out.println(\"\\n=== Phone Book Example ===\");\n        \n        Map<String, String> phoneBook = new HashMap<>();\n        phoneBook.put(\"Ali\", \"0300-1234567\");\n        phoneBook.put(\"Sara\", \"0312-7654321\");\n        phoneBook.put(\"Ahmed\", \"0333-9876543\");\n        \n        System.out.println(\"Phone Book:\");\n        for (Map.Entry<String, String> entry : phoneBook.entrySet()) {\n            System.out.println(entry.getKey() + \": \" + entry.getValue());\n        }\n        \n        // Search for number\n        String name = \"Sara\";\n        if (phoneBook.containsKey(name)) {\n            System.out.println(\"\\n\" + name + \"'s number: \" + phoneBook.get(name));\n        }\n        \n        // Update phone number\n        phoneBook.put(\"Ali\", \"0300-9999999\");\n        System.out.println(\"\\nAfter updating Ali: \" + phoneBook);\n        \n        // Check if value exists\n        String searchNumber = \"0312-7654321\";\n        boolean numberExists = phoneBook.containsValue(searchNumber);\n        System.out.println(\"\\nNumber \" + searchNumber + \" exists? \" + numberExists);\n        \n        // Map operations\n        System.out.println(\"\\n=== Map Operations ===\");\n        \n        Map<String, Integer> map1 = new HashMap<>();\n        map1.put(\"A\", 1);\n        map1.put(\"B\", 2);\n        \n        Map<String, Integer> map2 = new HashMap<>();\n        map2.put(\"B\", 3);\n        map2.put(\"C\", 4);\n        \n        // Put all from another map\n        map1.putAll(map2);\n        System.out.println(\"After putAll: \" + map1);\n        \n        // Get or default\n        System.out.println(\"\\nGet value with default:\");\n        System.out.println(\"Value for 'D': \" + map1.getOrDefault(\"D\", 0));\n        \n        // Put if absent\n        map1.putIfAbsent(\"A\", 100);  // Won't replace\n        map1.putIfAbsent(\"E\", 5);    // Will add\n        System.out.println(\"After putIfAbsent: \" + map1);\n        \n        // Remove with key-value match\n        boolean removed = map1.remove(\"A\", 100);  // false (value is 1)\n        System.out.println(\"\\nRemoved A=100? \" + removed);\n        \n        // Replace\n        map1.replace(\"B\", 3, 20);\n        System.out.println(\"After replace B: \" + map1);\n        \n        // Clear map\n        phoneBook.clear();\n        System.out.println(\"\\nPhone book cleared. Empty? \" + phoneBook.isEmpty());\n        \n        System.out.println(\"\\n=== When to Use Map ===\");\n        System.out.println(\"1. Key-value data (ID -> Object)\");\n        System.out.println(\"2. Fast lookup by key\");\n        System.out.println(\"3. Dictionary-like structures\");\n        System.out.println(\"4. Counting occurrences\");\n    }\n}",
+      "real_world_example": "Used for phone books (name->number), user databases (ID->user), configuration settings (key->value), word counters (word->count).",
+      "interactive_tasks": [
+        "Create Map of 3 country-capital pairs",
+        "Find value for specific key",
+        "Iterate and print all key-value pairs"
+      ],
+      "quiz": [
+        {
+          "question": "Map keys must be?",
+          "options": ["Unique", "Sorted", "Numerical", "Strings"],
+          "answer": "Unique",
+          "reasoning": "Each key in a Map must be unique."
+        },
+        {
+          "question": "Which method gets value by key?",
+          "options": ["get()", "find()", "value()", "retrieve()"],
+          "answer": "get()",
+          "reasoning": "get(key) returns the value associated with the key."
+        },
+        {
+          "question": "How to get all keys?",
+          "options": ["keys()", "keySet()", "getKeys()", "allKeys()"],
+          "answer": "keySet()",
+          "reasoning": "keySet() returns a Set containing all keys."
+        }
+      ]
+    },
+    {
+      "title": "Day 40 – Java HashMap",
+      "definition": "HashMap is a Map implementation that stores key-value pairs using hash table, providing fast access but no ordering guarantee.",
+      "explanation": "HashMap is like a smart dictionary - you give it a word (key) and instantly get the definition (value). It uses hashing to store data, making operations very fast on average.",
+      "code_example": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"=== HashMap Examples ===\");\n        \n        // Creating HashMap\n        HashMap<String, Integer> studentMarks = new HashMap<>();\n        \n        // Adding key-value pairs\n        studentMarks.put(\"Ali\", 85);\n        studentMarks.put(\"Sara\", 92);\n        studentMarks.put(\"Ahmed\", 78);\n        studentMarks.put(\"Ali\", 88);  // Updates existing key\n        \n        System.out.println(\"Student Marks: \" + studentMarks);\n        System.out.println(\"Size: \" + studentMarks.size());\n        \n        // Accessing values\n        System.out.println(\"\\nAli's marks: \" + studentMarks.get(\"Ali\"));\n        System.out.println(\"Zara's marks: \" + studentMarks.get(\"Zara\"));  // null\n        \n        // Get with default\n        System.out.println(\"Zara's marks (default): \" + studentMarks.getOrDefault(\"Zara\", 0));\n        \n        // Checking existence\n        System.out.println(\"\\nContains key 'Sara'? \" + studentMarks.containsKey(\"Sara\"));\n        System.out.println(\"Contains value 100? \" + studentMarks.containsValue(100));\n        \n        // Removing entries\n        studentMarks.remove(\"Ahmed\");\n        System.out.println(\"\\nAfter removing Ahmed: \" + studentMarks);\n        \n        // Remove only if value matches\n        boolean removed = studentMarks.remove(\"Ali\", 85);  // false (value is 88)\n        System.out.println(\"Removed Ali=85? \" + removed);\n        \n        // Replace values\n        studentMarks.replace(\"Sara\", 95);\n        System.out.println(\"After replacing Sara: \" + studentMarks);\n        \n        // Replace only if old value matches\n        studentMarks.replace(\"Ali\", 88, 90);\n        System.out.println(\"After conditional replace: \" + studentMarks);\n        \n        // Iterating through HashMap\n        System.out.println(\"\\n=== Iterating HashMap ===\");\n        \n        // Method 1: Key set\n        System.out.println(\"\\nMethod 1 - Using keySet():\");\n        for (String key : studentMarks.keySet()) {\n            System.out.println(key + \": \" + studentMarks.get(key));\n        }\n        \n        // Method 2: Entry set (most efficient)\n        System.out.println(\"\\nMethod 2 - Using entrySet():\");\n        for (Map.Entry<String, Integer> entry : studentMarks.entrySet()) {\n            System.out.println(entry.getKey() + \": \" + entry.getValue());\n        }\n        \n        // Method 3: Values only\n        System.out.println(\"\\nMethod 3 - Using values():\");\n        for (Integer marks : studentMarks.values()) {\n            System.out.println(\"Marks: \" + marks);\n        }\n        \n        // Method 4: Iterator\n        System.out.println(\"\\nMethod 4 - Using Iterator:\");\n        Iterator<Map.Entry<String, Integer>> iterator = studentMarks.entrySet().iterator();\n        while (iterator.hasNext()) {\n            Map.Entry<String, Integer> entry = iterator.next();\n            System.out.println(entry.getKey() + \": \" + entry.getValue());\n        }\n        \n        // Practical example: Word counter\n        System.out.println(\"\\n=== Word Counter Example ===\");\n        \n        String text = \"apple banana apple orange banana mango apple\";\n        String[] words = text.split(\" \");\n        \n        HashMap<String, Integer> wordCount = new HashMap<>();\n        \n        for (String word : words) {\n            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);\n        }\n        \n        System.out.println(\"Text: \" + text);\n        System.out.println(\"Word counts: \" + wordCount);\n        \n        // Find most frequent word\n        String mostFrequent = \"\";\n        int maxCount = 0;\n        \n        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {\n            if (entry.getValue() > maxCount) {\n                maxCount = entry.getValue();\n                mostFrequent = entry.getKey();\n            }\n        }\n        \n        System.out.println(\"Most frequent word: \" + mostFrequent + \" (\" + maxCount + \" times)\");\n        \n        // HashMap with different types\n        System.out.println(\"\\n=== Different Data Types ===\");\n        \n        HashMap<Integer, String> idToName = new HashMap<>();\n        idToName.put(101, \"Ali\");\n        idToName.put(102, \"Sara\");\n        idToName.put(103, \"Ahmed\");\n        \n        System.out.println(\"ID to Name: \" + idToName);\n        System.out.println(\"Name for ID 102: \" + idToName.get(102));\n        \n        // HashMap operations\n        System.out.println(\"\\n=== HashMap Operations ===\");\n        \n        HashMap<String, Integer> map1 = new HashMap<>();\n        map1.put(\"A\", 1);\n        map1.put(\"B\", 2);\n        \n        HashMap<String, Integer> map2 = new HashMap<>();\n        map2.put(\"B\", 3);\n        map2.put(\"C\", 4);\n        \n        // Merge maps\n        map1.putAll(map2);\n        System.out.println(\"After putAll: \" + map1);\n        \n        // Compute if absent\n        map1.computeIfAbsent(\"D\", k -> 5);\n        System.out.println(\"After computeIfAbsent: \" + map1);\n        \n        // Compute if present\n        map1.computeIfPresent(\"A\", (k, v) -> v * 10);\n        System.out.println(\"After computeIfPresent: \" + map1);\n        \n        // Merge with custom function\n        map1.merge(\"B\", 10, (oldValue, newValue) -> oldValue + newValue);\n        System.out.println(\"After merge: \" + map1);\n        \n        // Performance demonstration\n        System.out.println(\"\\n=== Performance Characteristics ===\");\n        System.out.println(\"• get/put/remove: O(1) average time\");\n        System.out.println(\"• Worst case: O(n) when many collisions\");\n        System.out.println(\"• Load factor: 0.75 (default)\");\n        System.out.println(\"• Initial capacity: 16 (default)\");\n        \n        // Custom capacity and load factor\n        HashMap<String, String> customMap = new HashMap<>(32, 0.5f);\n        customMap.put(\"Key1\", \"Value1\");\n        customMap.put(\"Key2\", \"Value2\");\n        System.out.println(\"\\nCustom HashMap size: \" + customMap.size());\n        \n        // Null keys and values\n        System.out.println(\"\\n=== Null Handling ===\");\n        HashMap<String, String> nullMap = new HashMap<>();\n        nullMap.put(null, \"Null Key Value\");\n        nullMap.put(\"Key1\", null);\n        nullMap.put(null, \"Updated Null Key\");\n        \n        System.out.println(\"Null map: \" + nullMap);\n        System.out.println(\"Value for null key: \" + nullMap.get(null));\n        \n        // Clear HashMap\n        studentMarks.clear();\n        System.out.println(\"\\nAfter clear, empty? \" + studentMarks.isEmpty());\n        \n        System.out.println(\"\\n=== When to Use HashMap ===\");\n        System.out.println(\"1. Need fast key-value lookups\");\n        System.out.println(\"2. Don't care about order\");\n        System.out.println(\"3. Need to store mappings\");\n        System.out.println(\"4. Counting frequencies\");\n        \n        System.out.println(\"\\n=== HashMap vs Other Maps ===\");\n        System.out.println(\"• HashMap: Fastest, no order\");\n        System.out.println(\"• LinkedHashMap: Slightly slower, insertion order\");\n        System.out.println(\"• TreeMap: Slowest, sorted by keys\");\n    }\n}",
+      "real_world_example": "Used for caching (URL->page), user sessions (sessionID->user), database indexing (ID->record), configuration settings.",
+      "interactive_tasks": [
+        "Create HashMap of 3 products with prices",
+        "Find price for specific product",
+        "Count word frequencies in sentence"
+      ],
+      "quiz": [
+        {
+          "question": "HashMap allows null key?",
+          "options": ["Yes", "No"],
+          "answer": "Yes",
+          "reasoning": "HashMap allows one null key and multiple null values."
+        },
+        {
+          "question": "What is time complexity of get()?",
+          "options": ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+          "answer": "O(1)",
+          "reasoning": "HashMap provides constant time for get() on average."
+        },
+        {
+          "question": "Which is NOT a way to iterate?",
+          "options": ["keySet()", "entrySet()", "valueSet()", "values()"],
+          "answer": "valueSet()",
+          "reasoning": "values() returns Collection, not valueSet()."
+        }
+      ]
+    },
+    {
+      "title": "Day 41 – Streams, Collectors & Functional Pipelines",
+      "definition": "Streams process sequences of data declaratively with map/filter/reduce pipelines, avoiding boilerplate loops.",
+      "explanation": {
+        "main": "Streams let you describe data transformations as a pipeline of operations rather than nested loops.",
+        "key_points": [
+          "Use collect() with Collectors to build lists, maps, or summaries",
+          "Prefer method references (Class::method) for readability",
+          "Short-circuit operations (findFirst, anyMatch) reduce work when possible",
+          "ParallelStream can leverage multi-core CPUs when tasks are independent"
+        ]
+      },
+      "code_example": "import java.util.List;\nimport java.util.stream.Collectors;\n\nList<String> names = List.of(\"Alice\", \"Basil\", \"Chen\");\nList<String> filtered = names.stream()\n    .filter(name -> name.length() <= 4)\n    .map(String::toUpperCase)\n    .collect(Collectors.toList());\nSystem.out.println(filtered);\n",
+      "real_world_example": "Back-end services convert request payloads into DTOs using stream pipelines before persisting to databases.",
+      "interactive_tasks": [
+        "Filter and sort a list of users by age with streams",
+        "Group orders by status using Collectors.groupingBy",
+        "Create a stream that stops early with findFirst"
+      ],
+      "quiz": [
+        {
+          "question": "What does Collectors.toList() do?",
+          "options": [
+            "Creates a fixed-size array",
+            "Collects stream results into a List",
+            "Measures stream execution time",
+            "Parallelizes the stream"
+          ],
+          "answer": "Collects stream results into a List",
+          "reasoning": "Collectors.toList() accumulates stream items into a List."
+        },
+        {
+          "question": "Which operation short-circuits?",
+          "options": [
+            "filter",
+            "map",
+            "anyMatch",
+            "collect"
+          ],
+          "answer": "anyMatch",
+          "reasoning": "anyMatch may stop once a matching element is found."
+        },
+        {
+          "question": "How do you run stream operations in parallel?",
+          "options": [
+            "parallelStream()",
+            "stream().parallel()",
+            "parallel()",
+            "Either A or B"
+          ],
+          "answer": "Either A or B",
+          "reasoning": "parallelStream() or stream().parallel() both create parallel streams."
+        }
+      ],
+      "learning_objectives": [
+        "Build pipelines with streams and collectors",
+        "Read data declaratively instead of loops",
+        "Know when to parallelize safely"
+      ],
+      "sections": [
+        {
+          "heading": "Pipeline Tips",
+          "content": [
+            "Keep operations stateless for parallel streams",
+            "Use peek() only for debugging when necessary",
+            "Avoid side effects in mapping functions"
+          ]
+        }
+      ],
+      "tips": [
+        "Use Collectors.averagingDouble to compute averages",
+        "Avoid parallel streams when operations hit external services"
+      ]
+    },
+    {
+      "title": "Day 42 – CompletableFuture & Structured Concurrency",
+      "definition": "CompletableFuture composes asynchronous tasks, while structured concurrency keeps cancellation and propagation predictable.",
+      "explanation": {
+        "main": "Chain futures to describe the flow of asynchronous tasks and handle errors in one place.",
+        "key_points": [
+          "SupplyAsync submits tasks to an ExecutorService",
+          "thenApply & thenCompose create dependent steps",
+          "exceptionally handles failures without try/catch",
+          "Use CompletableFuture.allOf to wait on multiple tasks"
+        ]
+      },
+      "code_example": "import java.util.concurrent.CompletableFuture;\n\nCompletableFuture<Integer> compute = CompletableFuture.supplyAsync(() -> 21)\n    .thenApply(value -> value * 2);\ncompute.thenAccept(result -> System.out.println(\"Result: \" + result));\n",
+      "real_world_example": "HTTP gateways launch multiple service calls with CompletableFuture and compose responses before replying to the client.",
+      "interactive_tasks": [
+        "Combine two asynchronous API calls using thenCombine",
+        "Handle timeout by adding orTimeout() to a future",
+        "Create an ExecutorService for CPU-bound tasks and pass it to supplyAsync"
+      ],
+      "quiz": [
+        {
+          "question": "Which method creates a future that is already completed?",
+          "options": [
+            "completedFuture",
+            "startFuture",
+            "readyFuture",
+            "completeNow"
+          ],
+          "answer": "completedFuture",
+          "reasoning": "CompletableFuture.completedFuture(value) returns an already completed future."
+        },
+        {
+          "question": "What does thenCompose do?",
+          "options": [
+            "Flattens nested futures",
+            "Parallelizes tasks",
+            "Handles exceptions",
+            "Cancels futures"
+          ],
+          "answer": "Flattens nested futures",
+          "reasoning": "thenCompose chains futures without nesting CompletableFuture<CompletableFuture<T>>."
+        },
+        {
+          "question": "How do you handle exceptions in a chain?",
+          "options": [
+            "exceptionally",
+            "handle",
+            "recover",
+            "catchAsync"
+          ],
+          "answer": "exceptionally",
+          "reasoning": "exceptionally lets you return a fallback when an exception occurs."
+        }
+      ],
+      "learning_objectives": [
+        "Compose asynchronous operations without blocking",
+        "Use structured concurrency helpers like allOf",
+        "Propagate errors cleanly"
+      ],
+      "sections": [
+        {
+          "heading": "Concurrency Checklist",
+          "content": [
+            "Provide a dedicated ExecutorService when CPU-bound",
+            "Use completedFuture for cached results",
+            "Avoid blocking inside supplyAsync to keep threads available"
+          ]
+        }
+      ],
+      "tips": [
+        "Call join() only after all compose steps complete",
+        "Wrap blocking calls with CompletableFuture.supplyAsync"
+      ]
+    },
+    {
+      "title": "Day 43 – Architectures, Patterns & Reactive Thinking",
+      "definition": "Combine design patterns, modules, and reactive principles to build maintainable server-side systems.",
+      "explanation": {
+        "main": "Apply strategy and builder patterns, divide code with modules, and design services that react to events.",
+        "key_points": [
+          "Strategy & Template Method simplify swapping behavior",
+          "Modules expose only required interfaces with module-info.java",
+          "Reactive streams (Flux, Flow) help manage backpressure",
+          "Use dependency injection to decouple layers"
+        ]
+      },
+      "code_example": "public interface CompressionStrategy {\n    byte[] compress(byte[] data);\n}\n\npublic class ZipStrategy implements CompressionStrategy {\n    @Override\n    public byte[] compress(byte[] data) {\n        // Zip compression placeholder\n        return data;\n    }\n}\n",
+      "real_world_example": "Microservices use dependency injection frameworks with strategy patterns to swap database drivers per environment.",
+      "interactive_tasks": [
+        "Write two CompressionStrategy implementations and swap them via configuration",
+        "Add module-info.java that opens packages to reflection for frameworks",
+        "Simulate reactive backpressure with Flow.Publisher and Flow.Subscriber"
+      ],
+      "quiz": [
+        {
+          "question": "What problem does the Strategy pattern solve?",
+          "options": [
+            "Switching between algorithms at runtime",
+            "Creating singleton instances",
+            "Catching exceptions",
+            "Managing memory"
+          ],
+          "answer": "Switching between algorithms at runtime",
+          "reasoning": "Strategy encapsulates interchangeable behaviors."
+        },
+        {
+          "question": "Which file defines modules in Java 9+?",
+          "options": [
+            "module-info.java",
+            "module.xml",
+            "module.properties",
+            "module.json"
+          ],
+          "answer": "module-info.java",
+          "reasoning": "module-info.java declares module exports, requires, and opens."
+        },
+        {
+          "question": "Reactive streams help with ____?",
+          "options": [
+            "Backpressure",
+            "Memory leaks",
+            "Annotations",
+            "Class loading"
+          ],
+          "answer": "Backpressure",
+          "reasoning": "Reactive streams coordinate producers and consumers to avoid overwhelming subscribers."
+        }
+      ],
+      "learning_objectives": [
+        "Apply behavioral design patterns for flexible components",
+        "Use module boundaries for cleaner encapsulation",
+        "Think reactively about event, stream, and I/O flows"
+      ],
+      "sections": [
+        {
+          "heading": "Architectural Focus",
+          "content": [
+            "Use dependency injection to swap implementations",
+            "Define module exits and dependencies explicitly",
+            "Protect modules with clear API surfaces"
+          ]
+        }
+      ],
+      "tips": [
+        "Document module exports to clarify public APIs",
+        "Test strategy swaps with different configurations"
+      ]
+    }
+  ]
+}
+

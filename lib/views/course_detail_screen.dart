@@ -1,9 +1,11 @@
 import 'package:coding_tutor/ads/ads_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../controllers/course_controller.dart';
 import '../models/course_model.dart';
 import '../services/course_service.dart';
-import '../controllers/course_controller.dart';
+import 'compiler_screen.dart';
 
 class CourseDetailScreen extends StatefulWidget {
   final String courseTitle;
@@ -35,17 +37,14 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   void initState() {
     super.initState();
     _loadCourse();
-
     // Preload ads after build
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
       try {
         final adProvider = context.read<AdProvider>();
-
         adProvider.preloadAd(AdType.lensAd);
-
-        debugPrint('[HomeScreen] ✅ Ads preload requested');
+        debugPrint('[HomeScreen] ✅Rewarded Ads preload requested');
       } catch (e) {
         debugPrint('[HomeScreen] ⚠️ Ad preload error: $e');
       }
@@ -58,41 +57,38 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     setState(() {
       if (_currentStep > 0) {
         if (_currentStep == 4) {
-          // Quiz step
           if (_currentQuizIndex > 0) {
             _currentQuizIndex--;
             _selectedOptionIndex = null;
             _showResult = false;
             _isCorrect = false;
           } else {
-            _currentStep = 3; // go back to Real-World Example
+            _currentStep = 3;
           }
         } else if (_currentStep >= 5 && day.interactiveTasks.isNotEmpty) {
-          // Task step
           if (_currentTaskIndex > 0) {
             _currentTaskIndex--;
             _currentStep--;
           } else {
-            _currentStep = 4; // go back to Quiz
+            _currentStep = 4;
           }
         } else {
           _currentStep--;
+          // Initialize code editor when going back to code step
         }
       } else if (_currentDay > 0) {
-        // Go to previous day’s last step
         _currentDay--;
         final prevDay = _course!.days[_currentDay];
         _currentStep = prevDay.interactiveTasks.isNotEmpty
             ? 5 + prevDay.interactiveTasks.length - 1
             : prevDay.quiz.isNotEmpty
             ? 4
-            : 3; // last step of previous day
+            : 3;
         _currentTaskIndex = prevDay.interactiveTasks.isNotEmpty
             ? prevDay.interactiveTasks.length - 1
             : 0;
-        _currentQuizIndex = prevDay.quiz.isNotEmpty
-            ? prevDay.quiz.length - 1
-            : 0;
+        _currentQuizIndex =
+        prevDay.quiz.isNotEmpty ? prevDay.quiz.length - 1 : 0;
       }
     });
   }
@@ -110,7 +106,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         totalDays: course.days.length,
       );
     }
-    // If user selected a specific topic/day, start there
     if (widget.initialDay != null) {
       startingIndex = (widget.initialDay! - 1).clamp(0, course.days.length - 1);
     }
@@ -136,7 +131,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   void _advanceToNextDay() {
     final current = _course!.days[_currentDay];
 
-    // Avoid recording progress again if this day was already completed
     if (!_completedDays.contains(current.day)) {
       _markDayComplete(current.day);
     }
@@ -185,7 +179,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     final day = _course!.days[_currentDay];
 
     setState(() {
-      // QUIZ
       if (_currentStep == 4) {
         if (_currentQuizIndex < day.quiz.length - 1) {
           _currentQuizIndex++;
@@ -199,51 +192,44 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         }
       }
 
-      // TASKS
       if (_currentStep >= 5 && day.interactiveTasks.isNotEmpty) {
         if (_currentTaskIndex < day.interactiveTasks.length - 1) {
           _currentTaskIndex++;
           _currentStep++;
           return;
         } else {
-          _finishDay(); // your existing finish logic
+          _finishDay();
           return;
         }
       }
 
-      // NORMAL step
       if (_currentStep < 3) {
         _currentStep++;
+        // Initialize code editor when entering code step
         return;
       }
 
-      // Move to quiz
       if (day.quiz.isNotEmpty && _currentStep == 3) {
         _currentStep = 4;
         return;
       }
 
-      // Move to tasks
       if (day.interactiveTasks.isNotEmpty && _currentStep == 4) {
         _currentStep = 5;
         return;
       }
 
-      // Completed
       _finishDay();
     });
   }
 
-  // Call this when the current day is "finished" (end of steps/tasks/quiz)
   Future<void> _finishDay() async {
     final current = _course!.days[_currentDay];
 
-    // 1) Mark day complete
     if (!_completedDays.contains(current.day)) {
       await _markDayComplete(current.day);
     }
 
-    // 2) Show completion snackbar
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -256,35 +242,29 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
       );
     }
 
-    // 3) Attempt to show rewarded ad
     try {
       final adProvider = context.read<AdProvider>();
 
       if (adProvider.canShowRewarded()) {
-        // Only callback supported is onRewarded
         adProvider.showRewardedAd(
           AdType.lensAd,
           onRewarded: () {
-            // user earned reward — continue
             _proceedAfterFinish();
           },
         );
-        return; // wait for reward callback
+        return;
       }
     } catch (e) {
       debugPrint('[CourseDetail] Rewarded ad error: $e');
     }
 
-    // 4) No ad → continue immediately
     _proceedAfterFinish();
   }
 
-  // Advance to next day or show completion UI. Extracted helper so ad callbacks can call it.
   void _proceedAfterFinish() {
     if (!mounted) return;
 
     if (_currentDay < _course!.days.length - 1) {
-      // Go to next day
       setState(() {
         _currentDay++;
         _currentStep = 0;
@@ -295,7 +275,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         _isCorrect = false;
       });
     } else {
-      // Course is completed
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Course completed 🎉'),
@@ -308,12 +287,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     }
   }
 
-  // NEW METHOD: Handle quiz navigation specifically
   void _handleQuizNavigation() {
     final day = _course!.days[_currentDay];
 
     if (_currentQuizIndex < day.quiz.length - 1) {
-      // Move to next question
       setState(() {
         _currentQuizIndex++;
         _selectedOptionIndex = null;
@@ -321,13 +298,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         _isCorrect = false;
       });
     } else {
-      // Quiz completed
       setState(() {});
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Quiz completed ✅')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Quiz completed ✅')));
 
-      // Proceed to tasks if any, else next day
       if (day.interactiveTasks.isNotEmpty) {
         setState(() {
           _currentStep = 5;
@@ -352,15 +326,17 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
             children: [
               Text(
                 'Progress',
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w600),
               ),
               Text(
                 '${_completedDays.length}/${_course!.days.length}',
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.w600),
               ),
             ],
           ),
@@ -418,20 +394,19 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                     child: Center(
                       child: isCompleted
                           ? const Icon(
-                              Icons.check,
-                              size: 16,
-                              color: Colors.white,
-                            )
+                        Icons.check,
+                        size: 16,
+                        color: Colors.white,
+                      )
                           : Text(
-                              '${index + 1}',
-                              style: TextStyle(
-                                color: isActive
-                                    ? Colors.white
-                                    : Colors.grey[600],
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
+                        '${index + 1}',
+                        style: TextStyle(
+                          color:
+                          isActive ? Colors.white : Colors.grey[600],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -439,9 +414,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                     step,
                     style: TextStyle(
                       fontSize: 10,
-                      fontWeight: isActive
-                          ? FontWeight.bold
-                          : FontWeight.normal,
+                      fontWeight:
+                      isActive ? FontWeight.bold : FontWeight.normal,
                       color: isActive
                           ? Theme.of(context).colorScheme.primary
                           : Colors.grey[600],
@@ -459,8 +433,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(steps.length - 1, (index) {
                 return Container(
-                  width:
-                      (MediaQuery.of(context).size.width - 40) /
+                  width: (MediaQuery.of(context).size.width - 40) /
                       (steps.length - 1),
                   height: 2,
                   color: index < currentStepIndex
@@ -477,7 +450,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
   Widget _sectionHeader(String text, {IconData? icon}) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         if (icon != null)
           Padding(
@@ -487,7 +460,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         Expanded(
           child: Text(
             text,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w700,
               color: Theme.of(context).colorScheme.primary,
@@ -498,7 +471,17 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     );
   }
 
-  Widget _sectionBody(String text, {TextAlign align = TextAlign.center}) {
+  Widget _sectionBody(String text) {
+    final paragraphs = text
+        .split(RegExp(r'\n\s*\n'))
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+
+    if (paragraphs.isEmpty && text.trim().isNotEmpty) {
+      paragraphs.add(text.trim());
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -512,12 +495,123 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           ),
         ],
       ),
-      child: Text(
-        text,
-        textAlign: align,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: paragraphs
+            .map(
+              (paragraph) => Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildStructuredParagraph(paragraph),
+              ),
+            )
+            .toList(),
       ),
     );
+  }
+
+  Widget _buildStructuredParagraph(String paragraph) {
+    final lines = paragraph
+        .split(RegExp(r'\n'))
+        .map((line) => line.trim())
+        .where((line) => line.isNotEmpty)
+        .toList();
+
+    if (lines.length == 1) {
+      return Text(
+        lines.first,
+        textAlign: TextAlign.start,
+        style:
+            Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: lines.map((line) => _buildStructuredLine(line)).toList(),
+    );
+  }
+
+  Widget _buildStructuredLine(String line) {
+    final trimmed = line.trim();
+
+    if (trimmed.isEmpty) {
+      return const SizedBox(height: 4);
+    }
+
+    final bulletMatch = RegExp(r'^([\-•\*➤])\s+(.+)$').firstMatch(trimmed);
+    final numberedMatch = RegExp(r'^(\d+[\.\)])\s+(.+)$').firstMatch(trimmed);
+
+    if (bulletMatch != null || numberedMatch != null) {
+      final match = bulletMatch ?? numberedMatch;
+      if (match == null) {
+        return const SizedBox(height: 4);
+      }
+      final prefix = bulletMatch != null
+          ? '•'
+          : (numberedMatch?.group(1) ?? '');
+      final groupContent = match.group(2);
+      if (groupContent == null) {
+        return const SizedBox(height: 4);
+      }
+      final content = groupContent;
+
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '$prefix ',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+              child: Text(
+                content,
+                textAlign: TextAlign.start,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(height: 1.6),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (_isHeadingLine(trimmed)) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 6),
+        child: Text(
+          trimmed,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Text(
+        trimmed,
+        textAlign: TextAlign.start,
+        style:
+            Theme.of(context).textTheme.bodyLarge?.copyWith(height: 1.6),
+      ),
+    );
+  }
+
+  bool _isHeadingLine(String line) {
+    final trimmed = line.trim();
+    if (trimmed.isEmpty) return false;
+    if (trimmed.endsWith(':')) return true;
+    final words = trimmed.split(RegExp(r'\s+'));
+    return trimmed == trimmed.toUpperCase() && words.length <= 5;
   }
 
   Widget _buildDefinitionView(CourseDay day) {
@@ -550,8 +644,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
               _sectionBody(day.explanation),
               SizedBox(height: 12),
               _buildBottomNavButtons(
-                onBack: _goToPreviousStep, // you already have this logic
-                onNext: _goToNextStep, // already exists
+                onBack: _goToPreviousStep,
+                onNext: _goToNextStep,
                 nextLabel: 'Next: Explanation',
                 nextIcon: Icons.arrow_forward,
               ),
@@ -570,63 +664,67 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           Column(
             children: [
               _sectionHeader('Code Example', icon: Icons.code),
-              const SizedBox(height: 25),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: SelectableText(
-                  day.codeExample,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontFamily: 'Monospace',
-                    color: Colors.green[300],
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-              SizedBox(height: 12),
-              _buildBottomNavButtons(
-                onBack: _goToPreviousStep, // you already have this logic
-                onNext: _goToNextStep, // already exists
-                nextLabel: 'Next: Explanation',
-                nextIcon: Icons.arrow_forward,
+              const SizedBox(height: 20),
+              CompilerPane(
+                key: ValueKey('${day.day}-${day.codeExample.hashCode}'),
+                initialCode: day.codeExample,
+                embedMode: true,
+                forcedLanguage: _compilerLanguageOverride(),
               ),
             ],
+          ),
+          const SizedBox(height: 30),
+          const SizedBox(height: 12),
+          _buildBottomNavButtons(
+            onBack: _goToPreviousStep,
+            onNext: _goToNextStep,
+            nextLabel: 'Next: Real-World Example',
+            nextIcon: Icons.arrow_forward,
           ),
         ],
       ),
     );
   }
 
+  String? _compilerLanguageOverride() {
+    final lang = _course?.language;
+    if (lang == null) return null;
+    final normalized = lang.toLowerCase();
+    if (normalized.contains('html')) return 'html';
+    if (normalized.contains('css')) return 'css';
+    if (normalized.contains('javascript') || normalized.contains('js')) {
+      return 'javascript';
+    }
+    if (normalized.contains('python')) return 'python';
+    if (normalized.contains('java') && !normalized.contains('javascript')) {
+      return 'java';
+    }
+    if (normalized.contains('c++') || normalized.contains('cpp')) return 'cpp';
+    return null;
+  }
+
+  // Rest of the widget methods remain the same...
   Widget _buildRealWorldView(CourseDay day) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          children: [
-            _sectionHeader('Real-World Example', icon: Icons.public),
-            const SizedBox(height: 25),
-            _sectionBody(day.realWorldExample),
-            SizedBox(height: 12),
-            _buildBottomNavButtons(
-              onBack: _goToPreviousStep, // you already have this logic
-              onNext: _goToNextStep, // already exists
-              nextLabel: 'Next: Explanation',
-              nextIcon: Icons.arrow_forward,
-            ),
-          ],
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              _sectionHeader('Real-World Example', icon: Icons.public),
+              const SizedBox(height: 25),
+              _sectionBody(day.realWorldExample),
+              SizedBox(height: 12),
+              _buildBottomNavButtons(
+                onBack: _goToPreviousStep,
+                onNext: _goToNextStep,
+                nextLabel: 'Next: Quiz',
+                nextIcon: Icons.arrow_forward,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -657,6 +755,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(
                     Icons.touch_app,
@@ -666,25 +765,24 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                   const SizedBox(height: 15),
                   Text(
                     task,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge?.copyWith(height: 1.5),
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge
+                        ?.copyWith(height: 1.5),
                   ),
                 ],
               ),
             ),
           ],
         ),
-
-        // Decide which button to show
         _currentTaskIndex < day.interactiveTasks.length - 1
             ? _buildBottomNavButtons(
-                onBack: _goToPreviousStep,
-                onNext: _goToNextStep,
-                nextLabel: '',
-                nextIcon: Icons.arrow_forward,
-              )
+          onBack: _goToPreviousStep,
+          onNext: _goToNextStep,
+          nextLabel: '',
+          nextIcon: Icons.arrow_forward,
+        )
             : _buildNextButton('Finish Day', Icons.celebration),
       ],
     );
@@ -698,7 +796,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         if (_currentQuizIndex > 0) {
           _currentQuizIndex--;
         } else if (_currentStep > 3) {
-          _currentStep--; // optional: go to previous section
+          _currentStep--;
         }
         _selectedOptionIndex = null;
         _showResult = false;
@@ -711,7 +809,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
         if (_currentQuizIndex < day.quiz.length - 1) {
           _currentQuizIndex++;
         } else if (day.interactiveTasks.isNotEmpty) {
-          _currentStep = 5; // move to tasks
+          _currentStep = 5;
           _currentTaskIndex = 0;
         } else {
           _finishDay();
@@ -737,9 +835,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 Container(
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.primary.withOpacity(0.1),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withOpacity(0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(
@@ -759,8 +858,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                       borderRadius: BorderRadius.circular(12),
                       color: _selectedOptionIndex == opt.key
                           ? (_isCorrect
-                                ? Colors.green.withOpacity(0.2)
-                                : Colors.red.withOpacity(0.2))
+                          ? Colors.green.withOpacity(0.2)
+                          : Colors.red.withOpacity(0.2))
                           : Theme.of(context).colorScheme.surface,
                       elevation: 2,
                       child: InkWell(
@@ -768,12 +867,12 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         onTap: _showResult
                             ? null
                             : () {
-                                setState(() {
-                                  _selectedOptionIndex = opt.key;
-                                  _showResult = true;
-                                  _isCorrect = opt.value == q.answer;
-                                });
-                              },
+                          setState(() {
+                            _selectedOptionIndex = opt.key;
+                            _showResult = true;
+                            _isCorrect = opt.value == q.answer;
+                          });
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(16),
                           width: double.infinity,
@@ -787,27 +886,31 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                   border: Border.all(
                                     color: _selectedOptionIndex == opt.key
                                         ? (_isCorrect
-                                              ? Colors.green
-                                              : Colors.red)
+                                        ? Colors.green
+                                        : Colors.red)
                                         : Colors.grey,
                                     width: 2,
                                   ),
                                 ),
                                 child: _selectedOptionIndex == opt.key
                                     ? Icon(
-                                        _isCorrect ? Icons.check : Icons.close,
-                                        size: 16,
-                                        color: _isCorrect
-                                            ? Colors.green
-                                            : Colors.red,
-                                      )
+                                  _isCorrect
+                                      ? Icons.check
+                                      : Icons.close,
+                                  size: 16,
+                                  color: _isCorrect
+                                      ? Colors.green
+                                      : Colors.red,
+                                )
                                     : null,
                               ),
                               const SizedBox(width: 16),
                               Expanded(
                                 child: Text(
                                   opt.value,
-                                  style: Theme.of(context).textTheme.bodyMedium
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
                                       ?.copyWith(fontSize: 16),
                                 ),
                               ),
@@ -840,7 +943,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
-                                  _isCorrect ? Icons.check_circle : Icons.error,
+                                  _isCorrect
+                                      ? Icons.check_circle
+                                      : Icons.error,
                                   color: _isCorrect ? Colors.green : Colors.red,
                                 ),
                                 const SizedBox(width: 8),
@@ -849,9 +954,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                       ? 'Correct!'
                                       : 'Incorrect. Try Again!',
                                   style: TextStyle(
-                                    color: _isCorrect
-                                        ? Colors.green
-                                        : Colors.red,
+                                    color:
+                                    _isCorrect ? Colors.green : Colors.red,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
                                   ),
@@ -866,7 +970,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                 child: Text(
                                   q.reasoning!,
                                   textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyMedium
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
                                       ?.copyWith(fontStyle: FontStyle.italic),
                                 ),
                               ),
@@ -874,21 +980,19 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      // Keep existing "Try Again / Next Question" button
                       ElevatedButton(
                         onPressed: !_isCorrect
                             ? () {
-                                setState(() {
-                                  _selectedOptionIndex = null;
-                                  _showResult = false;
-                                  _isCorrect = false;
-                                });
-                              }
+                          setState(() {
+                            _selectedOptionIndex = null;
+                            _showResult = false;
+                            _isCorrect = false;
+                          });
+                        }
                             : _handleQuizNavigation,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
+                          backgroundColor:
+                          Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 32,
@@ -908,8 +1012,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                   : _currentQuizIndex < day.quiz.length - 1
                                   ? 'Next Question'
                                   : (day.interactiveTasks.isNotEmpty
-                                        ? 'Proceed to Tasks'
-                                        : 'Finish Day'),
+                                  ? 'Proceed to Tasks'
+                                  : 'Finish Day'),
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -929,7 +1033,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
             ),
           ),
         ),
-        // Bottom nav: use the same _goBack and _goNext functions
         _buildBottomNavButtons(
           onBack: _goBack,
           onNext: _goNext,
@@ -949,7 +1052,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        // BACK BUTTON
         ElevatedButton(
           onPressed: onBack,
           style: ElevatedButton.styleFrom(
@@ -969,10 +1071,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
             ],
           ),
         ),
-
         const SizedBox(height: 12),
-
-        // NEXT BUTTON (ICON ONLY)
         ElevatedButton(
           onPressed: onNext,
           style: ElevatedButton.styleFrom(
@@ -1044,15 +1143,17 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
           children: [
             Text(
               _course!.title,
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               'Day ${day.day}',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: Colors.grey[600]),
             ),
           ],
         ),
@@ -1083,7 +1184,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                     : _currentStep == 4
                     ? _buildQuizView(day)
                     : _currentStep >= 5 &&
-                          _currentStep < (5 + day.interactiveTasks.length)
+                    _currentStep <
+                        (5 +
+                            day.interactiveTasks.length)
                     ? _buildTaskView(day)
                     : _buildQuizView(day),
               ),

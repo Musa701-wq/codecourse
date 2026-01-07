@@ -1,0 +1,401 @@
+{
+  "course_title": "JavaScript Beginner Level",
+  "days": [
+    {
+      "title": "Day 1 – Introduction to JavaScript",
+      "definition": "JavaScript is a programming language that adds interactivity to web pages.",
+      "explanation": "• JavaScript makes web pages interactive and dynamic\n• Works alongside HTML (structure) and CSS (style)\n• Runs in the browser and on servers (Node.js)\n• Handles user actions, updates content, and communicates with servers",
+      "code_example": "const greet = (name = 'Learner') => `Hello, ${name}!`;\nconst add = (a, b) => a + b;\nconsole.log(greet('Student'));\nconsole.log('10 + 5 =', add(10, 5));",
+      "real_world_example": "Used for: form validation, dropdown menus, image sliders, real-time updates, interactive maps, and web apps like Gmail.",
+      "interactive_tasks": [
+        "Display 'Hello World' in console",
+        "Store your name in variable and display it",
+        "Calculate sum of two numbers"
+      ],
+      "quiz": [
+        {
+          "question": "What is JavaScript primarily used for?",
+          "options": [
+            "Styling web pages",
+            "Adding interactivity to web pages",
+            "Creating database tables",
+            "Server configuration"
+          ],
+          "answer": "Adding interactivity to web pages",
+          "reasoning": "JavaScript adds interactive behavior to web pages."
+        },
+        {
+          "question": "Which keyword declares a variable?",
+          "options": [
+            "var",
+            "let",
+            "variable",
+            "const"
+          ],
+          "answer": "let",
+          "reasoning": "'let' is modern keyword for declaring variables."
+        }
+      ]
+    },
+    {
+      "title": "Day 2 – Variables and Data Types",
+      "definition": "Variables store data values. JavaScript has different types like String, Number, Boolean.",
+      "explanation": "• Variables: containers for storing data\n• Declare with let (changeable) or const (constant)\n• Data types: String (text), Number, Boolean (true/false), Undefined, Null\n• typeof operator checks data type\n• Type conversion changes between types",
+      "code_example": "const values = { name: 'John', age: 25, isStudent: true, empty: null };\nObject.entries(values).forEach(([key, value]) => {\n  console.log(`${key} (${typeof value}):`, value);\n});\nconst converted = Number('123');\nconsole.log('converted number', converted, typeof converted);",
+      "real_world_example": "Variables store: user inputs, prices, login status. Data types: usernames (strings), ages (numbers), logged in (booleans).",
+      "interactive_tasks": [
+        "Declare variables for name, age, and student status",
+        "Convert string to number and calculate",
+        "Check types of different values"
+      ],
+      "quiz": [
+        {
+          "question": "Which creates a constant variable?",
+          "options": [
+            "let",
+            "var",
+            "const",
+            "static"
+          ],
+          "answer": "const",
+          "reasoning": "const creates a variable that cannot be reassigned."
+        },
+        {
+          "question": "What is typeof null?",
+          "options": [
+            "'null'",
+            "'object'",
+            "'undefined'",
+            "'string'"
+          ],
+          "answer": "'object'",
+          "reasoning": "typeof null returns 'object' (JavaScript quirk)."
+        }
+      ]
+    },
+    {
+      "title": "Day 3 – Operators and Expressions",
+      "definition": "Operators perform operations on values. Expressions combine values and operators.",
+      "explanation": "• Arithmetic: +, -, *, /, %\n• Assignment: =, +=, -=\n• Comparison: ==, ===, !=, >, <\n• Logical: && (AND), || (OR), ! (NOT)\n• Ternary: condition ? value1 : value2\n• Operator precedence determines calculation order",
+      "code_example": "const sum = 10 + 5;\nconst product = 10 * 5;\nconst isLooseEqual = 5 == '5';\nconst isStrictEqual = 5 === '5';\nconst activity = sum >= 15 ? 'Adult' : 'Minor';\nconsole.log({ sum, product, isLooseEqual, isStrictEqual, activity });",
+      "real_world_example": "Used in: shopping cart totals, form validation, age checks, login systems, and discount calculations.",
+      "interactive_tasks": [
+        "Calculate rectangle area",
+        "Check if number is even/odd",
+        "Use logical operators for conditions"
+      ],
+      "quiz": [
+        {
+          "question": "What's difference between == and ===?",
+          "options": [
+            "No difference",
+            "== checks value, === checks value and type",
+            "=== is faster",
+            "== is newer"
+          ],
+          "answer": "== checks value, === checks value and type",
+          "reasoning": "== does type conversion, === checks type too."
+        },
+        {
+          "question": "What does % operator do?",
+          "options": [
+            "Percentage",
+            "Division",
+            "Remainder",
+            "Multiplication"
+          ],
+          "answer": "Remainder",
+          "reasoning": "% gives remainder of division."
+        }
+      ]
+    },
+    {
+      "title": "Day 4 – Control Flow: Conditional Statements",
+      "definition": "Conditional statements execute code based on conditions.",
+      "explanation": "• if: executes if condition true\n• else: executes if condition false\n• else if: checks multiple conditions\n• switch: checks multiple values of same variable\n• Ternary operator: shorthand if-else\n• Conditions use comparison/logical operators",
+      "code_example": "const describeAge = (age) => {\n  if (age >= 18) return 'Adult';\n  if (age >= 13) return 'Teen';\n  return 'Child';\n};\nconst grade = (score) => {\n  if (score >= 90) return 'A';\n  if (score >= 80) return 'B';\n  return 'C';\n};\nconst activity = true ? 'Stay inside' : 'Go outside';\nconsole.log(describeAge(20), grade(85), activity);",
+      "real_world_example": "Used for: form validation, user authentication, feature toggles, pricing logic, and game rules.",
+      "interactive_tasks": [
+        "Check if number is positive/negative/zero",
+        "Create simple login system",
+        "Check leap year"
+      ],
+      "quiz": [
+        {
+          "question": "Which handles multiple conditions?",
+          "options": [
+            "if",
+            "else if",
+            "switch",
+            "Both else if and switch"
+          ],
+          "answer": "Both else if and switch",
+          "reasoning": "Both handle multiple conditions differently."
+        },
+        {
+          "question": "What is ternary operator?",
+          "options": [
+            "Declares three variables",
+            "Shorthand for if-else",
+            "Checks three conditions",
+            "Creates arrays"
+          ],
+          "answer": "Shorthand for if-else",
+          "reasoning": "condition ? expr1 : expr2 is if-else shorthand."
+        }
+      ]
+    },
+    {
+      "title": "Day 5 – Loops and Iteration",
+      "definition": "Loops repeat code until condition met.",
+      "explanation": "• for: known number of iterations\n• while: unknown iterations, condition checked first\n• do-while: runs at least once, condition checked after\n• for...of: iterates arrays/strings\n• for...in: iterates object properties\n• break: exits loop\n• continue: skips to next iteration",
+      "code_example": "const numbers = [1, 2, 3, 4, 5];\nfor (let i = 1; i <= 5; i += 1) console.log('for loop', i);\nlet count = 1;\nwhile (count <= 3) {\n  console.log('while loop', count);\n  count += 1;\n}\nconst fruits = ['apple', 'banana', 'orange'];\nfruits.forEach((fruit) => console.log('fruit', fruit));",
+      "real_world_example": "Processes: product lists, user comments, form data, API responses, and game animations.",
+      "interactive_tasks": [
+        "Print multiplication table",
+        "Find factorial using loop",
+        "Reverse a string"
+      ],
+      "quiz": [
+        {
+          "question": "Which loop runs at least once?",
+          "options": [
+            "for",
+            "while",
+            "do-while",
+            "for...of"
+          ],
+          "answer": "do-while",
+          "reasoning": "do-while checks condition after execution."
+        },
+        {
+          "question": "What does break do?",
+          "options": [
+            "Pauses loop",
+            "Exits loop completely",
+            "Skips iteration",
+            "Restarts loop"
+          ],
+          "answer": "Exits loop completely",
+          "reasoning": "break immediately terminates the loop."
+        }
+      ]
+    },
+    {
+      "title": "Day 6 – Functions",
+      "definition": "Functions are reusable code blocks that perform specific tasks.",
+      "explanation": "• Function Declaration: function name() {}\n• Function Expression: const name = function() {}\n• Arrow Function: const name = () => {}\n• Parameters: inputs to function\n• Return: output from function\n• Scope: variables accessibility\n• Callback: function passed as argument\n• Recursion: function calling itself",
+      "code_example": "function greet(name) {\n  return `Hello, ${name}!`;\n}\nconst add = function (a, b) {\n  return a + b;\n};\nconst multiply = (a, b) => a * b;\nconsole.log(greet('John'));\nconsole.log('sum:', add(5, 3));\nconsole.log('product:', multiply(4, 5));",
+      "real_world_example": "Organizes: form validation, API calls, event handlers, calculations, and modular components.",
+      "interactive_tasks": [
+        "Convert Celsius to Fahrenheit",
+        "Check palindrome string",
+        "Create calculator functions"
+      ],
+      "quiz": [
+        {
+          "question": "What are function parameters?",
+          "options": [
+            "Return values",
+            "Variables in function definition",
+            "Function names",
+            "Types"
+          ],
+          "answer": "Variables in function definition",
+          "reasoning": "Parameters are variables in function definition."
+        },
+        {
+          "question": "What is arrow function?",
+          "options": [
+            "Older syntax",
+            "Shorter function syntax",
+            "Slower function",
+            "No parameters"
+          ],
+          "answer": "Shorter function syntax",
+          "reasoning": "Arrow functions provide shorter syntax: () => {}"
+        }
+      ]
+    },
+    {
+      "title": "Day 7 – Arrays",
+      "definition": "Arrays store multiple values in ordered list.",
+      "explanation": "• Zero-indexed: first element at index 0\n• Dynamic: can grow/shrink\n• Methods: push/pop (end), shift/unshift (start)\n• Iteration: forEach, map, filter, reduce\n• Search: indexOf, includes, find\n• Transform: slice, splice, concat, join\n• Sort: sort(), reverse()\n• Spread operator: ...array",
+      "code_example": "const fruits = ['apple', 'banana', 'orange'];\nconst doubled = fruits.map((item) => item.toUpperCase());\nconst hasApple = fruits.includes('apple');\nconst sum = [1, 2, 3].reduce((total, value) => total + value, 0);\nconsole.log({ fruits, doubled, hasApple, sum });",
+      "real_world_example": "Stores: product lists, todo items, search results, user comments, and API data.",
+      "interactive_tasks": [
+        "Find sum/average of numbers",
+        "Remove duplicates from array",
+        "Merge sorted arrays"
+      ],
+      "quiz": [
+        {
+          "question": "What is array index start?",
+          "options": [
+            "0",
+            "1",
+            "-1",
+            "first"
+          ],
+          "answer": "0",
+          "reasoning": "JavaScript arrays are zero-indexed."
+        },
+        {
+          "question": "Which adds to array end?",
+          "options": [
+            "push()",
+            "pop()",
+            "shift()",
+            "unshift()"
+          ],
+          "answer": "push()",
+          "reasoning": "push() adds elements to end."
+        }
+      ]
+    },
+    {
+      "title": "Day 8 – Objects",
+      "definition": "Objects store key-value pairs to represent entities.",
+      "explanation": "• Properties: key-value pairs\n• Methods: function properties\n• Access: dot notation (obj.property) or bracket (obj['property'])\n• 'this': refers to object in methods\n• Iteration: for...in, Object.keys(), Object.entries()\n• Destructuring: extract properties into variables\n• Spread: copy/merge objects\n• Object methods: assign(), freeze(), seal()",
+      "code_example": "const person = { name: 'John', age: 30, city: 'New York' };\nconst greeting = `Hello, I am ${person.name} from ${person.city}`;\nconst updated = { ...person, email: 'john@example.com' };\nconsole.log(greeting, updated);",
+      "real_world_example": "Models: user profiles, product details, form data, API responses, and configuration settings.",
+      "interactive_tasks": [
+        "Create book object",
+        "Build shopping cart",
+        "Create bank account object"
+      ],
+      "quiz": [
+        {
+          "question": "How access object property?",
+          "options": [
+            "obj.property",
+            "obj['property']",
+            "Both work",
+            "obj->property"
+          ],
+          "answer": "Both work",
+          "reasoning": "Both dot and bracket notation work."
+        },
+        {
+          "question": "What is object method?",
+          "options": [
+            "Special property",
+            "Function property",
+            "Nested object",
+            "Key-value"
+          ],
+          "answer": "Function property",
+          "reasoning": "Method is function that is object property."
+        }
+      ]
+    },
+    {
+      "title": "Day 9 – DOM Manipulation",
+      "definition": "DOM manipulation changes web page content/structure with JavaScript.",
+      "explanation": "• DOM: tree representation of HTML document\n• Selecting: getElementById, querySelector, getElementsByClassName\n• Modifying: textContent, innerHTML, style, classList\n• Creating: createElement(), appendChild()\n• Events: addEventListener for clicks, inputs, etc.\n• Forms: access input values, handle submission\n• Event delegation: handle events on parent",
+      "code_example": "const elementState = { textContent: 'Original Heading', classes: [] };\nconst updateText = (state, text) => ({ ...state, textContent: text });\nconst addClass = (state, className) => ({\n  ...state,\n  classes: [...state.classes, className]\n});\nconst newState = addClass(updateText(elementState, 'Updated Heading'), 'highlight');\nconsole.log('state', newState);",
+      "real_world_example": "Enables: dynamic content updates, form validation, interactive UI components, real-time updates, and single-page apps.",
+      "interactive_tasks": [
+        "Create dynamic list add/remove",
+        "Build color changer",
+        "Create counter with buttons"
+      ],
+      "quiz": [
+        {
+          "question": "What does DOM stand for?",
+          "options": [
+            "Document Object Model",
+            "Data Object Management",
+            "Display Object Method",
+            "Digital Output"
+          ],
+          "answer": "Document Object Model",
+          "reasoning": "DOM = Document Object Model."
+        },
+        {
+          "question": "Which selects by CSS selector?",
+          "options": [
+            "getElementById",
+            "getElementsByClassName",
+            "querySelector",
+            "getElementsByTagName"
+          ],
+          "answer": "querySelector",
+          "reasoning": "querySelector uses CSS selectors."
+        }
+      ]
+    },
+    {
+      "title": "Day 10 – Events",
+      "definition": "Events are actions JavaScript can respond to.",
+      "explanation": "• Event types: click, mouse, keyboard, form, window\n• Handling: addEventListener (recommended)\n• Event object: contains event details\n• Propagation: capturing → target → bubbling\n• preventDefault(): stops default browser action\n• stopPropagation(): stops event bubbling\n• Event delegation: handle on parent element\n• Common patterns: form validation, keyboard shortcuts",
+      "code_example": "class SimpleEventBus {\n  constructor() {\n    this.listeners = new Map();\n  }\n  subscribe(event, fn) {\n    const listeners = this.listeners.get(event) || [];\n    listeners.push(fn);\n    this.listeners.set(event, listeners);\n  }\n  emit(event, payload) {\n    (this.listeners.get(event) || []).forEach((fn) => fn(payload));\n  }\n}\nconst bus = new SimpleEventBus();\nbus.subscribe('click', (payload) => console.log('handled click', payload));\nbus.emit('click', { x: 20, y: 40 });",
+      "real_world_example": "Powers: button clicks, form submissions, keyboard shortcuts, drag-and-drop, infinite scroll, and all user interactions.",
+      "interactive_tasks": [
+        "Create drag-and-drop interface",
+        "Build keyboard-controlled game",
+        "Implement custom context menu"
+      ],
+      "quiz": [
+        {
+          "question": "What are event phases?",
+          "options": [
+            "Start, Middle, End",
+            "Capturing, Target, Bubbling",
+            "Init, Process, Complete",
+            "Down, Target, Up"
+          ],
+          "answer": "Capturing, Target, Bubbling",
+          "reasoning": "Events propagate: capturing → target → bubbling."
+        },
+        {
+          "question": "What does preventDefault() do?",
+          "options": [
+            "Stops bubbling",
+            "Prevents default browser action",
+            "Removes listener",
+            "Cancels event"
+          ],
+          "answer": "Prevents default browser action",
+          "reasoning": "Stops default like form submission or link navigation."
+        }
+      ]
+    },
+    {
+      "title": "Day 11 – Asynchronous JavaScript",
+      "definition": "Asynchronous code runs without blocking main thread.",
+      "explanation": "• Callbacks: traditional async (can cause callback hell)\n• Promises: cleaner async handling (then/catch)\n• Async/await: syntactic sugar for promises\n• Event loop: manages async execution\n• Microtasks (promises) vs Macrotasks (setTimeout)\n• Promise methods: all, race, allSettled, any\n• Error handling: try/catch with async/await\n• Common patterns: API calls, timeouts, parallel operations",
+      "code_example": "const fakeFetch = (value, delay = 100) =>\n  new Promise((resolve) => setTimeout(() => resolve(value), delay));\nfakeFetch('Data loaded').then((result) => console.log(result));\nasync function fetchData() {\n  const data = await fakeFetch('Async payload');\n  console.log('async data', data);\n}\nfetchData();",
+      "real_world_example": "Powers: API calls, file uploads, real-time updates, database operations, timers, and non-blocking operations.",
+      "interactive_tasks": [
+        "Create weather app with fetch()",
+        "Build promise timeout function",
+        "Implement retry logic for API calls"
+      ],
+      "quiz": [
+        {
+          "question": "What problem do promises solve?",
+          "options": [
+            "Callback hell",
+            "Memory leaks",
+            "Slow execution",
+            "Syntax errors"
+          ],
+          "answer": "Callback hell",
+          "reasoning": "Promises provide cleaner alternative to nested callbacks."
+        },
+        {
+          "question": "What does async do?",
+          "options": [
+            "Makes function synchronous",
+            "Makes function return promise",
+            "Speeds up function",
+            "Nothing"
+          ],
+          "answer": "Makes function return promise",
+          "reasoning": "async makes function return a promise."
+        }
+      ]
+    }
+  ]
+}

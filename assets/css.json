@@ -1,0 +1,515 @@
+{
+  "course_title": "CSS Beginner Level",
+  "days": [
+    {
+      "title": "Day 1 – Introduction to CSS",
+      "definition": "CSS (Cascading Style Sheets) is a stylesheet language used to describe the presentation and styling of HTML documents.",
+      "explanation": "CSS controls how HTML elements are displayed on screen, in print, or in other media. It handles colors, layouts, fonts, spacing, animations, and responsiveness. CSS works alongside HTML (structure) and JavaScript (behavior) to create complete web experiences. The 'cascading' part means styles can inherit and override each other based on specificity rules.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Introduction</title>\n    <style>\n        /* Basic CSS syntax */\n        selector {\n          property: value;\n        }\n        \n        /* Example: Making all paragraphs blue */\n        p {\n          color: blue;\n          font-size: 16px;\n          line-height: 1.5;\n        }\n        \n        /* Example: Styling a specific element */\n        #header {\n          background-color: #333;\n          color: white;\n          padding: 20px;\n        }\n    </style>\n</head>\n<body>\n    <div id=\"header\">Website Header</div>\n    <p>This paragraph will be blue with 16px font size.</p>\n    <p>Another paragraph with the same styling.</p>\n</body>\n</html>",
+      "real_world_example": "Every website uses CSS - from simple blogs with colored text to complex applications like Netflix with sophisticated layouts, animations, and responsive designs. News sites use CSS for readable typography, e-commerce sites use it for product displays, and social media platforms use it for UI components.",
+      "interactive_tasks": [
+        "Create a basic CSS file and link it to an HTML document",
+        "Write CSS rules to change the color of all headings and paragraphs",
+        "Apply different background colors to different sections of a webpage"
+      ],
+      "quiz": [
+        {
+          "question": "What does CSS stand for?",
+          "options": ["Computer Style Sheets", "Creative Style System", "Cascading Style Sheets", "Colorful Style Sheets"],
+          "answer": "Cascading Style Sheets",
+          "reasoning": "CSS stands for Cascading Style Sheets, which describes how HTML elements are displayed on screen."
+        },
+        {
+          "question": "Which part of CSS syntax contains the styling instructions?",
+          "options": ["Selector", "Property", "Declaration block", "Value"],
+          "answer": "Declaration block",
+          "reasoning": "The declaration block (inside { }) contains one or more property-value pairs that define the styling."
+        },
+        {
+          "question": "What is the correct way to link an external CSS file?",
+          "options": ["<style src=\"styles.css\">", "<link rel=\"stylesheet\" href=\"styles.css\">", "<css href=\"styles.css\">", "<script type=\"text/css\" src=\"styles.css\">"],
+          "answer": "<link rel=\"stylesheet\" href=\"styles.css\">",
+          "reasoning": "The <link> tag with rel=\"stylesheet\" is used to link external CSS files in HTML."
+        },
+        {
+          "question": "Where should the <link> tag for CSS typically be placed?",
+          "options": ["In the <body>", "In the <head>", "At the end of HTML", "Inside <style> tags"],
+          "answer": "In the <head>",
+          "reasoning": "CSS links should be in the <head> section so styles load before content renders."
+        },
+        {
+          "question": "What are the three ways to include CSS in HTML?",
+          "options": ["Inline, Internal, External", "Header, Body, Footer", "Top, Middle, Bottom", "Primary, Secondary, Tertiary"],
+          "answer": "Inline, Internal, External",
+          "reasoning": "CSS can be added inline (style attribute), internally (<style> tag), or externally (separate .css file)."
+        },
+        {
+          "question": "Which method is best for reusing styles across multiple pages?",
+          "options": ["Inline CSS", "Internal CSS", "External CSS", "All are equal"],
+          "answer": "External CSS",
+          "reasoning": "External CSS files can be linked to multiple HTML pages, ensuring consistent styling."
+        },
+        {
+          "question": "What does 'cascading' mean in CSS?",
+          "options": ["Waterfall effect", "Styles flow from top to bottom", "Multiple styles can apply with precedence rules", "Colors blend together"],
+          "answer": "Multiple styles can apply with precedence rules",
+          "reasoning": "Cascading means multiple style rules can apply to an element, with specific rules overriding general ones."
+        }
+      ]
+    },
+    {
+      "title": "Day 2 – CSS Selectors",
+      "definition": "CSS selectors are patterns used to select and style HTML elements based on their name, id, class, attributes, or relationship to other elements.",
+      "explanation": "Selectors target specific elements to apply styles. Understanding selectors is fundamental to CSS because they determine which elements receive which styles. Selectors range from simple (element names) to complex (attribute selectors, pseudo-classes). The more specific a selector, the higher its priority in the cascade.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Selectors</title>\n    <style>\n        /* Different types of CSS selectors */\n        \n        /* Element selector */\n        p {\n          color: black;\n        }\n        \n        /* Class selector */\n        .button {\n          background: blue;\n          color: white;\n          padding: 10px;\n        }\n        \n        /* ID selector */\n        #main-header {\n          font-size: 2rem;\n          background: lightgray;\n        }\n        \n        /* Universal selector */\n        * {\n          margin: 0;\n          padding: 0;\n        }\n        \n        /* Attribute selector */\n        input[type=\"text\"] {\n          border: 1px solid #ccc;\n          padding: 5px;\n        }\n        \n        /* Descendant selector */\n        article p {\n          line-height: 1.8;\n          margin: 10px 0;\n        }\n        \n        /* Child selector */\n        ul > li {\n          list-style: square;\n          margin-left: 20px;\n        }\n        \n        /* Grouping selector */\n        h1, h2, h3 {\n          font-family: 'Arial', sans-serif;\n          color: #333;\n        }\n    </style>\n</head>\n<body>\n    <h1 id=\"main-header\">Main Header</h1>\n    \n    <button class=\"button\">Click Me</button>\n    <button class=\"button\">Another Button</button>\n    \n    <input type=\"text\" placeholder=\"Enter text\">\n    <input type=\"password\" placeholder=\"Password\">\n    \n    <article>\n        <p>This paragraph is inside article (descendant selector).</p>\n    </article>\n    \n    <ul>\n        <li>Direct child of UL</li>\n        <li>Another list item</li>\n    </ul>\n    \n    <h2>Sub Heading</h2>\n    <h3>Smaller Heading</h3>\n</body>\n</html>",
+      "real_world_example": "Websites use various selectors: navigation menus use class selectors (.nav-item), unique elements use ID selectors (#logo), forms use attribute selectors (input[required]), and layout systems use descendant selectors (.container .row .col).",
+      "interactive_tasks": [
+        "Style elements using element, class, and ID selectors",
+        "Create a navigation menu with specific class styling",
+        "Use descendant and child selectors to style nested elements"
+      ],
+      "quiz": [
+        {
+          "question": "Which symbol is used for class selectors?",
+          "options": ["#", ".", ":", "::"],
+          "answer": ".",
+          "reasoning": "The period (.) is used to select elements by class name in CSS (e.g., .my-class)."
+        },
+        {
+          "question": "Which symbol is used for ID selectors?",
+          "options": ["#", ".", "$", "@"],
+          "answer": "#",
+          "reasoning": "The hash (#) symbol is used to select elements by ID in CSS (e.g., #my-id)."
+        },
+        {
+          "question": "What does the universal selector (*) target?",
+          "options": ["Only paragraphs", "All elements", "Only visible elements", "Only body elements"],
+          "answer": "All elements",
+          "reasoning": "The universal selector (*) selects all elements on the page, often used for CSS resets."
+        },
+        {
+          "question": "Which selector is more specific: #content or .article?",
+          "options": ["#content", ".article", "They're equal", "Depends on context"],
+          "answer": "#content",
+          "reasoning": "ID selectors (#) are more specific than class selectors (.) in CSS specificity hierarchy."
+        },
+        {
+          "question": "What does 'article p' selector target?",
+          "options": ["All articles and paragraphs", "Paragraphs inside articles", "Articles inside paragraphs", "Only first paragraph in articles"],
+          "answer": "Paragraphs inside articles",
+          "reasoning": "The descendant selector (space) targets elements that are descendants of another element."
+        },
+        {
+          "question": "What does 'ul > li' selector target?",
+          "options": ["All lists and items", "List items that are direct children of ul", "Any li after ul", "Only first li in ul"],
+          "answer": "List items that are direct children of ul",
+          "reasoning": "The child selector (>) targets direct children only, not all descendants."
+        },
+        {
+          "question": "Which is the correct order of selector specificity (lowest to highest)?",
+          "options": ["Element < Class < ID", "Class < Element < ID", "ID < Class < Element", "Element < ID < Class"],
+          "answer": "Element < Class < ID",
+          "reasoning": "Element selectors have lowest specificity, class selectors are higher, and ID selectors have highest specificity."
+        }
+      ]
+    },
+    {
+      "title": "Day 3 – CSS Colors and Backgrounds",
+      "definition": "CSS provides multiple methods to specify colors and control element backgrounds, including background colors, images, gradients, and positioning.",
+      "explanation": "Colors can be specified using color names, HEX values, RGB/RGBA, HSL/HSLA, and currentColor. Background properties control the background layer of elements, allowing for colors, images, gradients, repetition, positioning, sizing, and attachment. Understanding color theory and background techniques is essential for creating visually appealing designs.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Colors & Backgrounds</title>\n    <style>\n        .color-example {\n            padding: 20px;\n            margin: 10px;\n            border: 2px solid #333;\n        }\n        \n        /* Different color notations */\n        .named-color {\n            background-color: red;\n            color: white;\n        }\n        \n        .hex-color {\n            background-color: #ff0000; /* Same as red */\n            color: #ffffff;\n        }\n        \n        .rgb-color {\n            background-color: rgb(255, 0, 0);\n            color: rgb(255, 255, 255);\n        }\n        \n        .rgba-color {\n            background-color: rgba(255, 0, 0, 0.5); /* 50% transparent */\n        }\n        \n        .hsl-color {\n            background-color: hsl(0, 100%, 50%); /* Red in HSL */\n            color: hsl(0, 0%, 100%);\n        }\n        \n        .background-example {\n            width: 300px;\n            height: 200px;\n            background-color: #f0f0f0;\n            background-image: url('https://via.placeholder.com/300x200');\n            background-repeat: no-repeat;\n            background-position: center;\n            background-size: cover;\n            border: 2px solid #333;\n            margin: 20px;\n            padding: 10px;\n            color: white;\n            text-shadow: 1px 1px 2px black;\n        }\n        \n        .gradient-example {\n            width: 300px;\n            height: 100px;\n            margin: 20px;\n            padding: 20px;\n            border: 2px solid #333;\n            background: linear-gradient(to right, red, yellow);\n        }\n    </style>\n</head>\n<body>\n    <h2>Color Examples</h2>\n    \n    <div class=\"color-example named-color\">Named Color: red</div>\n    <div class=\"color-example hex-color\">HEX Color: #ff0000</div>\n    <div class=\"color-example rgb-color\">RGB Color: rgb(255, 0, 0)</div>\n    <div class=\"color-example rgba-color\">RGBA Color with transparency</div>\n    <div class=\"color-example hsl-color\">HSL Color: hsl(0, 100%, 50%)</div>\n    \n    <h2>Background Example</h2>\n    <div class=\"background-example\">\n        This div has a background image<br>\n        positioned at center<br>\n        with no repeat\n    </div>\n    \n    <h2>Gradient Example</h2>\n    <div class=\"gradient-example\">\n        Linear Gradient from red to yellow\n    </div>\n</body>\n</html>",
+      "real_world_example": "Website branding uses specific color schemes (HEX values for consistency). Hero sections use background images with overlays. Buttons use gradients for depth. Modern UIs use semi-transparent colors (RGBA) for glassmorphism effects. Dark mode implementations use CSS variables to switch color schemes.",
+      "interactive_tasks": [
+        "Create a color palette using different color notations",
+        "Style a hero section with background image and overlay",
+        "Create buttons with gradient backgrounds and hover effects"
+      ],
+      "quiz": [
+        {
+          "question": "What does the 'A' in RGBA stand for?",
+          "options": ["Alpha", "Addition", "Attribute", "Alignment"],
+          "answer": "Alpha",
+          "reasoning": "The 'A' in RGBA stands for Alpha channel, which controls opacity (0 = transparent, 1 = opaque)."
+        },
+        {
+          "question": "Which color format allows transparency control?",
+          "options": ["HEX and RGB", "RGBA and HSLA", "Color names only", "All formats"],
+          "answer": "RGBA and HSLA",
+          "reasoning": "RGBA and HSLA color formats include an alpha channel for transparency control."
+        },
+        {
+          "question": "What does 'background-size: cover' do?",
+          "options": ["Covers element completely", "Shows full image", "Repeats image", "Centers image"],
+          "answer": "Covers element completely",
+          "reasoning": "'cover' scales the background image to be as large as needed to cover the entire element."
+        },
+        {
+          "question": "How do you stop a background image from repeating?",
+          "options": ["background-repeat: stop", "background-repeat: none", "background-repeat: no-repeat", "background-no-repeat: true"],
+          "answer": "background-repeat: no-repeat",
+          "reasoning": "background-repeat: no-repeat prevents the background image from repeating in both directions."
+        },
+        {
+          "question": "Which property controls background image position?",
+          "options": ["background-location", "background-position", "background-align", "background-place"],
+          "answer": "background-position",
+          "reasoning": "background-position sets the initial position of the background image relative to the element."
+        },
+        {
+          "question": "What is HSL color model based on?",
+          "options": ["Hue, Saturation, Lightness", "Height, Size, Length", "Horizontal, Straight, Linear", "Hard, Soft, Light"],
+          "answer": "Hue, Saturation, Lightness",
+          "reasoning": "HSL stands for Hue (color), Saturation (intensity), and Lightness (brightness)."
+        },
+        {
+          "question": "How do you create a linear gradient?",
+          "options": ["gradient: linear()", "background: linear-gradient()", "color: gradient()", "gradient-linear: background"],
+          "answer": "background: linear-gradient()",
+          "reasoning": "linear-gradient() function creates a linear gradient as a background image."
+        }
+      ]
+    },
+    {
+      "title": "Day 4 – CSS Box Model",
+      "definition": "The CSS Box Model describes the rectangular boxes generated for elements, consisting of content, padding, border, and margin areas.",
+      "explanation": "Every HTML element is a box with four layers: content (text/images), padding (space inside), border (edge around), and margin (space outside). Understanding the box model is crucial for layout and spacing. The total element width/height is calculated as: width/height + padding + border + margin. The box-sizing property controls how these dimensions are calculated.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Box Model</title>\n    <style>\n        .box-model-demo {\n            width: 300px;\n            height: 200px;\n            padding: 20px;\n            border: 5px solid #333;\n            margin: 30px;\n            background-color: lightblue;\n        }\n        \n        .content-box {\n            box-sizing: content-box; /* Default */\n            width: 300px;\n            padding: 20px;\n            border: 5px solid red;\n            background-color: lightyellow;\n            margin-bottom: 20px;\n        }\n        \n        .border-box {\n            box-sizing: border-box;\n            width: 300px;\n            padding: 20px;\n            border: 5px solid blue;\n            background-color: lightgreen;\n        }\n        \n        .border-styles {\n            padding: 15px;\n            margin: 10px;\n            text-align: center;\n        }\n        \n        .solid { border: 3px solid black; }\n        .dashed { border: 3px dashed red; }\n        .dotted { border: 3px dotted blue; }\n        .double { border: 6px double green; }\n        \n        .individual-sides {\n            margin-top: 10px;\n            margin-right: 20px;\n            margin-bottom: 30px;\n            margin-left: 40px;\n            padding: 10px 20px 30px 40px;\n            border-width: 2px 4px 6px 8px;\n            border-style: solid;\n            border-color: red green blue purple;\n            background-color: #f0f0f0;\n        }\n    </style>\n</head>\n<body>\n    <h2>Box Model Example</h2>\n    <div class=\"box-model-demo\">\n        Content Area (300x200)<br>\n        + Padding: 20px each side<br>\n        + Border: 5px solid<br>\n        + Margin: 30px each side<br>\n        Total width: 300 + 40 + 10 + 60 = 410px\n    </div>\n    \n    <h2>Box-Sizing Comparison</h2>\n    <div class=\"content-box\">\n        content-box (default)<br>\n        Width: 300px content only<br>\n        Total: 300 + 40 + 10 = 350px\n    </div>\n    \n    <div class=\"border-box\">\n        border-box<br>\n        Width: 300px includes padding & border<br>\n        Content width: 300 - 40 - 10 = 250px\n    </div>\n    \n    <h2>Border Styles</h2>\n    <div class=\"border-styles solid\">Solid Border</div>\n    <div class=\"border-styles dashed\">Dashed Border</div>\n    <div class=\"border-styles dotted\">Dotted Border</div>\n    <div class=\"border-styles double\">Double Border</div>\n    \n    <h2>Individual Sides</h2>\n    <div class=\"individual-sides\">\n        Different margin, padding, and border on each side\n    </div>\n</body>\n</html>",
+      "real_world_example": "Card components use padding for internal spacing and margin for separation between cards. Navigation items use padding for clickable areas. Forms use margin for spacing between fields. Modern layouts often use box-sizing: border-box for predictable sizing. Product displays use borders for visual separation.",
+      "interactive_tasks": [
+        "Create a card component with proper padding, border, and margin",
+        "Experiment with different border styles and colors",
+        "Compare content-box vs border-box behavior",
+        "Create a navigation bar with spaced items using margin and padding"
+      ],
+      "quiz": [
+        {
+          "question": "What are the four parts of the CSS box model (from inside out)?",
+          "options": ["Margin, Border, Padding, Content", "Content, Padding, Border, Margin", "Border, Content, Margin, Padding", "Padding, Content, Margin, Border"],
+          "answer": "Content, Padding, Border, Margin",
+          "reasoning": "From inside to outside: Content (innermost), then Padding, then Border, then Margin (outermost)."
+        },
+        {
+          "question": "What does padding do?",
+          "options": ["Spaces outside element", "Spaces inside element, around content", "Creates borders", "Adds shadow"],
+          "answer": "Spaces inside element, around content",
+          "reasoning": "Padding creates space inside an element, between the content and the border."
+        },
+        {
+          "question": "What does margin do?",
+          "options": ["Spaces inside element", "Spaces outside element, between elements", "Creates borders", "Changes color"],
+          "answer": "Spaces outside element, between elements",
+          "reasoning": "Margin creates space outside an element, between it and other elements."
+        },
+        {
+          "question": "What is the default box-sizing value?",
+          "options": ["border-box", "content-box", "padding-box", "margin-box"],
+          "answer": "content-box",
+          "reasoning": "The default box-sizing is content-box, where width/height only includes content."
+        },
+        {
+          "question": "What does 'margin: 20px 10px;' mean?",
+          "options": ["20px top/bottom, 10px left/right", "20px all sides", "10px top/bottom, 20px left/right", "20px top, 10px right, 20px bottom, 10px left"],
+          "answer": "20px top/bottom, 10px left/right",
+          "reasoning": "With two values: first is top/bottom, second is left/right."
+        },
+        {
+          "question": "Which property creates space between border and content?",
+          "options": ["margin", "spacing", "padding", "gap"],
+          "answer": "padding",
+          "reasoning": "Padding creates space between the content and the border of an element."
+        },
+        {
+          "question": "How do you center a block element horizontally?",
+          "options": ["margin: auto;", "padding: center;", "align: center;", "center: true;"],
+          "answer": "margin: auto;",
+          "reasoning": "margin: auto; on left and right centers block elements horizontally within their container."
+        }
+      ]
+    },
+    {
+      "title": "Day 5 – CSS Text and Fonts",
+      "definition": "CSS provides extensive control over text styling, including font properties, text alignment, spacing, decoration, and transformation.",
+      "explanation": "Text styling is fundamental to web typography. CSS allows control over font families, sizes, weights, styles, and more. Text properties handle alignment, spacing, decoration, and transformation. Web fonts enable using custom fonts beyond system defaults. Good typography improves readability, accessibility, and user experience.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Text & Fonts</title>\n    <link href=\"https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap\" rel=\"stylesheet\">\n    <style>\n        body {\n            font-family: 'Roboto', sans-serif;\n            padding: 20px;\n        }\n        \n        .font-example {\n            margin: 20px 0;\n            padding: 15px;\n            border: 1px solid #ddd;\n            background-color: #f9f9f9;\n        }\n        \n        .font-properties {\n            font-family: 'Arial', 'Helvetica', sans-serif;\n            font-size: 18px;\n            font-weight: 700; /* bold */\n            font-style: italic;\n            line-height: 1.8;\n        }\n        \n        .text-properties {\n            color: #333;\n            text-align: justify;\n            text-decoration: underline;\n            text-transform: uppercase;\n            letter-spacing: 1px;\n            word-spacing: 3px;\n            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);\n        }\n        \n        .alignment {\n            margin: 15px 0;\n            padding: 10px;\n            border: 1px solid #ccc;\n        }\n        \n        .left { text-align: left; background-color: #e6f7ff; }\n        .center { text-align: center; background-color: #f0ffe6; }\n        .right { text-align: right; background-color: #fff0e6; }\n        \n        .text-effects {\n            margin: 15px 0;\n            padding: 10px;\n        }\n        \n        .underline { text-decoration: underline; }\n        .overline { text-decoration: overline; }\n        .line-through { text-decoration: line-through; }\n        .uppercase { text-transform: uppercase; }\n        .lowercase { text-transform: lowercase; }\n        .capitalize { text-transform: capitalize; }\n        \n        .ellipsis-example {\n            width: 200px;\n            white-space: nowrap;\n            overflow: hidden;\n            text-overflow: ellipsis;\n            border: 1px solid #ccc;\n            padding: 10px;\n            margin: 10px 0;\n        }\n    </style>\n</head>\n<body>\n    <h1>CSS Text & Font Examples</h1>\n    \n    <div class=\"font-example font-properties\">\n        Font Properties: Arial, 18px, bold, italic, line-height 1.8\n    </div>\n    \n    <div class=\"font-example text-properties\">\n        Text Properties: Justified, underlined, uppercase, with text shadow\n    </div>\n    \n    <h3>Text Alignment</h3>\n    <div class=\"alignment left\">Left Aligned Text</div>\n    <div class=\"alignment center\">Center Aligned Text</div>\n    <div class=\"alignment right\">Right Aligned Text</div>\n    \n    <h3>Text Effects</h3>\n    <div class=\"text-effects underline\">Underlined Text</div>\n    <div class=\"text-effects overline\">Overlined Text</div>\n    <div class=\"text-effects line-through\">Line Through Text</div>\n    \n    <div class=\"text-effects uppercase\">uppercase text transformation</div>\n    <div class=\"text-effects lowercase\">LOWERCASE TEXT TRANSFORMATION</div>\n    <div class=\"text-effects capitalize\">capitalize each word text transformation</div>\n    \n    <h3>Text Overflow</h3>\n    <div class=\"ellipsis-example\">This is a very long text that will be truncated with ellipsis when it overflows the container width.</div>\n    \n    <h3>Web Font Example</h3>\n    <p style=\"font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 24px;\">\n        This text uses Google Fonts (Roboto)\n    </p>\n</body>\n</html>",
+      "real_world_example": "News sites carefully choose fonts for readability. Brand guidelines specify exact font families and sizes. Headings use larger sizes and weights for hierarchy. Links use text-decoration: underline. Buttons use text-transform: uppercase for consistency. Blogs use line-height for comfortable reading. E-commerce sites use text-overflow: ellipsis for product titles.",
+      "interactive_tasks": [
+        "Create a typography scale with different heading levels",
+        "Style links with different states (hover, active, visited)",
+        "Implement a custom web font from Google Fonts",
+        "Create a paragraph with optimal readability settings"
+      ],
+      "quiz": [
+        {
+          "question": "Which property controls the space between lines of text?",
+          "options": ["line-spacing", "text-spacing", "line-height", "text-height"],
+          "answer": "line-height",
+          "reasoning": "line-height sets the height of a line box, controlling vertical spacing between lines of text."
+        },
+        {
+          "question": "What does 'font-weight: 700' mean?",
+          "options": ["Light text", "Normal text", "Bold text", "Italic text"],
+          "answer": "Bold text",
+          "reasoning": "font-weight values: 400 = normal, 700 = bold. 700 represents bold text weight."
+        },
+        {
+          "question": "How do you remove underlines from links?",
+          "options": ["text-decoration: none", "underline: false", "text-underline: none", "decoration: none"],
+          "answer": "text-decoration: none",
+          "reasoning": "text-decoration: none removes all text decoration including underlines."
+        },
+        {
+          "question": "Which text-align value justifies text on both sides?",
+          "options": ["center", "justify", "both", "equal"],
+          "answer": "justify",
+          "reasoning": "text-align: justify stretches lines to have equal width, creating clean edges on both sides."
+        },
+        {
+          "question": "What does text-transform: capitalize do?",
+          "options": ["Makes all letters uppercase", "Makes all letters lowercase", "Capitalizes first letter of each word", "Capitalizes only first word"],
+          "answer": "Capitalizes first letter of each word",
+          "reasoning": "text-transform: capitalize transforms the first character of each word to uppercase."
+        },
+        {
+          "question": "Which is the recommended unit for font sizes?",
+          "options": ["px only", "em or rem", "pt", "cm"],
+          "answer": "em or rem",
+          "reasoning": "em and rem are relative units that scale better for accessibility and responsive design."
+        },
+        {
+          "question": "What does 'font-family' fallback system do?",
+          "options": ["Makes fonts smaller", "Provides backup fonts if first isn't available", "Changes font colors", "Downloads missing fonts"],
+          "answer": "Provides backup fonts if first isn't available",
+          "reasoning": "The font-family property accepts multiple fonts as fallbacks in case the first isn't available."
+        }
+      ]
+    },
+    {
+      "title": "Day 6 – CSS Display and Positioning",
+      "definition": "CSS display and positioning properties control how elements are rendered on the page and their relationship to the normal document flow.",
+      "explanation": "The display property determines an element's box type (block, inline, inline-block, flex, grid, etc.). Positioning properties (static, relative, absolute, fixed, sticky) control how elements are positioned relative to their normal position, containing blocks, or the viewport. Understanding these concepts is essential for creating complex layouts and controlling element placement.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Display & Positioning</title>\n    <style>\n        body {\n            padding: 20px;\n            margin: 0;\n            height: 2000px; /* For scrolling demo */\n        }\n        \n        .container {\n            border: 2px solid #333;\n            padding: 20px;\n            margin: 20px 0;\n            background-color: #f0f0f0;\n        }\n        \n        .box {\n            width: 100px;\n            height: 100px;\n            padding: 10px;\n            margin: 5px;\n            text-align: center;\n            color: white;\n            font-weight: bold;\n        }\n        \n        /* Display Examples */\n        .inline-box {\n            display: inline;\n            background-color: #3498db;\n        }\n        \n        .block-box {\n            display: block;\n            background-color: #2ecc71;\n        }\n        \n        .inline-block-box {\n            display: inline-block;\n            background-color: #e74c3c;\n        }\n        \n        /* Positioning Examples */\n        .relative-box {\n            position: relative;\n            top: 20px;\n            left: 30px;\n            background-color: #9b59b6;\n        }\n        \n        .absolute-box {\n            position: absolute;\n            top: 50px;\n            right: 50px;\n            background-color: #f39c12;\n        }\n        \n        .fixed-box {\n            position: fixed;\n            bottom: 20px;\n            right: 20px;\n            background-color: #1abc9c;\n            z-index: 1000;\n        }\n        \n        .sticky-box {\n            position: sticky;\n            top: 0;\n            background-color: #34495e;\n            z-index: 100;\n        }\n        \n        .z-index-demo {\n            position: relative;\n            height: 150px;\n            margin: 30px 0;\n        }\n        \n        .layer1 {\n            position: absolute;\n            width: 120px;\n            height: 120px;\n            background-color: rgba(231, 76, 60, 0.8);\n            top: 20px;\n            left: 20px;\n            z-index: 1;\n        }\n        \n        .layer2 {\n            position: absolute;\n            width: 120px;\n            height: 120px;\n            background-color: rgba(52, 152, 219, 0.8);\n            top: 40px;\n            left: 40px;\n            z-index: 2;\n        }\n        \n        .float-demo {\n            width: 200px;\n            height: 150px;\n            float: left;\n            margin-right: 20px;\n            background-color: #d5dbdb;\n            padding: 10px;\n            border: 1px solid #7f8c8d;\n        }\n        \n        .clearfix::after {\n            content: \"\";\n            display: table;\n            clear: both;\n        }\n    </style>\n</head>\n<body>\n    <h1>Display & Positioning Examples</h1>\n    \n    <div class=\"container\">\n        <h3>Display Properties</h3>\n        <span class=\"box inline-box\">Inline</span>\n        <span class=\"box inline-box\">Inline</span>\n        <div class=\"box block-box\">Block</div>\n        <div class=\"box block-box\">Block</div>\n        <div class=\"box inline-block-box\">Inline-Block</div>\n        <div class=\"box inline-block-box\">Inline-Block</div>\n    </div>\n    \n    <div class=\"container\">\n        <h3>Positioning</h3>\n        <div class=\"box relative-box\">Relative<br>top:20 left:30</div>\n        <div class=\"box absolute-box\">Absolute<br>top:50 right:50</div>\n        <div class=\"box fixed-box\">Fixed<br>bottom:20 right:20</div>\n    </div>\n    \n    <div class=\"container\">\n        <h3>Sticky Positioning</h3>\n        <div class=\"box sticky-box\">Sticky (sticks at top when scrolling)</div>\n        <p>Scroll down to see sticky behavior...</p>\n        <div style=\"height: 500px;\">Scrollable content area</div>\n    </div>\n    \n    <div class=\"container\">\n        <h3>Z-Index Example</h3>\n        <div class=\"z-index-demo\">\n            <div class=\"box layer1\">Layer 1 (z-index: 1)</div>\n            <div class=\"box layer2\">Layer 2 (z-index: 2)</div>\n            <p>Layer 2 appears above Layer 1 due to higher z-index</p>\n        </div>\n    </div>\n    \n    <div class=\"container clearfix\">\n        <h3>Float Example</h3>\n        <div class=\"float-demo\">\n            This div is floated left. Text will wrap around it.\n        </div>\n        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\n        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>\n    </div>\n    \n    <!-- Fixed button at bottom right -->\n    <div class=\"fixed-box\">Fixed Position Button</div>\n</body>\n</html>",
+      "real_world_example": "Navigation bars use position: fixed to stay at top. Modals and dropdowns use position: absolute/fixed. Sidebars use position: sticky. Image galleries use display: inline-block. Cards in grids use display: inline-block or flex. Headers use z-index to stay above content. Floats are still used for text wrapping around images in articles.",
+      "interactive_tasks": [
+        "Create a fixed navigation bar that stays at top on scroll",
+        "Build a modal/popup window using absolute/fixed positioning",
+        "Create a sticky sidebar that sticks after scrolling",
+        "Experiment with z-index to create overlapping elements"
+      ],
+      "quiz": [
+        {
+          "question": "What is the default display value for <div> elements?",
+          "options": ["inline", "block", "inline-block", "flex"],
+          "answer": "block",
+          "reasoning": "<div> elements have display: block by default, taking full width and starting on new line."
+        },
+        {
+          "question": "What is the default display value for <span> elements?",
+          "options": ["inline", "block", "inline-block", "flex"],
+          "answer": "inline",
+          "reasoning": "<span> elements have display: inline by default, flowing within text content."
+        },
+        {
+          "question": "Which position value takes element out of normal flow?",
+          "options": ["static", "relative", "absolute", "All of them"],
+          "answer": "absolute",
+          "reasoning": "position: absolute takes element out of normal document flow, positioned relative to nearest positioned ancestor."
+        },
+        {
+          "question": "What does position: relative do?",
+          "options": ["Positions relative to viewport", "Positions relative to document", "Positions relative to normal position", "Positions relative to parent"],
+          "answer": "Positions relative to normal position",
+          "reasoning": "position: relative positions element relative to its normal position in the flow."
+        },
+        {
+          "question": "Which position is always relative to the viewport?",
+          "options": ["absolute", "relative", "fixed", "sticky"],
+          "answer": "fixed",
+          "reasoning": "position: fixed positions element relative to the viewport, unaffected by scrolling."
+        },
+        {
+          "question": "What does z-index control?",
+          "options": ["Horizontal position", "Vertical position", "Stacking order", "Size"],
+          "answer": "Stacking order",
+          "reasoning": "z-index controls the stacking order of positioned elements (which appears in front)."
+        },
+        {
+          "question": "What is the key difference between display: none and visibility: hidden?",
+          "options": ["One hides, one doesn't", "None removes from flow, hidden keeps space", "Hidden removes from flow, none keeps space", "No difference"],
+          "answer": "None removes from flow, hidden keeps space",
+          "reasoning": "display: none removes element from flow completely, visibility: hidden hides element but keeps its space."
+        }
+      ]
+    },
+    {
+      "title": "Day 7 – CSS Flexbox Basics",
+      "definition": "CSS Flexbox (Flexible Box Layout) is a one-dimensional layout model for arranging items in rows or columns, with powerful alignment and distribution capabilities.",
+      "explanation": "Flexbox simplifies complex layouts by providing efficient ways to distribute space and align items within a container, even when their sizes are unknown or dynamic. It works with a parent container (flex container) and child elements (flex items). Flexbox is ideal for component-level layouts like navigation bars, cards, and form controls.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Flexbox</title>\n    <style>\n        body {\n            padding: 20px;\n            font-family: Arial, sans-serif;\n        }\n        \n        .flex-container {\n            display: flex;\n            border: 2px solid #333;\n            padding: 10px;\n            margin: 20px 0;\n            background-color: #f8f9fa;\n            min-height: 150px;\n        }\n        \n        .flex-item {\n            width: 80px;\n            height: 80px;\n            margin: 5px;\n            background-color: #3498db;\n            color: white;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-weight: bold;\n        }\n        \n        /* Flex Direction Examples */\n        .row { flex-direction: row; }\n        .row-reverse { flex-direction: row-reverse; }\n        .column { flex-direction: column; }\n        .column-reverse { flex-direction: column-reverse; }\n        \n        /* Justify Content Examples */\n        .justify-start { justify-content: flex-start; }\n        .justify-end { justify-content: flex-end; }\n        .justify-center { justify-content: center; }\n        .justify-between { justify-content: space-between; }\n        .justify-around { justify-content: space-around; }\n        .justify-evenly { justify-content: space-evenly; }\n        \n        /* Align Items Examples */\n        .align-stretch { align-items: stretch; }\n        .align-start { align-items: flex-start; }\n        .align-end { align-items: flex-end; }\n        .align-center { align-items: center; }\n        \n        .align-stretch .flex-item {\n            height: auto;\n        }\n        \n        /* Flex Wrap */\n        .wrap-container {\n            flex-wrap: wrap;\n            width: 300px;\n        }\n        \n        /* Flex Item Properties */\n        .item-properties {\n            height: 200px;\n        }\n        \n        .grow-0 { flex-grow: 0; background-color: #e74c3c; }\n        .grow-1 { flex-grow: 1; background-color: #2ecc71; }\n        .grow-2 { flex-grow: 2; background-color: #f39c12; }\n        \n        .shrink-0 { flex-shrink: 0; width: 120px; background-color: #9b59b6; }\n        \n        /* Order Example */\n        .order-container .flex-item:nth-child(1) { order: 3; }\n        .order-container .flex-item:nth-child(2) { order: 1; }\n        .order-container .flex-item:nth-child(3) { order: 2; }\n        \n        /* Practical Examples */\n        .navbar {\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            background-color: #333;\n            padding: 15px 30px;\n            color: white;\n        }\n        \n        .logo { font-size: 24px; font-weight: bold; }\n        .nav-links { display: flex; gap: 20px; }\n        .nav-links a { color: white; text-decoration: none; }\n        \n        .card-container {\n            display: flex;\n            flex-wrap: wrap;\n            gap: 20px;\n            justify-content: center;\n            margin: 30px 0;\n        }\n        \n        .card {\n            flex: 1 1 250px;\n            max-width: 300px;\n            background: white;\n            border: 1px solid #ddd;\n            border-radius: 8px;\n            padding: 20px;\n            box-shadow: 0 2px 5px rgba(0,0,0,0.1);\n        }\n        \n        .centered {\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 200px;\n            background-color: #f0f0f0;\n            border: 2px dashed #333;\n            margin: 20px 0;\n        }\n    </style>\n</head>\n<body>\n    <h1>CSS Flexbox Examples</h1>\n    \n    <!-- Flex Direction -->\n    <h3>Flex Direction</h3>\n    <div class=\"flex-container row\">\n        <div class=\"flex-item\">1</div>\n        <div class=\"flex-item\">2</div>\n        <div class=\"flex-item\">3</div>\n    </div>\n    <div class=\"flex-container row-reverse\">\n        <div class=\"flex-item\">1</div>\n        <div class=\"flex-item\">2</div>\n        <div class=\"flex-item\">3</div>\n    </div>\n    <div class=\"flex-container column\">\n        <div class=\"flex-item\">1</div>\n        <div class=\"flex-item\">2</div>\n        <div class=\"flex-item\">3</div>\n    </div>\n    \n    <!-- Justify Content -->\n    <h3>Justify Content</h3>\n    <div class=\"flex-container justify-start\">\n        <div class=\"flex-item\">Start</div>\n        <div class=\"flex-item\">Start</div>\n    </div>\n    <div class=\"flex-container justify-center\">\n        <div class=\"flex-item\">Center</div>\n        <div class=\"flex-item\">Center</div>\n    </div>\n    <div class=\"flex-container justify-between\">\n        <div class=\"flex-item\">Between</div>\n        <div class=\"flex-item\">Between</div>\n        <div class=\"flex-item\">Between</div>\n    </div>\n    \n    <!-- Align Items -->\n    <h3>Align Items</h3>\n    <div class=\"flex-container align-start\" style=\"height: 120px;\">\n        <div class=\"flex-item\" style=\"height: 60px;\">Start</div>\n        <div class=\"flex-item\" style=\"height: 90px;\">Start</div>\n    </div>\n    <div class=\"flex-container align-center\" style=\"height: 120px;\">\n        <div class=\"flex-item\" style=\"height: 60px;\">Center</div>\n        <div class=\"flex-item\" style=\"height: 90px;\">Center</div>\n    </div>\n    \n    <!-- Flex Wrap -->\n    <h3>Flex Wrap</h3>\n    <div class=\"flex-container wrap-container\">\n        <div class=\"flex-item\">Item 1</div>\n        <div class=\"flex-item\">Item 2</div>\n        <div class=\"flex-item\">Item 3</div>\n        <div class=\"flex-item\">Item 4</div>\n        <div class=\"flex-item\">Item 5</div>\n    </div>\n    \n    <!-- Flex Item Properties -->\n    <h3>Flex Grow</h3>\n    <div class=\"flex-container item-properties\">\n        <div class=\"flex-item grow-0\">grow 0</div>\n        <div class=\"flex-item grow-1\">grow 1</div>\n        <div class=\"flex-item grow-2\">grow 2</div>\n    </div>\n    \n    <h3>Flex Shrink</h3>\n    <div class=\"flex-container\" style=\"width: 400px;\">\n        <div class=\"flex-item shrink-0\">No Shrink</div>\n        <div class=\"flex-item\">Shrinks</div>\n        <div class=\"flex-item\">Shrinks</div>\n    </div>\n    \n    <h3>Order Property</h3>\n    <div class=\"flex-container order-container\">\n        <div class=\"flex-item\">1st (order:3)</div>\n        <div class=\"flex-item\">2nd (order:1)</div>\n        <div class=\"flex-item\">3rd (order:2)</div>\n    </div>\n    \n    <!-- Practical Examples -->\n    <h3>Practical Example: Navigation Bar</h3>\n    <div class=\"navbar\">\n        <div class=\"logo\">MySite</div>\n        <div class=\"nav-links\">\n            <a href=\"#\">Home</a>\n            <a href=\"#\">About</a>\n            <a href=\"#\">Services</a>\n            <a href=\"#\">Contact</a>\n        </div>\n    </div>\n    \n    <h3>Practical Example: Card Layout</h3>\n    <div class=\"card-container\">\n        <div class=\"card\">\n            <h4>Card 1</h4>\n            <p>Flexbox makes responsive card layouts easy.</p>\n        </div>\n        <div class=\"card\">\n            <h4>Card 2</h4>\n            <p>Cards automatically wrap on smaller screens.</p>\n        </div>\n        <div class=\"card\">\n            <h4>Card 3</h4>\n            <p>Equal height columns without extra CSS.</p>\n        </div>\n    </div>\n    \n    <h3>Centering with Flexbox</h3>\n    <div class=\"centered\">\n        <div style=\"background: #3498db; color: white; padding: 20px;\">\n            Perfectly Centered Content\n        </div>\n    </div>\n</body>\n</html>",
+      "real_world_example": "Navigation menus use flexbox for horizontal spacing. Card grids use flex-wrap for responsive layouts. Centering elements (both horizontally and vertically) is trivial with flexbox. Form controls use flexbox for alignment. Dashboard widgets use flexbox for flexible sizing. Mobile app interfaces heavily rely on flexbox for component layouts.",
+      "interactive_tasks": [
+        "Create a responsive navigation bar with flexbox",
+        "Build a card grid that wraps on smaller screens",
+        "Center content both horizontally and vertically",
+        "Create a flexible sidebar and main content layout"
+      ],
+      "quiz": [
+        {
+          "question": "Which property creates a flex container?",
+          "options": ["flex: true", "display: flex", "flex-container: true", "layout: flex"],
+          "answer": "display: flex",
+          "reasoning": "Setting display: flex on an element makes it a flex container and its children flex items."
+        },
+        {
+          "question": "What is the default flex-direction?",
+          "options": ["column", "row", "row-reverse", "column-reverse"],
+          "answer": "row",
+          "reasoning": "The default flex-direction is row, arranging items horizontally from left to right."
+        },
+        {
+          "question": "Which property aligns items along the main axis?",
+          "options": ["align-items", "justify-content", "align-content", "flex-align"],
+          "answer": "justify-content",
+          "reasoning": "justify-content aligns flex items along the main axis (horizontal for row, vertical for column)."
+        },
+        {
+          "question": "Which property aligns items along the cross axis?",
+          "options": ["align-items", "justify-content", "align-content", "flex-align"],
+          "answer": "align-items",
+          "reasoning": "align-items aligns flex items along the cross axis (vertical for row, horizontal for column)."
+        },
+        {
+          "question": "What does flex: 1 mean?",
+          "options": ["No flexibility", "Equal growing and shrinking", "Only grow, no shrink", "Fixed size"],
+          "answer": "Equal growing and shrinking",
+          "reasoning": "flex: 1 is shorthand for flex: 1 1 0, meaning equal growing (1) and shrinking (1) from zero basis."
+        },
+        {
+          "question": "How do you make flex items wrap to multiple lines?",
+          "options": ["flex-wrap: wrap", "flex-direction: wrap", "wrap: true", "flex-flow: wrap"],
+          "answer": "flex-wrap: wrap",
+          "reasoning": "flex-wrap: wrap allows flex items to wrap onto multiple lines when they don't fit."
+        },
+        {
+          "question": "What does align-self do?",
+          "options": ["Aligns single item differently", "Aligns all items", "Changes direction", "Controls wrapping"],
+          "answer": "Aligns single item differently",
+          "reasoning": "align-self allows overriding align-items for individual flex items."
+        }
+      ]
+    },
+    {
+      "title": "Day 8 – CSS Grid Basics",
+      "definition": "CSS Grid Layout is a two-dimensional layout system for creating complex web layouts with rows and columns, offering precise control over item placement.",
+      "explanation": "CSS Grid allows creating layouts with both rows and columns simultaneously, unlike Flexbox which is one-dimensional. It consists of a grid container (parent) and grid items (children). Grid provides powerful capabilities for creating responsive layouts, aligning content, and managing whitespace. It's ideal for page-level layouts and complex component arrangements.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Grid</title>\n    <style>\n        body {\n            padding: 20px;\n            font-family: Arial, sans-serif;\n        }\n        \n        .grid-container {\n            display: grid;\n            border: 2px solid #333;\n            padding: 10px;\n            margin: 20px 0;\n            background-color: #f8f9fa;\n            min-height: 200px;\n        }\n        \n        .grid-item {\n            background-color: #3498db;\n            color: white;\n            padding: 20px;\n            text-align: center;\n            border: 1px solid white;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-weight: bold;\n        }\n        \n        /* Basic Grid Templates */\n        .grid-3col {\n            grid-template-columns: 100px 200px 100px;\n        }\n        \n        .grid-fr {\n            grid-template-columns: 1fr 2fr 1fr;\n        }\n        \n        .grid-repeat {\n            grid-template-columns: repeat(3, 1fr);\n        }\n        \n        .grid-rows {\n            grid-template-rows: 100px 200px;\n            grid-template-columns: repeat(2, 1fr);\n        }\n        \n        /* Gap Property */\n        .grid-gap {\n            grid-template-columns: repeat(3, 1fr);\n            gap: 20px;\n        }\n        \n        /* Grid Item Placement */\n        .placement-grid {\n            grid-template-columns: repeat(4, 1fr);\n            grid-template-rows: repeat(3, 80px);\n            gap: 10px;\n        }\n        \n        .item1 { grid-column: 1 / 3; background-color: #e74c3c; }\n        .item2 { grid-column: 3 / 5; background-color: #2ecc71; }\n        .item3 { grid-column: 1 / 2; grid-row: 2 / 4; background-color: #f39c12; }\n        .item4 { grid-column: 2 / 5; grid-row: 2 / 3; background-color: #9b59b6; }\n        .item5 { grid-column: 2 / 4; grid-row: 3 / 4; background-color: #1abc9c; }\n        \n        /* Named Grid Areas */\n        .page-layout {\n            grid-template-areas:\n                \"header header header\"\n                \"sidebar main main\"\n                \"footer footer footer\";\n            grid-template-columns: 200px 1fr 1fr;\n            grid-template-rows: 80px 1fr 60px;\n            gap: 10px;\n            height: 400px;\n        }\n        \n        .header { grid-area: header; background-color: #34495e; }\n        .sidebar { grid-area: sidebar; background-color: #95a5a6; }\n        .main { grid-area: main; background-color: #ecf0f1; color: #333; }\n        .footer { grid-area: footer; background-color: #2c3e50; }\n        \n        /* Responsive Grid */\n        .responsive-grid {\n            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n            gap: 20px;\n        }\n        \n        .responsive-item {\n            height: 100px;\n            background-color: #3498db;\n        }\n        \n        /* Grid Alignment */\n        .alignment-grid {\n            grid-template-columns: repeat(3, 100px);\n            grid-template-rows: repeat(3, 100px);\n            justify-content: center;\n            align-content: center;\n            height: 400px;\n            background-color: #f0f0f0;\n        }\n        \n        .alignment-item {\n            background-color: #e74c3c;\n        }\n        \n        /* Practical Example: Photo Gallery */\n        .gallery {\n            display: grid;\n            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n            gap: 15px;\n            margin: 30px 0;\n        }\n        \n        .gallery-item {\n            height: 150px;\n            background: linear-gradient(45deg, #3498db, #9b59b6);\n            border-radius: 8px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            color: white;\n            font-weight: bold;\n        }\n        \n        /* Grid vs Flexbox comparison */\n        .comparison-container {\n            display: grid;\n            grid-template-columns: 1fr 1fr;\n            gap: 30px;\n            margin: 30px 0;\n        }\n        \n        .flexbox-example {\n            display: flex;\n            flex-wrap: wrap;\n            gap: 10px;\n            border: 2px solid #3498db;\n            padding: 15px;\n        }\n        \n        .grid-example {\n            display: grid;\n            grid-template-columns: repeat(3, 1fr);\n            gap: 10px;\n            border: 2px solid #e74c3c;\n            padding: 15px;\n        }\n        \n        .example-item {\n            background-color: #2ecc71;\n            color: white;\n            padding: 20px;\n            text-align: center;\n        }\n    </style>\n</head>\n<body>\n    <h1>CSS Grid Examples</h1>\n    \n    <!-- Grid Templates -->\n    <h3>Grid Templates</h3>\n    <div class=\"grid-container grid-3col\">\n        <div class=\"grid-item\">100px</div>\n        <div class=\"grid-item\">200px</div>\n        <div class=\"grid-item\">100px</div>\n    </div>\n    \n    <div class=\"grid-container grid-fr\">\n        <div class=\"grid-item\">1fr</div>\n        <div class=\"grid-item\">2fr</div>\n        <div class=\"grid-item\">1fr</div>\n    </div>\n    \n    <div class=\"grid-container grid-repeat\">\n        <div class=\"grid-item\">1fr</div>\n        <div class=\"grid-item\">1fr</div>\n        <div class=\"grid-item\">1fr</div>\n    </div>\n    \n    <!-- Grid Rows -->\n    <h3>Grid Rows</h3>\n    <div class=\"grid-container grid-rows\">\n        <div class=\"grid-item\">Row 1 (100px)</div>\n        <div class=\"grid-item\">Row 1 (100px)</div>\n        <div class=\"grid-item\">Row 2 (200px)</div>\n        <div class=\"grid-item\">Row 2 (200px)</div>\n    </div>\n    \n    <!-- Gap Property -->\n    <h3>Grid Gap</h3>\n    <div class=\"grid-container grid-gap\">\n        <div class=\"grid-item\">Item 1</div>\n        <div class=\"grid-item\">Item 2</div>\n        <div class=\"grid-item\">Item 3</div>\n        <div class=\"grid-item\">Item 4</div>\n        <div class=\"grid-item\">Item 5</div>\n        <div class=\"grid-item\">Item 6</div>\n    </div>\n    \n    <!-- Item Placement -->\n    <h3>Grid Item Placement</h3>\n    <div class=\"grid-container placement-grid\">\n        <div class=\"grid-item item1\">Item 1 (col 1-3)</div>\n        <div class=\"grid-item item2\">Item 2 (col 3-5)</div>\n        <div class=\"grid-item item3\">Item 3 (row 2-4)</div>\n        <div class=\"grid-item item4\">Item 4 (col 2-5)</div>\n        <div class=\"grid-item item5\">Item 5 (col 2-4)</div>\n    </div>\n    \n    <!-- Named Grid Areas -->\n    <h3>Named Grid Areas (Page Layout)</h3>\n    <div class=\"grid-container page-layout\">\n        <div class=\"grid-item header\">Header</div>\n        <div class=\"grid-item sidebar\">Sidebar</div>\n        <div class=\"grid-item main\">Main Content</div>\n        <div class=\"grid-item footer\">Footer</div>\n    </div>\n    \n    <!-- Responsive Grid -->\n    <h3>Responsive Grid (auto-fit)</h3>\n    <div class=\"grid-container responsive-grid\">\n        <div class=\"responsive-item\">Item 1</div>\n        <div class=\"responsive-item\">Item 2</div>\n        <div class=\"responsive-item\">Item 3</div>\n        <div class=\"responsive-item\">Item 4</div>\n        <div class=\"responsive-item\">Item 5</div>\n    </div>\n    \n    <!-- Grid Alignment -->\n    <h3>Grid Alignment (justify-content & align-content)</h3>\n    <div class=\"grid-container alignment-grid\">\n        <div class=\"grid-item alignment-item\">1</div>\n        <div class=\"grid-item alignment-item\">2</div>\n        <div class=\"grid-item alignment-item\">3</div>\n    </div>\n    \n    <!-- Practical Example: Photo Gallery -->\n    <h3>Practical Example: Photo Gallery</h3>\n    <div class=\"gallery\">\n        <div class=\"gallery-item\">Photo 1</div>\n        <div class=\"gallery-item\">Photo 2</div>\n        <div class=\"gallery-item\">Photo 3</div>\n        <div class=\"gallery-item\">Photo 4</div>\n        <div class=\"gallery-item\">Photo 5</div>\n        <div class=\"gallery-item\">Photo 6</div>\n    </div>\n    \n    <!-- Grid vs Flexbox -->\n    <h3>Grid vs Flexbox Comparison</h3>\n    <div class=\"comparison-container\">\n        <div>\n            <h4>Flexbox (1D)</h4>\n            <div class=\"flexbox-example\">\n                <div class=\"example-item\">Item 1</div>\n                <div class=\"example-item\">Item 2</div>\n                <div class=\"example-item\">Item 3</div>\n                <div class=\"example-item\">Item 4</div>\n            </div>\n            <p>One-dimensional layout (row OR column)</p>\n        </div>\n        <div>\n            <h4>CSS Grid (2D)</h4>\n            <div class=\"grid-example\">\n                <div class=\"example-item\">Item 1</div>\n                <div class=\"example-item\">Item 2</div>\n                <div class=\"example-item\">Item 3</div>\n                <div class=\"example-item\">Item 4</div>\n                <div class=\"example-item\">Item 5</div>\n                <div class=\"example-item\">Item 6</div>\n            </div>\n            <p>Two-dimensional layout (rows AND columns)</p>\n        </div>\n    </div>\n</body>\n</html>",
+      "real_world_example": "Website layouts use grid for header, sidebar, main content, footer arrangements. Photo galleries use responsive grids with auto-fit. Dashboard interfaces use grid for widget placement. Magazine-style layouts use grid for complex content arrangements. Product grids on e-commerce sites use grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)). Form layouts with labels and inputs use grid for alignment.",
+      "interactive_tasks": [
+        "Create a basic webpage layout with header, sidebar, main, footer",
+        "Build a responsive image gallery that adjusts columns based on screen size",
+        "Create a dashboard with multiple widgets using grid placement",
+        "Experiment with grid line positioning and spanning"
+      ],
+      "quiz": [
+        {
+          "question": "Which property creates a grid container?",
+          "options": ["grid: true", "display: grid", "grid-container: true", "layout: grid"],
+          "answer": "display: grid",
+          "reasoning": "Setting display: grid on an element makes it a grid container."
+        },
+        {
+          "question": "What does 1fr unit mean in grid?",
+          "options": ["1 pixel", "1 fraction of available space", "1 rem", "Fixed size"],
+          "answer": "1 fraction of available space",
+          "reasoning": "1fr represents one fraction of the available space in the grid container."
+        },
+        {
+          "question": "How do you create a 3-column grid with equal widths?",
+          "options": ["grid-template-columns: 3fr", "grid-template-columns: 1fr 1fr 1fr", "grid-columns: 3", "grid: 3 columns"],
+          "answer": "grid-template-columns: 1fr 1fr 1fr",
+          "reasoning": "grid-template-columns: 1fr 1fr 1fr creates three columns each taking one fraction of space."
+        },
+        {
+          "question": "What does repeat(4, 100px) do?",
+          "options": ["Repeats 100px 4 times", "Creates 4 rows", "Makes 4 items", "Repeats grid 4 times"],
+          "answer": "Repeats 100px 4 times",
+          "reasoning": "repeat(4, 100px) is shorthand for 100px 100px 100px 100px."
+        },
+        {
+          "question": "What is the purpose of grid-template-areas?",
+          "options": ["Names grid lines", "Creates visual layout template", "Sets grid size", "Colors grid cells"],
+          "answer": "Creates visual layout template",
+          "reasoning": "grid-template-areas allows naming areas of the grid for semantic layout creation."
+        },
+        {
+          "question": "How do you make a grid item span 2 columns?",
+          "options": ["grid-column: span 2", "span: 2", "columns: 2", "grid-span: 2"],
+          "answer": "grid-column: span 2",
+          "reasoning": "grid-column: span 2 makes an item span across 2 columns."
+        },
+        {
+          "question": "What does gap: 20px do?",
+          "options": ["Adds space around grid", "Adds space between grid items", "Makes grid larger", "Creates gaps in borders"],
+          "answer": "Adds space between grid items",
+          "reasoning": "gap (formerly grid-gap) adds spacing between grid rows and columns."
+        }
+      ]
+    },
+    {
+      "title": "Day 9 – CSS Pseudo-classes and Pseudo-elements",
+      "definition": "Pseudo-classes target elements based on their state or position, while pseudo-elements style specific parts of elements or generate content.",
+      "explanation": "Pseudo-classes (:) select elements in specific states (hovered, focused, visited) or positions (first-child, nth-child). Pseudo-elements (::) style specific parts of elements (first line, first letter) or generate content (before, after). These selectors add interactivity and decorative elements without extra HTML markup, enhancing user experience and visual design.",
+      "code_example": "<!DOCTYPE html>\n<html>\n<head>\n    <title>CSS Pseudo-classes & Pseudo-elements</title>\n    <style>\n        body {\n            padding: 20px;\n            font-family: Arial, sans-serif;\n        }\n        \n        /* Link States */\n        a:link { color: blue; }\n        a:visited { color: purple; }\n        a:hover { color: red; text-decoration: underline; }\n        a:active { color: orange; }\n        a:focus { outline: 2px solid blue; }\n        \n        /* Form States */\n        input {\n            padding: 8px;\n            margin: 5px;\n            border: 2px solid #ccc;\n        }\n        \n        input:focus {\n            border-color: #3498db;\n            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);\n        }\n        \n        input:disabled {\n            background-color: #f0f0f0;\n            color: #999;\n        }\n        \n        input:required {\n            border-left: 4px solid #e74c3c;\n        }\n        \n        input:valid {\n            border-left: 4px solid #2ecc71;\n        }\n        \n        /* Structural Pseudo-classes */\n        .list-container {\n            border: 2px solid #333;\n            padding: 15px;\n            margin: 20px 0;\n            background-color: #f9f9f9;\n        }\n        \n        ul {\n            list-style: none;\n            padding: 0;\n        }\n        \n        li {\n            padding: 10px;\n            margin: 5px 0;\n            border: 1px solid #ddd;\n        }\n        \n        li:first-child {\n            background-color: #3498db;\n            color: white;\n            font-weight: bold;\n        }\n        \n        li:last-child {\n            background-color: #2ecc71;\n            color: white;\n            font-weight: bold;\n        }\n        \n        li:nth-child(odd) {\n            background-color: #f2f2f2;\n        }\n        \n        li:nth-child(even) {\n            background-color: #e6e6e6;\n        }\n        \n        li:nth-child(3n) {\n            border-left: 4px solid #e74c3c;\n        }\n        \n        /* :not() selector */\n        p:not(.special) {\n            color: #666;\n        }\n        \n        .special {\n            color: #e74c3c;\n            font-weight: bold;\n        }\n        \n        /* Pseudo-elements */\n        .quote {\n            font-size: 18px;\n            font-style: italic;\n            margin: 20px;\n            padding: 20px;\n            background-color: #f8f9fa;\n            border-left: 4px solid #3498db;\n        }\n        \n        .quote::before {\n            content: \"\\\"\";\n            font-size: 32px;\n            color: #3498db;\n            vertical-align: top;\n            line-height: 0;\n        }\n        \n        .quote::after {\n            content: \"\\\"\";\n            font-size: 32px;\n            color: #3498db;\n            vertical-align: bottom;\n            line-height: 0;\n        }\n        \n        .required::after {\n            content: \" *\";\n            color: #e74c3c;\n            font-weight: bold;\n        }\n        \n        /* First letter and line */\n        .first-letter::first-letter {\n            font-size: 48px;\n            float: left;\n            line-height: 1;\n            margin-right: 5px;\n            color: #3498db;\n            font-weight: bold;\n        }\n        \n        .first-line::first-line {\n            font-weight: bold;\n            text-transform: uppercase;\n            color: #2c3e50;\n        }\n        \n        /* Selection */\n        ::selection {\n            background-color: #3498db;\n            color: white;\n        }\n        \n        /* Placeholder */\n        ::placeholder {\n            color: #999;\n            font-style: italic;\n        }\n        \n        /* Marker for lists */\n        ::marker {\n            color: #e74c3c;\n            font-weight: bold;\n        }\n        \n        /* Tooltip with ::after */\n        .tooltip-container {\n            position: relative;\n            display: inline-block;\n            margin: 30px;\n            padding: 10px 20px;\n            background-color: #3498db;\n            color: white;\n            cursor: help;\n        }\n        \n        .tooltip-container:hover::after {\n            content: attr(data-tooltip);\n            position: absolute;\n            bottom: 100%;\n            left: 50%;\n            transform: translateX(-50%);\n            background-color: #333;\n            color: white;\n            padding: 8px 12px;\n            border-radius: 4px;\n            white-space: nowrap;\n            font-size: 14px;\n            margin-bottom: 8px;\n        }\n        \n        /* Custom bullet points */\n        .custom-list li::before {\n            content: \"\\2022\";\n            color: #3498db;\n            font-weight: bold;\n            display: inline-block;\n            width: 1em;\n            margin-left: -1em;\n        }\n        \n        /* Button with hover effects */\n        .button {\n            display: inline-block;\n            padding: 12px 24px;\n            background-color: #3498db;\n            color: white;\n            border: none;\n            border-radius: 4px;\n            cursor: pointer;\n            transition: all 0.3s;\n            margin: 10px;\n        }\n        \n        .button:hover {\n            background-color: #2980b9;\n            transform: translateY(-2px);\n            box-shadow: 0 4px 8px rgba(0,0,0,0.2);\n        }\n        \n        .button:active {\n            transform: translateY(0);\n            box-shadow: 0 2px 4px rgba(0,0,0,0.2);\n        }\n        \n        .button:focus {\n            outline: 2px solid #3498db;\n            outline-offset: 2px;\n        }\n    </style>\n</head>\n<body>\n    <h1>CSS Pseudo-classes & Pseudo-elements</h1>\n    \n    <!-- Link States -->\n    <h3>Link States</h3>\n    <p>\n        <a href=\"#\">Normal Link</a> | \n        <a href=\"#visited\">Visited Link</a> | \n        <a href=\"#\">Hover over me</a>\n    </p>\n    \n    <!-- Form States -->\n    <h3>Form States</h3>\n    <input type=\"text\" placeholder=\"Focus here\" required>\n    <input type=\"text\" placeholder=\"Disabled\" disabled>\n    <input type=\"email\" placeholder=\"Valid email\" required>\n    \n    <!-- Structural Pseudo-classes -->\n    <h3>Structural Pseudo-classes</h3>\n    <div class=\"list-container\">\n        <ul>\n            <li>First Child (blue)</li>\n            <li>Second Item (odd)</li>\n            <li>Third Item (even, 3n - red border)</li>\n            <li>Fourth Item (odd)</li>\n            <li>Fifth Item (even)</li>\n            <li>Last Child (green)</li>\n        </ul>\n    </div>\n    \n    <!-- :not() selector -->\n    <h3>:not() Selector</h3>\n    <p class=\"special\">Special paragraph (red)</p>\n    <p>Normal paragraph (gray - not special)</p>\n    <p>Another normal paragraph</p>\n    \n    <!-- Pseudo-elements -->\n    <h3>Pseudo-elements</h3>\n    \n    <div class=\"quote\">\n        This is a quote with ::before and ::after pseudo-elements\n    </div>\n    \n    <label class=\"required\">Required Field</label>\n    \n    <div class=\"first-letter\">\n        This paragraph has a styled first letter using ::first-letter pseudo-element.\n        The first letter is larger and blue.\n    </div>\n    \n    <div class=\"first-line\">\n        This paragraph has styled first line using ::first-line pseudo-element.\n        Only the first line is bold and uppercase. The rest of the text remains normal.\n        This is additional text to demonstrate the effect.\n    </div>\n    \n    <!-- Tooltip -->\n    <h3>Tooltip with ::after</h3>\n    <div class=\"tooltip-container\" data-tooltip=\"This is a tooltip!\">\n        Hover over me for tooltip\n    </div>\n    \n    <!-- Custom List -->\n    <h3>Custom List Bullets</h3>\n    <ul class=\"custom-list\">\n        <li>Item with custom bullet</li>\n        <li>Another item</li>\n        <li>Third item</li>\n    </ul>\n    \n    <!-- Button Example -->\n    <h3>Button with States</h3>\n    <button class=\"button\">Hover & Click Me</button>\n    \n    <!-- Selection Example -->\n    <h3>Text Selection</h3>\n    <p>Select this text to see custom selection color (blue background, white text).</p>\n    \n    <!-- Placeholder Example -->\n    <h3>Placeholder Styling</h3>\n    <input type=\"text\" placeholder=\"This placeholder is italic and gray\">\n</body>\n</html>",
+      "real_world_example": "Interactive buttons use :hover, :active, and :focus for feedback. Forms use :valid/:invalid for validation states. Navigation menus use :nth-child for alternating colors. Quotes use ::before and ::after for decorative quotation marks. Required fields use ::after for asterisks. List styling uses ::marker or ::before for custom bullets. Highlighted text uses ::selection for custom selection colors. Tooltips use ::after with content: attr().",
+      "interactive_tasks": [
+        "Style interactive buttons with hover, active, and focus states",
+        "Create a custom-styled form with validation feedback",
+        "Add tooltips to elements using ::after pseudo-element",
+        "Style alternate rows in a table using :nth-child"
+      ],
+      "quiz": [
+        {
+          "question": "What symbol is used for pseudo-classes?",
+          "options": ["::", ":", "->", ".."],
+          "answer": ":",
+          "reasoning": "Pseudo-classes use a single colon (:) like :hover, :focus, :first-child."
+        },
+        {
+          "question": "What symbol is used for pseudo-elements?",
+          "options": ["::", ":", "->", ".."],
+          "answer": "::",
+          "reasoning": "Pseudo-elements use double colons (::) like ::before, ::after, ::first-line."
+        },
+        {
+          "question": "Which pseudo-class targets visited links?",
+          "options": [":link", ":visited", ":hover", ":active"],
+          "answer": ":visited",
+          "reasoning": ":visited selects links that have been visited (in browser history)."
+        },
+        {
+          "question": "What does :nth-child(odd) select?",
+          "options": ["First child", "Every other child starting with first", "Only one child", "Last child"],
+          "answer": "Every other child starting with first",
+          "reasoning": ":nth-child(odd) selects elements 1, 3, 5, 7, etc. (every other element starting with first)."
+        },
+        {
+          "question": "Which pseudo-element generates content before an element?",
+          "options": ["::before", "::after", "::first-line", "::first-letter"],
+          "answer": "::before",
+          "reasoning": "::before inserts generated content before the content of the selected element."
+        },
+        {
+          "question": "What property is required for ::before and ::after?",
+          "options": ["position", "content", "display", "color"],
+          "answer": "content",
+          "reasoning": "The content property is required for ::before and ::after pseudo-elements, even if empty (content: \"\")."
+        },
+        {
+          "question": "Which pseudo-class selects form elements with valid input?",
+          "options": [":valid", ":invalid", ":required", ":optional"],
+          "answer": ":valid",
+          "reasoning": ":valid selects form elements whose contents validate successfully based on their type constraints."
+        }
+      ]
+    }
+  ]
+}

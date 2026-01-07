@@ -5,9 +5,14 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fb_auth;
 import 'package:url_launcher/url_launcher.dart';
 import '../providers/auth_provider.dart';
-import '../services/firestore_service.dart';
 import '../providers/theme_provider.dart';
+import '../services/firestore_service.dart';
+import '../core/App_theme.dart';
+import '../in_app_purchase/credit_manager.dart';
+import '../in_app_purchase/credit_purchase_screen.dart';
 import 'auth_wrapper.dart';
+import 'compiler_screen.dart';
+import 'analytics_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -212,7 +217,15 @@ class _ProfileContent extends StatelessWidget {
                   activeCourseTitles: activeCourseTitles,
                 ),
 
+                SizedBox(height: context.responsive.spacing(AppSpacing.xl)),
+                const _AnalyticsTile(),
+                
+                SizedBox(height: context.responsive.spacing(AppSpacing.xl)),
+                const _CreditsCard(),
+
                 SizedBox(height: context.responsive.spacing(AppSpacing.xxl)),
+               // const _CompilerPromptCard(),
+              //  SizedBox(height: context.responsive.spacing(AppSpacing.xxl)),
                 _ActionsSection(onSignOut: onSignOut),
               ],
             ),
@@ -1872,12 +1885,478 @@ class _LoadingState extends StatelessWidget {
   }
 }
 
+// class _ActionsSection extends StatelessWidget {
+//   final VoidCallback onSignOut;
+//
+//   const _ActionsSection({required this.onSignOut});
+//
+//   // Add this method for showing confirmation dialog
+//   void _showSignOutConfirmation(BuildContext context) {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         final theme = Theme.of(context);
+//         final colorScheme = theme.colorScheme;
+//         final width = MediaQuery.of(context).size.width;
+//         final scale = (width / 400).clamp(0.75, 1.4);
+//
+//         return Dialog(
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(16 * scale),
+//           ),
+//           child: Padding(
+//             padding: EdgeInsets.all(24 * scale),
+//             child: Column(
+//               mainAxisSize: MainAxisSize.min,
+//               children: [
+//                 // Icon
+//                 Icon(
+//                   Icons.logout_rounded,
+//                   size: 48 * scale,
+//                   color: colorScheme.error,
+//                 ),
+//                 SizedBox(height: 16 * scale),
+//
+//                 // Title
+//                 Text(
+//                   'Sign Out',
+//                   style: theme.textTheme.titleLarge?.copyWith(
+//                     fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+//                     fontWeight: FontWeight.bold,
+//                     fontFamily: 'custom',
+//                   ),
+//                 ),
+//                 SizedBox(height: 8 * scale),
+//
+//                 // Message
+//                 Text(
+//                   'Are you sure you want to sign out?',
+//                   textAlign: TextAlign.center,
+//                   style: theme.textTheme.bodyMedium?.copyWith(
+//                     fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+//                     color: colorScheme.onSurface.withOpacity(0.7),
+//                     fontFamily: 'custom',
+//                   ),
+//                 ),
+//                 SizedBox(height: 24 * scale),
+//
+//                 // Buttons
+//                 Row(
+//                   children: [
+//                     // Cancel Button
+//                     Expanded(
+//                       child: OutlinedButton(
+//                         onPressed: () => Navigator.pop(context),
+//                         style: OutlinedButton.styleFrom(
+//                           padding: EdgeInsets.symmetric(vertical: 12 * scale),
+//                         ),
+//                         child: Text(
+//                           'Cancel',
+//                           style: TextStyle(
+//                             fontSize: 16 * scale,
+//                             fontFamily: 'custom',
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(width: 12 * scale),
+//
+//                     // Sign Out Button
+//                     Expanded(
+//                       child: FilledButton(
+//                         onPressed: () {
+//                           Navigator.pop(context); // Close dialog
+//                           onSignOut(); // Call the original sign out function
+//                         },
+//                         style: FilledButton.styleFrom(
+//                           backgroundColor: colorScheme.error,
+//                           padding: EdgeInsets.symmetric(vertical: 12 * scale),
+//                         ),
+//                         child: Text(
+//                           'Sign Out',
+//                           style: TextStyle(
+//                             fontSize: 16 * scale,
+//                             fontFamily: 'custom',
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//         );
+//       },
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final theme = Theme.of(context);
+//     final colorScheme = theme.colorScheme;
+//
+//     final width = MediaQuery.of(context).size.width;
+//     final scale = (width / 400).clamp(0.75, 1.4); // responsive scale
+//
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           'Account',
+//           style: theme.textTheme.titleLarge?.copyWith(
+//             fontSize:
+//             (theme.textTheme.titleLarge?.fontSize ?? 22) * scale, // scaled
+//             fontWeight: FontWeight.bold,
+//             fontFamily: 'custom',
+//           ),
+//         ),
+//         SizedBox(height: 16 * scale), // scaled spacing
+//         Container(
+//           decoration: BoxDecoration(
+//             color: colorScheme.surface,
+//             borderRadius: BorderRadius.circular(16 * scale), // scaled radius
+//             border: Border.all(color: colorScheme.outline.withOpacity(0.1)),
+//           ),
+//           child: Column(
+//             children: [
+//               _ActionTile(
+//                 icon: Icons.person_rounded,
+//                 label: 'Edit Profile',
+//                 color: colorScheme.primary,
+//                 scale: scale, // pass scale
+//                 onTap: () {
+//                   showModalBottomSheet(
+//                     context: context,
+//                     isScrollControlled: true,
+//                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.vertical(
+//                         top: Radius.circular(24 * scale), // scaled radius
+//                       ),
+//                     ),
+//                     builder: (ctx) => const _EditProfileSheet(),
+//                   );
+//                 },
+//               ),
+//               Divider(height: 1),
+//               _ActionTile(
+//                 icon: Icons.settings_rounded,
+//                 label: 'Settings',
+//                 color: colorScheme.secondary,
+//                 scale: scale,
+//                 onTap: () {
+//                   showModalBottomSheet(
+//                     context: context,
+//                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.vertical(
+//                         top: Radius.circular(24 * scale),
+//                       ),
+//                     ),
+//                     builder: (ctx) => const _SettingsSheet(),
+//                   );
+//                 },
+//               ),
+//               Divider(height: 1),
+//               _ActionTile(
+//                 icon: Icons.help_rounded,
+//                 label: 'Help & Support',
+//                 color: Colors.orange,
+//                 scale: scale,
+//                 onTap: () {
+//                   showModalBottomSheet(
+//                     context: context,
+//                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.vertical(
+//                         top: Radius.circular(24 * scale),
+//                       ),
+//                     ),
+//                     builder: (ctx) => const _HelpSupportSheet(),
+//                   );
+//                 },
+//               ),
+//               Divider(height: 1),
+//               _ActionTile(
+//                 icon: Icons.logout_rounded,
+//                 label: 'Sign Out',
+//                 color: colorScheme.error,
+//                 scale: scale,
+//                 onTap: () => _showSignOutConfirmation(context), // CHANGED: Call confirmation dialog
+//               ),
+//
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+class _CreditsCard extends StatelessWidget {
+  const _CreditsCard();
+
+  void _openPurchase(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const CreditsPurchaseScreen(),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final creditManager = context.watch<CreditManager>();
+    final availableCredits =
+        creditManager.isLoading ? '...' : creditManager.credits.toString();
+    final theme = Theme.of(context);
+    final padding = AppTheme.responsiveSize(context, phone: 20, tablet: 26);
+    final borderRadius = AppTheme.responsiveSize(context, phone: 18, tablet: 22);
+    final spacing = AppTheme.responsiveSize(context, phone: 16, tablet: 20);
+    final iconPadding = AppTheme.responsiveSize(context, phone: 8, tablet: 12);
+    final colorScheme = theme.colorScheme;
+    final gradientColors = [
+      colorScheme.surfaceVariant,
+      colorScheme.surface,
+    ];
+    final accentColor = colorScheme.onSurface;
+    final primaryColor = colorScheme.primary;
+    final borderColor = colorScheme.outline;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openPurchase(context),
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(padding),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: gradientColors,
+            ),
+            borderRadius: BorderRadius.circular(borderRadius),
+            border: Border.all(
+              color: borderColor,
+              width: AppTheme.responsiveSize(context, phone: 1.5, tablet: 2),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: colorScheme.shadow.withOpacity(0.25),
+                blurRadius: 18,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(iconPadding),
+                    decoration: BoxDecoration(
+                      color: primaryColor.withOpacity(0.25),
+                      borderRadius: BorderRadius.circular(iconPadding),
+                    ),
+                    child: Icon(
+                      Icons.credit_card_rounded,
+                      color: primaryColor,
+                      size: AppTheme.responsiveSize(context, phone: 20, tablet: 26),
+                    ),
+                  ),
+                  SizedBox(width: spacing * 0.5),
+                  Text(
+                    'Available Credits',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: accentColor,
+                      fontSize: AppTheme.responsiveFont(context, phone: 16, tablet: 20),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: spacing),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (creditManager.isLoading)
+                          CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                          )
+                        else
+                          Text(
+                            availableCredits,
+                            style: TextStyle(
+                              color: accentColor,
+                              fontSize: AppTheme.responsiveFont(context, phone: 42, tablet: 52),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        SizedBox(
+                          height: AppTheme.responsiveSize(context, phone: 4, tablet: 8),
+                        ),
+                        Text(
+                          'Use credits for AI styling features',
+                          style: TextStyle(
+                          color: accentColor.withOpacity(0.8),
+                            fontSize: AppTheme.responsiveFont(context, phone: 12, tablet: 16),
+                          ),
+                        ),
+                       
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: spacing * 0.4),
+                  OutlinedButton(
+                    onPressed: () => _openPurchase(context),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: colorScheme.primary,
+                        width: AppTheme.responsiveSize(context, phone: 1.4, tablet: 1.8),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppTheme.responsiveSize(context, phone: 18, tablet: 24),
+                        vertical: AppTheme.responsiveSize(context, phone: 10, tablet: 14),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          AppTheme.responsiveSize(context, phone: 10, tablet: 14),
+                        ),
+                      ),
+                      minimumSize: const Size(0, 0),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    child: Text(
+                      'Get More',
+                      style: TextStyle(
+                        color: accentColor,
+                        fontSize: AppTheme.responsiveFont(context, phone: 14, tablet: 18),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CompilerPromptCard extends StatelessWidget {
+  const _CompilerPromptCard();
+
+  void _openCompiler(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const CompilerScreen(),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return InkWell(
+      onTap: () => _openCompiler(context),
+      borderRadius: BorderRadius.circular(18),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              colorScheme.primary.withOpacity(0.18),
+              colorScheme.primary.withOpacity(0.05),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: colorScheme.primary.withOpacity(0.3)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary.withOpacity(0.2),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.code_rounded,
+                    color: colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    'Open the compiler',
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'custom',
+                    ),
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 18,
+                  color: colorScheme.primary.withOpacity(0.9),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Launch the interactive editor and preview panel with ready-made HTML snippets you can tweak and run.',
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface.withOpacity(0.75),
+                fontFamily: 'custom',
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: colorScheme.surface,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: colorScheme.outline.withOpacity(0.2)),
+              ),
+              child: Text(
+                '<h1>Hello, world!</h1>\n<p>Edit this snippet and run it in the compiler.</p>',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  fontFamily: 'monospace',
+                  height: 1.5,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ActionsSection extends StatelessWidget {
   final VoidCallback onSignOut;
 
   const _ActionsSection({required this.onSignOut});
 
-  // Add this method for showing confirmation dialog
+  // Show sign out confirmation dialog
   void _showSignOutConfirmation(BuildContext context) {
     showDialog(
       context: context,
@@ -1896,15 +2375,12 @@ class _ActionsSection extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Icon
                 Icon(
                   Icons.logout_rounded,
                   size: 48 * scale,
                   color: colorScheme.error,
                 ),
                 SizedBox(height: 16 * scale),
-
-                // Title
                 Text(
                   'Sign Out',
                   style: theme.textTheme.titleLarge?.copyWith(
@@ -1914,8 +2390,6 @@ class _ActionsSection extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8 * scale),
-
-                // Message
                 Text(
                   'Are you sure you want to sign out?',
                   textAlign: TextAlign.center,
@@ -1926,11 +2400,8 @@ class _ActionsSection extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24 * scale),
-
-                // Buttons
                 Row(
                   children: [
-                    // Cancel Button
                     Expanded(
                       child: OutlinedButton(
                         onPressed: () => Navigator.pop(context),
@@ -1947,13 +2418,11 @@ class _ActionsSection extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 12 * scale),
-
-                    // Sign Out Button
                     Expanded(
                       child: FilledButton(
                         onPressed: () {
-                          Navigator.pop(context); // Close dialog
-                          onSignOut(); // Call the original sign out function
+                          Navigator.pop(context);
+                          onSignOut();
                         },
                         style: FilledButton.styleFrom(
                           backgroundColor: colorScheme.error,
@@ -1978,13 +2447,196 @@ class _ActionsSection extends StatelessWidget {
     );
   }
 
+  // 🆕 Show delete account confirmation dialog
+  void _showDeleteAccountConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final width = MediaQuery.of(context).size.width;
+        final scale = (width / 400).clamp(0.75, 1.4);
+
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16 * scale),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(24 * scale),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  size: 48 * scale,
+                  color: Colors.red.shade700,
+                ),
+                SizedBox(height: 16 * scale),
+                Text(
+                  'Delete Account',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 8 * scale),
+                Text(
+                  'This action cannot be undone. All your data, progress, and account information will be permanently deleted.',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+                    color: colorScheme.onSurface.withOpacity(0.7),
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 24 * scale),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12 * scale),
+                    Expanded(
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          _handleDeleteAccount(context);
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.red.shade700,
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // 🆕 Handle account deletion
+  Future<void> _handleDeleteAccount(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    // Show loading dialog
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Deleting account...'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        throw Exception('No user signed in');
+      }
+
+      // // Delete Firestore data
+      // await FirestoreService().deleteUserAccount(user.uid);
+      //
+      // // Delete Firebase Auth account
+      // await user.delete();
+
+      // Sign out from provider
+      if (context.mounted) {
+        await context.read<AuthProvider>().signOut();
+      }
+
+      // Close loading dialog
+      if (context.mounted) {
+        navigator.pop();
+      }
+
+      // Navigate to auth wrapper
+      if (context.mounted) {
+        navigator.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const AuthWrapper()),
+              (route) => false,
+        );
+      }
+
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('Account deleted successfully'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    } catch (e) {
+      // Close loading dialog
+      if (context.mounted) {
+        navigator.pop();
+      }
+
+      String errorMessage = 'Failed to delete account';
+
+      // Handle specific Firebase Auth errors
+      if (e.toString().contains('requires-recent-login')) {
+        errorMessage = 'Please sign in again before deleting your account';
+      }
+
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('$errorMessage: ${e.toString()}'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.red,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
     final width = MediaQuery.of(context).size.width;
-    final scale = (width / 400).clamp(0.75, 1.4); // responsive scale
+    final scale = (width / 400).clamp(0.75, 1.4);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1992,17 +2644,16 @@ class _ActionsSection extends StatelessWidget {
         Text(
           'Account',
           style: theme.textTheme.titleLarge?.copyWith(
-            fontSize:
-            (theme.textTheme.titleLarge?.fontSize ?? 22) * scale, // scaled
+            fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
             fontWeight: FontWeight.bold,
             fontFamily: 'custom',
           ),
         ),
-        SizedBox(height: 16 * scale), // scaled spacing
+        SizedBox(height: 16 * scale),
         Container(
           decoration: BoxDecoration(
             color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(16 * scale), // scaled radius
+            borderRadius: BorderRadius.circular(16 * scale),
             border: Border.all(color: colorScheme.outline.withOpacity(0.1)),
           ),
           child: Column(
@@ -2011,7 +2662,7 @@ class _ActionsSection extends StatelessWidget {
                 icon: Icons.person_rounded,
                 label: 'Edit Profile',
                 color: colorScheme.primary,
-                scale: scale, // pass scale
+                scale: scale,
                 onTap: () {
                   showModalBottomSheet(
                     context: context,
@@ -2019,7 +2670,7 @@ class _ActionsSection extends StatelessWidget {
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(24 * scale), // scaled radius
+                        top: Radius.circular(24 * scale),
                       ),
                     ),
                     builder: (ctx) => const _EditProfileSheet(),
@@ -2070,7 +2721,16 @@ class _ActionsSection extends StatelessWidget {
                 label: 'Sign Out',
                 color: colorScheme.error,
                 scale: scale,
-                onTap: () => _showSignOutConfirmation(context), // CHANGED: Call confirmation dialog
+                onTap: () => _showSignOutConfirmation(context),
+              ),
+              Divider(height: 1),
+              // 🆕 Delete Account Tile
+              _ActionTile(
+                icon: Icons.delete_forever_rounded,
+                label: 'Delete Account',
+                color: Colors.red.shade700,
+                scale: scale,
+                onTap: () => _showDeleteAccountConfirmation(context),
               ),
             ],
           ),
@@ -2141,6 +2801,106 @@ class _ActionTile extends StatelessWidget {
                 Icons.arrow_forward_ios_rounded,
                 size: arrowSize,
                 color: colorScheme.onSurface.withOpacity(0.5),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AnalyticsTile extends StatelessWidget {
+  const _AnalyticsTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.75, 1.4);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const AnalyticsScreen(),
+            ),
+          );
+        },
+        borderRadius: BorderRadius.circular(18 * scale),
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(18 * scale),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                AppColors.secondary.withOpacity(0.15),
+                AppColors.secondary.withOpacity(0.05),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(18 * scale),
+            border: Border.all(
+              color: AppColors.secondary.withOpacity(0.3),
+              width: 1.5 * scale,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.secondary.withOpacity(0.1),
+                blurRadius: 10 * scale,
+                offset: Offset(0, 4 * scale),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(12 * scale),
+                decoration: BoxDecoration(
+                  color: AppColors.secondary.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(12 * scale),
+                ),
+                child: Icon(
+                  Icons.analytics_rounded,
+                  color: AppColors.secondary,
+                  size: 24 * scale,
+                ),
+              ),
+              SizedBox(width: 16 * scale),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'View Analytics',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'custom',
+                        fontSize: (theme.textTheme.titleMedium?.fontSize ?? 16) * scale,
+                      ),
+                    ),
+                    SizedBox(height: 4 * scale),
+                    Text(
+                      'Detailed insights into your learning progress',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withOpacity(0.7),
+                        fontFamily: 'custom',
+                        fontSize: (theme.textTheme.bodySmall?.fontSize ?? 12) * scale,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8 * scale),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.secondary,
+                size: 18 * scale,
               ),
             ],
           ),
