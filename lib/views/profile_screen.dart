@@ -1,4 +1,5 @@
 import 'package:coding_tutor/responsive/responsive.dart';
+import 'package:coding_tutor/views/user_analytics_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -236,6 +237,7 @@ class _ProfileContent extends StatelessWidget {
   }
 }
 
+/*
 class _ProfileHeader extends StatelessWidget {
   final dynamic user;
 
@@ -398,7 +400,459 @@ class _ProfileHeader extends StatelessWidget {
     );
   }
 }
+*/
+// Part 1: Profile Header and Stats Section
 
+class _ProfileHeader extends StatelessWidget {
+  final dynamic user;
+
+  const _ProfileHeader({required this.user});
+
+  String _initials(String name) {
+    final parts = name.trim().split(RegExp(r"\s+"));
+    if (parts.isEmpty) return '';
+    final first = parts.first.isNotEmpty ? parts.first[0] : '';
+    final last = parts.length > 1 && parts.last.isNotEmpty ? parts.last[0] : '';
+    return (first + last).toUpperCase();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final displayName = user.name.isNotEmpty
+        ? user.name
+        : (user.email.isNotEmpty ? user.email.split('@').first : 'Learner');
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final scaling = screenWidth / 400;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final avatarSize = 70 * scaling.clamp(0.8, 1.3);
+        final padding = 20 * scaling.clamp(0.7, 1.2);
+        final spacing = 16 * scaling.clamp(0.7, 1.2);
+
+        return Container(
+          padding: EdgeInsets.all(padding),
+          decoration: BoxDecoration(
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: colorScheme.primary.withOpacity(0.2),
+              width: 1.5,
+            ),
+          ),
+          child: Row(
+            children: [
+              // Avatar with online indicator
+              Stack(
+                children: [
+                  Container(
+                    width: avatarSize,
+                    height: avatarSize,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          colorScheme.primary,
+                          colorScheme.primary.withOpacity(0.7),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        _initials(displayName),
+                        style: theme.textTheme.headlineSmall?.copyWith(
+                          fontSize: (theme.textTheme.headlineSmall!.fontSize ?? 24) *
+                              scaling.clamp(0.8, 1.2),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'custom',
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      width: 20 * scaling.clamp(0.8, 1.2),
+                      height: 20 * scaling.clamp(0.8, 1.2),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: theme.cardColor,
+                          width: 3,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(width: spacing),
+
+              // User Info
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      displayName,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontSize: (theme.textTheme.titleLarge!.fontSize ?? 20) *
+                            scaling.clamp(0.9, 1.2),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'custom',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 4 * scaling),
+                    Text(
+                      user.email,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontSize: (theme.textTheme.bodyMedium!.fontSize ?? 14) *
+                            scaling.clamp(0.9, 1.2),
+                        color: colorScheme.onSurface.withOpacity(0.6),
+                        fontFamily: 'custom',
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _StatsOverview extends StatelessWidget {
+  final bool loadingStats;
+  final int computedPoints;
+  final int computedLessons;
+  final int activeCourses;
+  final Map<String, int> lessonsByCourse;
+  final Map<String, int> pointsByCourse;
+  final List<String> activeCourseTitles;
+
+  const _StatsOverview({
+    required this.loadingStats,
+    required this.computedPoints,
+    required this.computedLessons,
+    required this.activeCourses,
+    required this.lessonsByCourse,
+    required this.pointsByCourse,
+    required this.activeCourseTitles,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.75, 1.3);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Learning Statistics',
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                fontFamily: 'custom',
+              ),
+            ),
+
+            SizedBox(height: 16 * scale),
+
+            Container(
+              padding: EdgeInsets.all(16 * scale),
+              decoration: BoxDecoration(
+                color: theme.cardColor,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withOpacity(0.2),
+                  width: 1.5,
+                ),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _StatCard(
+                      value: loadingStats ? '...' : computedPoints.toString(),
+                      label: 'POINTS',
+                      icon: Icons.emoji_events_rounded,
+                      color: Colors.amber,
+                      onTap: loadingStats ? null : () => _showPointsBreakdown(context),
+                    ),
+                  ),
+                  SizedBox(width: 12 * scale),
+                  Expanded(
+                    child: _StatCard(
+                      value: loadingStats ? '...' : computedLessons.toString(),
+                      label: 'LESSONS',
+                      icon: Icons.menu_book_rounded,
+                      color: Colors.green,
+                      onTap: loadingStats ? null : () => _showLessonsBreakdown(context),
+                    ),
+                  ),
+                  SizedBox(width: 12 * scale),
+                  Expanded(
+                    child: _StatCard(
+                      value: loadingStats ? '...' : activeCourses.toString(),
+                      label: 'COURSES',
+                      icon: Icons.library_books_rounded,
+                      color: Colors.blue,
+                      onTap: loadingStats ? null : () => _showCoursesBreakdown(context),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showPointsBreakdown(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => _BreakdownSheet(
+        title: 'Points Breakdown',
+        subtitle: '5 points per completed lesson',
+        items: pointsByCourse,
+        isPoints: true,
+      ),
+    );
+  }
+
+  void _showLessonsBreakdown(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => _BreakdownSheet(
+        title: 'Lessons Breakdown',
+        subtitle: 'Completed lessons by course',
+        items: lessonsByCourse,
+        isPoints: false,
+      ),
+    );
+  }
+
+  void _showCoursesBreakdown(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.7, 1.4);
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: theme.scaffoldBackgroundColor,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24 * scale),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Active Courses',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                        fontFamily: 'custom',
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.close_rounded, size: 22 * scale),
+                    onPressed: () => Navigator.pop(ctx),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8 * scale),
+              Text(
+                'Courses you are currently following',
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 14) * scale,
+                  color: theme.colorScheme.onSurface.withOpacity(0.6),
+                  fontFamily: 'custom',
+                ),
+              ),
+              SizedBox(height: 20 * scale),
+
+              if (activeCourseTitles.isEmpty)
+                Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.library_books_outlined,
+                        size: 48 * scale,
+                        color: theme.colorScheme.onSurface.withOpacity(0.3),
+                      ),
+                      SizedBox(height: 12 * scale),
+                      Text(
+                        'No active courses yet',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 14) * scale,
+                          color: theme.colorScheme.onSurface.withOpacity(0.6),
+                          fontFamily: 'custom',
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              else
+                ...activeCourseTitles.map(
+                      (course) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8 * scale),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.play_circle_filled_rounded,
+                          size: 16 * scale,
+                          color: theme.colorScheme.primary,
+                        ),
+                        SizedBox(width: 12 * scale),
+                        Expanded(
+                          child: Text(
+                            course,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 14) * scale,
+                              fontFamily: 'custom',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+              SizedBox(height: 20 * scale),
+
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: Text(
+                    'Close',
+                    style: TextStyle(fontSize: 16 * scale),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StatCard extends StatelessWidget {
+  final String value;
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback? onTap;
+
+  const _StatCard({
+    required this.value,
+    required this.label,
+    required this.icon,
+    required this.color,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.8, 1.3);
+
+    Widget card = Container(
+      padding: EdgeInsets.symmetric(
+        vertical: 16 * scale,
+        horizontal: 8 * scale,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 40 * scale,
+            height: 40 * scale,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.15),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              icon,
+              color: color,
+              size: 22 * scale,
+            ),
+          ),
+          SizedBox(height: 10 * scale),
+          Text(
+            value,
+            style: theme.textTheme.headlineSmall?.copyWith(
+              fontSize: (theme.textTheme.headlineSmall?.fontSize ?? 22) * scale,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'custom',
+            ),
+          ),
+          SizedBox(height: 4 * scale),
+          Text(
+            label,
+            style: theme.textTheme.labelSmall?.copyWith(
+              fontSize: (theme.textTheme.labelSmall?.fontSize ?? 11) * scale,
+              color: theme.colorScheme.onSurface.withOpacity(0.6),
+              fontWeight: FontWeight.w600,
+              fontFamily: 'custom',
+              letterSpacing: 0.5,
+            ),
+          ),
+        ],
+      ),
+    );
+
+    if (onTap != null) {
+      return Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(12),
+          child: card,
+        ),
+      );
+    }
+
+    return card;
+  }
+}
+/*
 class _StatsOverview extends StatelessWidget {
   final bool loadingStats;
   final int computedPoints;
@@ -756,7 +1210,207 @@ class _StatCard extends StatelessWidget {
     return card;
   }
 }
+*/
+class _BreakdownSheet extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final Map<String, int> items;
+  final bool isPoints;
 
+  const _BreakdownSheet({
+    required this.title,
+    required this.subtitle,
+    required this.items,
+    required this.isPoints,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+
+        // 🔥 Scaling factors for phone ↔ tablet
+        final isTablet = width > 600;
+        final scale = isTablet ? 1.35 : 1.0;
+
+        // dynamic paddings
+        final horizontalPadding = 24 * scale;
+        final verticalPadding = 24 * scale;
+
+        // text + icon scale
+        final titleSize = (theme.textTheme.titleLarge?.fontSize ?? 22) * scale;
+        final subtitleSize =
+            (theme.textTheme.bodyMedium?.fontSize ?? 14) * scale;
+
+        final iconSize = 48 * scale;
+        final cardPadding = 16 * scale;
+        final chipPaddingV = 6 * scale;
+        final chipPaddingH = 12 * scale;
+
+        final sortedItems = items.entries.toList()
+          ..sort((a, b) => b.value.compareTo(a.value));
+
+        return SafeArea(
+          child: Container(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.85,
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(verticalPadding),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /// HEADER
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontSize: titleSize,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.close_rounded, size: 24 * scale),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 4 * scale),
+
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontSize: subtitleSize,
+                      color: colorScheme.onSurface.withOpacity(0.6),
+                      fontFamily: 'custom',
+                    ),
+                  ),
+
+                  SizedBox(height: 20 * scale),
+
+                  /// SCROLLABLE CONTENT
+                  if (sortedItems.isEmpty)
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 40 * scale),
+                        child: Column(
+                          children: [
+                            Icon(
+                              isPoints
+                                  ? Icons.emoji_events_outlined
+                                  : Icons.menu_book_outlined,
+                              size: iconSize,
+                              color: colorScheme.onSurface.withOpacity(0.3),
+                            ),
+                            SizedBox(height: 12 * scale),
+                            Text(
+                              isPoints
+                                  ? 'No points yet'
+                                  : 'No lessons completed yet',
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                fontSize: subtitleSize,
+                                color: colorScheme.onSurface.withOpacity(0.6),
+                                fontFamily: 'custom',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  else
+                    Flexible(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: sortedItems.length,
+                        itemBuilder: (context, index) {
+                          final entry = sortedItems[index];
+                          return Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8 * scale),
+                            child: Container(
+                              padding: EdgeInsets.all(cardPadding),
+                              decoration: BoxDecoration(
+                                color: colorScheme.surface,
+                                borderRadius:
+                                BorderRadius.circular(12 * scale),
+                                border: Border.all(
+                                  color: colorScheme.outline.withOpacity(0.1),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      entry.key,
+                                      style:
+                                      theme.textTheme.bodyMedium?.copyWith(
+                                        fontSize: subtitleSize,
+                                        fontFamily: 'custom',
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: chipPaddingH,
+                                      vertical: chipPaddingV,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                      colorScheme.primary.withOpacity(0.1),
+                                      borderRadius:
+                                      BorderRadius.circular(8 * scale),
+                                    ),
+                                    child: Text(
+                                      '${entry.value} ${isPoints ? 'pts' : 'lessons'}',
+                                      style:
+                                      theme.textTheme.bodyMedium?.copyWith(
+                                        fontSize: subtitleSize,
+                                        color: colorScheme.primary,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'custom',
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+                  SizedBox(height: 20 * scale),
+
+                  /// CLOSE BUTTON
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        'Close',
+                        style: TextStyle(fontSize: subtitleSize),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+/*
 class _BreakdownSheet extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -938,6 +1592,7 @@ class _BreakdownSheet extends StatelessWidget {
     );
   }
 }
+*/
 
 class _HelpSupportSheet extends StatelessWidget {
   const _HelpSupportSheet();
@@ -2251,6 +2906,657 @@ class _CreditsCard extends StatelessWidget {
     );
   }
 }
+// Part 2: Analytics, Credits, and Actions Section
+
+class _AnalyticsTile extends StatelessWidget {
+  const _AnalyticsTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.75, 1.4);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const AnalyticsScreen()),
+          );
+        },
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          padding: EdgeInsets.all(18 * scale),
+          decoration: BoxDecoration(
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: AppColors.secondary.withOpacity(0.3),
+              width: 1.5,
+            ),
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(12 * scale),
+                decoration: BoxDecoration(
+                  color: AppColors.secondary.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(12 * scale),
+                ),
+                child: Icon(
+                  Icons.analytics_rounded,
+                  color: AppColors.secondary,
+                  size: 24 * scale,
+                ),
+              ),
+              SizedBox(width: 16 * scale),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'View Analytics',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'custom',
+                        fontSize: (theme.textTheme.titleMedium?.fontSize ?? 16) * scale,
+                      ),
+                    ),
+                    SizedBox(height: 4 * scale),
+                    Text(
+                      'Detailed insights into your learning progress',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withOpacity(0.6),
+                        fontFamily: 'custom',
+                        fontSize: (theme.textTheme.bodySmall?.fontSize ?? 12) * scale,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8 * scale),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.secondary,
+                size: 18 * scale,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+class _CreditsCard extends StatelessWidget {
+  const _CreditsCard();
+
+  void _openPurchase(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const CreditsPurchaseScreen()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final creditManager = context.watch<CreditManager>();
+    final availableCredits = creditManager.isLoading ? '...' : creditManager.credits.toString();
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.75, 1.4);
+    final colorScheme = theme.colorScheme;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openPurchase(context),
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          padding: EdgeInsets.all(20 * scale),
+          decoration: BoxDecoration(
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: colorScheme.primary.withOpacity(0.3),
+              width: 1.5,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(10 * scale),
+                    decoration: BoxDecoration(
+                      color: colorScheme.primary.withOpacity(0.15),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      Icons.credit_card_rounded,
+                      color: colorScheme.primary,
+                      size: 22 * scale,
+                    ),
+                  ),
+                  SizedBox(width: 12 * scale),
+                  Text(
+                    'Available Credits',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurface,
+                      fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'custom',
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16 * scale),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (creditManager.isLoading)
+                          CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(colorScheme.primary),
+                          )
+                        else
+                          Text(
+                            availableCredits,
+                            style: TextStyle(
+                              color: colorScheme.onSurface,
+                              fontSize: 42 * scale,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'custom',
+                            ),
+                          ),
+                        SizedBox(height: 6 * scale),
+                        Text(
+                          'Use credits for AI styling features',
+                          style: TextStyle(
+                            color: colorScheme.onSurface.withOpacity(0.6),
+                            fontSize: 12 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 12 * scale),
+                  OutlinedButton(
+                    onPressed: () => _openPurchase(context),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: colorScheme.primary,
+                        width: 1.5,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 18 * scale,
+                        vertical: 12 * scale,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Get More',
+                      style: TextStyle(
+                        color: colorScheme.onSurface,
+                        fontSize: 14 * scale,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'custom',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+*/
+
+class _ActionsSection extends StatelessWidget {
+  final VoidCallback onSignOut;
+
+  const _ActionsSection({required this.onSignOut});
+
+  void _showSignOutConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final width = MediaQuery.of(context).size.width;
+        final scale = (width / 400).clamp(0.75, 1.4);
+
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16 * scale),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(24 * scale),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.logout_rounded,
+                  size: 48 * scale,
+                  color: colorScheme.error,
+                ),
+                SizedBox(height: 16 * scale),
+                Text(
+                  'Sign Out',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 8 * scale),
+                Text(
+                  'Are you sure you want to sign out?',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+                    color: colorScheme.onSurface.withOpacity(0.7),
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 24 * scale),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12 * scale),
+                    Expanded(
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          onSignOut();
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: colorScheme.error,
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            fontFamily: 'custom',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showDeleteAccountConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final theme = Theme.of(context);
+        final colorScheme = theme.colorScheme;
+        final width = MediaQuery.of(context).size.width;
+        final scale = (width / 400).clamp(0.75, 1.4);
+
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16 * scale),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(24 * scale),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  size: 48 * scale,
+                  color: Colors.red.shade700,
+                ),
+                SizedBox(height: 16 * scale),
+                Text(
+                  'Delete Account',
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 8 * scale),
+                Text(
+                  'This action cannot be undone. All your data will be permanently deleted.',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: (theme.textTheme.bodyMedium?.fontSize ?? 16) * scale,
+                    color: colorScheme.onSurface.withOpacity(0.7),
+                    fontFamily: 'custom',
+                  ),
+                ),
+                SizedBox(height: 24 * scale),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(fontSize: 16 * scale, fontFamily: 'custom'),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 12 * scale),
+                    Expanded(
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          _handleDeleteAccount(context);
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: Colors.red.shade700,
+                          padding: EdgeInsets.symmetric(vertical: 12 * scale),
+                        ),
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(fontSize: 16 * scale, fontFamily: 'custom'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _handleDeleteAccount(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircularProgressIndicator(),
+                SizedBox(height: 16),
+                Text('Deleting account...'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) throw Exception('No user signed in');
+
+      if (context.mounted) {
+        await context.read<AuthProvider>().signOut();
+      }
+
+      if (context.mounted) navigator.pop();
+
+      if (context.mounted) {
+        navigator.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const AuthWrapper()),
+              (route) => false,
+        );
+      }
+
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('Account deleted successfully'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      );
+    } catch (e) {
+      if (context.mounted) navigator.pop();
+
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text('Failed to delete account: ${e.toString()}'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.red,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final width = MediaQuery.of(context).size.width;
+    final scale = (width / 400).clamp(0.75, 1.4);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Account',
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontSize: (theme.textTheme.titleLarge?.fontSize ?? 22) * scale,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'custom',
+          ),
+        ),
+        SizedBox(height: 16 * scale),
+        Container(
+          decoration: BoxDecoration(
+            color: theme.cardColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.white,
+              width: 1.5,
+            ),
+          ),
+          child: Column(
+            children: [
+              _ActionTile(
+                icon: Icons.person_rounded,
+                label: 'Edit Profile',
+                color: colorScheme.primary,
+                scale: scale,
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(24 * scale),
+                      ),
+                    ),
+                    builder: (ctx) => const _EditProfileSheet(),
+                  );
+                },
+              ),
+              Divider(height: 1, thickness: 1),
+              _ActionTile(
+                icon: Icons.analytics_rounded,
+                label: 'User Analytics',
+                color: colorScheme.primary,
+                scale: scale,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AdminAnalyticsScreen(),
+                    ),
+                  );
+                },
+              ),
+              Divider(height: 1, thickness: 1),
+              _ActionTile(
+                icon: Icons.settings_rounded,
+                label: 'Settings',
+                color: colorScheme.secondary,
+                scale: scale,
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(24 * scale),
+                      ),
+                    ),
+                    builder: (ctx) => const _SettingsSheet(),
+                  );
+                },
+              ),
+              Divider(height: 1, thickness: 1),
+              _ActionTile(
+                icon: Icons.help_rounded,
+                label: 'Help & Support',
+                color: Colors.orange,
+                scale: scale,
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(24 * scale),
+                      ),
+                    ),
+                    builder: (ctx) => const _HelpSupportSheet(),
+                  );
+                },
+              ),
+              Divider(height: 1, thickness: 1),
+              _ActionTile(
+                icon: Icons.logout_rounded,
+                label: 'Sign Out',
+                color: colorScheme.error,
+                scale: scale,
+                onTap: () => _showSignOutConfirmation(context),
+              ),
+              Divider(height: 1, thickness: 1),
+              _ActionTile(
+                icon: Icons.delete_forever_rounded,
+                label: 'Delete Account',
+                color: Colors.red.shade700,
+                scale: scale,
+                onTap: () => _showDeleteAccountConfirmation(context),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ActionTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+  final double scale;
+
+  const _ActionTile({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+    this.scale = 1.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final padding = 16 * scale;
+    final iconContainerSize = 40 * scale;
+    final iconSize = 20 * scale;
+    final spacing = 16 * scale;
+    final arrowSize = 16 * scale;
+    final textSize = (theme.textTheme.bodyMedium?.fontSize ?? 14) * scale;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(padding),
+          child: Row(
+            children: [
+              Container(
+                width: iconContainerSize,
+                height: iconContainerSize,
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, color: color, size: iconSize),
+              ),
+              SizedBox(width: spacing),
+              Expanded(
+                child: Text(
+                  label,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: textSize,
+                    fontFamily: 'custom',
+                  ),
+                ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios_rounded,
+                size: arrowSize,
+                color: theme.colorScheme.onSurface.withOpacity(0.5),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class _CompilerPromptCard extends StatelessWidget {
   const _CompilerPromptCard();
@@ -2351,7 +3657,7 @@ class _CompilerPromptCard extends StatelessWidget {
   }
 }
 
-class _ActionsSection extends StatelessWidget {
+/*class _ActionsSection extends StatelessWidget {
   final VoidCallback onSignOut;
 
   const _ActionsSection({required this.onSignOut});
@@ -2679,6 +3985,21 @@ class _ActionsSection extends StatelessWidget {
               ),
               Divider(height: 1),
               _ActionTile(
+                icon: Icons.person_rounded,
+                label: 'User analytics',
+                color: colorScheme.primary,
+                scale: scale,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AdminAnalyticsScreen(),
+                    ),
+                  );
+                },
+              ),
+              Divider(height: 1),
+              _ActionTile(
                 icon: Icons.settings_rounded,
                 label: 'Settings',
                 color: colorScheme.secondary,
@@ -2808,8 +4129,10 @@ class _ActionTile extends StatelessWidget {
       ),
     );
   }
-}
+}*/
 
+
+/*
 class _AnalyticsTile extends StatelessWidget {
   const _AnalyticsTile();
 
@@ -2909,3 +4232,4 @@ class _AnalyticsTile extends StatelessWidget {
     );
   }
 }
+*/
