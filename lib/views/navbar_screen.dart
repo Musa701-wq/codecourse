@@ -47,6 +47,7 @@ class _NavbarscreenState extends State<Navbarscreen> {
 }
 */
 import 'package:flutter/material.dart';
+import '../services/analytics_helper.dart';
 import 'widgets/bottom_nav_bar.dart';
 import 'home_screen.dart';
 import 'progress_screen.dart';
@@ -67,8 +68,21 @@ class Navbarscreen extends StatefulWidget {
 class _NavbarscreenState extends State<Navbarscreen> {
   int _selectedIndex = 0;
 
+  /*void _onNavTapped(int index) {
+    setState(() => _selectedIndex = index);
+  }
+*/
   void _onNavTapped(int index) {
     setState(() => _selectedIndex = index);
+
+
+    if (index == 1) {
+      AnalyticsHelper.trackProgressClick();
+    }
+
+    if (index == 2) {
+      AnalyticsHelper.trackCompilerClick();
+    }
   }
 
   // Public method to allow external screens to change tab

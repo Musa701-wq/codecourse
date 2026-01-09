@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '../providers/theme_provider.dart';
+import '../services/analytics_helper.dart';
 import 'course_level_selection.dart';
 import 'course_topics_screen.dart';
 import 'navbar_screen.dart';
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text.rich(
                         TextSpan(
-                          text: "Basics of Python with ",
+                          text: "Build Strong Coding Foundations with ",
                           style: theme.textTheme.bodyLarge?.copyWith(
                             color: theme.colorScheme.onSurface,
                             fontFamily: "custom",
@@ -97,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           children: [
                             TextSpan(
-                              text: "Data Structures",
+                              text: "Modern Languages",
                               style: TextStyle(
                                 color: theme.colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -108,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        "This is the course to pick if you are just getting into coding.",
+                        "Learn the fundamentals of modern programming languages.",
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurface.withOpacity(0.7),
                           fontFamily: "custom",
@@ -367,6 +368,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$2,350",
                           iconPath: "assets/icons/code.png",
                           ontap: () {
+                            AnalyticsHelper.trackHtmlCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -383,6 +386,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$2,350",
                           iconPath: "assets/icons/css.png", // Custom icon
                           ontap: () {
+                            AnalyticsHelper.trackCssCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -399,6 +404,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$2,350",
                           iconPath: "assets/icons/java-script.png", // Custom icon
                           ontap: () {
+                            AnalyticsHelper.trackJsCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -415,6 +422,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$2,350",
                           iconPath: "assets/icons/java.png", // Custom icon
                           ontap: () {
+                            AnalyticsHelper.trackJavaCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -431,6 +440,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$1,850",
                           iconPath: "assets/icons/c-.png", // Custom icon
                           ontap: () {
+                            AnalyticsHelper.trackCppCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -447,6 +458,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           price: "\$1,350",
                           iconPath: "assets/icons/python.png", // Custom icon
                           ontap: () {
+                            AnalyticsHelper.trackPythonCourseClick();
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(

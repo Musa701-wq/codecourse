@@ -1174,7 +1174,7 @@ class _CourseTopicsScreenState extends State<CourseTopicsScreen> {
         widget.premiumColor ?? Theme.of(context).colorScheme.primary,
         onUnlock: _openPurchaseScreen,
       );
-      return;
+     // return;
 
     }
 

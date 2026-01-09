@@ -22,23 +22,29 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLName</key>
-            <string>GoogleSignIn</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0</string>
-            </array>
-        </dict>
-    </array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>GoogleSignIn</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<false/>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<true/>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-1234567890123456~1234567890</string>
 	<key>GIDClientID</key>
-    <string>420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0.apps.googleusercontent.com</string>
+	<string>420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0.apps.googleusercontent.com</string>
+	<key>GoogleAnalyticsDefaultAllowAdPersonalizationSignals</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>com.googleusercontent.apps.420130426022-pkrpq8p65e1bj62ocv7b12d85q64m0s0</string>
@@ -63,6 +69,8 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -76,19 +84,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
-
-    <key>io.flutter.embedded_views_preview</key>
-    <true/>
-    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
-    <true/>
-    <key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
-    <false/>
-    <key>GoogleAnalyticsDefaultAllowAdPersonalizationSignals</key>
-    <true/>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 </dict>
 </plist>

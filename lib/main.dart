@@ -1,3 +1,4 @@
+/*
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:coding_tutor/ads/ads_provider.dart';
 import 'package:coding_tutor/in_app_purchase/credit_manager.dart';
@@ -98,6 +99,115 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
+      home: const SplashWrapper(),
+    );
+  }
+}*/
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:coding_tutor/ads/ads_provider.dart';
+import 'package:coding_tutor/in_app_purchase/credit_manager.dart';
+import 'package:coding_tutor/providers/auth_provider.dart';
+import 'package:coding_tutor/views/splash_wrapper.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
+import 'core/App_theme.dart';
+import 'providers/theme_provider.dart';
+import 'firebase_options.dart';
+
+/// 🔹 Firebase Analytics instance
+final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    print('🚀 Starting app initialization...');
+
+    // 1️⃣ Initialize Firebase
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    print('✅ Firebase initialized');
+
+    // 2️⃣ Initialize App Tracking Transparency
+    await initTracking();
+    print('✅ App Tracking Transparency initialized');
+
+    // 3️⃣ Initialize Mobile Ads
+    await initMobileAds();
+    print('✅ Mobile Ads initialized');
+
+    // 4️⃣ Log a test event so device appears in DebugView
+    await analytics.logEvent(name: 'debug_view_test');
+    print('📊 Logged debug_view_test event for DebugView');
+
+    print('🎉 All services initialized successfully');
+  } catch (e, stackTrace) {
+    print('❌ Initialization failed: $e');
+    print('📋 Stack trace: $stackTrace');
+  }
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => AdProvider()),
+        ChangeNotifierProvider(create: (_) => CreditManager()),
+      ],
+      child: const MyApp(),
+    ),
+  );
+}
+
+Future<void> initTracking() async {
+  try {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+    print('📱 Current tracking status: $status');
+
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      final newStatus = await AppTrackingTransparency.requestTrackingAuthorization();
+      print('📱 New tracking status: $newStatus');
+    }
+  } catch (e) {
+    print('❌ App Tracking Transparency failed: $e');
+  }
+}
+
+Future<void> initMobileAds() async {
+  try {
+    await MobileAds.instance.initialize();
+
+    final configuration = RequestConfiguration(
+      testDeviceIds: ['YOUR_TEST_DEVICE_ID'], // Replace with your actual test device ID
+    );
+    MobileAds.instance.updateRequestConfiguration(configuration);
+
+    print('✅ Mobile Ads configured');
+  } catch (e) {
+    print('❌ Mobile Ads initialization failed: $e');
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final themeMode = context.watch<ThemeProvider>().mode;
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics), // Track screens automatically
+      ],
       home: const SplashWrapper(),
     );
   }
